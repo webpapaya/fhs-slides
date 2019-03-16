@@ -1,0 +1,14 @@
+{
+  "name": "fh-salzburg",
+  "version": "1.0.0",
+  "description": "Slides for Client Side Web-Engineering (FH-Salzburg Bachelor)",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx reveal-md .",
+    "build": "npm run build:html && npm run build:pdf",
+    "build:html": "npm run start -- --static _site",
+    "build:pdf": "npm run start -- --print slides.pdf"
+  },
+  "author": "Thomas Mayrhofer",
+  "license": "ISC"
+}
