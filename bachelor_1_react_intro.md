@@ -2,15 +2,6 @@
 
 ---
 
-# What we'll be doing
-
-- Introduction to React
-- Introduction to State Management with Redux
-- TDD Workshop
-- TDD with React
-
----
-
 # React
 
 - Component based library to declaratively build user interfaces
@@ -31,6 +22,7 @@ React.renderComponent(<Button />, document.body);
 ---
 
 # Props in React
+
 - React promotes a unidirectional dataflow
 - Props are passed down to the components
   - Data can only be modified via callbacks
@@ -47,7 +39,7 @@ const Button = () => {
 React.renderComponent(<Button />, document.body);
 ```
 
-----
+---
 
 # How to add state
 
@@ -71,7 +63,9 @@ const Button = () => {
 React.renderComponent(<Button />, document.body);
 ```
 
-#
+---
+
+# Task
 
 - Create component with
   - increment button
