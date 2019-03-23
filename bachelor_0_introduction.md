@@ -1,10 +1,11 @@
-# Frontend Development 2 (MMT-b2017)
+# Frontend Development 2
+## (MMT-b2017)
 
 Build/Test/Deploy Client Side Web-Applications
 
 ---
 
-# What we'll be doing
+# Roadmap
 
 - 01.04. Introduction to React
 - 29.04. - 30.04. Introduction to State Management with Redux
