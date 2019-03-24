@@ -4,7 +4,7 @@
 
 # React
 
-- Component based library to declaratively build user interfaces
+- Component based library to declaratively build composable UIs
 
 ```js
 const Button = () => {
@@ -21,11 +21,23 @@ React.renderComponent(<Button />, document.body);
 
 ---
 
+# Different Types of Components
+
+- Presentational Components
+  - Can be reused in other applications
+  - eg. Buttons, Inputs, Headings, ...
+
+- Container Components
+  - Know about the application and can't be reused easily
+    - UserSignIn, SettingsForm, ...
+
+---
+
 # Props in React
 
 - React promotes a unidirectional dataflow
 - Props are passed down to the components
-  - Data can only be modified via callbacks
+  - State can only be modified via callbacks
 
 ```js
 const Button = () => {
@@ -35,56 +47,65 @@ const Button = () => {
     </button>
   );
 }
-
-React.renderComponent(<Button />, document.body);
 ```
+
+---
+
+
 
 ---
 
 # How to add state
 
 ```js
-const { useState } = React;
-
-const HEY = 'Heeeeyyyy!!!';
-const HOO = 'Hoooooooo!!!';
-
-const Button = () => {
-  const [message, setMessage] = useState(HEY);
-  const nextMessage = message === HEY ? HOO : HEY;
-
+const SimpleForm = ({ onSubmit }) => {
+  const [firstName, setFirstName] = useState("");
   return (
-    <button onClick={ () => setMessage(nextMessage) } type="button">
-      { message }
-    </button>
+    <input
+      type="text"
+      name="firstName"
+      value={firstName}
+      onChange={evt => setFirstName(evt.target.value)}
+    />
   );
-}
-
-React.renderComponent(<Button />, document.body);
+};
 ```
 
 ---
 
-# Task
+# Task 1
 
-- Create component with
-  - increment button
-  - decrement button
-  - value
-- When button is clicked value is changed accordingly
+- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- npm install
+- npm run start:storybook
+- Reuse/Adapt existing Button
+- Create a UserSignIn Form Component
+  - Username
+  - Password
+  - Button is clicked (console.log values)
+- If you're done help others
 
 ---
 
 # Homework
-- Build a calculator
-  - The following operations should be supported
-  -
+- Build the following React Container Components in Storybook
+  - UserSignIn
+    - onSubmit => { username, password }
 
+  - UserSignUp
+    - onSubmit => { username, password }
 
-```js
-const Button = () => (
-  <button onClick={() => console.log('Horray!!!')}>
-    Click Me
-  </button>
-);
-```
+  - MoneyTransactionCreate
+    - users => { id, name }
+    - onSubmit => { debitorId, creditorId, amount }
+
+  - MoneyTransactionList (Lists all Money Transactions)
+    - moneyTransactions
+    - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
+
+- You probably need the following core components
+  - <TextInput onChange={(value) => console.log(value) } />
+  - <DecimalInput onChange={(value) => console.log(value) } />
+  - <SelectInput onChange={(value) => console.log(value) } />
+  - <Button onChange={(value) => console.log(value) } />
+  - ...
