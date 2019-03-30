@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"># Frontend Development 2
+## (MMT-b2017)
+
+Build/Test/Deploy Client Side Web-Applications
+</script></section><section  data-markdown><script type="text/template">
+# About/Contact
+
+- Thomas Mayrhofer (@webpapaya)
+- E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
+</script></section><section  data-markdown><script type="text/template">
+# Roadmap
+
+- 01.04. Introduction to React
+  - 26.04. 23:59:59 due date 1st homework
+- 29.04. - 30.04. Introduction to State Management with Redux
+  - 10.05. 23:59:59 due date 2nd homework
+- 13.05. - 14.05. QA Redux/TDD Workshop
+  - 26.05. 23:59:59 due date 3rd homework
+- 27.05. Klausur
+</script></section><section  data-markdown><script type="text/template">
+# Grading
+
+- 50% Homework
+- 50% Exam
+- Both positiv
+</script></section><section ><section data-markdown><script type="text/template">
+# Homework
+
+- can be done in pairs
+- hand-in via email tmayrhofer.lba@fh-salzburg.ac.at
+  - email contains link to git reporitory
+  - name of students who worked on the assignment
+</script></section><section data-markdown><script type="text/template">
+# Things I will look at:
+
+- functionality
+- naming
+- duplications
+- code consistency (linting)
+- function/component length
+- commits + commit messages
+</script></section><section data-markdown><script type="text/template">
+# What we'll do
+
+- Simple Splitwise clone or own project with similar scope
+</script></section><section data-markdown><script type="text/template">
+![sign_in](assets/sign_in_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![sign_up](assets/sign_up_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![app](assets/app_wireframe.png)
+</script></section></section><section  data-markdown><script type="text/template">
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN
+</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

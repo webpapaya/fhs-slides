@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React
+</script></section><section  data-markdown><script type="text/template">
+## React
+
+- Component based library to build composable UIs
+- OpenSourced in 2013
+- Implemented and Maintained by Facebook
+- Learn once, write anywhere
+  - React-Native
+  - React-Native-Desktop
+  - React-Native-Windows
+  - React-VR</script></section><section ><section data-markdown><script type="text/template">
+## React Components
+
+- Main Building block of a React App
+  - Describe the look and feel of one section in the UI
+
+```js
+const Button = () => {
+  return (
+    <button type="button">
+      A button
+    </button>
+  );
+}
+
+// Usage
+React.renderComponent(<Button />, document.body);
+```
+</script></section><section data-markdown><script type="text/template">
+## JSX
+
+- JavaScript XML
+  - extension to write XML in JS
+- Allows to combine data preparation with render logic
+
+```js
+const Button = () => {
+  return (
+    <button type="button">
+      A button
+    </button>
+  );
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## React without JSX
+
+- React can be used without JSX
+
+```js
+const Button = () => {
+  return React.createElement(
+    'button',
+    {type: 'button'},
+    'A button'
+  );
+}
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Which components do you see?
+
+![app](assets/sign_in_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![app](assets/app_wireframe.png)
+</script></section></section><section  data-markdown><script type="text/template">
+# Building the first react component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/coding.gif" -->
+<!-- .slide: data-color="white" -->
+</script></section><section ><section data-markdown><script type="text/template">
+## Component composition
+
+- Components can be nested and composed together
+
+![app](assets/tree.png)
+</script></section><section data-markdown><script type="text/template">
+
+## React props
+
+- Possibility to customize components
+  - Can be seen as component configuration
+- Props are passed to the component
+  - A component at a lower level of the tree can't modify given props directly
+
+
+```js
+const Button = ({ children, disabled = false }) => {
+  return (
+    <button disabled={disabled} className="button">
+      { children }
+    </button>
+  );
+}
+
+const usage = <Button disabled>A button</Button>;
+```
+</script></section><section data-markdown><script type="text/template">
+# React State
+
+- State allows components to by dynamic/interactive
+
+```js
+const SimpleForm = ({ onSubmit }) => {
+  const [firstName, setFirstName] = useState("");
+  return (
+    <input
+      type="text"
+      name="firstName"
+      value={firstName}
+      onChange={evt => setFirstName(evt.target.value)}
+    />
+  );
+};
+```
+</script></section><section data-markdown><script type="text/template">
+## State vs. Props
+
+| _props_ | _state_ |
+--- | --- | ---
+Can get initial value from parent Component? | Yes | Yes
+Can be changed by parent Component? | Yes | No
+Can set default values inside Component?* | Yes | Yes
+Can change inside Component? | No | Yes
+Can set initial value for child Components? | Yes | Yes
+Can change in child Components? | Yes | No
+
+[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+</script></section></section><section  data-markdown><script type="text/template">
+## Task
+
+- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- npm install
+- npm run start:storybook
+- Reuse/Adapt existing Button
+- Create a UserSignIn Form Component
+  - Username
+  - Password
+- If you're done help others
+</script></section><section ><section data-markdown><script type="text/template">
+## Homework
+
+- Try to build the following components in Storybook
+  - UserSignIn -> onSubmit => { username, password }
+  - UserSignUp -> onSubmit => { username, password }
+  - MoneyTransactionCreate
+    - users => { id, name }
+    - onSubmit => { debitorId, creditorId, amount }
+
+  - MoneyTransactionList (Lists all Money Transactions)
+    - moneyTransactions
+    - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
+</script></section><section data-markdown><script type="text/template">
+- You probably need the following core components
+  - `<TextInput {...} />`
+  - `<DecimalInput {...} />`
+  - `<SelectInput {...} />`
+  - `<Button {...} />`
+  - ...
+
+- Allowed to use CSS Frameworks
+- Not allowed to use Component Libraries
+- Mock Data https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
+</script></section><section data-markdown><script type="text/template">
+![sign_in](assets/sign_in_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![sign_up](assets/sign_up_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![app](assets/app_wireframe.png)
+</script></section></section><section  data-markdown><script type="text/template">
+## Tools/Resources
+
+- [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+- [React Docs](https://reactjs.org)
+  - [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
+- [Overreacted](https://overreacted.io/)
+</script></section><section  data-markdown><script type="text/template">
+## Feedback
+
+https://de.surveymonkey.com/r/J6693VN</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
