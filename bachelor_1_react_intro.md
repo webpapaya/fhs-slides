@@ -117,6 +117,9 @@ const SimpleForm = ({ onSubmit }) => {
   - <Button onChange={(value) => console.log(value) } />
   - ...
 
+- Allowed to use CSS Frameworks
+- Not allowed to use
+
 ----
 
 ![sign_in](assets/sign_in_wireframe.png)
@@ -128,6 +131,15 @@ const SimpleForm = ({ onSubmit }) => {
 ----
 
 ![app](assets/app_wireframe.png)
+
+---
+
+# Tools/Resources
+
+- [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+- [React Docs](https://reactjs.org)
+- [Overreacted](https://overreacted.io/)
+
 
 ---
 
