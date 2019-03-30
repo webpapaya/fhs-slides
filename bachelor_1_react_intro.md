@@ -2,9 +2,22 @@
 
 ---
 
-# React
+## React
 
-- Component based library to declaratively build composable UIs
+- Component based library to build composable UIs
+- OpenSourced in 2013
+- Implemented and Maintained by Facebook
+- Learn once, write anywhere
+  - React-Native
+  - React-Native-Desktop
+  - React-Native-Windows
+  - React-VR
+---
+
+## React Components
+
+- Main Building block of a React App
+  - Describe the look and feel of one section in the UI
 
 ```js
 const Button = () => {
@@ -21,7 +34,43 @@ React.renderComponent(<Button />, document.body);
 
 ----
 
-# Which types of components do you see?
+## JSX
+
+- JavaScript XML
+  - extension to write XML in JS
+- Allows to combine data preparation with render logic
+
+```js
+const Button = () => {
+  return (
+    <button type="button">
+      A button
+    </button>
+  );
+}
+```
+
+----
+
+## React without JSX
+
+- React can be used without JSX
+
+```js
+const Button = () => {
+  return React.createElement(
+    'button',
+    {type: 'button'},
+    'A button'
+  );
+}
+```
+
+---
+
+## Which components do you see?
+
+![app](assets/sign_in_wireframe.png)
 
 ----
 
@@ -29,40 +78,47 @@ React.renderComponent(<Button />, document.body);
 
 ---
 
-# Different Types of Components
+# Building the first react component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/coding.gif" -->
+<!-- .slide: data-color="white" -->
+
+---
+
+## Component composition
+
+- Components can be nested and composed together
+
+![app](assets/tree.png)
 
 ----
 
-- Presentational Components
-  - Can be reused in other applications
-  - eg. Buttons, Inputs, Headings, ...
 
-----
+## React props
 
-- Container Components
-  - Know about the application and can't be reused easily
-    - UserSignIn, SettingsForm, ...
+- Possibility to customize components
+  - Can be seen as component configuration
+- Props are passed to the component
+  - A component at a lower level of the tree can't modify given props directly
 
-
-# Props in React
-
-- React promotes a unidirectional dataflow
-- Props are passed down to the components
-  - State can only be modified via callbacks
 
 ```js
-const Button = () => {
+const Button = ({ children, disabled = false }) => {
   return (
-    <button onClick={ () => console.log('Heeeeyyyy!!!') } type="button">
+    <button disabled={disabled} className="button">
       { children }
     </button>
   );
 }
+
+const usage = <Button disabled>A button</Button>;
 ```
 
----
+----
 
-# How to add state
+# React State
+
+- State allows components to by dynamic/interactive
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
@@ -78,9 +134,24 @@ const SimpleForm = ({ onSubmit }) => {
 };
 ```
 
+----
+
+## State vs. Props
+
+| _props_ | _state_ |
+--- | --- | ---
+Can get initial value from parent Component? | Yes | Yes
+Can be changed by parent Component? | Yes | No
+Can set default values inside Component?* | Yes | Yes
+Can change inside Component? | No | Yes
+Can set initial value for child Components? | Yes | Yes
+Can change in child Components? | Yes | No
+
+[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+
 ---
 
-# Task 1
+## Task
 
 - Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
 - npm install
@@ -89,19 +160,15 @@ const SimpleForm = ({ onSubmit }) => {
 - Create a UserSignIn Form Component
   - Username
   - Password
-  - Button is clicked (console.log values)
 - If you're done help others
 
 ---
 
-# Homework
-- Try to identify the following
-  - UserSignIn
-    - onSubmit => { username, password }
+## Homework
 
-  - UserSignUp
-    - onSubmit => { username, password }
-
+- Try to build the following components in Storybook
+  - UserSignIn -> onSubmit => { username, password }
+  - UserSignUp -> onSubmit => { username, password }
   - MoneyTransactionCreate
     - users => { id, name }
     - onSubmit => { debitorId, creditorId, amount }
@@ -110,15 +177,18 @@ const SimpleForm = ({ onSubmit }) => {
     - moneyTransactions
     - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
 
+----
+
 - You probably need the following core components
-  - <TextInput onChange={(value) => console.log(value) } />
-  - <DecimalInput onChange={(value) => console.log(value) } />
-  - <SelectInput onChange={(value) => console.log(value) } />
-  - <Button onChange={(value) => console.log(value) } />
+  - `<TextInput {...} />`
+  - `<DecimalInput {...} />`
+  - `<SelectInput {...} />`
+  - `<Button {...} />`
   - ...
 
 - Allowed to use CSS Frameworks
-- Not allowed to use
+- Not allowed to use Component Libraries
+- Mock Data https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
 
 ----
 
@@ -134,15 +204,15 @@ const SimpleForm = ({ onSubmit }) => {
 
 ---
 
-# Tools/Resources
+## Tools/Resources
 
 - [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
 - [React Docs](https://reactjs.org)
+  - [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
 - [Overreacted](https://overreacted.io/)
-
 
 ---
 
-# Feedback
+## Feedback
 
 https://de.surveymonkey.com/r/J6693VN

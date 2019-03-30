@@ -15,8 +15,11 @@ Build/Test/Deploy Client Side Web-Applications
 # Roadmap
 
 - 01.04. Introduction to React
+  - 26.04. 23:59:59 due date 1st homework
 - 29.04. - 30.04. Introduction to State Management with Redux
+  - 10.05. 23:59:59 due date 2nd homework
 - 13.05. - 14.05. QA Redux/TDD Workshop
+  - 26.05. 23:59:59 due date 3rd homework
 - 27.05. Klausur
 
 ---
@@ -40,23 +43,20 @@ Build/Test/Deploy Client Side Web-Applications
 
 # Things I will look at:
 
+- functionality
 - naming
 - duplications
-- code consistency
+- code consistency (linting)
 - function/component length
 - commits + commit messages
-- linting
 
 ----
 
 # What we'll do
 
 - Simple Splitwise clone or own project with similar scope
-  - First homework build UI components (due date 26.04. 23:59:59)
-  - Second homework connect those UI components with a backend
-  - Third homework enhance app/implement code review
 
----
+----
 
 ![sign_in](assets/sign_in_wireframe.png)
 

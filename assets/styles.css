@@ -354,3 +354,7 @@ body {
     width: auto;
     max-width: 70%;
 }
+
+h1.color--white {
+  color: #fff;
+}
