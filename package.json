@@ -1,12 +1,13 @@
 {
   "name": "fh-salzburg",
   "version": "1.0.0",
-  "description": "Slides for Client Side Web-Engineering (FH-Salzburg Bachelor)",
+  "description": "Slides for Lectures at FHS",
   "main": "index.js",
   "scripts": {
-    "start": "reveal-md .",
-    "build": "npm run build:html && npm run build:pdf",
-    "build:html": "npm run start -- --static build",
+    "postinstall": "npm install -g reveal-md",
+    "start": "reveal-md . --css assets/styles.css",
+    "build": "rm -rf build && npm run build:html && npm run build:pdf",
+    "build:html": "npm run start -- --static build --absolute-url '/fhs-slides/'",
     "build:pdf": "npm run start -- --print build/slides.pdf",
     "predeploy": "npm run build:html",
     "deploy": "gh-pages -d build"
@@ -15,5 +16,8 @@
   "license": "ISC",
   "devDependencies": {
     "gh-pages": "^2.0.1"
+  },
+  "dependencies": {
+    "reveal-md": "^3.0.0-1"
   }
 }
