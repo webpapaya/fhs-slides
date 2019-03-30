@@ -7,10 +7,9 @@
     "postinstall": "npm install -g reveal-md",
     "start": "reveal-md . --css assets/styles.css",
     "build": "rm -rf build && npm run build:html && npm run build:pdf",
-    "build:html": "npm run start -- --static build --absolute-url '/fhs-slides/'",
+    "build:html": "npm run start -- --static",
     "build:pdf": "npm run start -- --print build/slides.pdf",
-    "predeploy": "npm run build:html",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build:html && gh-pages -d _static && rm -rf _static"
   },
   "author": "Thomas Mayrhofer",
   "license": "ISC",
