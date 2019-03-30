@@ -19,19 +19,30 @@ const Button = () => {
 React.renderComponent(<Button />, document.body);
 ```
 
+----
+
+# Which types of components do you see?
+
+----
+
+![app](assets/app_wireframe.png)
+
 ---
 
 # Different Types of Components
+
+----
 
 - Presentational Components
   - Can be reused in other applications
   - eg. Buttons, Inputs, Headings, ...
 
+----
+
 - Container Components
   - Know about the application and can't be reused easily
     - UserSignIn, SettingsForm, ...
 
----
 
 # Props in React
 
@@ -48,10 +59,6 @@ const Button = () => {
   );
 }
 ```
-
----
-
-
 
 ---
 
@@ -88,7 +95,7 @@ const SimpleForm = ({ onSubmit }) => {
 ---
 
 # Homework
-- Build the following React Container Components in Storybook
+- Try to identify the following
   - UserSignIn
     - onSubmit => { username, password }
 
@@ -109,3 +116,21 @@ const SimpleForm = ({ onSubmit }) => {
   - <SelectInput onChange={(value) => console.log(value) } />
   - <Button onChange={(value) => console.log(value) } />
   - ...
+
+----
+
+![sign_in](assets/sign_in_wireframe.png)
+
+----
+
+![sign_up](assets/sign_up_wireframe.png)
+
+----
+
+![app](assets/app_wireframe.png)
+
+---
+
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN
