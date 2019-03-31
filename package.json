@@ -9,7 +9,7 @@
     "build": "rm -rf build && npm run build:html && npm run build:pdf",
     "build:html": "npm run start -- --static --static-dirs=assets && touch _static/.nojekyll",
     "build:pdf": "npm run start -- --print build/slides.pdf",
-    "deploy": "npm run build:html && gh-pages -d _static && rm -rf _static"
+    "deploy": "npm run build:html && gh-pages --dotfiles -d _static && rm -rf _static"
   },
   "author": "Thomas Mayrhofer",
   "license": "ISC",
