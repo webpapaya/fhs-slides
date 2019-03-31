@@ -166,7 +166,7 @@ Can change in child Components? | Yes | No
 
 ## Homework
 
-- Try to build the following components in Storybook
+- Build the following components in Storybook
   - UserSignIn -> onSubmit => { username, password }
   - UserSignUp -> onSubmit => { username, password }
   - MoneyTransactionCreate
@@ -177,8 +177,6 @@ Can change in child Components? | Yes | No
     - moneyTransactions
     - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
 
-----
-
 - You probably need the following core components
   - `<TextInput {...} />`
   - `<DecimalInput {...} />`
@@ -188,7 +186,8 @@ Can change in child Components? | Yes | No
 
 - Allowed to use CSS Frameworks
 - Not allowed to use Component Libraries
-- Mock Data https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
+- You can use as a starting point https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Mock Data for the API https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
 
 ----
 
