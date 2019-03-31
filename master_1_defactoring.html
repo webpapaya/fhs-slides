@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"># Defactoring
+## (MMT-M2018)
+</script></section><section  data-markdown><script type="text/template">
+## Roadmap
+
+- Code Smells
+- Defactoring vs. Refactoring
+- Mob Programming Session
+- Short Recap
+</script></section><section ><section data-markdown><script type="text/template">
+## Code Smells
+
+> A code smell is a hint that something has gone wrong somewhere in your code. Use the smell to track down the problem. Kent Beck
+</script></section><section data-markdown><script type="text/template">
+# Dead Code
+
+- Unused code in the codebase which might be usefull in the future.
+- Possible refactoring:
+  - Delete the code
+</script></section><section data-markdown><script type="text/template">
+# Duplicated Code
+
+- A sequence of code which occures more than once in the code base.
+- Possible refactorings:
+  - combine this sequence into a function/class/method
+</script></section><section data-markdown><script type="text/template">
+# To many parameters
+
+- A function/method has a long parameter list
+- Possible refactorings:
+  - Remove unused parameters
+  - Combine those parameters into an object
+</script></section><section data-markdown><script type="text/template">
+## Exceptions for controll flow
+
+- An exception is used for changing the behaviour of a procedure.
+- Possible refactorings:
+  - use if to determine the error case
+
+```js
+const formatISODate = (isoDate) => {
+  try {
+    return Date.parse(isoDate).forrmat('YYYY-MM-DD');
+  } catch (_) {
+    return 'Invalid Date';
+  }
+}
+```
+
+```js
+const formatISODate = (isoDate) => {
+  if (!date.canParse(isoDate)) { return 'Invalid Date'; }
+  return Date.parse(isoDate).format('YYYY-MM-DD');
+}
+```
+</script></section><section data-markdown><script type="text/template">
+# Large function/method
+- A function/method which has to many responsibilities and does to much
+- Possible refactoring:
+  - split the function/method into multiple small methods
+</script></section><section data-markdown><script type="text/template">
+# Large class
+- A class which has to many responsibilities
+- also called God Object
+- Possible refactoring:
+  - split the class into multiple small classes
+</script></section><section data-markdown><script type="text/template">
+# Long code lines
+- A line which is doing to much
+- possible refactorings
+  - Split the line into multiple lines
+  - Extract function/method
+</script></section><section data-markdown><script type="text/template">
+# Comments
+
+- Only if the comment describes what the code is doing.
+- possible refactorings
+  - make the code easier to understand and remove the comment
+
+```java
+/**
+ * Always returns true.
+ */
+public boolean isAvailable() {
+    return false;
+}
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Refactoring vs. Defactoring
+</script></section><section data-markdown><script type="text/template">
+## Refactoring
+
+> Refactoring is a controlled technique for improving the design of an existing code base. [Fowler]
+
+https://martinfowler.com/articles/refactoring-2nd-ed.html
+</script></section><section data-markdown><script type="text/template">
+## Defactor
+
+- Oposite of refactoring.
+- Helps to remove inflexible abstractions
+</script></section></section><section  data-markdown><script type="text/template">
+## Defactor session
+
+- Mob programming session
+- Timebox 45 minutes
+- Use the following:
+  - https://github.com/webpapaya/fhs-defactoring
+</script></section><section  data-markdown><script type="text/template">
+## Feedback
+
+https://de.surveymonkey.com/r/J6693VN</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
