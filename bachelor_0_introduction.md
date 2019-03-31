@@ -1,5 +1,5 @@
 # Frontend Development 2
-## (MMT-b2017)
+## (MMT-B2017)
 
 Build/Test/Deploy Client Side Web-Applications
 
