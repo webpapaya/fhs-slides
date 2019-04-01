@@ -116,7 +116,7 @@ const usage = <Button disabled>A button</Button>;
 
 ----
 
-# React State
+# React State (with Hooks)
 
 - State allows components to by dynamic/interactive
 
@@ -132,6 +132,26 @@ const SimpleForm = ({ onSubmit }) => {
     />
   );
 };
+```
+
+----
+
+# React State (without hooks)
+
+```js
+class SimpleForm extends React.Component {
+  state = { username: '' };
+  render() {
+    return (
+      <input
+        type="text"
+        name="firstName"
+        value={this.state.userName}
+        onChange={evt => this.setState({ username: evt.target.value }) }
+      />
+    );
+  }
+}
 ```
 
 ----
