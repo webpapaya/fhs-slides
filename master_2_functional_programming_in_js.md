@@ -14,7 +14,7 @@
 
 > Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
 
----
+----
 ## FP vs. OOP
 
 > Object-oriented programming makes code understandable by encapsulating moving parts. Functional programming makes code understandable by minimizing moving parts. (Michael Feathers)
@@ -45,6 +45,23 @@ console.log(immutableObject) // => { test: 1 }
 ````
 
 ----
+## Changing an immutable value
+
+````js
+const immutableObject = Object.freeze({ a: 1, b: 2 })
+const updatedObject = Object.freeze({ ...immutableObject, a: 2 });
+console.log(updatedObject) // => { a: 2, b: 2 }
+````
+
+----
+## Unfreeze an object
+
+````js
+const immutableObject = Object.freeze({ test: 1 });
+const unfrozenCopy = { ...immutableObject };
+````
+
+----
 
 ## Object.freeze is mutable
 
@@ -55,14 +72,6 @@ object.test = 10;
 console.log(object) // => { test: 1 }
 ````
 
-----
-## Changing an immutable value
-
-````js
-const immutableObject = Object.freeze({ test: 1 })
-const updatedObject = Object.freeze({ ...immutableObject, test: 10 });
-console.log(updatedObject) // => { test: 10 }
-````
 
 ----
 ## Why immutability
@@ -99,7 +108,7 @@ const result2 = await loadUsers();
 ---
 ## Side-Effects
 
-> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (TODO: add citation)
+> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
 
 - Any function with a side effect is not pure
 - Programms without side effects are useless
@@ -186,13 +195,13 @@ const fn8 = (array) => array.forEach((item) => console.log(item));
 ## Pure or inpure? 2/3
 
 ```js
-let minimumAge = 18;
-const isAllowedToDrink = (age) => age >= minimumAge;
+let config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
 ```
 
 ```js
-const minimumAge = 18;
-const isAllowedToDrink = (age) => age >= minimumAge;
+const config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
 ```
 
 ----
@@ -271,13 +280,23 @@ const memoize = (fn) => {
 ```
 
 ---
+## Arity of a function
+
+> The arity of a function is the number of arguments it receives.
+
+```js
+const add = (a, b) => a + b;
+console.log(add.length) // => 2
+```
+
+---
 ## Currying
 
 - Imagine a programming language where every function only accepts one argument.
 - How would you add up 2 numbers with pure functions only?
 
 ----
-## Currying 2/*
+## Currying
 
 ```js
 const addLong = (a) => {
@@ -291,32 +310,20 @@ addShort(1)(2);
 ```
 
 ----
-## Currying 3/*
+## Currying definition
 
 > Currying is the process of translating a function with multiple arguments into a sequence of functions with single arguments.
 
-- Side Note: If you start doing functional programming you automatically swap the arguments
-
 ----
-## Currying 4/*
+## Currying
 
 ```js
 import { curry } from 'ramda';
 
-const isGte = curry((boundary, value) => value >= boundary);
-const filter = curry((filterFn, array) => array.filter(filterFn));
+const whichAreGreaterThan = curry((boundary, value) => value > boundary);
+const filterItems = curry((filterFn, array) => array.filter(filterFn));
 
-filter(isGte(5), [1,2,6,3,6,7,9,6,5]);
-```
-
-----
-## Arity of a function
-
-> The arity of a function is the number of arguments it receives.
-
-```js
-const add = (a, b) => a + b;
-console.log(add.length) // => 2
+filterItems(whichAreGreaterThan(5), [1,2,6,3,6,7,9,6,5]);
 ```
 
 ----
@@ -325,6 +332,8 @@ console.log(add.length) // => 2
 Implement your own curry function
 
 ```js
+const curry = () => { /* TODO implement me */ }
+
 const add = curry((a, b) => a + b);
 add(1)(2);
 add(1, 2);
@@ -348,9 +357,10 @@ const curry = (targetfn) => {
 }
 ```
 ---
+
 ## Functional composition
 
-
+----
 
 ![functional composition](assets/composition_1.png)
 
@@ -374,15 +384,15 @@ const curry = (targetfn) => {
 ```js
 const add = curry((a, b) => a + b);
 const multiply = curry((a, b) => a * b);
-const isEven = (value) => value % 2 === 0;
+const isLte = curry((boundary, value) => value <= boundary );
 
-const calculateInsuranceRace = pipe(
+const isApplicableForInsurance = pipe(
   add(5),
   multiply(4),
-  isEven,
+  isLte(60),
 );
 
-calculateInsuranceRace(5); // => true
+isApplicableForInsurance(5); // true
 ```
 
 ----
@@ -417,7 +427,10 @@ const compose = (...fns) => (initialValue) =>
 ```
 
 ---
+
 ## Domain Modeling and TS
+
+---
 
 - Requirements:
   - A user needs to have a first and last name
@@ -429,7 +442,7 @@ const compose = (...fns) => (initialValue) =>
     - a contact can be verified
 
 ----
-## Resulting Model
+## Resulting Type
 
 ```ts
 type User = {
@@ -445,28 +458,25 @@ type User = {
 }
 ```
 
-----
-## Can you spot issues with this model?
-
-```ts
-type User = {
-  firstName: string,
-  lastName: string,
-  street?: string,
-  zipCode?: string,
-  country?: string,
-  isAddressVerified?: bool,
-  email?: string,
-  isEmailVerified?: bool,
-  phone?: string,
-  isPhoneVerified?: bool,
-}
-```
 ----
 
 > Can you spot issues with this model?
 
 ----
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  street?: string,
+  zipCode?: string,
+  country?: string,
+  email?: string,
+  isEmailVerified?: bool,
+  phone?: string,
+  isPhoneVerified?: bool,
+}
+```
 
 ```ts
 const user = {
@@ -477,7 +487,9 @@ const user = {
 ```
 
 ----
-## 1 correct address and 7 falsy states
+## Issues
+
+- 1 correct state and 7 falsy states
 
 ```ts
 type User = {
@@ -607,7 +619,6 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
 ```
 
 ----
-TODO: add working gist
 
 ```ts
 type Maybe<T> = T | null
@@ -679,7 +690,7 @@ type Contact = PostContact | EmailContact | PhoneContact
 - result of events
 
 ---
-## Things to prepare
+## Requirements for Event-Storming
 - 8-9m of plotter paper
 - Black Markers
 - Sticky notes
@@ -688,7 +699,7 @@ type Contact = PostContact | EmailContact | PhoneContact
 ## Homework
 - Pick one usecase from event storming session
   - Convert them to TS Types
-  - Validate them
+  - Validate them (with https://github.com/gcanti/io-ts or other)
   - (Write tests for validation functions)
 - We'll review it together in the next lecture (29.4.)
 
