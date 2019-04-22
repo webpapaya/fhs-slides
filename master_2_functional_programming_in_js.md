@@ -10,14 +10,17 @@
 - Model results from Event-Storming in TS
 
 ---
-# FP vs. OOP (TODO: add OOP description From: TS FP Book)
+## What is functional programming
 
-> FP tries to reduce the number of places where state changes happen.
-
-
+> Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
 
 ---
-# Why functional programming
+## FP vs. OOP
+
+> Object-oriented programming makes code understandable by encapsulating moving parts. Functional programming makes code understandable by minimizing moving parts. (Michael Feathers)
+
+---
+## Why functional programming
 
 - More testable
   - pure functions simplify testing
@@ -28,48 +31,145 @@
   - pure functions easy to cache (we'll see this in an example)
 
 ---
-# What is functional programming
+## Immutability
 
-> Object-oriented programming makes code understandable by encapsulating moving parts. Functional programming makes code understandable by minimising moving parts (Michael Feathers)
+> An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
 
-- Way how the application is built
-- In comparison to other styles a function is the main building block
+----
+## Immutable objects in JS
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+immutableObject.test = 10;
+console.log(immutableObject) // => { test: 1 }
+````
+
+----
+
+## Object.freeze is mutable
+
+````js
+const object = { test: 1 }
+Object.freeze(object);
+object.test = 10;
+console.log(object) // => { test: 1 }
+````
+
+----
+## Changing an immutable value
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+const updatedObject = Object.freeze({ ...immutableObject, test: 10 });
+console.log(updatedObject) // => { test: 10 }
+````
+
+----
+## Why immutability
+
+- race conditions impossible
+- state of the application is easier to reason about
+- easier to test
+
+----
+## Mutable bug
+```js
+const users = [];
+const loadUsers = async () => {
+  const result = await fetchUsers('/users');
+  users.push(...result);
+  return users;
+}
+
+loadUsers();
+loadUsers();
+```
+
+----
+## Immutable version
+```js
+const loadUsers = () => {
+  return fetchUsers('/users');
+}
+
+const result1 = await loadUsers();
+const result2 = await loadUsers();
+```
 
 ---
-# First class functions
+## Side-Effects
+
+> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (TODO: add citation)
+
+- Any function with a side effect is not pure
+- Programms without side effects are useless
+
+----
+## Some side effects
+
+- DB/HTTP calls
+- changing the file system
+- querying the DOM
+- printing/logging
+- accessing system state (eg. Clock, Geolocation,...)
+
+----
+## Where to deal with side effects
+
+- Moved to the boundaries of the system
+- Business logic stays pure functional
+
+![Side effects](assets/side_effects.png)
+
+---
+## First class functions
 
 - Functions can be treated as any other datatype
   - Can be passed to a function as argument
   - Can be assigned a variable
+
+----
+## Function reassigned to variable
 
 ```js
 const helloWorld = () => 'hello world!';
 const main = helloWorld;
 ```
 
----
-# Pure Functions
+----
+## Function passed to another
 
-A function is considered pure when:
-- for the same input it always returns the same output
-- it has no side effects (no mutation of non-local state, eg. database)
+```js
+const helloWorld = (print) => log('hello world!');
+const log = (value) => console.log(`${new Date()}: ${value}`);
+
+helloWorld(log);
+```
+
+---
+## Pure Functions
+
+- A function is considered pure when:
+  - for the same input it always returns the same output
+  - it has no side effects
+      - no mutation of non-local state,
 
 ```js
 const add = (a, b) => a + b;
 ```
 
 ----
-# Attributes of pure functions
+## Attributes of pure functions
 
 - They are idempotent
 - They offer referential transparency
   - calls to this function can be replaced by the value without changing the programs behaviour
 - They can be memoized (or cached)
 - They can be lazy
-- Testable more easy
+- They can be tested more easy
 
 ----
-# Which of these functions are pure 1/3
+## Pure or inpure? 1/3
 
 ```js
 const array = [1,2,3,4,5,6];
@@ -83,7 +183,7 @@ const fn7 = (array) => array.map((item) => item * 2);
 const fn8 = (array) => array.forEach((item) => console.log(item));
 ```
 ----
-# Which of these functions are pure 2/3
+## Pure or inpure? 2/3
 
 ```js
 let minimumAge = 18;
@@ -96,7 +196,7 @@ const isAllowedToDrink = (age) => age >= minimumAge;
 ```
 
 ----
-# Which of these functions are pure 3/3
+## Pure or inpure? 3/3
 
 ```js
 const isIndexPage = () => window.location.pathname === '/';
@@ -104,43 +204,29 @@ const isIndexPage = (pathname) => pathname === '/';
 ```
 
 ---
-# Side-Effects
-
-> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (TODO: add citation)
-
-- Any function with a side effect is not pure
-- Programms without side effects are useless
-
-----
-# Some side effects
-
-- DB/HTTP calls
-- changing the file system
-- querying the DOM
-- printing/logging
-- accessing system state (eg. Clock, Geolocation,...)
-
----
-# Higher Order Functions
+## Higher Order Functions
 > A higher order function is a function that takes or returns a function.
 
+----
+
 ```js
-const createRecordInDb = () => { /* do something in the database */ }
-const createUser = (createRecordInDb) => {
+const buildCreateUser = (dbAdapter) => {
   return (user) => {
     if (!isValid(user)) { throw new Error('User Invalid'); }
-    return createRecordInDb(user);
+    return dbAdapter.create(user);
   }
 }
+const createUserInPG = buildCreateUser(postgresAdapter);
+const createUserInMemory = buildCreateUser(inMemoryAdapter);
 ```
 
 ---
-# Memoization
+## Memoization
 
 > `Memoizing' a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. (https://metacpan.org/pod/Memoize)
 
 ----
-# Pure functions recap
+## Pure functions recap
 
 - A pure function returns for the same input the same output
 - simple mapping from value a to value b
@@ -148,12 +234,12 @@ const createUser = (createRecordInDb) => {
 ![pure function](assets/pure_function.png)
 
 ----
-# Memoization in the real world
+## React and Memoization
 
 ![tree](assets/tree.png)
 
 ----
-# Task:
+## Task:
 
 - Memoize the fibonacci sequence
 - Compare results with and without memoize
@@ -170,17 +256,28 @@ const memoizedFibonacci = memoize(fibonacci);
 
 - helper to measure time https://bit.ly/2UOFgAE
 
----
-# Recursion (TODO: add slide)
+----
+## Possible Implementation
+
+```js
+const memoize = (fn) => {
+  const cache = {};
+  return (...args) => {
+    const key = JSON.stringify(args);
+    cache[key] = cache[key] || fn(...args);
+    return cache[key];
+  }
+}
+```
 
 ---
-# Currying
+## Currying
 
 - Imagine a programming language where every function only accepts one argument.
 - How would you add up 2 numbers with pure functions only?
 
 ----
-# Currying 2/*
+## Currying 2/*
 
 ```js
 const addLong = (a) => {
@@ -194,14 +291,14 @@ addShort(1)(2);
 ```
 
 ----
-# Currying 3/*
+## Currying 3/*
 
 > Currying is the process of translating a function with multiple arguments into a sequence of functions with single arguments.
 
 - Side Note: If you start doing functional programming you automatically swap the arguments
 
 ----
-# Currying 4/*
+## Currying 4/*
 
 ```js
 import { curry } from 'ramda';
@@ -213,7 +310,7 @@ filter(isGte(5), [1,2,6,3,6,7,9,6,5]);
 ```
 
 ----
-# Arity of a function
+## Arity of a function
 
 > The arity of a function is the number of arguments it receives.
 
@@ -223,7 +320,7 @@ console.log(add.length) // => 2
 ```
 
 ----
-# Task:
+## Task:
 
 Implement your own curry function
 
@@ -234,11 +331,11 @@ add(1, 2);
 ```
 
 ## Hints:
-- https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
-- https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+- [MDN bind](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+- [MDN call](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
 
 ----
-# Possible solution
+## Possible solution
 
 ```js
 const curry = (targetfn) => {
@@ -287,7 +384,7 @@ calculateInsuranceRace(5); // => true
 ```
 
 ----
-# pipe vs. compose
+## pipe vs. compose
 
 ```js
 // Left to right
@@ -300,15 +397,25 @@ compose(third, second, first);
 ```
 
 ----
-# Task
-- Build your own pipe function
+## Task
+- Build your own pipe and compose function
+- Hintes:
+  - [MDN Array.reduce](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+  - [MDN Array.reduceRight](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
 
-### Hints
-- https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+----
+## Possible solution
 
+```js
+const pipe = (...fns) => (initialValue) =>
+  fns.reduce((result, fn) => fn(result), initialValue)
+
+const compose = (...fns) => (initialValue) =>
+  fns.reduceRight((result, fn) => fn(result), initialValue)
+```
 
 ---
-# Domain Modeling and TS
+## Domain Modeling and TS
 
 - Requirements:
   - A user needs to have a first and last name
@@ -320,7 +427,7 @@ compose(third, second, first);
     - a contact can be verified
 
 ----
-# Resulting Model
+## Resulting Model
 
 ```ts
 type User = {
@@ -337,7 +444,7 @@ type User = {
 ```
 
 ----
-# Can you spot issues with this model?
+## Can you spot issues with this model?
 
 ```ts
 type User = {
@@ -368,7 +475,7 @@ const user = {
 ```
 
 ----
-# 1 correct address and 7 falsy states
+## 1 correct address and 7 falsy states
 
 ```ts
 type User = {
@@ -381,7 +488,7 @@ type User = {
 ```
 
 ----
-# Requirements:
+## Requirements:
   - A user needs to have a first and last name
   - A user needs to have exactly one contact
     - a contact is either:
@@ -391,7 +498,7 @@ type User = {
     - a contact can be verified
 
 ----
-# Classify the type
+## Classify the type
 
 ```ts
 type User = {
@@ -415,7 +522,7 @@ type User = {
 ```
 
 ----
-# Extract smaller bits
+## Extract smaller bits
 
 ```ts
 type PostContact = { street: string, zipCode: string, country: string, isVerified: bool }
@@ -431,7 +538,7 @@ type User = {
 ```
 
 ----
-# Extract common properties
+## Extract common properties
 
 
 ```ts
@@ -450,7 +557,7 @@ type User = {
 ```
 
 ----
-# Use it
+## Use it
 
 ```ts
 const user:User = {
@@ -475,7 +582,7 @@ const user:User = {
 ```
 
 ----
-# Type aliases
+## Type aliases
 
 ```js
 type Email = string
@@ -483,7 +590,7 @@ type Email = string
 
 ----
 
-# Verifying type aliases
+## Verifying type aliases
 
 ```ts
 type Maybe<T> = T | null
@@ -519,11 +626,11 @@ type Contact = PostContact | EmailContact | PhoneContact
 ```
 
 ---
-# Event Storming
+## Event Storming
 
 ---
 
-# What is Event-Storming
+## What is Event-Storming
 - Workshop format.
 - Gather requirements for products
 
@@ -535,41 +642,41 @@ type Contact = PostContact | EmailContact | PhoneContact
 > We are going to explore the business process as a whole by placing all the relevant events along a timeline. We'll highlight ideas, risks and opportunities along the way.
 
 ---
-# Events (orange)
+## Events (orange)
 - it has to be an orange sticky note
 - it needs to be phrased in the past
 - it has to be relevant for the domain
 - eg. item added to cart/user registered
 
 ---
-# People (yellow)
+## People (yellow)
 - people involved in the application
 - eg. a waiter/waitress, a restaurant visitor
 
 ---
-# External Systems (pink)
+## External Systems (pink)
 - external applications
   - eg. Google Analytics/Emails
 - external organisations
 - or something you can put the blame on
 ---
-# Uncertainties (purple)
+## Uncertainties (purple)
 - warning signs
 - things to discuss further
 
 ---
-# Commands (Blue)
+## Commands (Blue)
 - eg. Places Order
 - result of events
 
 ---
-# Things to prepare
+## Things to prepare
 - 8-9m of plotter paper
 - Black Markers
 - Sticky notes
 
 ---
-# Ressources
+## Ressources
 ## Books/Blogs
 - [Domain Modeling Made Functional](https://www.amazon.com/Domain-Modeling-Made-Functional-Domain-Driven/dp/1680502549?tag=fsharpforfuna-20)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
@@ -584,6 +691,6 @@ type Contact = PostContact | EmailContact | PhoneContact
 
 ---
 
-# Feedback
+## Feedback
 
 https://de.surveymonkey.com/r/J6693VN
