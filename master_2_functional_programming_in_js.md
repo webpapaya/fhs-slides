@@ -5,9 +5,9 @@
 ## Roadmap
 
 - Functional Programming introduction
+- Domain modling in TS
 - Eventstorming Session
 - Use results from Eventstorming in Typescript
-- Debugging in JS
 
 ---
 # FP vs. OOP (TODO: add OOP description From: TS FP Book)
@@ -481,6 +481,8 @@ type Email = string
 
 ----
 
+# Verifying type aliases
+
 ```ts
 type Maybe<T> = T | null
 type Email = string
@@ -492,6 +494,7 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
     return null;
 }
 ```
+
 ----
 TODO: add working gist
 
@@ -513,109 +516,72 @@ type Contact = PostContact | EmailContact | PhoneContact
 //...
 ```
 
+---
+# Event Storming
 
+---
 
+# What is Eventstorming
+- Workshop format.
+- Gather requirements for products
 
+---
+> We're asking you to write the key events in your domain as an orange sticky not, in a verb at past tense, and place them along a timeline
+
+---
+
+> We are going to explore the business process as a whole by placing all the relevant events along a timeline. We'll highlight ideas, risks and opportunities along the way.
+
+---
+# Events (orange)
+- it has to be an orange sticky note
+- it needs to be phrased in the past
+- it has to be relevant for the domain
+- eg. item added to cart/user registred
+
+---
+# People (yellow)
+- people involved in the application
+- eg. a waiter/waitress, a restaurant visitor
+
+---
+# External Systems (pink)
+- external applications
+  - eg. Google Analytics/Emails
+- external organisations
+- or something you can put the blame on
+---
+# Uncertainties (purple)
+- warning signs
+- things to discuss further
+
+---
+# Commands (Blue)
+- eg. Places Order
+- result of events
+
+---
+# Things to prepare
+- 8-9m of plotter paper
+- Black Markers
+- Sticky notes
+
+---
 # Ressources
 ## Books/Blogs
 - [Domain Modeling Made Functional](https://www.amazon.com/Domain-Modeling-Made-Functional-Domain-Driven/dp/1680502549?tag=fsharpforfuna-20)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/mostly-adequate-guide)
 - [F# for fun and profit](https://fsharpforfunandprofit.com/)
+- [Introducing EventStorming](https://www.eventstorming.com/book/)
 
 ## Talks
 - [Functional Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
 - [Domain Modeling Made Functional](https://www.youtube.com/watch?v=Up7LcbGZFuo)
 - [Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
 
----------------------------------------------------------------------------------
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-## Feedback
+# Feedback
 
 https://de.surveymonkey.com/r/J6693VN
-
-
----
-# Event Storming
-- Orange events
-  - it has to be an orange sticky note
-  - it needs to be phrased in the past
-  - it has to be relevant for the domain
-  - eg. item added to cart/user registred
-- Yellow People
-  - people involved in the application
-  - eg. a waiter/waitress, a restaurant visitor
-- Purple Hot Spots
-  - External Systems
-    - eg. Google Analytics/Emails
-- Blue Commands
-
-
-# What is Eventstorming
-- Workshop format.
-- Gather requirements for products
-
-# Things to prepare
-- 8-9m of plotter paper
-- Black Markers
-- Sticky notes
-
-
-# Introduction question
-> We're asking you to write the key events in your domain as an orange sticky not, in a verb at past tense, and place them along a timeline
-
-# Goal
-> We are going to explore the business process as a whole by placing all the relevant events along a timeline. We'll highlight ideas, risks and opportunities along the way.
-
-
-
-Example of a Domain Event:
-> Item added to cart.
-
--
-
-- Only introduce a dummy domain event and let the team do the rest
-- When a not is not in the past turn it 45 counter clockwise
-
-Special keywords mark them on a dedicated sticky note.
-eg. Investment - The amount actually put in a specific loan.
-
-
-
-- Orange Domain Events
-  - item placed to cart
-  - money was borrowed
-  - money was lended
-- Purple stickies
-  - Put warning signs on
-  - uncertainties
-- Pink stickies external dependencies
-  - external organisations
-  - external services
-  - ...
-- Yellow Stickies Actors
-  - eg. User/Creditor/Debitor
-- Blue Commands
-  - eg. Places Order
-
-
-- Big Picture Event storming
-  - project kickoff
-- Invite the right people
-  - people who care about the problem
-  -
-
-
-- Complex vs complicated
