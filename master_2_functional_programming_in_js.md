@@ -350,6 +350,8 @@ const curry = (targetfn) => {
 ---
 ## Functional composition
 
+
+
 ![functional composition](assets/composition_1.png)
 
 ----
@@ -626,45 +628,52 @@ type Contact = PostContact | EmailContact | PhoneContact
 ```
 
 ---
-## Event Storming
+# Event Storming  <!-- .element: class="color--white" -->
+<!-- .slide: data-background="https://media.giphy.com/media/RK723MHoFIsbq20DJA/giphy.gif" -->
 
----
-
+----
 ## What is Event-Storming
 - Workshop format.
 - Gather requirements for products
 
----
+----
+
 > We're asking you to write the key events in your domain as an orange sticky not, in a verb at past tense, and place them along a timeline
 
----
+----
 
 > We are going to explore the business process as a whole by placing all the relevant events along a timeline. We'll highlight ideas, risks and opportunities along the way.
 
 ---
+
+# Different Types of stickies
+(Just a reference and won't be part of the exam)
+
+----
 ## Events (orange)
 - it has to be an orange sticky note
 - it needs to be phrased in the past
 - it has to be relevant for the domain
 - eg. item added to cart/user registered
 
----
+----
 ## People (yellow)
 - people involved in the application
 - eg. a waiter/waitress, a restaurant visitor
 
----
+----
 ## External Systems (pink)
 - external applications
   - eg. Google Analytics/Emails
 - external organisations
 - or something you can put the blame on
----
+
+----
 ## Uncertainties (purple)
 - warning signs
 - things to discuss further
 
----
+----
 ## Commands (Blue)
 - eg. Places Order
 - result of events
@@ -676,7 +685,23 @@ type Contact = PostContact | EmailContact | PhoneContact
 - Sticky notes
 
 ---
-## Ressources
+## Homework
+- Pick one usecase from event storming session
+  - Convert them to TS Types
+  - Validate them
+  - (Write tests for validation functions)
+- We'll review it together in the next lecture (29.4.)
+
+---
+
+## Feedback
+
+https://de.surveymonkey.com/r/J6693VN
+
+---
+# Ressources
+
+----
 ## Books/Blogs
 - [Domain Modeling Made Functional](https://www.amazon.com/Domain-Modeling-Made-Functional-Domain-Driven/dp/1680502549?tag=fsharpforfuna-20)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
@@ -684,13 +709,9 @@ type Contact = PostContact | EmailContact | PhoneContact
 - [F# for fun and profit](https://fsharpforfunandprofit.com/)
 - [Introducing EventStorming](https://www.eventstorming.com/book/)
 
+----
+
 ## Talks
 - [Functional Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
 - [Domain Modeling Made Functional](https://www.youtube.com/watch?v=Up7LcbGZFuo)
 - [Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
-
----
-
-## Feedback
-
-https://de.surveymonkey.com/r/J6693VN
