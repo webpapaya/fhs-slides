@@ -5,21 +5,23 @@
 ## Roadmap
 
 - Functional Programming introduction
-- Domain modling in TS
-- Eventstorming Session
-- Use results from Eventstorming in Typescript
+- Domain-Modeling in TS
+- Event-Storming Session
+- Model results from Event-Storming in TS
 
 ---
 # FP vs. OOP (TODO: add OOP description From: TS FP Book)
 
 > FP tries to reduce the number of places where state changes happen.
 
+
+
 ---
 # Why functional programming
 
 - More testable
   - pure functions simplify testing
-- Declerative APIs which are easier to reason about
+- Declarative APIs which are easier to reason about
 - Easy concurrency because of statelessness and immutability
   - State is pushed out of the application core to the boundaries
 - Simple caching
@@ -28,7 +30,7 @@
 ---
 # What is functional programming
 
-> Object-oriented programming makes code understandable by encapsulating moving parts. Functional programming makes code understandable by minimizing moving parts (Michael Feathers)
+> Object-oriented programming makes code understandable by encapsulating moving parts. Functional programming makes code understandable by minimising moving parts (Michael Feathers)
 
 - Way how the application is built
 - In comparison to other styles a function is the main building block
@@ -38,7 +40,7 @@
 
 - Functions can be treated as any other datatype
   - Can be passed to a function as argument
-  - Can be assigne a variable
+  - Can be assigned a variable
 
 ```js
 const helloWorld = () => 'hello world!';
@@ -116,14 +118,14 @@ const isIndexPage = (pathname) => pathname === '/';
 - changing the file system
 - querying the DOM
 - printing/logging
-- accessint system state (eg. Clock, Geolocation,...)
+- accessing system state (eg. Clock, Geolocation,...)
 
 ---
 # Higher Order Functions
 > A higher order function is a function that takes or returns a function.
 
 ```js
-const createRecordInDb = () => { /* do someting in the database */ }
+const createRecordInDb = () => { /* do something in the database */ }
 const createUser = (createRecordInDb) => {
   return (user) => {
     if (!isValid(user)) { throw new Error('User Invalid'); }
@@ -312,7 +314,7 @@ compose(third, second, first);
   - A user needs to have a first and last name
   - A user needs to have exactly one contact
     - a contact is either:
-      - adress (contains street/zip code/country)
+      - address (contains street/zip code/country)
       - phone (contains phone)
       - email (contains email)
     - a contact can be verified
@@ -344,7 +346,7 @@ type User = {
   street?: string,
   zipCode?: string,
   country?: string,
-  isAdressVerified?: bool,
+  isAddressVerified?: bool,
   email?: string,
   isEmailVerified?: bool,
   phone?: string,
@@ -383,7 +385,7 @@ type User = {
   - A user needs to have a first and last name
   - A user needs to have exactly one contact
     - a contact is either:
-      - adress (contains street/zip code/country)
+      - address (contains street/zip code/country)
       - phone (contains phone)
       - email (contains email)
     - a contact can be verified
@@ -400,7 +402,7 @@ type User = {
   street?: string,
   zipCode?: string,
   country?: string,
-  isAdressVerified?: bool,
+  isAddressVerified?: bool,
 
   // via email
   email?: string,
@@ -521,7 +523,7 @@ type Contact = PostContact | EmailContact | PhoneContact
 
 ---
 
-# What is Eventstorming
+# What is Event-Storming
 - Workshop format.
 - Gather requirements for products
 
@@ -537,7 +539,7 @@ type Contact = PostContact | EmailContact | PhoneContact
 - it has to be an orange sticky note
 - it needs to be phrased in the past
 - it has to be relevant for the domain
-- eg. item added to cart/user registred
+- eg. item added to cart/user registered
 
 ---
 # People (yellow)
