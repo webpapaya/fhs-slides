@@ -2,13 +2,17 @@
 ## (MMT-M2018)
 
 ---
-
 ## Roadmap
 
 - Functional Programming introduction
 - Eventstorming Session
 - Use results from Eventstorming in Typescript
 - Debugging in JS
+
+---
+# FP vs. OOP (TODO: add OOP description From: TS FP Book)
+
+> FP tries to reduce the number of places where state changes happen.
 
 ---
 # Why functional programming
@@ -42,7 +46,6 @@ const main = helloWorld;
 ```
 
 ---
-
 # Pure Functions
 
 A function is considered pure when:
@@ -99,17 +102,42 @@ const isIndexPage = (pathname) => pathname === '/';
 ```
 
 ---
-# Higher Order Functions
+# Side-Effects
 
+> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (TODO: add citation)
+
+- Any function with a side effect is not pure
+- Programms without side effects are useless
+
+----
+# Some side effects
+
+- DB/HTTP calls
+- changing the file system
+- querying the DOM
+- printing/logging
+- accessint system state (eg. Clock, Geolocation,...)
 
 ---
+# Higher Order Functions
+> A higher order function is a function that takes or returns a function.
 
+```js
+const createRecordInDb = () => { /* do someting in the database */ }
+const createUser = (createRecordInDb) => {
+  return (user) => {
+    if (!isValid(user)) { throw new Error('User Invalid'); }
+    return createRecordInDb(user);
+  }
+}
+```
+
+---
 # Memoization
 
 > `Memoizing' a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. (https://metacpan.org/pod/Memoize)
 
 ----
-
 # Pure functions recap
 
 - A pure function returns for the same input the same output
@@ -118,13 +146,11 @@ const isIndexPage = (pathname) => pathname === '/';
 ![pure function](assets/pure_function.png)
 
 ----
-
 # Memoization in the real world
 
 ![tree](assets/tree.png)
 
 ----
-
 # Task:
 
 - Memoize the fibonacci sequence
@@ -143,14 +169,15 @@ const memoizedFibonacci = memoize(fibonacci);
 - helper to measure time https://bit.ly/2UOFgAE
 
 ---
+# Recursion (TODO: add slide)
 
+---
 # Currying
 
 - Imagine a programming language where every function only accepts one argument.
 - How would you add up 2 numbers with pure functions only?
 
 ----
-
 # Currying 2/*
 
 ```js
@@ -221,136 +248,298 @@ const curry = (targetfn) => {
   return fn;
 }
 ```
-
-
-
-
-
-
----------------------------------------------------------------------------------
-
 ---
-# Side-Effects
+## Functional composition
 
-> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (TODO: add citation)
-
-- Any function with a side effect is not pure
-- Programms without side effects are useless
+![functional composition](assets/composition_1.png)
 
 ----
+## Functional composition
 
-# Some side effects
-
-- DB/HTTP calls
-- changing the file system
-- querying the DOM
-- printing/logging
-- accessint system state (eg. Clock, Geolocation,...)
+![functional composition](assets/composition_2.png)
 
 ----
+## Functional composition
 
+![functional composition](assets/composition_3.png)
 
+- You don't know if it was composed by smaller functions
+- The strawberry disappeared
+  - encapsulate internal representations
 
-
-
-
-
----
-
-FP tries to reduce the number of places where state changes happen.
-
----
-
-# Thinking in Pipelines or Railroad Tracks.
-
-TODO: add image of apple-banana function
-
-
----
-# Immutability
-
-
-
----
-
-
----
-
-
-
-
----
-
-# Side Effects
-
-
-
-
----
-
-# Higher Order Functions
-
-
-
-
-
-
-
----
-
-# Task 2
+----
+## Functional composition
 
 ```js
 const add = curry((a, b) => a + b);
 const multiply = curry((a, b) => a * b);
+const isEven = (value) => value % 2 === 0;
+
 const calculateInsuranceRace = pipe(
   add(5),
   multiply(4),
+  isEven,
 );
 
-calculateInsuranceRace(5); // => 5
+calculateInsuranceRace(5); // => true
 ```
 
-## Hints
+----
+# pipe vs. compose
+
+```js
+// Left to right
+pipe(first, second, third);
+```
+
+```js
+// Right to left
+compose(third, second, first);
+```
+
+----
+# Task
+- Build your own pipe function
+
+### Hints
 - https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+
+
+---
+# Domain Modeling and TS
+
+- Requirements:
+  - A user needs to have a first and last name
+  - A user needs to have exactly one contact
+    - a contact is either:
+      - adress (contains street/zip code/country)
+      - phone (contains phone)
+      - email (contains email)
+    - a contact can be verified
+
+----
+# Resulting Model
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  street?: string,
+  zipCode?: string,
+  country?: string,
+  email?: string,
+  isEmailVerified?: bool,
+  phone?: string,
+  isPhoneVerified?: bool,
+}
+```
+
+----
+# Can you spot issues with this model?
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  street?: string,
+  zipCode?: string,
+  country?: string,
+  isAdressVerified?: bool,
+  email?: string,
+  isEmailVerified?: bool,
+  phone?: string,
+  isPhoneVerified?: bool,
+}
+```
+----
+
+> Can you spot issues with this model?
 
 ----
 
-# Possible solution
+```ts
+const user = {
+  firstName: 'Sepp',
+  lastName: 'Dupfinger',
+  street: 'Hinterholz 8',
+};
+```
+
+----
+# 1 correct address and 7 falsy states
+
+```ts
+type User = {
+  // ...
+  street?: string,
+  zipCode?: string,
+  country?: string,
+  // ...
+}
+```
+
+----
+# Requirements:
+  - A user needs to have a first and last name
+  - A user needs to have exactly one contact
+    - a contact is either:
+      - adress (contains street/zip code/country)
+      - phone (contains phone)
+      - email (contains email)
+    - a contact can be verified
+
+----
+# Classify the type
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+
+  // via post
+  street?: string,
+  zipCode?: string,
+  country?: string,
+  isAdressVerified?: bool,
+
+  // via email
+  email?: string,
+  isEmailVerified?: bool,
+
+  // via phone
+  phone?: string,
+  isPhoneVerified?: bool,
+}
+```
+
+----
+# Extract smaller bits
+
+```ts
+type PostContact = { street: string, zipCode: string, country: string, isVerified: bool }
+type EmailContact = { email: string, isVerified: bool }
+type PhoneContact = { phone: string, isVerified: bool }
+type Contact = PostContact | EmailContact | PhoneContact
+
+type User = {
+  firstName: string,
+  lastName: string,
+  contact: Contact,
+}
+```
+
+----
+# Extract common properties
+
+
+```ts
+type Verifiable<T> = T & { isVerified: boolean }
+
+type PostContact = Verifiable<{ street: string, zipCode: string, country: string }>
+type EmailContact = Verifiable<{ email: string }>
+type PhoneContact = Verifiable<{ phone: string }>
+type Contact = PostContact | EmailContact | PhoneContact
+
+type User = {
+  firstName: string,
+  lastName: string,
+  contact: Contact,
+}
+```
+
+----
+# Use it
+
+```ts
+const user:User = {
+  firstName: 'Sepp',
+  lastName: 'Dupfinger',
+  contact: { email: 'sepp@hinterholz.at', isVerified: true },
+}
+```
+
+----
+
+> Can you still spot issues with this model?
+
+----
+
+```ts
+const user:User = {
+  firstName: '',
+  lastName: '',
+  contact: { email: '', isVerified: true },
+}
+```
+
+----
+# Type aliases
 
 ```js
-// First fn is executed first
-const pipe = (...fns) => (initialValue) =>
-  fns.reduce((result, fn) => fn(result), initialValue);
+type Email = string
+```
 
-// Last fn is executed first
-const compose = (...fns) => (initialValue) =>
-  fns.reduceRight((result, fn) => fn(result), initialValue);
+----
+
+```ts
+type Maybe<T> = T | null
+type Email = string
+
+const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
+    if (typeof maybeEmail === 'string' && maybeEmail.match(/.@./)) {
+        return maybeEmail as Email;
+    }
+    return null;
+}
+```
+----
+TODO: add working gist
+
+```ts
+type Maybe<T> = T | null
+type Verifiable<T> = T & { isVerified: boolean }
+
+type Email = string
+type Phone = string
+type Street = string
+type ZipCode = string
+type Country = string
+
+type PostContact = Verifiable<{ street: Street, zipCode: ZipCode, country: Country }>
+type EmailContact = Verifiable<{ email: Email }>
+type PhoneContact = Verifiable<{ phone: Phone }>
+type Contact = PostContact | EmailContact | PhoneContact
+
+//...
 ```
 
 
 
 
----
-# Recursion
+# Ressources
+## Books/Blogs
+- [Domain Modeling Made Functional](https://www.amazon.com/Domain-Modeling-Made-Functional-Domain-Driven/dp/1680502549?tag=fsharpforfuna-20)
+- [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
+- [Mostly adequate guide to FP](https://github.com/MostlyAdequate/mostly-adequate-guide)
+- [F# for fun and profit](https://fsharpforfunandprofit.com/)
 
----
-# Immutability
+## Talks
+- [Functional Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
+- [Domain Modeling Made Functional](https://www.youtube.com/watch?v=Up7LcbGZFuo)
+- [Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
 
----
-# Composition
-
----
-# Partial application
+---------------------------------------------------------------------------------
 
 
-# Task
-- write a memoize higher order functions
-- implement a compose function
-- reimplement ramdas curry higher order function
 
----
-# Functors
+
+
+
+
+
+
+
+
 
 
 ## Feedback
@@ -359,7 +548,6 @@ https://de.surveymonkey.com/r/J6693VN
 
 
 ---
-
 # Event Storming
 - Orange events
   - it has to be an orange sticky note
