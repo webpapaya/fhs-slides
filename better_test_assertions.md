@@ -22,7 +22,20 @@ ViennaJS (2019-04-24)
 
 ![failing tests](assets/failing_tests.png)
 
+
 ----
+# What am I doing wrong? <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/angry.gif" -->
+<!-- .slide: data-color="white" -->
+
+----
+# Started to question TDD <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/questioning_myself.gif" -->
+<!-- .slide: data-color="white" -->
+
+---
 
 # What is a test assertions?
 
