@@ -699,7 +699,7 @@ type Contact = PostContact | EmailContact | PhoneContact
 ## Homework
 - Pick one usecase from event storming session
   - Convert them to TS Types
-  - Validate them (with https://github.com/gcanti/io-ts or other)
+  - Validate them (with https://www.npmjs.com/package/typescript-validator or other)
   - (Write tests for validation functions)
 - We'll review it together in the next lecture (29.4.)
 
@@ -726,3 +726,4 @@ https://de.surveymonkey.com/r/J6693VN
 - [Functional Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
 - [Domain Modeling Made Functional](https://www.youtube.com/watch?v=Up7LcbGZFuo)
 - [Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
+
