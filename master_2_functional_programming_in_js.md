@@ -699,9 +699,10 @@ type Contact = PostContact | EmailContact | PhoneContact
 ## Homework
 - Pick one usecase from event storming session
   - Convert them to TS Types
-  - Validate them (with https://www.npmjs.com/package/typescript-validator or other)
+  - Create validation functions for type aliases
   - (Write tests for validation functions)
 - We'll review it together in the next lecture (29.4.)
+  - And validate them with IO-TS
 
 ---
 
