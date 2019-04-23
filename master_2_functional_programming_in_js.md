@@ -661,14 +661,14 @@ type Contact = PostContact | EmailContact | PhoneContact
 (Just a reference and won't be part of the exam)
 
 ----
-## Events (orange)
+## Events (yellow)
 - it has to be an orange sticky note
 - it needs to be phrased in the past
 - it has to be relevant for the domain
 - eg. item added to cart/user registered
 
 ----
-## People (yellow)
+## People (orange)
 - people involved in the application
 - eg. a waiter/waitress, a restaurant visitor
 
