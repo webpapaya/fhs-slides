@@ -255,12 +255,10 @@ const createUserInMemory = buildCreateUser(inMemoryAdapter);
 
 ```js
 const memoize = () => {}; // TODO: implement me
-const fibonacci = (num) => {
+const fibonacci = memoize((num) => {
   if (num <= 1) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
-};
-
-const memoizedFibonacci = memoize(fibonacci);
+});
 ```
 
 - helper to measure time https://bit.ly/2UOFgAE
