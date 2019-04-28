@@ -492,6 +492,15 @@ const SimpleForm = ({ onSubmit }) => {
 - State can only be changed by dispatching an action
 - Each action might change the previous state to a new updated state
 
+----
+### Why Redux
+
+- Redux takes care of incoming actions
+- Calling functions (reducers) to provide new state
+- Notifying connected components to rerender
+- Works with react, vue, angular, ...
+
+
 ---
 
 ### Actions
