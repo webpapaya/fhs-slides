@@ -16,10 +16,46 @@
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">### State Management with Redux
 #### (MMT-B2017)
+</script></section><section  data-markdown><script type="text/template">
+### Roadmap
+- Recap of homework
+- Functional Programming 101
+- State Manamgement with Redux
 </script></section><section ><section data-markdown><script type="text/template">
 ### Recap of Homework
-</script></section><section data-markdown><script type="text/template">
-TODO: add reviews/pitfalls
+</script></section><section data-markdown><script type="text/template">### Mutable state
+
+https://codesandbox.io/embed/zqqkxrk14l?fontsize=14
+</script></section><section data-markdown><script type="text/template">### Depending on data which might not be loaded
+
+```js
+function getUserName (users, id) {
+  let user = users.filter(obj => {
+    return obj.id === id;
+  });
+
+  return user[0].name; // Might crach if user wasn't found
+}
+```
+</script></section><section data-markdown><script type="text/template">### God Components
+
+```js
+const FormInput = ({ type, ...otherProps }) => {
+  if (type === 'text') {
+    return <input type="text" {...otherProps}> ;
+  } else if (input === 'number') {
+    //....
+  } else if (input === 'email') {
+    //....
+  }
+  //....
+}
+```</script></section><section data-markdown><script type="text/template">### Misc
+- use === instead of ==
+- you're big fans of console.log debugging
+- extra elements in markup
+- use mocked data in components
+- linting
 </script></section></section><section  data-markdown><script type="text/template">### Functional Programming 101
 
 - Immutability
