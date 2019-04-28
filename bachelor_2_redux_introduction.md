@@ -14,6 +14,217 @@ TODO: add reviews/pitfalls
 ### Composing generic form hook
 
 ---
+### Functional Programming 101
+
+- Immutability
+- Pure functions
+- Side Effect
+
+---
+## Why functional programming
+
+- More testable
+  - pure functions simplify testing
+- Declarative APIs which are easier to reason about
+- Easy concurrency because of statelessness and immutability
+  - State is pushed out of the application core to the boundaries
+- Simple caching
+  - pure functions easy to cache
+
+---
+## Immutability
+
+> An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
+
+----
+## Immutable objects in JS
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+immutableObject.test = 10;
+console.log(immutableObject) // => { test: 1 }
+````
+
+----
+## Changing an immutable value
+
+````js
+const immutableObject = Object.freeze({ a: 1, b: 2 })
+const updatedObject = Object.freeze({ ...immutableObject, a: 2 });
+console.log(updatedObject) // => { a: 2, b: 2 }
+````
+
+----
+## Unfreeze an object
+
+````js
+const immutableObject = Object.freeze({ test: 1 });
+const unfrozenCopy = { ...immutableObject };
+````
+
+----
+## Why immutability
+
+- race conditions impossible
+- state of the application is easier to reason about
+- easier to test
+
+----
+## Mutable bug
+```js
+const users = [];
+const loadUsers = async () => {
+  const result = await fetchUsers('/users');
+  users.push(...result);
+  return users;
+}
+
+loadUsers();
+loadUsers();
+```
+
+----
+## Immutable version
+```js
+const loadUsers = () => {
+  return fetchUsers('/users');
+}
+
+const result1 = await loadUsers();
+const result2 = await loadUsers();
+```
+
+---
+## Side-Effects
+
+> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
+
+- Any function with a side effect is not pure
+- Programms without side effects are useless
+
+----
+## Some side effects
+
+- DB/HTTP calls
+- changing the file system
+- querying the DOM
+- printing/logging
+- accessing system state (eg. Clock, Geolocation,...)
+
+----
+## Where to deal with side effects
+
+- Moved to the boundaries of the system
+- Business logic stays pure functional
+
+![Side effects](assets/side_effects.png)
+
+---
+## Pure Functions
+
+- A function is considered pure when:
+  - for the same input it always returns the same output
+  - it has no side effects
+      - no mutation of non-local state
+
+```js
+const add = (a, b) => a + b;
+```
+
+----
+## Attributes of pure functions
+
+- They are idempotent
+- They offer referential transparency
+  - calls to this function can be replaced by the value without changing the programs behaviour
+- They can be memoized (or cached)
+- They can be lazy
+- They can be tested more easy
+
+----
+## Pure or inpure? 1/2
+
+```js
+const array = [1,2,3,4,5,6];
+const fn1 = (array) => array.slice(0,3);
+const fn2 = (array) => array.splice(0,3);
+const fn3 = (array) => array.shift();
+const fn4 = (array) => array.pop();
+const fn5 = (array) => array.sort((a, b) => a - b);
+const fn6 = (array) => [...array].sort((a, b) => a - b);
+const fn7 = (array) => array.map((item) => item * 2);
+const fn8 = (array) => array.forEach((item) => console.log(item));
+```
+
+----
+## Pure or inpure? 1/2
+
+```js
+const array = [1,2,3,4,5,6];
+const fn1 = (array) => array.slice(0,3); // ✅
+const fn2 = (array) => array.splice(0,3); // 🚫
+const fn3 = (array) => array.shift(); // 🚫
+const fn4 = (array) => array.pop(); // 🚫
+const fn5 = (array) => array.sort((a, b) => a - b); // 🚫
+const fn6 = (array) => [...array].sort((a, b) => a - b); // ✅
+const fn7 = (array) => array.map((item) => item * 2); // ✅
+const fn8 = (array) => array.forEach((item) => console.log(item)); // 🚫
+```
+
+----
+## Pure or inpure? 2/2
+
+```js
+let config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
+```
+
+```js
+const config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
+```
+
+----
+## Pure or inpure? 2/2
+
+```js
+let config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
+```
+
+```js
+const config = { minimumAge: 18 };
+const isAllowedToDrink = (age) => age >= config.minimumAge;
+```
+
+```js
+// both are not pure. const saves the pointer. config is still mutable
+isAllowedToDring(18) // true
+config.minimumAge = 19
+isAllowedToDring(18) // false
+```
+
+----
+## Pure or inpure? 2/2
+```js
+const config = Object.freeze({ minimumAge: 18 });
+const isAllowedToDrink = (age) => age >= config.minimumAge;
+```
+
+```js
+// freezing the config makes the function pure
+isAllowedToDring(18) // true
+config.minimumAge = 19
+isAllowedToDring(18) // true
+```
+
+
+
+
+
+
+
+---
 
 ### React Router
 
@@ -272,9 +483,6 @@ const SimpleForm = ({ onSubmit }) => {
 
 ![redux overview](assets/redux_overview.png)
 
-
-
-
 ----
 ### Why Redux
 
@@ -332,6 +540,7 @@ store.dispatch(signInAction);
 ### Reducers
 
 - Specify how state changes in response to actions.
+- Pure function
 
 ```js
 const reducer = (previousState, action) => {
@@ -355,27 +564,12 @@ const reducer = (previousState = initialState, action) => {
 ```
 ----
 
+# Immutability
+# Pure function
+
 
 ---
 ### Download
 - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
 - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
 
-
-
-
-### Store
-
-----
-
-
-
-
-
-### Action Creators
-
-### Containers
-
-### Reducers
-
-### Store
