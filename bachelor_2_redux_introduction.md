@@ -3,11 +3,55 @@
 
 ---
 
+### Roadmap
+- Recap of homework
+- Functional Programming 101
+- State Manamgement with Redux
+
+---
+
 ### Recap of Homework
 
 ----
+### Mutable state
 
-TODO: add reviews/pitfalls
+https://codesandbox.io/embed/zqqkxrk14l?fontsize=14
+
+----
+### Depending on data which might not be loaded
+
+```js
+function getUserName (users, id) {
+  let user = users.filter(obj => {
+    return obj.id === id;
+  });
+
+  return user[0].name; // Might crach if user wasn't found
+}
+```
+
+----
+### God Components
+
+```js
+const FormInput = ({ type, ...otherProps }) => {
+  if (type === 'text') {
+    return <input type="text" {...otherProps}> ;
+  } else if (input === 'number') {
+    //....
+  } else if (input === 'email') {
+    //....
+  }
+  //....
+}
+```
+----
+### Misc
+- use === instead of ==
+- you're big fans of console.log debugging
+- extra elements in markup
+- use mocked data in components
+- linting
 
 ---
 ### Functional Programming 101
