@@ -350,13 +350,6 @@ isAllowedToDring(18) // true
 - Redux privides a predictable way to manage state
 - State can only be changed by dispatching an action
 - Each action might change the previous state to a new updated state
-
-----
-### Why Redux
-
-- Redux takes care of incoming actions
-- Calling functions (reducers) to provide new state
-- Notifying connected components to rerender
 - Works with react, vue, angular, ...
 
 ---
@@ -365,6 +358,7 @@ isAllowedToDring(18) // true
 ![Redux Actions](assets/redux_action_highlight.png)
 
 ----
+### Actions
 
 > Something happened in the app which might be interresting.
 
@@ -437,6 +431,11 @@ store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
 ----
 ### Reducers
 
+> Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
+
+----
+### Reducers
+
 - Specify how state changes in response to actions.
 - Pure function
   - input appState and action
@@ -465,25 +464,6 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
       return previousState;
   };
 };
-```
-
-----
-## Task
-- Add a moneyTransactionReducer reducer
-  - entry point: `src/reducer/index.js`
-  - dispatch action of type 'createMoneyTransaction/success'
-    - try to populate the redux store with a new moneyTransaction
-
-```js
-import { combineReducers } from 'redux';
-import userAuthentication from './user-authentication';
-
-const rootReducer = combineReducers({
-  user: () => [],
-  userAuthentcation,
-});
-
-export default rootReducer;
 ```
 
 ---
@@ -522,7 +502,7 @@ export default connect(
 )(MoneyTransactionList);
 ```
 
-----
+---
 ## Task 1 (Actions)
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
