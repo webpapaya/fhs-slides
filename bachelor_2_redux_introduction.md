@@ -36,7 +36,7 @@ function getUserName (users, id) {
 ```js
 const FormInput = ({ type, ...otherProps }) => {
   if (type === 'text') {
-    return <input type="text" {...otherProps}> ;
+    return <input type="text" {...otherProps}>;
   } else if (input === 'number') {
     //....
   } else if (input === 'email') {
