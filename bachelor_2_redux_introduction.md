@@ -469,6 +469,7 @@ const SimpleForm = ({ onSubmit }) => {
 
 ----
 ### Storing state in redux
+
 - Global state which acts like local state
 - Pros:
   - Components are independent
@@ -500,9 +501,7 @@ const SimpleForm = ({ onSubmit }) => {
 - Notifying connected components to rerender
 - Works with react, vue, angular, ...
 
-
 ---
-
 ### Actions
 
 ----
@@ -510,9 +509,10 @@ const SimpleForm = ({ onSubmit }) => {
 > Something happened in the app which might be interresting.
 
 ----
+### Actions
 
 - Payloads of information which send data from the application to the store
-- Sent to the store via store.dispatch
+- Information is sent to the store via store.dispatch
 
 ```js
 const signInAction = {
@@ -531,54 +531,98 @@ store.dispatch(signInAction);
 
 - A functions which creates actions
 - With redux-thunk action creators can dispatch itself
-  - We might discuss redux-thunk next time
+  - This is where side effects are handeled
 
 ```js
-const signIn = ({ username, password }) => (dispatch) => {
-  return fetch('/sign-in/', { username, password });
-    .then(({ token }) => dispatch({ type: 'signIn/success', payload: { token }}))
-    .catch(() => dispatch({ type: 'signIn/error', payload: {}}));
-  });
+const actionCreator = () => (dispatch) => {
+  dispatch({ type: 'action1', payload: {} });
+  dispatch({ type: 'action2', payload: { something: 'random' } });
+  dispatch({ type: 'action3', payload: { something: 'random' } });
+  // ...
+};
+
+store.dispatch(actionCreator());
+```
+
+---
+
+### Async action creators
+
+```js
+const signIn = ({ username, password }) => async (dispatch) => {
+  dispatch({ type: 'signIn/initiated', payload: {}});
+  try {
+    const { token } = await fetch('/sign-in/', { username, password });
+    dispatch({ type: 'signIn/success', payload: { token }});
+  } catch (e) {
+    dispatch({ type: 'signIn/error', payload: e });
+  };
 };
 
 store.dispatch(signInAction);
 ```
 
----
+----
+## Task
+- Download
+  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
+- in src/store.js
+  - add `window.store = store`;
+- `npm run start`
+- go to localhost:8081
+- open dev tools/redux tab
+- dispatch a simple action
+- dispatch an action creator
 
+---
 ### Reducers
 
 - Specify how state changes in response to actions.
 - Pure function
+  - input appState and action
+  - output next application state
 
 ```js
-const reducer = (previousState, action) => {
-  // some magic
+const initialState = {};
+const reducer = (previousState = initialState, action) => {
+  // do something with the state
   return nextState;
 }
 ```
 
 ----
+### Reducers
 
 ```js
 const initialState = { token: null };
-const reducer = (previousState = initialState, action) => {
+const userAuthenticationReducer = (previousState = initialState, action) => {
   switch(action.type) {
     case 'signIn/success':
-      return { ...state, token: action.payload.token }
+      return { ...state, token: action.payload.token };
+    case 'reset':
+      return initialState;
     default:
       return previousState;
-  }
-}
+  };
+};
 ```
+
 ----
+## Task
+- Add a userAuthentication reducer
+  - entry point: `src/reducer/index.js`
+  - dispatch action of type 'signIn/success'
+    - try to populate the redux store with the token
 
-# Immutability
-# Pure function
+```js
+import { combineReducers } from 'redux';
+import userAuthentication from './user-authentication';
 
+const rootReducer = combineReducers({
+  user: () => [],
+  userAuthentcation,
+});
 
----
-### Download
-- [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
-- [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
-
+export default rootReducer;
+```
