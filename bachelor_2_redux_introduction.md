@@ -21,6 +21,11 @@ TODO: add reviews/pitfalls
 - Side Effect
 
 ---
+## What is functional programming
+
+> Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
+
+---
 ## Why functional programming
 
 - More testable
@@ -69,38 +74,10 @@ const unfrozenCopy = { ...immutableObject };
 - state of the application is easier to reason about
 - easier to test
 
-----
-## Mutable bug
-```js
-const users = [];
-const loadUsers = async () => {
-  const result = await fetchUsers('/users');
-  users.push(...result);
-  return users;
-}
-
-loadUsers();
-loadUsers();
-```
-
-----
-## Immutable version
-```js
-const loadUsers = () => {
-  return fetchUsers('/users');
-}
-
-const result1 = await loadUsers();
-const result2 = await loadUsers();
-```
-
 ---
 ## Side-Effects
 
 > A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
-
-- Any function with a side effect is not pure
-- Programms without side effects are useless
 
 ----
 ## Some side effects
@@ -130,16 +107,6 @@ const result2 = await loadUsers();
 ```js
 const add = (a, b) => a + b;
 ```
-
-----
-## Attributes of pure functions
-
-- They are idempotent
-- They offer referential transparency
-  - calls to this function can be replaced by the value without changing the programs behaviour
-- They can be memoized (or cached)
-- They can be lazy
-- They can be tested more easy
 
 ----
 ## Pure or inpure? 1/2
@@ -217,6 +184,381 @@ isAllowedToDring(18) // true
 config.minimumAge = 19
 isAllowedToDring(18) // true
 ```
+---
+
+## Summary FP
+- Immutability
+  - Object can't be changed after its creation
+- Side-Effects
+  - Communication with the outside world (eg. db, http, ...)
+- Pure-Functions
+  - returns the same output for the same input
+  - simple mapping from a to b
+
+---
+### State Management with Redux
+
+----
+### What is application state
+
+> An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
+
+----
+### State in Redux terms
+
+> Every bit of information the application needs in order to render.
+
+----
+### What information do we need to render this page?
+
+![app wireframe](assets/app_wireframe.png)
+
+----
+### What information do we need to render this page?
+
+| Question?                                  | State Name           |
+|--------------------------------------------|----------------------|
+| Is the user authenticated?                 | authenticationStatus |
+| Is a form already filled with values?      | formValues           |
+| Is the input field hovered/focused/filled? | inputStatus          |
+| Am I owning money to somebody?             | moneyTransactions    |
+| Is somebody owning me some money?          | moneyTransactions    |
+| Which users can I owe some money?          | users                |
+| Which components should be rendered?       | url                  |
+
+----
+### Categorizing different types
+- Relevant for other parts of the application?
+  - add to global state
+- Irrelevant for other parts of the application?
+  - use component state (useState or setState)
+  - also known as UI State
+
+----
+### Global/Local/URL?
+
+| State Name           | State Type |
+|----------------------|------------|
+| authenticationStatus |            |
+| moneyTransactions    |            |
+| users                |            |
+| formValues           |            |
+| inputStatus          |            |
+| url                  |            |
+
+----
+### Global/Local/URL?
+
+| State Name           | State Type |
+|----------------------|------------|
+| authenticationStatus | global     |
+| moneyTransactions    | global     |
+| users                | global     |
+| formValues           | local      |
+| inputStatus          | local      |
+| url                  | url        |
+
+
+----
+### Global State
+- relevant for other components
+- could be seen as a client side database
+  - or a cached version of the server data
+- domain object should be stored here
+  - eg. users, money transactions, authentication token
+
+----
+### UI State
+- irrelevant for other parts of the application
+  - or state which shouldn't be shared with others
+- What to store in UI state?
+  - Form states
+  - visual enhancements
+
+----
+### URL State
+- defines which set of components should be rendered
+- persists on page reloads
+- What to store in URL state?
+  - the current route
+  - the current page of a paginated list
+
+---
+### React component tree
+
+![Component Tree](assets/react_component_tree.png)
+
+----
+### Storing state in components
+
+![Local state tree](assets/local_state_tree.png)
+
+----
+### Storing state in components
+- Pros
+  - Components are independent
+    - eg. "Navigation" doesn't know about "User Update"
+- Cons
+  - User data needs to be fetched multiple times
+  - If UserUpdate component changes name of user
+    - Navigation needs to refetch user data
+
+----
+### Storing state in the root component
+
+![Global state tree](assets/global_state_tree.png)
+
+----
+### Storing state in the root component
+
+- Pros
+  - User data could be fetched only once
+  - If UserUpdate component changes name of user
+    - navigation component is automatically updated
+- Cons
+  - State needs to be passed down to every component
+  - (Root component contains all state logic)
+
+----
+### Storing state in the root component
+
+![twitter component tree](assets/twitter_component_tree.gif)
+
+----
+### Storing state in redux
+
+![connected tree](assets/connected_tree.png)
+
+----
+### Storing state in redux
+
+- Global state which acts like local state
+- Pros:
+  - Components are independent
+    - eg. Navigation doesn't know about UserUpdate
+  - State changes are synchronised with the whole app
+  - State doesn't need to be passed down the tree
+- Cons:
+  - "Complex" architecture for small apps
+
+---
+### Redux
+
+![redux overview](assets/redux_overview.png)
+
+----
+### Why Redux
+
+- Managing state in react can be challanging
+  - How to synchronize state between distant UI parts
+- Redux privides a predictable way to manage state
+- State can only be changed by dispatching an action
+- Each action might change the previous state to a new updated state
+
+----
+### Why Redux
+
+- Redux takes care of incoming actions
+- Calling functions (reducers) to provide new state
+- Notifying connected components to rerender
+- Works with react, vue, angular, ...
+
+---
+### Actions
+
+![Redux Actions](assets/redux_action_highlight.png)
+
+----
+
+> Something happened in the app which might be interresting.
+
+----
+### Actions
+
+- An action is data from the application which might be relevant for the store
+- Information is sent to the store via store.dispatch
+
+```js
+const signInAction = {
+  type: "signIn",
+  payload: {
+    username: "peter",
+    password: "the clam"
+  }
+}
+
+store.dispatch(signInAction);
+```
+----
+
+### Action Creators
+
+- A functions which creates actions
+- With redux-thunk action creators can dispatch itself
+  - This is where side effects are handeled
+
+```js
+const actionCreator = () => (dispatch) => {
+  dispatch({ type: 'action1', payload: {} });
+  dispatch({ type: 'action2', payload: { something: 'random' } });
+  dispatch({ type: 'action3', payload: { something: 'random' } });
+  // ...
+};
+
+store.dispatch(actionCreator());
+```
+
+----
+
+### Async action creators
+
+```js
+const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
+  async (dispatch) => {
+    dispatch({ type: 'createMoneyTransaction/initiated', payload: {}});
+    try {
+      const moneyTransaction = await fetch('/money-transaction/', {
+        creditorId,
+        debitorId,
+        amount,
+      });
+      dispatch({
+        type: 'createMoneyTransaction/success',
+        payload: moneyTransaction
+      });
+    } catch (e) {
+      dispatch({ type: 'createMoneyTransaction/error', payload: e });
+    };
+  };
+
+store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
+```
+
+---
+### Reducers
+- Specify how state changes in response to actions.
+- Pure function
+  - input appState and action
+  - output next application state
+
+```js
+const initialState = {};
+const reducer = (previousState = initialState, action) => {
+  // do something with the state
+  return nextState;
+}
+```
+
+----
+### Reducers
+
+```js
+const initialState = [];
+const moneyTransactionReducer = (previousState = initialState, action) => {
+  switch(action.type) {
+    case 'createMoneyTransaction/success':
+      return [...previousState, action.payload];
+    case 'reset':
+      return initialState;
+    default:
+      return previousState;
+  };
+};
+```
+
+----
+## Task
+- Add a moneyTransactionReducer reducer
+  - entry point: `src/reducer/index.js`
+  - dispatch action of type 'createMoneyTransaction/success'
+    - try to populate the redux store with a new moneyTransaction
+
+```js
+import { combineReducers } from 'redux';
+import userAuthentication from './user-authentication';
+
+const rootReducer = combineReducers({
+  user: () => [],
+  userAuthentcation,
+});
+
+export default rootReducer;
+```
+
+----
+### Container components
+
+![redux overview](assets/redux_overview.png)
+
+----
+### Container components
+
+- Glue between react and redux
+- Provides data from the global store to the components
+- Provides "callbacks" to trigger actions
+
+----
+### Container Components
+
+```js
+import { createMoneyTransaction } from '../action-creators/money-transactions'
+const mapStateToProps = (state, props) => {
+  return {
+    moneyTransactions: state.moneyTransactions
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    createMoneyTransaction: (payload) =>
+      dispatch(createMoneyTransaction(payload))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MoneyTransactionList);
+```
+
+----
+## Task 1 (Actions)
+- Download
+  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
+- in src/store.js
+  - add `window.store = store`;
+- `npm run start`
+- go to localhost:8081
+- open dev tools/redux tab
+- create action creator for createMoneyTransaction
+  - `dispatch(createMoneyTransaction({ debitorId, creditorId, amount}))`
+
+----
+## Task 2 (Reducer)
+
+- Add a moneyTransactionReducer reducer
+  - entry point: `src/reducer/index.js`
+  - dispatch action of type 'createMoneyTransaction/success'
+    - try to populate the redux store with a new moneyTransaction
+
+----
+## Task 3 (Container)
+
+- Try to connect your moneyTransactionList with the store
+
+---
+# Further Links
+- [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
+
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN
+
+
+
+
 
 
 
@@ -336,293 +678,3 @@ const SimpleForm = ({ onSubmit }) => {
 ```
 
 
-
-
-
-
-
-
-----
-### State Management with Redux
-
-> An application's state is roughly the entire contents of its memory. ((sarnold)[https://stackoverflow.com/a/8102731])
-
-----
-### State in Redux terms
-
-> Every bit of information the application needs in order to render.
-
----
-### What information do we need to render this page?
-
-![app wireframe](assets/app_wireframe.png)
-
-----
-### What information do we need to render this page?
-
-| Question?                                  | State Name           | State Type |
-|--------------------------------------------|----------------------|------------|
-| Is the user authenticated?                 | authenticationStatue | global     |
-| Am I owning money to somebody?             | moneyTransactions    | global     |
-| Is somebody owning me some money?          | moneyTransactions    | global     |
-| Was the money already paid back?           | moneyTransactions    | global     |
-| Which users can I owe some money?          | users                | global     |
-| Is a form already filled with values?      | formValues           | local      |
-| Is the input field hovered/focused/filled? | inputStatus          | local      |
-| Which components should be rendered?       | url                  | url        |
-
-----
-### Categorizing different types
-- Relevant for other parts of the application?
-  - add to global state
-- Irrelevant for other parts of the application?
-  - use component state (useState or setState)
-  - also known as UI State
-
-----
-### Global State
-- relevant for other components
-- could be seen as a client side database
-  - or a cached version of the server data
-- domain object should be stored here
-  - eg. users, money transactions, authentication token
-
-----
-### UI State
-- irrelevant for other parts of the application
-  - or state which shouldn't be shared with others
-- What to store in UI state?
-  - Form states
-  - visual enhancements
-
-----
-### URL State
-- defines which set of components should be rendered
-- persists on page reloads
-- What to store in URL state?
-  - the current route
-  - the current page of a paginated list
-
----
-### How to categorize these?
-- user authentication status
-- list of "money transactions"
-- list of users
-- filled values of the money transaction create form?
-- is the input field focused/hovered/filled?
-- which components should be rendered?
-
-----
-### How to categorize these? (solution)
-- user authentication status (global)
-- list of "money transactions" (global)
-- list of users (global)
-- filled values of the money transaction create form? (UI/local)
-- is the input field focused/hovered/filled? (UI/local)
-- which components should be rendered? (URL)
-
-----
-### React component tree
-
-![Component Tree](assets/react_component_tree.png)
-
-----
-### Storing state in components
-
-![Local state tree](assets/local_state_tree.png)
-
-----
-### Storing state in components
-- Pros
-  - Components are independent
-    - eg. "Navigation" doesn't know about "User Update"
-- Cons
-  - User data needs to be fetched multiple times
-  - If UserUpdate component changes name of user
-    - Navigation needs to refetch user data
-
-----
-### Storing state in the root component
-
-![Global state tree](assets/global_state_tree.png)
-
-----
-### Storing state in the root component
-
-- Pros
-  - User data could be fetched only once
-  - If UserUpdate component changes name of user
-    - navigation component is automatically updated
-- Cons
-  - State needs to be passed down to every component
-  - (Root component contains all state logic)
-
-----
-### Storing state in the root component
-
-![twitter component tree](assets/twitter_component_tree.gif)
-
-----
-### Storing state in redux
-
-![connected tree](assets/connected_tree.png)
-
-----
-### Storing state in redux
-
-- Global state which acts like local state
-- Pros:
-  - Components are independent
-    - eg. Navigation doesn't know about UserUpdate
-  - State changes are synchronised with the whole app
-  - State doesn't need to be passed down the tree
-- Cons:
-  - "Complex" architecture for small apps
-
----
-### Redux
-
-![redux overview](assets/redux_overview.png)
-
-----
-### Why Redux
-
-- Managing state in react can be challanging
-  - How to synchronize state between distant UI parts
-- Redux privides a predictable way to manage state
-- State can only be changed by dispatching an action
-- Each action might change the previous state to a new updated state
-
-----
-### Why Redux
-
-- Redux takes care of incoming actions
-- Calling functions (reducers) to provide new state
-- Notifying connected components to rerender
-- Works with react, vue, angular, ...
-
----
-### Actions
-
-----
-
-> Something happened in the app which might be interresting.
-
-----
-### Actions
-
-- Payloads of information which send data from the application to the store
-- Information is sent to the store via store.dispatch
-
-```js
-const signInAction = {
-  type: "signIn",
-  payload: {
-    username: "peter",
-    password: "the clam"
-  }
-}
-
-store.dispatch(signInAction);
-```
-----
-
-### Action Creators
-
-- A functions which creates actions
-- With redux-thunk action creators can dispatch itself
-  - This is where side effects are handeled
-
-```js
-const actionCreator = () => (dispatch) => {
-  dispatch({ type: 'action1', payload: {} });
-  dispatch({ type: 'action2', payload: { something: 'random' } });
-  dispatch({ type: 'action3', payload: { something: 'random' } });
-  // ...
-};
-
-store.dispatch(actionCreator());
-```
-
----
-
-### Async action creators
-
-```js
-const signIn = ({ username, password }) => async (dispatch) => {
-  dispatch({ type: 'signIn/initiated', payload: {}});
-  try {
-    const { token } = await fetch('/sign-in/', { username, password });
-    dispatch({ type: 'signIn/success', payload: { token }});
-  } catch (e) {
-    dispatch({ type: 'signIn/error', payload: e });
-  };
-};
-
-store.dispatch(signInAction);
-```
-
-----
-## Task
-- Download
-  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
-  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
-- in src/store.js
-  - add `window.store = store`;
-- `npm run start`
-- go to localhost:8081
-- open dev tools/redux tab
-- dispatch a simple action
-- dispatch an action creator
-
----
-### Reducers
-
-- Specify how state changes in response to actions.
-- Pure function
-  - input appState and action
-  - output next application state
-
-```js
-const initialState = {};
-const reducer = (previousState = initialState, action) => {
-  // do something with the state
-  return nextState;
-}
-```
-
-----
-### Reducers
-
-```js
-const initialState = { token: null };
-const userAuthenticationReducer = (previousState = initialState, action) => {
-  switch(action.type) {
-    case 'signIn/success':
-      return { ...state, token: action.payload.token };
-    case 'reset':
-      return initialState;
-    default:
-      return previousState;
-  };
-};
-```
-
-----
-## Task
-- Add a userAuthentication reducer
-  - entry point: `src/reducer/index.js`
-  - dispatch action of type 'signIn/success'
-    - try to populate the redux store with the token
-
-```js
-import { combineReducers } from 'redux';
-import userAuthentication from './user-authentication';
-
-const rootReducer = combineReducers({
-  user: () => [],
-  userAuthentcation,
-});
-
-export default rootReducer;
-```
