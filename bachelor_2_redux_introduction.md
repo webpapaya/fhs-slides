@@ -10,10 +10,6 @@
 TODO: add reviews/pitfalls
 
 ---
-
-### Composing generic form hook
-
----
 ### Functional Programming 101
 
 - Immutability
@@ -409,7 +405,6 @@ store.dispatch(actionCreator());
 ```
 
 ----
-
 ### Async action creators
 
 ```js
@@ -436,6 +431,12 @@ store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
 
 ---
 ### Reducers
+
+![redux overview](assets/redux_reducer_highlight.png)
+
+----
+### Reducers
+
 - Specify how state changes in response to actions.
 - Pure function
   - input appState and action
@@ -485,10 +486,10 @@ const rootReducer = combineReducers({
 export default rootReducer;
 ```
 
-----
+---
 ### Container components
 
-![redux overview](assets/redux_overview.png)
+![redux overview](assets/redux_container_highlight.png)
 
 ----
 ### Container components
@@ -549,132 +550,12 @@ export default connect(
 
 ---
 # Further Links
+
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
+- [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
+- [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
 
 ---
 # Feedback
 
 https://de.surveymonkey.com/r/J6693VN
-
-
-
-
-
-
-
-
-
-
-
----
-
-### React Router
-
-- dynamic routing library for
-  - react native
-  - react web
-- [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
-
-----
-
-### Installation
-
-```
-npm install react-router-dom --save
-```
-
-----
-
-### Usage
-
-```js
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Homepage from './components/homepage'
-import SignIn from './components/sign-in'
-
-const App = () => {
-  return (
-    <Router> /* creates a new routing context */
-      <Switch> /* render only one route */
-        // define routes and pass component as prop to the route
-        <Route path="/sign-in" component={SignIn}>
-        <Route path="/" component={Homepage}>
-
-        // if no route matches redirect to 'Homepage'
-        <Redirect to='/'>
-      </Switch>
-    </Router>
-  );
-}
-```
-
----
-
-### Route priority (without exact)
-
-```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
-const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-
----
-
-### Route priority (without exact)
-
-```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
-const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
-  </Switch>
-);
-```
-
----
-
-### Route priority (with exact)
-
-```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
-const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Homepage}>
-    <Route exact path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-----
-### React Hooks
-
-- makes it possible to use state in functional components
-- prefixed with `use`
-- Can't be called inside loops, conditions or nested functions
-- Can only be called from a React Component
-
-----
-### useState
-
-```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState("");
-  return (
-    <input
-      type="text"
-      name="firstName"
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
-  );
-};
-```
-
-
