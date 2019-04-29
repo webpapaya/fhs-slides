@@ -20,7 +20,9 @@
 ### Roadmap
 - Recap of homework
 - Functional Programming 101
-- State Manamgement with Redux
+- Hooks
+- State Management with Redux
+- React router
 </script></section><section ><section data-markdown><script type="text/template">
 ### Recap of Homework
 </script></section><section data-markdown><script type="text/template">### Mutable state
@@ -34,7 +36,7 @@ function getUserName (users, id) {
     return obj.id === id;
   });
 
-  return user[0].name; // Might crach if user wasn't found
+  return user[0].name; // Might crash if user wasn't found
 }
 ```
 </script></section><section data-markdown><script type="text/template">### God Components
@@ -127,7 +129,7 @@ const unfrozenCopy = { ...immutableObject };
 ```js
 const add = (a, b) => a + b;
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or inpure? 1/2
+</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
 
 ```js
 const array = [1,2,3,4,5,6];
@@ -140,7 +142,7 @@ const fn6 = (array) => [...array].sort((a, b) => a - b);
 const fn7 = (array) => array.map((item) => item * 2);
 const fn8 = (array) => array.forEach((item) => console.log(item));
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or inpure? 1/2
+</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
 
 ```js
 const array = [1,2,3,4,5,6];
@@ -153,7 +155,7 @@ const fn6 = (array) => [...array].sort((a, b) => a - b); // ✅
 const fn7 = (array) => array.map((item) => item * 2); // ✅
 const fn8 = (array) => array.forEach((item) => console.log(item)); // 🚫
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or inpure? 2/2
+</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
 
 ```js
 let config = { minimumAge: 18 };
@@ -164,7 +166,7 @@ const isAllowedToDrink = (age) => age >= config.minimumAge;
 const config = { minimumAge: 18 };
 const isAllowedToDrink = (age) => age >= config.minimumAge;
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or inpure? 2/2
+</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
 
 ```js
 let config = { minimumAge: 18 };
@@ -202,7 +204,108 @@ isAllowedToDring(18) // true
 - Pure-Functions
   - returns the same output for the same input
   - simple mapping from a to b
-</script></section><section ><section data-markdown><script type="text/template">### State Management with Redux
+</script></section><section ><section data-markdown><script type="text/template">
+### React Hooks
+
+- Introduced recently to reduce boilerplate
+- Makes it possible to use state in functional components
+  - Previously one had to convert between functional/class components when state introduced
+- hooks are prefixed with `use`
+- Can't be called inside loops, conditions or nested functions
+</script></section><section data-markdown><script type="text/template">### React without hooks
+
+```js
+class App extends React.Component {
+  state = { count: 0 }
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          {this.state.count}
+        </div>
+        <button onClick={this.handleIncrement}>Increment by 1</button>
+      </div>
+    )
+  }
+}
+```
+</script></section><section data-markdown><script type="text/template">### React with hooks
+
+```js
+const App = () => {
+  const [count, setCount] => useState(0);
+  const handleIncrement = () => setCount(count + 1);
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+</script></section><section data-markdown><script type="text/template">### useState
+
+```js
+const SimpleForm = ({ onSubmit }) => {
+  const [firstName, setFirstName] = useState("");
+  return (
+    <input
+      type="text"
+      name="firstName"
+      value={firstName}
+      onChange={evt => setFirstName(evt.target.value)}
+    />
+  );
+};
+```
+</script></section><section data-markdown><script type="text/template">### useEffect
+
+```js
+const SimpleForm = ({ onSubmit }) => {
+  const [counter, setCounter] = useState(0);
+
+  // Is executed when component is rendered for the first time
+  // And when the counter variable changes.
+  useEffect(() => {
+    document.title = `Counter clicked ${counter} times`;
+  }, [counter]);
+
+  return (
+    <Button onClick={() => setCounter(counter + 1)}>
+      {counter}
+    <Button>
+  );
+};
+```
+</script></section><section data-markdown><script type="text/template">### useEffect
+
+```js
+// Executed on every rerender
+useEffect(() => {});
+
+// Executed when component rendered initially
+useEffect(() => {}, []);
+
+// Executed when component rendered initially
+// and when variable changes.
+useEffect(() => {}, [variable]);
+```
+</script></section><section data-markdown><script type="text/template">### Other hooks
+
+- [API Reference](https://reactjs.org/docs/hooks-reference.html)
+  - useReducer
+  - useCallback
+  - useMemo
+  - useRef
+  - useImperativeHandle
+  - useLayoutEffect
+  - useDebugValue
+</script></section></section><section ><section data-markdown><script type="text/template">### State Management with Redux
 </script></section><section data-markdown><script type="text/template">### What is application state
 
 > An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
@@ -223,7 +326,7 @@ isAllowedToDring(18) // true
 | Is somebody owning me some money?          | moneyTransactions    |
 | Which users can I owe some money?          | users                |
 | Which components should be rendered?       | url                  |
-</script></section><section data-markdown><script type="text/template">### Categorizing different types
+</script></section><section data-markdown><script type="text/template">### Categorising different types
 - Relevant for other parts of the application?
   - add to global state
 - Irrelevant for other parts of the application?
@@ -315,9 +418,9 @@ isAllowedToDring(18) // true
 ![redux overview](assets/redux_overview.png)
 </script></section><section data-markdown><script type="text/template">### Why Redux
 
-- Managing state in react can be challanging
-  - How to synchronize state between distant UI parts
-- Redux privides a predictable way to manage state
+- Managing state in react can be challenging
+  - How to synchronise state between distant UI parts
+- Redux provides a predictable way to manage state
 - State can only be changed by dispatching an action
 - Each action might change the previous state to a new updated state
 - Works with react, vue, angular, ...
@@ -326,7 +429,7 @@ isAllowedToDring(18) // true
 ![Redux Actions](assets/redux_action_highlight.png)
 </script></section><section data-markdown><script type="text/template">### Actions
 
-> Something happened in the app which might be interresting.
+> Something happened in the app which might be interesting.
 </script></section><section data-markdown><script type="text/template">### Actions
 
 - An action is data from the application which might be relevant for the store
@@ -347,7 +450,7 @@ store.dispatch(signInAction);
 
 - A functions which creates actions
 - With redux-thunk action creators can dispatch itself
-  - This is where side effects are handeled
+  - This is where side effects are handled
 
 ```js
 const actionCreator = () => (dispatch) => {
@@ -447,6 +550,19 @@ export default connect(
   mapDispatchToProps,
 )(MoneyTransactionList);
 ```
+</script></section><section data-markdown><script type="text/template">### mapStateToProps
+- extract data from the store and provides it to a component
+- data filtering can be done here
+- `function mapStateToProps(state, ownProps?)`
+  - state -> the entire application state
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
+</script></section><section data-markdown><script type="text/template">### mapDispatchToProps
+- binds actions with the store and provides those actions to a component
+- `function mapStateToProps(dispatch, ownProps?)`
+  - dispatch -> the stores dispatch function
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
 </script></section></section><section ><section data-markdown><script type="text/template">## Task 1 (Actions)
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
@@ -456,24 +572,46 @@ export default connect(
 - `npm run start`
 - go to localhost:8081
 - open dev tools/redux tab
-- create action creator for createMoneyTransaction
-  - `dispatch(createMoneyTransaction({ debitorId, creditorId, amount}))`
+- create fetchUsers action creator (type fetchUser/success)
+  - mock user data for now
+  - `dispatch(fetchUsers())`
 </script></section><section data-markdown><script type="text/template">## Task 2 (Reducer)
 
-- Add a moneyTransactionReducer reducer
+- Add a userReducer reducer
   - entry point: `src/reducer/index.js`
-  - dispatch action of type 'createMoneyTransaction/success'
-    - try to populate the redux store with a new moneyTransaction
+  - listen to 'fetchUser/success'
+    - try to populate the redux store with a new user
 </script></section><section data-markdown><script type="text/template">## Task 3 (Container)
 
-- Try to connect your moneyTransactionList with the store
+- Try to connect your moneyTransactionCreate dropdown with users from the store
+</script></section><section data-markdown><script type="text/template">## Task 4 (connect to backend)
+- install https://www.npmjs.com/package/compup-api-wrapper
+- Try to connect fetchUsers action creator to backend
 
-## Homework
+```js
+import { userRepository } from 'compup-api-wrapper'
+
+// Returns all users
+await userRepository.all();
+```
+</script></section></section><section  data-markdown><script type="text/template">## Homework
 
 - Connect your components the the backend
+- Implement routing with
+  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - I wrote an API wrapper which you could use
   - https://www.npmjs.com/package/compup-api-wrapper
-</script></section></section><section  data-markdown><script type="text/template"># Further Links
+- you will need the following action creators and reducers
+  - user
+    - signIn
+    - signUp
+    - signOut
+    - all
+  - createMoneyTransaction
+    - create
+    - update
+    - all
+</script></section><section  data-markdown><script type="text/template"># Further Links
 
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
