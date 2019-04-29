@@ -1,4 +1,5 @@
 
+
 ### React Router
 
 - dynamic routing library for
@@ -83,29 +84,3 @@ const Routes = () => (
   </Switch>
 );
 ```
-----
-### React Hooks
-
-- makes it possible to use state in functional components
-- prefixed with `use`
-- Can't be called inside loops, conditions or nested functions
-- Can only be called from a React Component
-
-----
-### useState
-
-```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState("");
-  return (
-    <input
-      type="text"
-      name="firstName"
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
-  );
-};
-```
-
-

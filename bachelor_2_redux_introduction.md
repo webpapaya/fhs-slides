@@ -6,7 +6,9 @@
 ### Roadmap
 - Recap of homework
 - Functional Programming 101
+- Hooks
 - State Manamgement with Redux
+- React router
 
 ---
 
@@ -234,6 +236,121 @@ isAllowedToDring(18) // true
 - Pure-Functions
   - returns the same output for the same input
   - simple mapping from a to b
+
+---
+
+### React Hooks
+
+- Introduced recently to reduce boilerplate
+- Makes it possible to use state in functional components
+  - Previously one had to convert between functional/class components when state introduced
+- hooks are prefixed with `use`
+- Can't be called inside loops, conditions or nested functions
+
+----
+### React without hooks
+
+```js
+class App extends React.Component {
+  state = { count: 0 }
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          {this.state.count}
+        </div>
+        <button onClick={this.handleIncrement}>Increment by 1</button>
+      </div>
+    )
+  }
+}
+```
+
+----
+### React with hooks
+
+```js
+const App = () => {
+  const [count, setCount] => useState(0);
+  const handleIncrement = () => setCount(count + 1);
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+
+----
+### useState
+
+```js
+const SimpleForm = ({ onSubmit }) => {
+  const [firstName, setFirstName] = useState("");
+  return (
+    <input
+      type="text"
+      name="firstName"
+      value={firstName}
+      onChange={evt => setFirstName(evt.target.value)}
+    />
+  );
+};
+```
+
+---
+### useEffect
+
+```js
+const SimpleForm = ({ onSubmit }) => {
+  const [counter, setCounter] = useState(0);
+
+  // Is executed when component is rendered for the first time
+  // And when the counter variable changes.
+  useEffect(() => {
+    document.title = `Counter clicked ${counter} times`;
+  }, [counter]);
+
+  return (
+    <Button onClick={() => setCounter(counter + 1)}>
+      {counter}
+    <Button>
+  );
+};
+```
+
+----
+### useEffect
+
+```js
+// Executed on every rerender
+useEffect(() => {});
+
+// Executed when component rendered initially
+useEffect(() => {}, []);
+
+// Executed when component rendered initially
+// and when variable changes.
+useEffect(() => {}, [variable]);
+```
+
+----
+### Other hooks
+
+- [API Reference](https://reactjs.org/docs/hooks-reference.html)
+  - useReducer
+  - useCallback
+  - useMemo
+  - useRef
+  - useImperativeHandle
+  - useLayoutEffect
+  - useDebugValue
 
 ---
 ### State Management with Redux
@@ -546,6 +663,23 @@ export default connect(
 )(MoneyTransactionList);
 ```
 
+----
+### mapStateToProps
+- extract data from the store and provides it to a component
+- data filtering can be done here
+- `function mapStateToProps(state, ownProps?)`
+  - state -> the entire application state
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
+
+----
+### mapDispatchToProps
+- binds actions with the store and provides those actions to a component
+- `function mapStateToProps(dispatch, ownProps?)`
+  - dispatch -> the stores dispatch function
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
+
 ---
 ## Task 1 (Actions)
 - Download
@@ -556,22 +690,36 @@ export default connect(
 - `npm run start`
 - go to localhost:8081
 - open dev tools/redux tab
-- create action creator for createMoneyTransaction
-  - `dispatch(createMoneyTransaction({ debitorId, creditorId, amount}))`
+- create fetchUsers action creator (type fetchUser/success)
+  - mock user data for now
+  - `dispatch(fetchUsers())`
 
 ----
 ## Task 2 (Reducer)
 
-- Add a moneyTransactionReducer reducer
+- Add a userReducer reducer
   - entry point: `src/reducer/index.js`
-  - dispatch action of type 'createMoneyTransaction/success'
-    - try to populate the redux store with a new moneyTransaction
+  - listen to 'fetchUser/success'
+    - try to populate the redux store with a new user
 
 ----
 ## Task 3 (Container)
 
-- Try to connect your moneyTransactionList with the store
+- Try to connect your moneyTransactionCreate dropdown with users from the store
 
+----
+## Task 4 (connect to backend)
+- install https://www.npmjs.com/package/compup-api-wrapper
+- Try to connect fetchUsers action creator to backend
+
+```js
+import { userRepository } from 'compup-api-wrapper'
+
+// Returns all users
+await userRepository.all();
+```
+
+---
 ## Homework
 
 - Connect your components the the backend
