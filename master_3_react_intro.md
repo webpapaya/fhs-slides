@@ -114,11 +114,58 @@ const Button = ({ children, disabled = false }) => {
 const usage = <Button disabled>A button</Button>;
 ```
 
+---
+
+### React Hooks
+
+- Introduced recently to reduce boilerplate
+- Makes it possible to use state in functional components
+  - Previously one had to convert between functional/class components when state introduced
+- hooks are prefixed with `use`
+- Can't be called inside loops, conditions or nested functions
+
 ----
+### React without hooks
 
-# React State (with Hooks)
+```js
+class App extends React.Component {
+  state = { count: 0 }
 
-- State allows components to by dynamic/interactive
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          {this.state.count}
+        </div>
+        <button onClick={this.handleIncrement}>Increment by 1</button>
+      </div>
+    )
+  }
+}
+```
+
+----
+### React with hooks
+
+```js
+const App = () => {
+  const [count, setCount] => useState(0);
+  const handleIncrement = () => setCount(count + 1);
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+
+----
+### useState
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
@@ -135,26 +182,53 @@ const SimpleForm = ({ onSubmit }) => {
 ```
 
 ----
-
-# React State (without hooks)
+### useEffect
 
 ```js
-class SimpleForm extends React.Component {
-  state = { username: '' };
-  render() {
-    return (
-      <input
-        type="text"
-        name="firstName"
-        value={this.state.userName}
-        onChange={evt => this.setState({ username: evt.target.value }) }
-      />
-    );
-  }
-}
+const SimpleForm = ({ onSubmit }) => {
+  const [counter, setCounter] = useState(0);
+
+  // Is executed when component is rendered for the first time
+  // And when the counter variable changes.
+  useEffect(() => {
+    document.title = `Counter clicked ${counter} times`;
+  }, [counter]);
+
+  return (
+    <Button onClick={() => setCounter(counter + 1)}>
+      {counter}
+    <Button>
+  );
+};
 ```
 
 ----
+### useEffect
+
+```js
+// Executed on every rerender
+useEffect(() => {});
+
+// Executed when component rendered initially
+useEffect(() => {}, []);
+
+// Executed when component rendered initially
+// and when variable changes.
+useEffect(() => {}, [variable]);
+```
+
+----
+### Other hooks
+
+- [API Reference](https://reactjs.org/docs/hooks-reference.html)
+  - useReducer
+  - useCallback
+  - useMemo
+  - useRef
+  - useImperativeHandle
+  - useLayoutEffect
+  - useDebugValue
+
 
 ## State vs. Props
 
