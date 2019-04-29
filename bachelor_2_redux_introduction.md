@@ -572,6 +572,12 @@ export default connect(
 
 - Try to connect your moneyTransactionList with the store
 
+## Homework
+
+- Connect your components the the backend
+- I wrote an API wrapper which you could use
+  - https://www.npmjs.com/package/compup-api-wrapper
+
 ---
 # Further Links
 
