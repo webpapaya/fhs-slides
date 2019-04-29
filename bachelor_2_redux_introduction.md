@@ -725,6 +725,16 @@ await userRepository.all();
 - Connect your components the the backend
 - I wrote an API wrapper which you could use
   - https://www.npmjs.com/package/compup-api-wrapper
+- you will need the following action creators and reducers
+  - user
+    - signIn
+    - signUp
+    - signOut
+    - all
+  - createMoneyTransaction
+    - create
+    - update
+    - all
 
 ---
 # Further Links
