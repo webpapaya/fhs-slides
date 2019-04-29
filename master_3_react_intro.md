@@ -1,4 +1,18 @@
 # Introduction to React
+---
+# What we'll build in the next 2 days
+
+----
+
+![sign_in](assets/sign_in_wireframe.png)
+
+----
+
+![sign_up](assets/sign_up_wireframe.png)
+
+----
+
+![app](assets/app_wireframe.png)
 
 ---
 
