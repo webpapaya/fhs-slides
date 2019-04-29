@@ -7,7 +7,7 @@
 - Recap of homework
 - Functional Programming 101
 - Hooks
-- State Manamgement with Redux
+- State Management with Redux
 - React router
 
 ---
@@ -28,7 +28,7 @@ function getUserName (users, id) {
     return obj.id === id;
   });
 
-  return user[0].name; // Might crach if user wasn't found
+  return user[0].name; // Might crash if user wasn't found
 }
 ```
 
@@ -151,7 +151,7 @@ const add = (a, b) => a + b;
 ```
 
 ----
-## Pure or inpure? 1/2
+## Pure or in-pure?
 
 ```js
 const array = [1,2,3,4,5,6];
@@ -166,7 +166,7 @@ const fn8 = (array) => array.forEach((item) => console.log(item));
 ```
 
 ----
-## Pure or inpure? 1/2
+## Pure or in-pure?
 
 ```js
 const array = [1,2,3,4,5,6];
@@ -181,7 +181,7 @@ const fn8 = (array) => array.forEach((item) => console.log(item)); // 🚫
 ```
 
 ----
-## Pure or inpure? 2/2
+## Pure or in-pure?
 
 ```js
 let config = { minimumAge: 18 };
@@ -194,7 +194,7 @@ const isAllowedToDrink = (age) => age >= config.minimumAge;
 ```
 
 ----
-## Pure or inpure? 2/2
+## Pure or in-pure?
 
 ```js
 let config = { minimumAge: 18 };
@@ -304,7 +304,7 @@ const SimpleForm = ({ onSubmit }) => {
 };
 ```
 
----
+----
 ### useEffect
 
 ```js
@@ -384,7 +384,7 @@ useEffect(() => {}, [variable]);
 | Which components should be rendered?       | url                  |
 
 ----
-### Categorizing different types
+### Categorising different types
 - Relevant for other parts of the application?
   - add to global state
 - Irrelevant for other parts of the application?
@@ -506,9 +506,9 @@ useEffect(() => {}, [variable]);
 ----
 ### Why Redux
 
-- Managing state in react can be challanging
-  - How to synchronize state between distant UI parts
-- Redux privides a predictable way to manage state
+- Managing state in react can be challenging
+  - How to synchronise state between distant UI parts
+- Redux provides a predictable way to manage state
 - State can only be changed by dispatching an action
 - Each action might change the previous state to a new updated state
 - Works with react, vue, angular, ...
@@ -521,7 +521,7 @@ useEffect(() => {}, [variable]);
 ----
 ### Actions
 
-> Something happened in the app which might be interresting.
+> Something happened in the app which might be interesting.
 
 ----
 ### Actions
@@ -546,7 +546,7 @@ store.dispatch(signInAction);
 
 - A functions which creates actions
 - With redux-thunk action creators can dispatch itself
-  - This is where side effects are handeled
+  - This is where side effects are handled
 
 ```js
 const actionCreator = () => (dispatch) => {
