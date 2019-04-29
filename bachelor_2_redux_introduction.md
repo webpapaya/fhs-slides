@@ -247,7 +247,7 @@ isAllowedToDring(18) // true
 - Can't be called inside loops, conditions or nested functions
 
 ----
-### React without hooks
+### State without hooks
 
 ```js
 class App extends React.Component {
@@ -270,7 +270,7 @@ class App extends React.Component {
 ```
 
 ----
-### React with hooks
+### State with hooks
 
 ```js
 const App = () => {
@@ -284,23 +284,6 @@ const App = () => {
     </div>
   );
 }
-```
-
-----
-### useState
-
-```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState("");
-  return (
-    <input
-      type="text"
-      name="firstName"
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
-  );
-};
 ```
 
 ----
