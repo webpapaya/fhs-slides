@@ -5,7 +5,6 @@
 
 ### Roadmap
 - State Management with Redux
-- React router
 
 ---
 ### State Management with Redux
@@ -373,25 +372,6 @@ import { userRepository } from 'compup-api-wrapper'
 // Returns all users
 await userRepository.all();
 ```
-
----
-## Homework
-
-- Connect your components the the backend
-- Implement routing with
-  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-- I wrote an API wrapper which you could use
-  - https://www.npmjs.com/package/compup-api-wrapper
-- you will need the following action creators and reducers
-  - user
-    - signIn
-    - signUp
-    - signOut
-    - all
-  - createMoneyTransaction
-    - create
-    - update
-    - all
 
 ---
 # Further Links
