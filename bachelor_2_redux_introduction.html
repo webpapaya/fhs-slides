@@ -553,7 +553,7 @@ export default connect(
   - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
 - in src/store.js
   - add `window.store = store`;
-- `npm run start`
+- `npm run start:app`
 - go to localhost:8081
 - open dev tools/redux tab
 - create fetchUsers action creator (type fetchUser/success)
@@ -585,7 +585,7 @@ await userRepository.all();
   - Add the following routes
     - /sign-in
       - Sign-In component is rendered
-    - /sign/up
+    - /sign-up
       - Sign-Up component is rendered
     - /money-transactions
       - money-transactions-create component is rendered
