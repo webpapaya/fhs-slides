@@ -704,21 +704,32 @@ await userRepository.all();
 ---
 ## Homework
 
-- Connect your components the the backend
-- Implement routing with
+- Implement routing with react router (50%)
   - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-- I wrote an API wrapper which you could use
-  - https://www.npmjs.com/package/compup-api-wrapper
-- you will need the following action creators and reducers
-  - user
-    - signIn
-    - signUp
-    - signOut
-    - all
-  - createMoneyTransaction
-    - create
-    - update
-    - all
+  - Add the following routes
+    - /sign-in
+      - Sign-In component is rendered
+    - /sign/up
+      - Sign-Up component is rendered
+    - /money-transactions
+      - money-transactions-create component is rendered
+      - money-transaction-list component is rendered
+- Connect the createMoneyTransaction with the backend (50%)
+  - install https://www.npmjs.com/package/compup-api-wrapper
+  - read users with `userRepository.all()` and put them in the redux store
+    - when the component is rendered the api call is triggered
+    - use `useEffect` hook
+---
+## For questions
+- I'll be in Salzburg 6.5. - 7.5.
+- I can offer an inoffical tutorium
+  - E-Mail me
+
+---
+## Next Homework
+- If you want to start with the next homework
+- Connect the remaining components with the backend
+  - TODO: better description will follow
 
 ---
 # Further Links
