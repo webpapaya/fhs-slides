@@ -702,7 +702,7 @@ await userRepository.all();
 ```
 
 ---
-## Homework
+## Homework 1
 
 - Implement routing with react router (50%)
   - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -714,6 +714,9 @@ await userRepository.all();
     - /money-transactions
       - money-transactions-create component is rendered
       - money-transaction-list component is rendered
+---
+## Homework 2
+
 - Connect the createMoneyTransaction with the backend (50%)
   - install https://www.npmjs.com/package/compup-api-wrapper
   - read users with `userRepository.all()` and put them in the redux store
