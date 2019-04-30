@@ -542,6 +542,18 @@ store.dispatch(actionCreator());
 ```
 
 ----
+#### Action creator with params
+
+```js
+const actionCreatorWithData = ({ username, password}) => (dispatch) => {
+  dispatch({ type: 'action1', payload: { username, password } });
+  dispatch({ type: 'action2/success', payload: { something: 'random' } });
+};
+
+store.dispatch(signInAction({ username: 'Mike', password: '1234' }));
+```
+
+----
 ### Async action creators
 
 ```js
@@ -661,6 +673,13 @@ export default connect(
   - dispatch -> the stores dispatch function
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
+
+----
+### Example from lecture
+
+[Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
+
+Might contain syntax error =)
 
 ---
 ## Task 1 (Actions)
@@ -815,7 +834,6 @@ const SignIn = withRouter(({ history }) => {
   )
 });
 ```
-
 
 ---
 ## Homework 1

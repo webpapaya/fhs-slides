@@ -67,6 +67,31 @@ const Button = () => {
 ```
 
 ---
+### Loop over arrays
+
+```js
+const Button = ({ users }) => {
+  return (
+    <ul type="button">
+      { users.map((user) => {
+        return (<li key={user.id}>{user.name}</li>)
+      }) }
+    </ul>
+  );
+}
+```
+
+----
+
+### key property in loops
+
+- Is required when interating over lists
+- Helps react to decide if an element needs to be rerendered
+- [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
+- [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
+
+
+---
 
 ## Which components do you see?
 
@@ -153,6 +178,7 @@ class SimpleForm extends React.Component {
   }
 }
 ```
+
 
 ----
 
