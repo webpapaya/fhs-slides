@@ -17,13 +17,19 @@
 - (validations with io-ts)
 
 ---
-# TDD
+# Recap of react/redux  <!-- .element: class="color--white" -->
 
-- Test driven development (also known as TDD)
-- Type of software development
-- Introduced by Kent Beck
-  - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
+<!-- .slide: data-background="https://media.giphy.com/media/jJOKTwGlSS7OU/giphy.gif" -->
 
+----
+# Example Redux App
+
+- Source: https://github.com/webpapaya/compup
+- Live: https://compup.agilesoftware.dev
+
+---
+
+# Client Side Testing
 
 ---
 # Testing Pyramid
@@ -36,6 +42,28 @@
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
+
+# Unit testing and TDD
+
+- Test driven development (also known as TDD)
+- Type of software development
+- Introduced by Kent Beck
+  - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
+
+---
+# Why TDD
+
+- Driving the design of our application
+  - Testing is a side-effect
+- Possibility to refactor
+  - Confidence that app is still working
+- Break down large problems into small problems
+  - Think about edge cases
+- executable documentation
+  - Can't get out of sync
+  - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
+
+---
 # TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
@@ -43,33 +71,16 @@
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
 
 ---
-
-
----
 # TDD to me
 
-
-> Getting confidence that refactoring doesn't break the feature.
-
----
-# Why TDD
-
-- Driving the design of our application
-- Testing is a side-effect
-- Possibility to refactor
-  - Confidence that app is still working
-- Break down large problems into small problems
-  - Think about edge cases
-- Documentation
-  - Can't get out of sync
-  - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
+> Getting confidence that refactoring doesn't break a feature.
 
 ---
 # What is TDD not
 - Silver bullet for clean code
   - it eventually leads to better code
 - Replacement for other testing strategies
-  - TDD doesn't catch bugs
+  - TDD doesn't catch all bugs
   - Helps adding regression tests
 
 ---
@@ -194,16 +205,113 @@ it('returns a list of employees ordered by their name', () => {
 ```
 
 ---
-# Testing Pyramid
+# Code Kata
 
-![testing pyramid](assets/testing_pyramide.png)
+- Small exercise
+  - to improve programming skills
+  - by challanging your abilities
+  - and encouraging you to find multiple approaches
+
+---
+# Steps
+
+- Step 1: Think
+- Step 2: Write a test
+- Step 3: How much does this test suck?
+- Step 4: Run the test and watch it fail
+- Step 5: Write just enough code to make it pass
+- Step 6: Cleanup
 
 ----
-# Enterprise test Pyramid
+# Roman numerals
 
-![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
+- go to http://tddbin.com/
+- http://codingdojo.org/kata/RomanNumerals/
+
 
 ----
+# TDD Trap
+
+- Bad tests
+- How do good tests look like
+- Don't focus on implementation detail but behaviour
+- Tests are getting in their way
+- TDD is not easy to start
+- Extremly hard to master
+- Deleting tests is fine (if they're not required anymore)
+
+---
+# What makes a good test
+
+- Deterministic
+  - randomness hard to test
+  - current date time hard to test
+- Tests not affecting state of the system
+  - changing global state (eg. database => without cleanup)
+- no external systems
+- little test setup
+- behaviour is described and not implementation details
+
+---
+
+# Tools to test units under isolation
+
+---
+# Dummy objects
+- Objects which aren't used
+  - so that the compiler doesn't complain
+  - used to fill parameter lists
+
+---
+# Fake objects
+- Objects have a working implementation
+  - but take some shortcuts
+  - eg. inMemoryDatabases instead of persistent DB
+
+---
+# Stub objects
+- Predefined return values for testing
+- Instead of calling the real API we return a value for testing
+- Usefull when:
+  - retreiving geolocation
+  - testing edge cases (database throws OutOfMemory exception)
+
+```js
+const retrieveGPSPosition = () =>
+  Promise.resolve({ lat: 12.12, lng: 14.15 });
+```
+
+---
+# Spy objects
+- Are stubs that also record the way they were called
+- Usefull when:
+  - A hard to verify side effect is triggered (eg. E-Mail sending)
+
+```js
+it('sends an email on sign up', () => {
+  const sendEmail = buildFunctionSpy();
+  const signUp = signUp({ sendEmail }, username, password);
+  assertThat(sendEmail, wasCalled());
+});
+```
+
+----
+# Clock in kata
+
+- go to http://tddbin.com/
+- http://kata-log.rocks/clock-in-kata
+
+----
+
+![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
+
+
+---
+# Integrated tests  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
+
+---
 # What is an integrated test?
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
@@ -287,60 +395,6 @@ it('returns a list of employees ordered by their name', () => {
     - main function
     - ...
 
-----
-
-> If the design has problems. The tests will be hard to write. (@jbrains)
-
----
-# Steps
-
-- Step 1: Think
-- Step 2: Write a test
-- Step 3: How much does this test suck?
-- Step 4: Run the test and watch it fail
-- Step 5: Write just enough code to make it pass
-- Step 6: Cleanup
-
----
-# Code Kata
-
-- Small exercise
-  - to improve programming skills
-  - by challanging your abilities
-  - and encouraging you to find multiple approaches
-
----
-# Clock in Kata
-
-- go to http://tddbin.com/
-- http://kata-log.rocks/clock-in-kata
-
-----
-
-![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
-
-----
-# TDD Trap
-
-- Bad tests
-- How do good tests look like
-- Don't focus on implementation detail but behaviour
-- Tests are getting in their way
-- TDD is not easy to start
-- Extremly hard to master
-- Deleting tests is fine (if they're not required anymore)
-
----
-# What makes a good test
-
-- Deterministic
-  - randomness hard to test
-  - current date time hard to test
-- Tests not affecting state of the system
-  - changing global state (eg. database => without cleanup)
-- no external systems
-- little test setup
-- behaviour is described and not implementation details
 
 ---
 # Testing Databases
@@ -359,8 +413,6 @@ it('returns a list of employees ordered by their name', () => {
 - Clone https://github.com/webpapaya/fhs-neo4j-tests
 - Update tests so that they run inside a transaction
   - rollback the transaction before the test finishes
-
-
 
 ---
 # E2E resting recommendation
@@ -436,13 +488,18 @@ const clickText = async (driver, text) => {
   - https://compup.agilesoftware.dev
 
 ---
-# Task
-- Write 2 E2E tests
+# Task 1/2
+- clone https://github.com/webpapaya/fhs-e2e-tests
+- Write the following tests
   - Lending money to somebody else
     - Sign up 2 different users
     - One is lending money to somebody
     - The other pays back
     - Verify sum at top changed to 0
+
+----
+# Task 2/2
+- Write the following tests
   - Changing username
     - Sign up
     - change username
