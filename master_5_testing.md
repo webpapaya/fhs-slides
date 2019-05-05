@@ -2,6 +2,15 @@
 #### (MMT-B2017)
 
 ---
+
+### Wunschkonzert for next time?
+- Functional programming 2?
+- debugging/logging
+- i18n
+- Scaling CSS
+- Other testing kata
+
+---
 # Roadmap
 
 - Recap of React/Redux
@@ -630,3 +639,11 @@ const clickText = async (driver, text) => {
 # Resources
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
+- [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
+- [Mocks,Stubs,Spys](https://martinfowler.com/bliki/TestDouble.html)
+
+
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN
