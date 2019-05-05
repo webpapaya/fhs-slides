@@ -21,8 +21,20 @@
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
+# TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
+
+> I want to go home on Friday and don't think I broke something. (Kent Beck)
+
+---
+
+
+---
+# TDD to me
+
+
+> Getting confidence that refactoring doesn't break the feature.
 
 ---
 # Why TDD
@@ -30,15 +42,29 @@
 - Driving the design of our application
 - Testing is a side-effect
 - Possibility to refactor
+  - Confidence that app is still working
+- Break down large problems into small problems
+  - Think about edge cases
 - Documentation
   - Can't get out of sync
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
 
 ---
+# What is TDD not
+- Silver bullet for clean code
+  - it eventually leads to better code
+- Replacement for other testing strategies
+  - TDD doesn't catch bugs
+  - Helps adding regression tests
+
+---
+
+> The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
+
+---
 # Shortest intro to TDD
 
 https://www.youtube.com/watch?v=WSes_PexXcA
-
 
 ----
 # Essential vs. accidental complication
@@ -74,9 +100,6 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - prevents big refactorings
     - which are hard to sell to business
 - Without refactoring features will take longer
-
-
-
 
 ---
 # TDD Cycle
@@ -265,33 +288,78 @@ it('returns a list of employees ordered by their name', () => {
 
 ---
 # Code Kata
+
 - Small exercise
   - to improve programming skills
   - by challanging your abilities
-  - end encouraging you to find multiple approaches
+  - and encouraging you to find multiple approaches
 
 ---
-# Mocks/Stubs/Spys
+# Clock in Kata
+
+- go to http://tddbin.com/
+- http://kata-log.rocks/clock-in-kata
+
+----
+
+![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
+
+----
+# TDD Trap
+
+- Bad tests
+- How do good tests look like
+- Don't focus on implementation detail but behaviour
+- Tests are getting in their way
+- TDD is not easy to start
+- Extremly hard to master
+- Deleting tests is fine (if they're not required anymore)
 
 ---
-# Testing legacy applications
+# What makes a good test
 
-> By “legacy code”, I mean profitable code that we feel afraid to change.
+- Deterministic
+  - randomness hard to test
+  - current date time hard to test
+- Tests not affecting state of the system
+  - changing global state (eg. database => without cleanup)
+- no external systems
+- little test setup
+- behaviour is described and not implementation details
+
+---
+# Testing Databases
+
+- Arrange
+  - Open a transaction
+- Act
+  - execute your business logic
+- Assert
+  - verify your results
+- Cleanup
+  - Rollback the transaction
+
+---
+# Task
+- Clone https://github.com/webpapaya/fhs-neo4j-tests
+- Update tests so that they run inside a transaction
+  - rollback the transaction before the test finishes
 
 ----
-# Golden Master tests
 
-- Sampling
-- Snapshot of the current acceptable result
+# What is a test assertions?
 
+```js
+const assert = (value, message = 'assertion failed') => {
+  if (!value) { throw new Error(message); }
+}
 
+assert(1 === 1, '1 should be equal to 1');
+assert(1 === 2, '1 should be equal to 1'); // Throws exception
+```
 
-----
-# Unit tests only?
-- Happens that unit test pass
-  - but pru
 
 ---
 # Resources
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
--
+- [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
