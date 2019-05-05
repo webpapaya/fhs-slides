@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">### Client Side Testing
+#### (MMT-B2017)
+</script></section><section  data-markdown><script type="text/template"># Roadmap
+
+- Recap of React/Redux
+  - Finish user list data fetching
+  - Routing in React
+- TDD
+  - Introduction
+  - First Task (Clock-in kata)
+  - Integration testing
+  - Testing databases (neo4j task)
+- Testing strategies for master project
+- e2e testing
+- (validations with io-ts)
+</script></section><section ><section data-markdown><script type="text/template"># Recap of react/redux  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/jJOKTwGlSS7OU/giphy.gif" -->
+</script></section><section data-markdown><script type="text/template"># Example Redux App
+
+- Source: https://github.com/webpapaya/compup
+- Live: https://compup.agilesoftware.dev
+</script></section></section><section  data-markdown><script type="text/template">
+# Client Side Testing
+</script></section><section  data-markdown><script type="text/template"># Testing Pyramid
+
+![testing pyramid](assets/testing_pyramide.png)
+</script></section><section  data-markdown><script type="text/template"># Enterprise test Pyramid
+
+![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
+</script></section><section  data-markdown><script type="text/template">
+# Unit testing and TDD
+
+- Test driven development (also known as TDD)
+- Type of software development
+- Introduced by Kent Beck
+  - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
+</script></section><section  data-markdown><script type="text/template"># Why TDD
+
+- Driving the design of our application
+  - Testing is a side-effect
+- Possibility to refactor
+  - Confidence that app is still working
+- Break down large problems into small problems
+  - Think about edge cases
+- executable documentation
+  - Can't get out of sync
+  - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
+</script></section><section  data-markdown><script type="text/template"># TDD
+
+> TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
+
+> I want to go home on Friday and don't think I broke something. (Kent Beck)
+</script></section><section  data-markdown><script type="text/template"># TDD to me
+
+> Getting confidence that refactoring doesn't break a feature.
+</script></section><section  data-markdown><script type="text/template"># What is TDD not
+- Silver bullet for clean code
+  - it eventually leads to better code
+- Replacement for other testing strategies
+  - TDD doesn't catch all bugs
+  - Helps adding regression tests
+</script></section><section  data-markdown><script type="text/template">
+> The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
+</script></section><section ><section data-markdown><script type="text/template"># Shortest intro to TDD
+
+https://www.youtube.com/watch?v=WSes_PexXcA
+</script></section><section data-markdown><script type="text/template"># Essential vs. accidental complication
+
+- Essential complication
+  - The problem is hard
+  - eg. Tax return Software
+  - nothing we can do about
+- Accidental complication
+  - We are not so good in our job
+  - eg. future proofing code
+    - (it might be usefull in the future)
+  - we can try to improve ourselfs
+</script></section><section data-markdown><script type="text/template"># Accidental complication
+
+- future proofing code
+- cutting corners
+  - to get stuff out of the door
+  - we're not going to change this anyways
+- drives up the cost/development time of a feature
+  - mostly the feature isn't complex
+  - the way the app is built drives the cost of a feature
+- big refactorings are hard to sell
+</script></section><section data-markdown><script type="text/template"># What can we do?
+
+- Baby steps and TDD
+- Refactor a little after every feature/green test
+  - clean the kitchen
+  - prevents big refactorings
+    - which are hard to sell to business
+- Without refactoring features will take longer
+</script></section></section><section  data-markdown><script type="text/template"># TDD Cycle
+
+![tdd cycle](assets/tdd_cycle.png)
+</script></section><section ><section data-markdown><script type="text/template"># TDD Cycle
+
+- Red: Write a test and watch it fail
+- Green: Write just as much code to make the test pass
+- Refactor: Clean up
+</script></section><section data-markdown><script type="text/template"># Red
+- Think about the test description
+- Running the test suite should describe what the program is doing
+
+```js
+it('returns 3$, when product A given', () => {
+  assert.equal(calculatePrice('productA'), '3$');
+});
+```
+</script></section><section data-markdown><script type="text/template"># Green
+- Write just enough code to make the test pass
+  - if there is only 1 product just return 3$
+
+```js
+function caluculatePrice() {
+  return '3$';
+};
+
+it('returns 3$, when product A given', () => {
+  assert.equal(calculatePrice('productA'), '3$');
+});
+```
+</script></section><section data-markdown><script type="text/template"># Refactor
+- Change the code without changing any of the behaviour
+- "Clean the kitchen"
+
+```js
+const caluculatePrice = () => '3$';
+
+it('returns 3$, when product A given', () => {
+  assert.equal(calculatePrice('productA'), '3$');
+});
+```
+</script></section></section><section ><section data-markdown><script type="text/template"># Anatomy of a Test
+
+- **A**rrange => test setup
+- **A**act => call the unit to test
+- **A**ssert => verify the result
+</script></section><section data-markdown><script type="text/template"># Anatomy of a Test
+```js
+it('returns a list of employees ordered by their name', () => {
+  // Setup
+  const employees = [
+    { name: 'Sepp' },
+    { name: 'Max' },
+    { name: 'Anton' },
+  ];
+
+  // Act
+  const result = employeeReport(employees);
+
+  // Assert
+  assertThat(result, orderedBy((a, b) => a.name < b.name));
+});
+```
+</script></section></section><section  data-markdown><script type="text/template"># Code Kata
+
+- Small exercise
+  - to improve programming skills
+  - by challanging your abilities
+  - and encouraging you to find multiple approaches
+</script></section><section ><section data-markdown><script type="text/template"># Steps
+
+- Step 1: Think
+- Step 2: Write a test
+- Step 3: How much does this test suck?
+- Step 4: Run the test and watch it fail
+- Step 5: Write just enough code to make it pass
+- Step 6: Cleanup
+</script></section><section data-markdown><script type="text/template"># Roman numerals
+
+- go to http://tddbin.com/
+- http://codingdojo.org/kata/RomanNumerals/
+
+</script></section><section data-markdown><script type="text/template"># TDD Trap
+
+- Bad tests
+- How do good tests look like
+- Don't focus on implementation detail but behaviour
+- Tests are getting in their way
+- TDD is not easy to start
+- Extremly hard to master
+- Deleting tests is fine (if they're not required anymore)
+</script></section></section><section  data-markdown><script type="text/template"># What makes a good test
+
+- Deterministic
+  - randomness hard to test
+  - current date time hard to test
+- Tests not affecting state of the system
+  - changing global state (eg. database => without cleanup)
+- no external systems
+- little test setup
+- behaviour is described and not implementation details
+</script></section><section  data-markdown><script type="text/template">
+# Tools to test units under isolation
+</script></section><section  data-markdown><script type="text/template"># Dummy objects
+- Objects which aren't used
+  - so that the compiler doesn't complain
+  - used to fill parameter lists
+</script></section><section  data-markdown><script type="text/template"># Fake objects
+- Objects have a working implementation
+  - but take some shortcuts
+  - eg. inMemoryDatabases instead of persistent DB
+</script></section><section  data-markdown><script type="text/template"># Stub objects
+- Predefined return values for testing
+- Instead of calling the real API we return a value for testing
+- Usefull when:
+  - retreiving geolocation
+  - testing edge cases (database throws OutOfMemory exception)
+
+```js
+const retrieveGPSPosition = () =>
+  Promise.resolve({ lat: 12.12, lng: 14.15 });
+```
+</script></section><section ><section data-markdown><script type="text/template"># Spy objects
+- Are stubs that also record the way they were called
+- Usefull when:
+  - A hard to verify side effect is triggered (eg. E-Mail sending)
+
+```js
+it('sends an email on sign up', () => {
+  const sendEmail = buildFunctionSpy();
+  const signUp = signUp({ sendEmail }, username, password);
+  assertThat(sendEmail, wasCalled());
+});
+```
+</script></section><section data-markdown><script type="text/template"># Clock in kata
+
+- go to http://tddbin.com/
+- http://kata-log.rocks/clock-in-kata
+</script></section><section data-markdown><script type="text/template">
+![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
+
+</script></section></section><section  data-markdown><script type="text/template"># Integrated tests  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
+</script></section><section ><section data-markdown><script type="text/template"># What is an integrated test?
+
+> A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
+</script></section><section data-markdown><script type="text/template"># What is an integrated test?
+
+> Any test where the reason of a failure is hard to track down.
+</script></section><section data-markdown><script type="text/template"># How many code paths?
+
+![code paths](assets/code_paths.png)
+</script></section><section data-markdown><script type="text/template"># How many code paths?
+
+![code paths](assets/code_paths_hightlight.png)
+</script></section><section data-markdown><script type="text/template"># has authentication
+
+- auth given
+  - but expired?
+  - user was deleted?
+  - user was disabled?
+- not auth given?
+</script></section><section data-markdown><script type="text/template"># create user auth
+
+- email already taken?
+- password to short?
+- db/auth service down?
+- ...
+</script></section><section data-markdown><script type="text/template"># create membership
+
+- group does not exist anymore?
+- group was disabled?
+- invitation got revoked?
+- user was already added from other device?
+- ...
+</script></section><section data-markdown><script type="text/template"># How many integration tests to write?
+
+![code paths](assets/code_paths_hightlight.png)
+</script></section><section data-markdown><script type="text/template"># Integrated tests:
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- Exponential growth
+  - 4 * 3 * 4 = 48 tests
+</script></section><section data-markdown><script type="text/template"># Unit tests:
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- 4 + 3 + 4 = 11 tests + 2 contract tests
+</script></section><section data-markdown><script type="text/template"># Unit tests only?  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
+<!-- .slide: data-color="white" -->
+</script></section><section data-markdown><script type="text/template"># Happy path tests
+
+- 1 integrated test
+  - check if the communication between components work
+  - run against
+    - controller
+    - main function
+    - ...
+
+</script></section></section><section  data-markdown><script type="text/template"># Testing Databases
+
+- Arrange
+  - Open a transaction
+- Act
+  - execute your business logic
+- Assert
+  - verify your results
+- Cleanup
+  - Rollback the transaction
+</script></section><section  data-markdown><script type="text/template"># Task
+- Clone https://github.com/webpapaya/fhs-neo4j-tests
+- Update tests so that they run inside a transaction
+  - rollback the transaction before the test finishes
+</script></section><section  data-markdown><script type="text/template"># E2E resting recommendation
+
+- Find a couple of happy paths through the app
+  - max 10
+- Run those happy paths agains supported browsers
+- Many things can go wrong
+  - retry your tests
+</script></section><section ><section data-markdown><script type="text/template"># Selenium
+
+- Tool to automate browsers
+- Can be used to write e2e tests
+- Webdrivers for all major browsers
+  - Chrome
+  - Firefox
+  - IE/Edge
+  - Safari
+</script></section><section data-markdown><script type="text/template"># API
+
+- Pretty low level
+- Poor documentation
+- build own API on top of Selenium API
+</script></section><section data-markdown><script type="text/template">
+# Click a link
+
+```js
+const clickLink = async (driver, href) => {
+  const element = By.js(`return document.querySelector('[href="${href}"]');`);
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .click();
+};
+```
+</script></section><section data-markdown><script type="text/template">
+# Fill a form field
+
+```js
+const fillFormField = async (driver, { name, value }) => {
+  const element = By.js(`return document.querySelector('[name=${name}]');`)
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .sendKeys(value); // Sends form values to field
+};
+```
+</script></section></section><section  data-markdown><script type="text/template"># Click some text
+
+```js
+const clickText = async (driver, text) => {
+  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`);
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .click();
+}
+```
+</script></section><section  data-markdown><script type="text/template"># E2E tests
+- What would be good E2E tests for
+  - https://compup.agilesoftware.dev
+</script></section><section ><section data-markdown><script type="text/template"># Task 1/2
+- clone https://github.com/webpapaya/fhs-e2e-tests
+- Write the following tests
+  - Lending money to somebody else
+    - Sign up 2 different users
+    - One is lending money to somebody
+    - The other pays back
+    - Verify sum at top changed to 0
+</script></section><section data-markdown><script type="text/template"># Task 2/2
+- Write the following tests
+  - Changing username
+    - Sign up
+    - change username
+    - sign out
+    - sign in again
+    - go to settings
+    - verify username
+</script></section></section><section  data-markdown><script type="text/template"># Resources
+- [Integrated Tests are a Scam](https://vimeo.com/80533536)
+- [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
