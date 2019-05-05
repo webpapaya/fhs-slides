@@ -2,6 +2,21 @@
 #### (MMT-B2017)
 
 ---
+# Roadmap
+
+- Recap of React/Redux
+  - Finish user list data fetching
+  - Routing in React
+- TDD
+  - Introduction
+  - First Task (Clock-in kata)
+  - Integration testing
+  - Testing databases (neo4j task)
+- Testing strategies for master project
+- e2e testing
+- (validations with io-ts)
+
+---
 # TDD
 
 - Test driven development (also known as TDD)
@@ -345,19 +360,96 @@ it('returns a list of employees ordered by their name', () => {
 - Update tests so that they run inside a transaction
   - rollback the transaction before the test finishes
 
+
+
+---
+# E2E resting recommendation
+
+- Find a couple of happy paths through the app
+  - max 10
+- Run those happy paths agains supported browsers
+- Many things can go wrong
+  - retry your tests
+
+---
+# Selenium
+
+- Tool to automate browsers
+- Can be used to write e2e tests
+- Webdrivers for all major browsers
+  - Chrome
+  - Firefox
+  - IE/Edge
+  - Safari
+
+----
+# API
+
+- Pretty low level
+- Poor documentation
+- build own API on top of Selenium API
+
 ----
 
-# What is a test assertions?
+# Click a link
 
 ```js
-const assert = (value, message = 'assertion failed') => {
-  if (!value) { throw new Error(message); }
-}
-
-assert(1 === 1, '1 should be equal to 1');
-assert(1 === 2, '1 should be equal to 1'); // Throws exception
+const clickLink = async (driver, href) => {
+  const element = By.js(`return document.querySelector('[href="${href}"]');`);
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .click();
+};
 ```
 
+----
+
+# Fill a form field
+
+```js
+const fillFormField = async (driver, { name, value }) => {
+  const element = By.js(`return document.querySelector('[name=${name}]');`)
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .sendKeys(value); // Sends form values to field
+};
+```
+
+---
+# Click some text
+
+```js
+const clickText = async (driver, text) => {
+  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`);
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .click();
+}
+```
+
+---
+# E2E tests
+- What would be good E2E tests for
+  - https://compup.agilesoftware.dev
+
+---
+# Task
+- Write 2 E2E tests
+  - Lending money to somebody else
+    - Sign up 2 different users
+    - One is lending money to somebody
+    - The other pays back
+    - Verify sum at top changed to 0
+  - Changing username
+    - Sign up
+    - change username
+    - sign out
+    - sign in again
+    - go to settings
+    - verify username
 
 ---
 # Resources
