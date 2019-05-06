@@ -593,6 +593,23 @@ it('sends an email on sign up', () => {
 - build own API on top of Selenium API
 
 ----
+# Setup a new driver
+
+```js
+// process.env.SELENIUM_DRIVER one of chrome, edge, safari, firefox
+const driver = await new Builder().forBrowser(process.env.SELENIUM_DRIVER).build();
+
+await driver.quit();
+```
+
+----
+# Navigate somewhere
+
+```js
+await driver.get('https://compup.agilesoftware.dev');
+```
+
+----
 # Click a link
 
 ```js
