@@ -575,7 +575,7 @@ const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
     };
   };
 
-store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
+store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
 ```
 
 ---
