@@ -20,6 +20,7 @@
   - Unit Testing
   - Integration testing
   - e2e testing
+- (how to write test assertions)
 - (validations with io-ts)
 
 ---
@@ -556,14 +557,24 @@ it('sends an email on sign up', () => {
   - rollback the transaction before the test finishes
 
 ---
-# E2E testing recommendation
+# E2E tests
+
+----
+### E2E tests
+- Test the whole application from start to finish
+- Ensure right information is passed between systems
+- Hard to setup/maintain
+  - Changing submit button label to sign-up might break tests
+
+----
+### E2E testing recommendation
 - Find a couple of happy paths through the app
   - max 10
 - Run those happy paths agains supported browsers
 - Many things can go wrong
   - retry your tests
 
----
+----
 # Selenium
 
 - Tool to automate browsers
@@ -620,12 +631,12 @@ const clickText = async (driver, text) => {
 }
 ```
 
----
+----
 # E2E tests
 - What would be good E2E tests for
   - https://compup.agilesoftware.dev
 
----
+----
 # Task 1/2
 - clone https://github.com/webpapaya/fhs-e2e-tests
 - Write the following tests
@@ -649,9 +660,10 @@ const clickText = async (driver, text) => {
 ----
 ### Homework
 
-- Write some unit tests for interesting behaviour
-- Write some integration tests agains neo4j
-- Think about some e2e test cases for your project
+- We'll review it together next time
+  - Write some unit tests for interesting behaviour
+  - Write some integration tests agains neo4j
+  - Think about some e2e test cases for your project
 
 ---
 # Resources
