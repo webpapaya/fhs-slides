@@ -4,11 +4,11 @@
 ---
 
 ### Wunschkonzert for next time?
-- Functional programming 2?
 - debugging/logging
 - i18n
 - Scaling CSS
 - Other testing kata
+- Functional programming 2?
 
 ---
 # Roadmap
@@ -36,7 +36,6 @@
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 
 ----
-
 ### Installation
 
  ```
@@ -44,7 +43,6 @@ npm install react-router-dom --save
 ```
 
 ----
-
 ### Usage
 
  ```js
@@ -70,8 +68,8 @@ import SignIn from './components/sign-in'
 ### Route priority (without exact)
 
  ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
+// path === "/" => renders Homepage
+// path === "/sign-in" => renders Homepage
 const Routes = () => (
   <Switch>
     <Route path="/" component={Homepage}>
@@ -84,8 +82,8 @@ const Routes = () => (
 ### Route priority (without exact)
 
  ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
+// path === "/" => renders Homepage
+// path === "/sign-in" => renders Homepage
 const Routes = () => (
   <Switch>
     <Route path="/sign-in" component={SignIn}>
@@ -98,8 +96,8 @@ const Routes = () => (
 ### Route priority (with exact)
 
  ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes sign-in
+// path === "/" => renders Homepage
+// path === "/sign-in" => renders sign-in
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Homepage}>
@@ -149,7 +147,7 @@ const SignIn = withRouter(({ history }) => {
 - add sign up component with redirect after submit
 
 ----
-# Example Redux App
+### Example Redux App
 
 - Source: https://github.com/webpapaya/compup
 - Live: https://compup.agilesoftware.dev
@@ -159,17 +157,26 @@ const SignIn = withRouter(({ history }) => {
 # Client Side Testing
 
 ---
-# Testing Pyramid
+### Testing Pyramid
 
-![testing pyramid](assets/testing_pyramide.png)
+![testing pyramid](assets/testing_pyramid.png)
 
----
-# Enterprise test Pyramid
+----
+### Testing Pyramid
+
+- Unit tests
+  - lots of small and isolated tests which are fast to execute
+- Integration tests
+  - some integration tests which test external systems like databases
+- E2E
+  - few tests which test the whole system
+
+----
+### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
-
 # Unit testing and TDD
 
 - Test driven development (also known as TDD)
@@ -177,9 +184,10 @@ const SignIn = withRouter(({ history }) => {
 - Introduced by Kent Beck
   - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
 
----
-# Why TDD
+----
+### Why TDD
 
+- early/fast feedback during development
 - Driving the design of our application
   - Testing is a side-effect
 - Possibility to refactor
@@ -190,50 +198,50 @@ const SignIn = withRouter(({ history }) => {
   - Can't get out of sync
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
 
----
-# TDD
+----
+### TDD to me
+
+> Getting confidence that refactoring doesn't break a feature.
+
+----
+### TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
 
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
 
----
-# TDD to me
+----
+### What is TDD not
 
-> Getting confidence that refactoring doesn't break a feature.
-
----
-# What is TDD not
 - Silver bullet for clean code
   - it eventually leads to better code
 - Replacement for other testing strategies
   - TDD doesn't catch all bugs
   - Helps adding regression tests
 
----
-
+----
 > The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
 
 ---
-# Shortest intro to TDD
+### TDD intro in 7:26 minutes
 
 https://www.youtube.com/watch?v=WSes_PexXcA
 
 ----
-# Essential vs. accidental complication
+### Essential vs. accidental complication
 
 - Essential complication
   - The problem is hard
-  - eg. Tax return Software
+    - eg. Tax return Software
   - nothing we can do about
 - Accidental complication
   - We are not so good in our job
   - eg. future proofing code
-    - (it might be usefull in the future)
-  - we can try to improve ourselfs
+    - (it might be useful in the future)
+  - we can try to improve ourselves
 
 ----
-# Accidental complication
+### Accidental complication
 
 - future proofing code
 - cutting corners
@@ -242,15 +250,15 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - drives up the cost/development time of a feature
   - mostly the feature isn't complex
   - the way the app is built drives the cost of a feature
-- big refactorings are hard to sell
+- big refactoring is hard to sell
 
 ----
-# What can we do?
+### Avoid accidental complication
 
 - Baby steps and TDD
 - Refactor a little after every feature/green test
   - clean the kitchen
-  - prevents big refactorings
+  - prevents big bang refactoring
     - which are hard to sell to business
 - Without refactoring features will take longer
 
@@ -259,17 +267,17 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 
 ![tdd cycle](assets/tdd_cycle.png)
 
----
-# TDD Cycle
+----
+### TDD Cycle
 
 - Red: Write a test and watch it fail
 - Green: Write just as much code to make the test pass
 - Refactor: Clean up
 
 ----
-# Red
+### Red
 - Think about the test description
-- Running the test suite should describe what the program is doing
+- Descriptions should reflect the behaviour of the program
 
 ```js
 it('returns 3$, when product A given', () => {
@@ -278,7 +286,7 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
-# Green
+### Green
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
@@ -293,7 +301,7 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
-# Refactor
+### Refactor
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
@@ -313,7 +321,7 @@ it('returns 3$, when product A given', () => {
 - **A**ssert => verify the result
 
 ----
-# Anatomy of a Test
+### Anatomy of a Test
 ```js
 it('returns a list of employees ordered by their name', () => {
   // Setup
@@ -336,7 +344,7 @@ it('returns a list of employees ordered by their name', () => {
 
 - Small exercise
   - to improve programming skills
-  - by challanging your abilities
+  - by challenging your abilities
   - and encouraging you to find multiple approaches
 
 ---
@@ -350,22 +358,11 @@ it('returns a list of employees ordered by their name', () => {
 - Step 6: Cleanup
 
 ----
-# Roman numerals
+### Roman numerals
 
 - go to http://tddbin.com/
 - http://codingdojo.org/kata/RomanNumerals/
 
-
-----
-# TDD Trap
-
-- Bad tests
-- How do good tests look like
-- Don't focus on implementation detail but behaviour
-- Tests are getting in their way
-- TDD is not easy to start
-- Extremly hard to master
-- Deleting tests is fine (if they're not required anymore)
 
 ---
 # What makes a good test
@@ -380,27 +377,38 @@ it('returns a list of employees ordered by their name', () => {
 - behaviour is described and not implementation details
 
 ---
+### TDD Trap
+
+- Bad tests
+- How do good tests look like
+- Don't focus on implementation detail but behaviour
+- Tests are getting in their way
+- TDD is not easy to start
+- Extremely hard to master
+- Deleting tests is fine (if they're not required anymore)
+
+---
 
 # Tools to test units under isolation
 
----
+----
 # Dummy objects
 - Objects which aren't used
   - so that the compiler doesn't complain
   - used to fill parameter lists
 
----
+----
 # Fake objects
 - Objects have a working implementation
   - but take some shortcuts
   - eg. inMemoryDatabases instead of persistent DB
 
----
+----
 # Stub objects
 - Predefined return values for testing
 - Instead of calling the real API we return a value for testing
-- Usefull when:
-  - retreiving geolocation
+- Useful when:
+  - retrieving geolocation
   - testing edge cases (database throws OutOfMemory exception)
 
 ```js
@@ -408,10 +416,10 @@ const retrieveGPSPosition = () =>
   Promise.resolve({ lat: 12.12, lng: 14.15 });
 ```
 
----
+----
 # Spy objects
 - Are stubs that also record the way they were called
-- Usefull when:
+- Useful when:
   - A hard to verify side effect is triggered (eg. E-Mail sending)
 
 ```js
@@ -422,44 +430,52 @@ it('sends an email on sign up', () => {
 });
 ```
 
-----
-# Clock in kata
+---
+### Clock in kata
 
 - go to http://tddbin.com/
 - http://kata-log.rocks/clock-in-kata
 
 ----
+# Remember steps
 
+- Step 1: Think
+- Step 2: Write a test
+- Step 3: How much does this test suck?
+- Step 4: Run the test and watch it fail
+- Step 5: Write just enough code to make it pass
+- Step 6: Cleanup
+
+----
 ![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
-
 
 ---
 # Integrated tests  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
 
----
+----
 # What is an integrated test?
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
 
 ----
-# What is an integrated test?
+### What is an integrated test?
 
-> Any test where the reason of a failure is hard to track down.
+> Any test where the reason of a failure is hard to track down. (@jbrains)
 
 ----
-# How many code paths?
+### How many code paths?
 
 ![code paths](assets/code_paths.png)
 
 ----
-# How many code paths?
+### How many code paths?
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
-# has authentication
+### has authentication
 
 - auth given
   - but expired?
@@ -468,7 +484,7 @@ it('sends an email on sign up', () => {
 - not auth given?
 
 ----
-# create user auth
+### create user auth
 
 - email already taken?
 - password to short?
@@ -476,7 +492,7 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
-# create membership
+### create membership
 
 - group does not exist anymore?
 - group was disabled?
@@ -485,43 +501,41 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
-# How many integration tests to write?
+### How many integration tests to write?
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
-# Integrated tests:
+### Integrated tests:
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
 - create membership (4 paths)
 - Exponential growth
-  - 4 * 3 * 4 = 48 tests
+  - `4 * 3 * 4 = 48 tests`
 
 ----
-# Unit tests:
+### Unit tests:
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
 - create membership (4 paths)
-- 4 + 3 + 4 = 11 tests + 2 contract tests
+- `4 + 3 + 4 = 11 tests + 2 contract tests`
 
 ----
 # Unit tests only?  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
-<!-- .slide: data-color="white" -->
 
 ----
-# Happy path tests
+### Happy path tests
 
-- 1 integrated test
+- 1 integrated test per use-case
   - check if the communication between components work
   - run against
     - controller
     - main function
     - ...
-
 
 ---
 # Testing Databases
@@ -535,15 +549,14 @@ it('sends an email on sign up', () => {
 - Cleanup
   - Rollback the transaction
 
----
+----
 # Task
 - Clone https://github.com/webpapaya/fhs-neo4j-tests
 - Update tests so that they run inside a transaction
   - rollback the transaction before the test finishes
 
 ---
-# E2E resting recommendation
-
+# E2E testing recommendation
 - Find a couple of happy paths through the app
   - max 10
 - Run those happy paths agains supported browsers
@@ -562,14 +575,13 @@ it('sends an email on sign up', () => {
   - Safari
 
 ----
-# API
+### API
 
 - Pretty low level
 - Poor documentation
 - build own API on top of Selenium API
 
 ----
-
 # Click a link
 
 ```js
@@ -583,7 +595,6 @@ const clickLink = async (driver, href) => {
 ```
 
 ----
-
 # Fill a form field
 
 ```js
@@ -625,7 +636,7 @@ const clickText = async (driver, text) => {
     - Verify sum at top changed to 0
 
 ----
-# Task 2/2
+### Task 2/2
 - Write the following tests
   - Changing username
     - Sign up
@@ -635,15 +646,24 @@ const clickText = async (driver, text) => {
     - go to settings
     - verify username
 
+----
+### Homework
+
+- Write some unit tests for interesting behaviour
+- Write some integration tests agains neo4j
+- Think about some e2e test cases for your project
+
 ---
 # Resources
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
 - [Mocks,Stubs,Spys](https://martinfowler.com/bliki/TestDouble.html)
-
+- [Extreme Programming](https://www.amazon.de/Extreme-Programming-Manifest-Kent-Beck/dp/3827317096)
+- [TDD](https://www.amazon.de/Test-Driven-Development-Example-Signature/dp/0321146530/ref=pd_lpo_sbs_14_img_2?_encoding=UTF8&psc=1&refRID=KGXDT4ZNWGXMT5Y96H3F)
 
 ---
 # Feedback
 
 https://de.surveymonkey.com/r/J6693VN
+
