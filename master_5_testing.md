@@ -635,7 +635,7 @@ const fillFormField = async (driver, { name, value }) => {
 };
 ```
 
----
+----
 # Click some text
 
 ```js
@@ -646,6 +646,19 @@ const clickText = async (driver, text) => {
     .findElement(element)
     .click();
 }
+```
+
+----
+# Hit Enter in text field
+
+```js
+const hitEnterInFormField = async (driver, { name }) => {
+  const element = By.js(`return document.querySelector('[name=${name}]');`)
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .sendKeys(Key.ENTER);
+};
 ```
 
 ----
