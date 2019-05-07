@@ -691,8 +691,6 @@ const hitEnterInFormField = async (driver, { name }) => {
 ### Homework
 
 - We'll review it together next time
-  - Write some unit tests for interesting behaviour
-  - Write some integration tests agains neo4j
   - Think about some e2e test cases for your project
 
 ---
