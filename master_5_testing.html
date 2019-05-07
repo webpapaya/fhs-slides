@@ -508,7 +508,7 @@ const fillFormField = async (driver, { name, value }) => {
     .sendKeys(value); // Sends form values to field
 };
 ```
-</script></section></section><section ><section data-markdown><script type="text/template"># Click some text
+</script></section><section data-markdown><script type="text/template"># Click some text
 
 ```js
 const clickText = async (driver, text) => {
@@ -518,6 +518,17 @@ const clickText = async (driver, text) => {
     .findElement(element)
     .click();
 }
+```
+</script></section><section data-markdown><script type="text/template"># Hit Enter in text field
+
+```js
+const hitEnterInFormField = async (driver, { name }) => {
+  const element = By.js(`return document.querySelector('[name=${name}]');`)
+  await driver.wait(until.elementLocated(element));
+  await driver
+    .findElement(element)
+    .sendKeys(Key.ENTER);
+};
 ```
 </script></section><section data-markdown><script type="text/template"># E2E tests
 - What would be good E2E tests for
