@@ -223,3 +223,98 @@
   - Pluralized translation
     - eg. No member in group/many members in group
     - https://angular.io/guide/i18n
+
+---
+# Time, Timezones, Durations
+
+----
+## Falsehoods about time
+- There are always 24h a day
+- The system clock will be set to the correct time
+- A minute is always 60 seconds
+- A timestamp is unique
+- Weeks start on monday
+- Time always goes forwards
+- Timezone offsets are always 1h
+- There are 24 timezones
+- [all falsehoods](https://gist.github.com/timvisee/fcda9bbdff88d45cc9061606b4b923ca)
+
+----
+# UTC
+
+- Coordinated Universal Time
+- Time standard how clocks are coordinated
+- Not adjusted by daylight saving
+- UTC has timezone offset +00:00
+
+----
+# Timezone vs. Timezone offset
+- Offset
+    - difference between UTC and a place with time
+    - mostly written as +00:30, +14:00
+- Timezone
+    - a region which use the same time
+    - might add daylight saving time
+
+----
+# TZ Entry from Austria
+![TZ Database](assets/tz_database_austria.png)
+
+----
+# ISO-8601
+- Standard for representing times and durations
+- First published 1988
+- Dates `2000-02-01`
+- Times `10:11:05`
+- Datetime `2000-02-01T10:11:05+06:45`
+- Durations `P1DT10M` => 1 Day and 10 Minutes
+
+----
+# Why use Dates
+
+```js
+const validityStart = new Date("2016-10-01"); // Converts date to datetime
+const validityEnd = new Date("2016-11-08");
+const isWithinValidity = aDate => (aDate >= validityStart && aDate <= validityEnd);
+const applicationTime = new Date("2016-11-08 08:00");
+```
+
+[Source](https://martinfowler.com/bliki/HiddenPrecision.html)
+
+----
+# Why own duration format?
+- Add one week to a date?
+    - Adding (60 * 60 * 24 * 7) might be wrong
+    - Time of the day might change
+- How many hours does a week have?
+    - Duration depends on the start/end date?
+- How to represent half days with time?
+    - Not every day has 24 hours
+
+----
+# Shameless self promotion
+
+[Pomeranian Durations](https://github.com/webpapaya/pomeranian-durations)
+
+----
+# Some advice from my side
+- Don't use JS Date object
+    - https://github.com/tc39/proposal-temporal will come
+- Store dates in UTC
+- Store in appropriate data type
+    - Date for birthdates, etc.
+    - Datetime where the time is relevant
+        - eg. created_at, updated_at
+    - Duration
+        - eg. half day of vacation
+- use ISO-8601
+    - for durations
+    - for dates
+    - for datetimes
+
+----
+# Task
+
+- Look through project
+- See which date types to use
+- Try to convert to UTC if not done yet
