@@ -295,6 +295,19 @@ it('returns a list of employees ordered by their name', () => {
   - No if/else (ternary is allowed)
   - No mutable state
 
+---
+# Homework
+- Due date 31.05. 23:59:59
+- Finish Money-Transaction Homework
+- connect to backend Sign-In screen
+  - after successfull sign-in redirect to app
+- connect to backend Sign-Up screen
+  - I forgot that Sign-Up needs a name
+  - after successfull sign-up redirect to app
+- connect Money-Transacton-List to backend
+- connect Create-Money-Transacton to backend
+  - on submit the Transaction list should update
+
 ----
 # Resources
 - [Functional calisthenics](https://codurance.com/2017/10/12/functional-calisthenics/#noexplicitrecursion)
@@ -305,3 +318,9 @@ it('returns a list of employees ordered by their name', () => {
 - [Mocks,Stubs,Spys](https://martinfowler.com/bliki/TestDouble.html)
 - [Extreme Programming](https://www.amazon.de/Extreme-Programming-Manifest-Kent-Beck/dp/3827317096)
 - [TDD](https://www.amazon.de/Test-Driven-Development-Example-Signature/dp/0321146530/ref=pd_lpo_sbs_14_img_2?_encoding=UTF8&psc=1&refRID=KGXDT4ZNWGXMT5Y96H3F)
+
+
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN

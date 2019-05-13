@@ -1,8 +1,9 @@
-#i18n/l10n
+## i18n/l10n
+#### (MMT-B2017)
 
 ---
-
 # Numeronym
+
 - Number based word
 - mostly used as a shortened form of a word
 - eg.
@@ -12,22 +13,6 @@
   - i18n (internationalisation)
   - l10n (localisation)
   - a11y (accessibility)
-
----
-# Why
-
-> Adding i18n early to a project is much easier than afterwards.
-
----
-# Why
-- Size difference needs to be taken into account
-  - eg. bezahlen -> pay
-- RTL vs. LTR
-- Adding translate functions afterwards is a big task
-  - doing this right away is a no brainer
-- easiest translation `const t = (text) => text;`
-  - wrap all hardcoded text with t function
-  - use IDE to find all references afterwards
 
 ----
 # i18n definition
@@ -52,19 +37,29 @@
     - eg. a VAT-ID is required in certain countries on purchase
 
 ---
-# Things to consider
-- Language
-- Writing Direction (RTL, LTR)
-- Formatting (Date, Time, Currency, ...)
-- Relative Time (Days ago, ...)
+# Challenges
+- Text size differences
+  - eg. bezahlen -> pay
+- RTL vs. LTR
+- Different formatting rules
+- Country specific requirements
 - Pluralisation
-  - some language differentiate between one, few, many
+
+---
+# i18n why
+
+> Adding i18n early to a project is much easier than afterwards.
+
+- Finding all strings afterwards is a huge task
+  - wrap all hardcoded text with t function
+    - `const t = (text) => text;`
+  - use IDE to find all references afterwards
 
 ---
 # CLDR
 - Common locale data repository
 - Most extensive repository for locale-specific data
-- Developed/Maintained by the Unicode Consortium
+- Developed/Maintained by the Unicode consortium
 - Pretty big 72mb of JSON (xml is bigger)
 
 ----
@@ -78,7 +73,7 @@
   - numeral systems (eg. roman -> arabic numbers)
   - calendar systems (eg. julian -> gregorian calendar)
   - spelling numbers as words
-- Country infos
+- country infos
   - which day does a week start
   - ...
 
@@ -105,7 +100,7 @@
   - Plural
   - Custom formats eg. currencies
 
----
+----
 # ICU Basic Numbers
 - `{ count, number }`
   - en: 21,629,693
@@ -132,6 +127,9 @@
   - ca: 1 de maig de 2019
   - de: 1. Mai 2019
 
+----
+# ICU Date modifiers
+
 - `{ count, date, short }`
   - en: 5/1/19
   - ca: 1/5/19
@@ -144,6 +142,19 @@
     =0    {Zero}
     =1    {One}
     other {Many} }
+```
+
+----
+# ICU Plural
+```
+{ count, plural,
+    zero { Zero items }
+    one { One item }
+    two { Two items }
+    few { A couple of items }
+    many { Many items }
+    other { # items }
+}
 ```
 
 ----
@@ -189,6 +200,7 @@
   - ISO 639-1 still valid (with exceptions)
   - three character code
   - includes ancient/constructed/historical languages
+    - eg. tlh (klingon)
   - more than 4000 languages
 
 ----
@@ -208,6 +220,21 @@
   - when many people share the same device
 - use url parameter (mostly for debugging)
 
+---
+### Where to add translations?
+
+----
+### Dependencies
+![Data dependencies](assets/i18n_dependencies.png)
+
+----
+### Use case
+- A new server validation is added
+    - eg. email already taken
+    - all clients need to update locales
+- Recommendation:
+    - Add localisation as local as possible
+
 ----
 # Select system locale
 - on the client
@@ -215,6 +242,7 @@
   - 'de-AT' or 'de-DE'
 - on the server
   - via HTTP Accept-Language header
+    - Accept-Language: en;q=0.8,es;q=0.6,fr;q=0.4
 
 ---
 # Task

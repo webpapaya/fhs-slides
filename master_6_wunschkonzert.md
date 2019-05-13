@@ -21,6 +21,10 @@
 - curry/compose/memoize might be asked theoretically
 
 ---
+
+# Homework review
+
+---
 # Feedback
 
 https://de.surveymonkey.com/r/J6693VN
