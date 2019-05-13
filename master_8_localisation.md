@@ -4,9 +4,9 @@
 
 # Numeronym
 - Number based word
-- mostly used as a shortend form of a word
+- mostly used as a shortened form of a word
 - eg.
-  - W3C (World Wide Web Concortium)
+  - W3C (World Wide Web Consortium)
   - k8s (kubernetes)
   - g11n (globalization)
   - i18n (internationalisation)
@@ -31,22 +31,22 @@
 
 ----
 # i18n definition
-> Internationalization is the design and development of a product, application or document content that enables easy localization for target audiences that vary in culture, region, or language. **(W3C)**
+> Internationalisation is the design and development of a product, application or document content that enables easy localisation for target audiences that vary in culture, region, or language. **(W3C)**
 
 ----
 # i18n
-- Process of designing apps which can be localized later
+- Process of designing apps which can be localised later
   - use UTF-8 as encoding instead of latin-1
-  - handling timestamps accross different timezones
+  - handling timestamps across different timezones
 
 ----
 # l10n definition
-> Localization refers to the adaptation of a product, application or document content to meet the language, cultural and other requirements of a specific target market (a locale). **(W3C)**
+> Localisation refers to the adaptation of a product, application or document content to meet the language, cultural and other requirements of a specific target market (a locale). **(W3C)**
 
 ----
 # l10n
 - Localisation might contain:
-  - Formating (datetime/numeric/... values)
+  - Formatting (datetime/numeric/... values)
   - Graphics which might be inappropriate in a given culture
   - Changes due to legal requirements
     - eg. a VAT-ID is required in certain countries on purchase
@@ -58,7 +58,7 @@
 - Formatting (Date, Time, Currency, ...)
 - Relative Time (Days ago, ...)
 - Pluralisation
-  - some language differenciate between one, few, many
+  - some language differentiate between one, few, many
 
 ---
 # CLDR
@@ -71,7 +71,7 @@
 # CLDR
 - certain translations
   - language names
-  - terretory country names
+  - territory country names
   - calendric names (weekdays, months,...)
 - formatting/parsing numbers, dates
 - conversion rules
@@ -220,7 +220,7 @@
 # Task
 - Add to project:
   - Simple translation
-  - Pluralized translation
+  - Pluralised translation
     - eg. No member in group/many members in group
     - https://angular.io/guide/i18n
 
@@ -233,7 +233,7 @@
 - The system clock will be set to the correct time
 - A minute is always 60 seconds
 - A timestamp is unique
-- Weeks start on monday
+- Weeks start on Monday
 - Time always goes forwards
 - Timezone offsets are always 1h
 - There are 24 timezones

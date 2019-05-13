@@ -33,7 +33,7 @@
 - Order of selectors decides what is rendered
 - Hard to tell what overrules what
 - in SPAs CSS might be loaded dynamically
-- Race condition might occure
+- Race condition might occur
 
 ----
 # FOUC
@@ -61,7 +61,7 @@
 # Global with naming convention
 - BEM -> Block element modifier
 - Block:
-    - Standalone entity that is meaningfull on its own
+    - Standalone entity that is meaningful on its own
     - eg. Button/TextInput/...
 - Element:
     - Part of a block
@@ -216,3 +216,4 @@ const Component = ({ children }) => (
 # Feedback
 
 https://de.surveymonkey.com/r/J6693VN
+

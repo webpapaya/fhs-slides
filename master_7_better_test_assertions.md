@@ -30,8 +30,8 @@ assert(1 === 2, '1 should be equal to 1'); // Throws exception
 
 # The Scenario
 
-- Employee management system for a local grocary store
-- Owner wants to open the store on sunday
+- Employee management system for a local grocery store
+- Owner wants to open the store on Sunday
   - not all employees are allowed to work on Sundays
 
 ----
@@ -49,7 +49,7 @@ assert(1 === 2, '1 should be equal to 1'); // Throws exception
 
 ----
 
-> As shop owner I want the list of employees to be capitalized, so I can read it better.
+> As shop owner I want the list of employees to be capitalised, so I can read it better.
 
 ----
 
