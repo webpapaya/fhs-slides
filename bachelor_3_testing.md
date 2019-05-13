@@ -1,5 +1,5 @@
-### Testing
-#### (MMT-B2017)
+# Testing
+## (MMT-B2017)
 
 ---
 # Exam
@@ -220,7 +220,7 @@ it('returns a list of employees ordered by their name', () => {
 - little test setup
 - behaviour is described and not implementation details
 
----
+----
 ### TDD Trap
 
 - Bad tests
@@ -253,7 +253,7 @@ it('returns a list of employees ordered by their name', () => {
 ----
 # Task
 
-- (Tennis kata)[http://codingdojo.org/kata/Tennis/]
+- [Tennis kata](http://codingdojo.org/kata/Tennis/)
 - 2-3 sessions a 30min
   - No mouse allowed
 
@@ -265,7 +265,7 @@ it('returns a list of employees ordered by their name', () => {
 ----
 # Task
 
-- (Tennis kata)[http://codingdojo.org/kata/Tennis/]
+- [Tennis kata](http://codingdojo.org/kata/Tennis/)
 - Restrictions (pick 4)
   - Mouse is still not allowed =)
   - Only one level of indentation per function
