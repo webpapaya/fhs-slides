@@ -2,11 +2,28 @@
 #### (MMT-B2017)
 
 ---
+# Exam
+
+- possible theoretical questions
+  - Welche der folgenden Funktionen sind pur?
+  - Welche Arten von State unterscheidet man?
+  - Was macht ein `Reducer` in Redux?
+  - ...
+
+----
+# Exam
+
+- possible coding questions
+  - Gegeben ist ein Redux-Store. Schreibe eine mapStateToProps welche den angemeldeten Nutzer zurückliefert.
+  - Schreibe einen Test für folgende User Story.
+    - Als externer Lektor, will ich eine nach Namen sortierte Liste der Studierenden, um herauszufinden wer abwesend ist.
+
+---
 
 ### Roadmap
 - Testing
 - 2-3 coding katas sessions
-- Doing homework together
+- Tomorrow: doing homework together
 
 ---
 ### Testing Pyramid
@@ -280,8 +297,8 @@ it('returns a list of employees ordered by their name', () => {
 
 ----
 # Resources
-- [Functional Clisthenics](https://codurance.com/2017/10/12/functional-calisthenics/#noexplicitrecursion)
-- [Object Clisthenics](https://williamdurand.fr/2013/06/03/object-calisthenics/)
+- [Functional calisthenics](https://codurance.com/2017/10/12/functional-calisthenics/#noexplicitrecursion)
+- [Object calisthenics](https://williamdurand.fr/2013/06/03/object-calisthenics/)
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
