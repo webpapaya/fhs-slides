@@ -6,18 +6,13 @@
 
 ----
 # What am I doing wrong? <!-- .element: class="color--white" -->
-
 <!-- .slide: data-background="./assets/angry.gif" -->
-<!-- .slide: data-color="white" -->
 
 ----
 # Started to question TDD <!-- .element: class="color--white" -->
-
 <!-- .slide: data-background="./assets/questioning_myself.gif" -->
-<!-- .slide: data-color="white" -->
 
 ---
-
 # What is a test assertions?
 
 ----
@@ -46,9 +41,7 @@ assert(1 === 2, '1 should be equal to 1'); // Throws exception
 ----
 
 # Live Coding <!-- .element: class="color--white" -->
-
 <!-- .slide: data-background="./assets/supermarket.gif" -->
-<!-- .slide: data-color="white" -->
 
 ----
 
@@ -69,3 +62,7 @@ assert(1 === 2, '1 should be equal to 1'); // Throws exception
 - [Hamjest](https://github.com/rluba/hamjest/wiki/Matcher-documentation)
 - [Source Code](https://github.com/webpapaya/better-test-assertions)
 
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN

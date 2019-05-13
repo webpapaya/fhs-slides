@@ -211,3 +211,8 @@ const Component = ({ children }) => (
 | No flash of unstyled content? | yes       | no        | yes       |
 | Can be used on landing page?  | yes       | no        | yes       |
 | Refactoring?                  | partially | yes       | partially |
+
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN

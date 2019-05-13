@@ -318,3 +318,8 @@ const applicationTime = new Date("2016-11-08 08:00");
 - Look through project
 - See which date types to use
 - Try to convert to UTC if not done yet
+
+---
+# Feedback
+
+https://de.surveymonkey.com/r/J6693VN

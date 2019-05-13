@@ -106,7 +106,7 @@ const Button = ({ users }) => {
 # Building the first react component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="./assets/coding.gif" -->
-<!-- .slide: data-color="white" -->
+
 
 ---
 
