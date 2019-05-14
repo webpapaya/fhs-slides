@@ -76,7 +76,7 @@
 ----
 # Task 1
 - clone: https://github.com/webpapaya/compup
-- npm i && npm run start:dev
+- npm i && npm run start:development
 - Users complain that some button clicks take very long
   - Don't look on commit history =)
 
