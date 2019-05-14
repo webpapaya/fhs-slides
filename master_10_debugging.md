@@ -1,4 +1,4 @@
-## Debugging/IO-TS
+## Debugging
 #### (MMT-B2017)
 
 ---
