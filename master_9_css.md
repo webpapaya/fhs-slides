@@ -1,5 +1,5 @@
 ## Scaling CSS
-#### (MMT-B2017)
+#### (MMT-M2018)
 
 ---
 # Problems with CSS

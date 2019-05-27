@@ -1,5 +1,5 @@
 ## i18n/l10n
-#### (MMT-B2017)
+#### (MMT-M2018)
 
 ---
 # Numeronym
