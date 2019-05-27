@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">## Game of Life
+
+![GoL](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
+</script></section><section  data-markdown><script type="text/template">### Roadmap
+- 3 Sessions (45 minutes)
+  - 35 minutes coding
+  - 5 minutes retro
+  - 5 minutes break
+</script></section><section  data-markdown><script type="text/template">### After each session delete your code <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/de5bARu0SsXiU/giphy.gif" -->
+</script></section><section  data-markdown><script type="text/template">### Rules
+
+- Live Cell with fewer than 2 neighbours -> dead
+- Live Cell with fewer 2 or 3 neighbours -> stays alive
+- Live Cell with more than 3 neighbours -> dies
+- Dead Cell with exactly 3 neighbours -> gets alive
+
+</script></section><section  data-markdown><script type="text/template">### 1st session
+- No Mouse allowed
+- Test first
+</script></section><section  data-markdown><script type="text/template">### 2nd session
+- No mutable state
+- No function/method body longer than 3 lines
+- Max line length 80 chars
+- No if/else/switch (ternary also not allowed)
+</script></section><section  data-markdown><script type="text/template">### 3rd session
+- Only one level of indentation per function
+- No classes
+- No loops
+- One argument per function
+</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
