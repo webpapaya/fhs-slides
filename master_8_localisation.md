@@ -301,10 +301,10 @@
 # Why use Dates
 
 ```js
-const validityStart = new Date("2016-10-01"); // Converts date to datetime
-const validityEnd = new Date("2016-11-08");
-const isWithinValidity = aDate => (aDate >= validityStart && aDate <= validityEnd);
-const applicationTime = new Date("2016-11-08 08:00");
+const validityStart = new Date('2016-10-01') // Converts date to datetime
+const validityEnd = new Date('2016-11-08')
+const isWithinValidity = aDate => (aDate >= validityStart && aDate <= validityEnd)
+const applicationTime = new Date('2016-11-08 08:00')
 ```
 
 [Source](https://martinfowler.com/bliki/HiddenPrecision.html)

@@ -40,7 +40,7 @@
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
-immutableObject.test = 10;
+immutableObject.test = 10
 console.log(immutableObject) // => { test: 1 }
 ````
 
@@ -49,7 +49,7 @@ console.log(immutableObject) // => { test: 1 }
 
 ````js
 const immutableObject = Object.freeze({ a: 1, b: 2 })
-const updatedObject = Object.freeze({ ...immutableObject, a: 2 });
+const updatedObject = Object.freeze({ ...immutableObject, a: 2 })
 console.log(updatedObject) // => { a: 2, b: 2 }
 ````
 
@@ -57,8 +57,8 @@ console.log(updatedObject) // => { a: 2, b: 2 }
 ## Unfreeze an object
 
 ````js
-const immutableObject = Object.freeze({ test: 1 });
-const unfrozenCopy = { ...immutableObject };
+const immutableObject = Object.freeze({ test: 1 })
+const unfrozenCopy = { ...immutableObject }
 ````
 
 ----
@@ -67,8 +67,8 @@ const unfrozenCopy = { ...immutableObject };
 
 ````js
 const object = { test: 1 }
-Object.freeze(object);
-object.test = 10;
+Object.freeze(object)
+object.test = 10
 console.log(object) // => { test: 1 }
 ````
 
@@ -83,15 +83,15 @@ console.log(object) // => { test: 1 }
 ----
 ## Mutable bug
 ```js
-const users = [];
+const users = []
 const loadUsers = async () => {
-  const result = await fetchUsers('/users');
-  users.push(...result);
-  return users;
+  const result = await fetchUsers('/users')
+  users.push(...result)
+  return users
 }
 
-loadUsers();
-loadUsers();
+loadUsers()
+loadUsers()
 ```
 
 ----
@@ -141,18 +141,18 @@ const result2 = await loadUsers();
 ## Function reassigned to variable
 
 ```js
-const helloWorld = () => 'hello world!';
-const main = helloWorld;
+const helloWorld = () => 'hello world!'
+const main = helloWorld
 ```
 
 ----
 ## Function passed to another
 
 ```js
-const helloWorld = (print) => log('hello world!');
-const log = (value) => console.log(`${new Date()}: ${value}`);
+const helloWorld = (print) => log('hello world!')
+const log = (value) => console.log(`${new Date()}: ${value}`)
 
-helloWorld(log);
+helloWorld(log)
 ```
 
 ---
@@ -164,7 +164,7 @@ helloWorld(log);
       - no mutation of non-local state,
 
 ```js
-const add = (a, b) => a + b;
+const add = (a, b) => a + b
 ```
 
 ----
@@ -181,27 +181,27 @@ const add = (a, b) => a + b;
 ## Pure or inpure? 1/3
 
 ```js
-const array = [1,2,3,4,5,6];
-const fn1 = (array) => array.slice(0,3);
-const fn2 = (array) => array.splice(0,3);
-const fn3 = (array) => array.shift();
-const fn4 = (array) => array.pop();
-const fn5 = (array) => array.sort((a, b) => a - b);
-const fn6 = (array) => [...array].sort((a, b) => a - b);
-const fn7 = (array) => array.map((item) => item * 2);
-const fn8 = (array) => array.forEach((item) => console.log(item));
+const array = [1, 2, 3, 4, 5, 6]
+const fn1 = (array) => array.slice(0, 3)
+const fn2 = (array) => array.splice(0, 3)
+const fn3 = (array) => array.shift()
+const fn4 = (array) => array.pop()
+const fn5 = (array) => array.sort((a, b) => a - b)
+const fn6 = (array) => [...array].sort((a, b) => a - b)
+const fn7 = (array) => array.map((item) => item * 2)
+const fn8 = (array) => array.forEach((item) => console.log(item))
 ```
 ----
 ## Pure or inpure? 2/3
 
 ```js
-let config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ```js
-const config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ----
@@ -221,12 +221,12 @@ const isIndexPage = (pathname) => pathname === '/';
 ```js
 const buildCreateUser = (dbAdapter) => {
   return (user) => {
-    if (!isValid(user)) { throw new Error('User Invalid'); }
-    return dbAdapter.create(user);
+    if (!isValid(user)) { throw new Error('User Invalid') }
+    return dbAdapter.create(user)
   }
 }
-const createUserInPG = buildCreateUser(postgresAdapter);
-const createUserInMemory = buildCreateUser(inMemoryAdapter);
+const createUserInPG = buildCreateUser(postgresAdapter)
+const createUserInMemory = buildCreateUser(inMemoryAdapter)
 ```
 
 ---
@@ -254,11 +254,11 @@ const createUserInMemory = buildCreateUser(inMemoryAdapter);
 - Compare results with and without memoize
 
 ```js
-const memoize = () => {}; // TODO: implement me
+const memoize = () => {} // TODO: implement me
 const fibonacci = memoize((num) => {
-  if (num <= 1) return 1;
-  return fibonacci(num - 1) + fibonacci(num - 2);
-});
+  if (num <= 1) return 1
+  return fibonacci(num - 1) + fibonacci(num - 2)
+})
 ```
 
 - helper to measure time https://bit.ly/2UOFgAE
@@ -268,11 +268,11 @@ const fibonacci = memoize((num) => {
 
 ```js
 const memoize = (fn) => {
-  const cache = {};
+  const cache = {}
   return (...args) => {
-    const key = JSON.stringify(args);
-    cache[key] = cache[key] || fn(...args);
-    return cache[key];
+    const key = JSON.stringify(args)
+    cache[key] = cache[key] || fn(...args)
+    return cache[key]
   }
 }
 ```
@@ -283,7 +283,7 @@ const memoize = (fn) => {
 > The arity of a function is the number of arguments it receives.
 
 ```js
-const add = (a, b) => a + b;
+const add = (a, b) => a + b
 console.log(add.length) // => 2
 ```
 
@@ -301,10 +301,10 @@ const addLong = (a) => {
   return (b) => {
     return a + b
   }
-};
-const addShort = (a) => (b) => a + b;
+}
+const addShort = (a) => (b) => a + b
 
-addShort(1)(2);
+addShort(1)(2)
 ```
 
 ----
@@ -316,12 +316,12 @@ addShort(1)(2);
 ## Currying
 
 ```js
-import { curry } from 'ramda';
+import { curry } from 'ramda'
 
-const whichAreGreaterThan = curry((boundary, value) => value > boundary);
-const filterItems = curry((filterFn, array) => array.filter(filterFn));
+const whichAreGreaterThan = curry((boundary, value) => value > boundary)
+const filterItems = curry((filterFn, array) => array.filter(filterFn))
 
-filterItems(whichAreGreaterThan(5), [1,2,6,3,6,7,9,6,5]);
+filterItems(whichAreGreaterThan(5), [1, 2, 6, 3, 6, 7, 9, 6, 5])
 ```
 
 ----
@@ -332,9 +332,9 @@ Implement your own curry function
 ```js
 const curry = () => { /* TODO implement me */ }
 
-const add = curry((a, b) => a + b);
-add(1)(2);
-add(1, 2);
+const add = curry((a, b) => a + b)
+add(1)(2)
+add(1, 2)
 ```
 
 ## Hints:
@@ -346,12 +346,12 @@ add(1, 2);
 
 ```js
 const curry = (targetfn) => {
-  const arity = targetfn.length;
+  const arity = targetfn.length
   const fn = (...args) => args.length < arity
     ? fn.bind(null, ...args)
-    : targetfn.call(null, ...args);
+    : targetfn.call(null, ...args)
 
-  return fn;
+  return fn
 }
 ```
 ---
@@ -380,17 +380,17 @@ const curry = (targetfn) => {
 ## Functional composition
 
 ```js
-const add = curry((a, b) => a + b);
-const multiply = curry((a, b) => a * b);
-const isLte = curry((boundary, value) => value <= boundary );
+const add = curry((a, b) => a + b)
+const multiply = curry((a, b) => a * b)
+const isLte = curry((boundary, value) => value <= boundary)
 
 const isApplicableForInsurance = pipe(
   add(5),
   multiply(4),
-  isLte(60),
-);
+  isLte(60)
+)
 
-isApplicableForInsurance(5); // true
+isApplicableForInsurance(5) // true
 ```
 
 ----
@@ -398,12 +398,12 @@ isApplicableForInsurance(5); // true
 
 ```js
 // Left to right
-pipe(first, second, third);
+pipe(first, second, third)
 ```
 
 ```js
 // Right to left
-compose(third, second, first);
+compose(third, second, first)
 ```
 
 ----

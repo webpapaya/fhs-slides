@@ -111,34 +111,34 @@ const Routes = () => (
 ### Add Links from html
 
  ```js
- import { Link } from "react-router-dom";
-
-const Routes = () => (
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/sign-in">Sign in</Link>
-  </nav>
-);
+ import { Link } from 'react-router-dom'
+ 
+ const Routes = () => (
+   <nav>
+     <Link to='/'>Home</Link>
+     <Link to='/sign-in'>Sign in</Link>
+   </nav>
+)
 ```
 
 ----
 ### Add redirects from JS
 
  ```js
- import { withRouter } from "react-router-dom";
-
-const SignIn = withRouter(({ history }) => {
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    history.push('/')
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      { /* ... */ }
-    </form>
-  )
-});
+ import { withRouter } from 'react-router-dom'
+ 
+ const SignIn = withRouter(({ history }) => {
+   const onSubmit = (evt) => {
+     evt.preventDefault()
+     history.push('/')
+   }
+ 
+   return (
+     <form onSubmit={onSubmit}>
+       {/* ... */}
+     </form>
+   )
+})
 ```
 
 ----
@@ -282,8 +282,8 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 
 ```js
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -292,13 +292,13 @@ it('returns 3$, when product A given', () => {
   - if there is only 1 product just return 3$
 
 ```js
-function caluculatePrice() {
-  return '3$';
+function caluculatePrice () {
+  return '3$'
 };
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -307,11 +307,11 @@ it('returns 3$, when product A given', () => {
 - "Clean the kitchen"
 
 ```js
-const caluculatePrice = () => '3$';
+const caluculatePrice = () => '3$'
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ---
@@ -329,15 +329,15 @@ it('returns a list of employees ordered by their name', () => {
   const employees = [
     { name: 'Sepp' },
     { name: 'Max' },
-    { name: 'Anton' },
-  ];
+    { name: 'Anton' }
+  ]
 
   // Act
-  const result = employeeReport(employees);
+  const result = employeeReport(employees)
 
   // Assert
-  assertThat(result, orderedBy((a, b) => a.name < b.name));
-});
+  assertThat(result, orderedBy((a, b) => a.name < b.name))
+})
 ```
 
 ---
@@ -414,7 +414,7 @@ it('returns a list of employees ordered by their name', () => {
 
 ```js
 const retrieveGPSPosition = () =>
-  Promise.resolve({ lat: 12.12, lng: 14.15 });
+  Promise.resolve({ lat: 12.12, lng: 14.15 })
 ```
 
 ----
@@ -425,10 +425,10 @@ const retrieveGPSPosition = () =>
 
 ```js
 it('sends an email on sign up', () => {
-  const sendEmail = buildFunctionSpy();
-  const signUp = signUp({ sendEmail }, username, password);
-  assertThat(sendEmail, wasCalled());
-});
+  const sendEmail = buildFunctionSpy()
+  const signUp = signUp({ sendEmail }, username, password)
+  assertThat(sendEmail, wasCalled())
+})
 ```
 
 ---
@@ -614,12 +614,12 @@ await driver.get('https://compup.agilesoftware.dev');
 
 ```js
 const clickLink = async (driver, href) => {
-  const element = By.js(`return document.querySelector('[href="${href}"]');`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.js(`return document.querySelector('[href="${href}"]');`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
-};
+    .click()
+}
 ```
 
 ----
@@ -628,11 +628,11 @@ const clickLink = async (driver, href) => {
 ```js
 const fillFormField = async (driver, { name, value }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(value); // Sends form values to field
-};
+    .sendKeys(value) // Sends form values to field
+}
 ```
 
 ----
@@ -640,11 +640,11 @@ const fillFormField = async (driver, { name, value }) => {
 
 ```js
 const clickText = async (driver, text) => {
-  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
+    .click()
 }
 ```
 
@@ -654,11 +654,11 @@ const clickText = async (driver, text) => {
 ```js
 const hitEnterInFormField = async (driver, { name }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(Key.ENTER);
-};
+    .sendKeys(Key.ENTER)
+}
 ```
 
 ----

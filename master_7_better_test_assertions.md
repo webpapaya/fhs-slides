@@ -20,11 +20,11 @@
 
 ```js
 const assert = (value, message = 'assertion failed') => {
-  if (!value) { throw new Error(message); }
+  if (!value) { throw new Error(message) }
 }
 
-assert(1 === 1, '1 should be equal to 1');
-assert(1 === 2, '1 should be equal to 1'); // Throws exception
+assert(1 === 1, '1 should be equal to 1')
+assert(1 === 2, '1 should be equal to 1') // Throws exception
 ```
 
 ---

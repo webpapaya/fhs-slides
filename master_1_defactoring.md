@@ -52,17 +52,17 @@
 ```js
 const formatISODate = (isoDate) => {
   try {
-    return Date.parse(isoDate).forrmat('YYYY-MM-DD');
+    return Date.parse(isoDate).forrmat('YYYY-MM-DD')
   } catch (_) {
-    return 'Invalid Date';
+    return 'Invalid Date'
   }
 }
 ```
 
 ```js
 const formatISODate = (isoDate) => {
-  if (!date.canParse(isoDate)) { return 'Invalid Date'; }
-  return Date.parse(isoDate).format('YYYY-MM-DD');
+  if (!date.canParse(isoDate)) { return 'Invalid Date' }
+  return Date.parse(isoDate).format('YYYY-MM-DD')
 }
 ```
 

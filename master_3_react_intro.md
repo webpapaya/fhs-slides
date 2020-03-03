@@ -36,14 +36,14 @@
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 
 // Usage
-React.renderComponent(<Button />, document.body);
+React.renderComponent(<Button />, document.body)
 ```
 
 ----
@@ -57,10 +57,10 @@ React.renderComponent(<Button />, document.body);
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 ```
 
@@ -74,9 +74,9 @@ const Button = () => {
 const Button = () => {
   return React.createElement(
     'button',
-    {type: 'button'},
+    { type: 'button' },
     'A button'
-  );
+  )
 }
 ```
 
@@ -119,13 +119,13 @@ const Button = () => {
 ```js
 const Button = ({ children, disabled = false }) => {
   return (
-    <button disabled={disabled} className="button">
-      { children }
+    <button disabled={disabled} className='button'>
+      {children}
     </button>
-  );
+  )
 }
 
-const usage = <Button disabled>A button</Button>;
+const usage = <Button disabled>A button</Button>
 ```
 
 ---
@@ -204,14 +204,14 @@ const SimpleForm = ({ onSubmit }) => {
 
 ```js
 // Executed on every rerender
-useEffect(() => {});
+useEffect(() => {})
 
 // Executed when component rendered initially
-useEffect(() => {}, []);
+useEffect(() => {}, [])
 
 // Executed when component rendered initially
 // and when variable changes.
-useEffect(() => {}, [variable]);
+useEffect(() => {}, [variable])
 ```
 
 ----
@@ -339,34 +339,34 @@ const Routes = () => (
 ### Add Links from html
 
  ```js
- import { Link } from "react-router-dom";
-
-const Routes = () => (
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/sign-in">Sign in</Link>
-  </nav>
-);
+ import { Link } from 'react-router-dom'
+ 
+ const Routes = () => (
+   <nav>
+     <Link to='/'>Home</Link>
+     <Link to='/sign-in'>Sign in</Link>
+   </nav>
+)
 ```
 
 ----
 ### Add redirects from JS
 
  ```js
- import { withRouter } from "react-router-dom";
-
-const SignIn = withRouter(({ history }) => {
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    history.push('/')
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      { /* ... */ }
-    </form>
-  )
-});
+ import { withRouter } from 'react-router-dom'
+ 
+ const SignIn = withRouter(({ history }) => {
+   const onSubmit = (evt) => {
+     evt.preventDefault()
+     history.push('/')
+   }
+ 
+   return (
+     <form onSubmit={onSubmit}>
+       {/* ... */}
+     </form>
+   )
+})
 ```
 
 ----

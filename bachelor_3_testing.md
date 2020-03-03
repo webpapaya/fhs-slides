@@ -150,8 +150,8 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 
 ```js
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -160,13 +160,13 @@ it('returns 3$, when product A given', () => {
   - if there is only 1 product just return 3$
 
 ```js
-function caluculatePrice() {
-  return '3$';
+function caluculatePrice () {
+  return '3$'
 };
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -175,11 +175,11 @@ it('returns 3$, when product A given', () => {
 - "Clean the kitchen"
 
 ```js
-const caluculatePrice = () => '3$';
+const caluculatePrice = () => '3$'
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ---
@@ -197,15 +197,15 @@ it('returns a list of employees ordered by their name', () => {
   const employees = [
     { name: 'Sepp' },
     { name: 'Max' },
-    { name: 'Anton' },
-  ];
+    { name: 'Anton' }
+  ]
 
   // Act
-  const result = employeeReport(employees);
+  const result = employeeReport(employees)
 
   // Assert
-  assertThat(result, orderedBy((a, b) => a.name < b.name));
-});
+  assertThat(result, orderedBy((a, b) => a.name < b.name))
+})
 ```
 
 ---

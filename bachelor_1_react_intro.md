@@ -22,14 +22,14 @@
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 
 // Usage
-React.renderComponent(<Button />, document.body);
+React.renderComponent(<Button />, document.body)
 ```
 
 ----
@@ -43,10 +43,10 @@ React.renderComponent(<Button />, document.body);
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 ```
 
@@ -60,9 +60,9 @@ const Button = () => {
 const Button = () => {
   return React.createElement(
     'button',
-    {type: 'button'},
+    { type: 'button' },
     'A button'
-  );
+  )
 }
 ```
 
@@ -72,12 +72,12 @@ const Button = () => {
 ```js
 const Button = ({ users }) => {
   return (
-    <ul type="button">
-      { users.map((user) => {
+    <ul type='button'>
+      {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
-      }) }
+      })}
     </ul>
-  );
+  )
 }
 ```
 
@@ -130,13 +130,13 @@ const Button = ({ users }) => {
 ```js
 const Button = ({ children, disabled = false }) => {
   return (
-    <button disabled={disabled} className="button">
-      { children }
+    <button disabled={disabled} className='button'>
+      {children}
     </button>
-  );
+  )
 }
 
-const usage = <Button disabled>A button</Button>;
+const usage = <Button disabled>A button</Button>
 ```
 
 ----
@@ -147,16 +147,16 @@ const usage = <Button disabled>A button</Button>;
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState('')
   return (
     <input
-      type="text"
-      name="firstName"
+      type='text'
+      name='firstName'
       value={firstName}
       onChange={evt => setFirstName(evt.target.value)}
     />
-  );
-};
+  )
+}
 ```
 
 ----

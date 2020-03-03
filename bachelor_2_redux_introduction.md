@@ -23,11 +23,11 @@ https://codesandbox.io/embed/zqqkxrk14l?fontsize=14
 
 ```js
 function getUserName (users, id) {
-  let user = users.filter(obj => {
-    return obj.id === id;
-  });
+  const user = users.filter(obj => {
+    return obj.id === id
+  })
 
-  return user[0].name; // Might crash if user wasn't found
+  return user[0].name // Might crash if user wasn't found
 }
 ```
 
@@ -87,7 +87,7 @@ const FormInput = ({ type, ...otherProps }) => {
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
-immutableObject.test = 10;
+immutableObject.test = 10
 console.log(immutableObject) // => { test: 1 }
 ````
 
@@ -96,7 +96,7 @@ console.log(immutableObject) // => { test: 1 }
 
 ````js
 const immutableObject = Object.freeze({ a: 1, b: 2 })
-const updatedObject = Object.freeze({ ...immutableObject, a: 2 });
+const updatedObject = Object.freeze({ ...immutableObject, a: 2 })
 console.log(updatedObject) // => { a: 2, b: 2 }
 ````
 
@@ -104,8 +104,8 @@ console.log(updatedObject) // => { a: 2, b: 2 }
 ## Unfreeze an object
 
 ````js
-const immutableObject = Object.freeze({ test: 1 });
-const unfrozenCopy = { ...immutableObject };
+const immutableObject = Object.freeze({ test: 1 })
+const unfrozenCopy = { ...immutableObject }
 ````
 
 ----
@@ -146,63 +146,63 @@ const unfrozenCopy = { ...immutableObject };
       - no mutation of non-local state
 
 ```js
-const add = (a, b) => a + b;
+const add = (a, b) => a + b
 ```
 
 ----
 ## Pure or in-pure?
 
 ```js
-const array = [1,2,3,4,5,6];
-const fn1 = (array) => array.slice(0,3);
-const fn2 = (array) => array.splice(0,3);
-const fn3 = (array) => array.shift();
-const fn4 = (array) => array.pop();
-const fn5 = (array) => array.sort((a, b) => a - b);
-const fn6 = (array) => [...array].sort((a, b) => a - b);
-const fn7 = (array) => array.map((item) => item * 2);
-const fn8 = (array) => array.forEach((item) => console.log(item));
+const array = [1, 2, 3, 4, 5, 6]
+const fn1 = (array) => array.slice(0, 3)
+const fn2 = (array) => array.splice(0, 3)
+const fn3 = (array) => array.shift()
+const fn4 = (array) => array.pop()
+const fn5 = (array) => array.sort((a, b) => a - b)
+const fn6 = (array) => [...array].sort((a, b) => a - b)
+const fn7 = (array) => array.map((item) => item * 2)
+const fn8 = (array) => array.forEach((item) => console.log(item))
 ```
 
 ----
 ## Pure or in-pure?
 
 ```js
-const array = [1,2,3,4,5,6];
-const fn1 = (array) => array.slice(0,3); // ✅
-const fn2 = (array) => array.splice(0,3); // 🚫
-const fn3 = (array) => array.shift(); // 🚫
-const fn4 = (array) => array.pop(); // 🚫
-const fn5 = (array) => array.sort((a, b) => a - b); // 🚫
-const fn6 = (array) => [...array].sort((a, b) => a - b); // ✅
-const fn7 = (array) => array.map((item) => item * 2); // ✅
-const fn8 = (array) => array.forEach((item) => console.log(item)); // 🚫
+const array = [1, 2, 3, 4, 5, 6]
+const fn1 = (array) => array.slice(0, 3) // ✅
+const fn2 = (array) => array.splice(0, 3) // 🚫
+const fn3 = (array) => array.shift() // 🚫
+const fn4 = (array) => array.pop() // 🚫
+const fn5 = (array) => array.sort((a, b) => a - b) // 🚫
+const fn6 = (array) => [...array].sort((a, b) => a - b) // ✅
+const fn7 = (array) => array.map((item) => item * 2) // ✅
+const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ```
 
 ----
 ## Pure or in-pure?
 
 ```js
-let config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ```js
-const config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ----
 ## Pure or in-pure?
 
 ```js
-let config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ```js
-const config = { minimumAge: 18 };
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ```js
@@ -215,8 +215,8 @@ isAllowedToDring(18) // false
 ----
 ## Pure or inpure? 2/2
 ```js
-const config = Object.freeze({ minimumAge: 18 });
-const isAllowedToDrink = (age) => age >= config.minimumAge;
+const config = Object.freeze({ minimumAge: 18 })
+const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ```js
@@ -312,14 +312,14 @@ const SimpleForm = ({ onSubmit }) => {
 
 ```js
 // Executed on every rerender
-useEffect(() => {});
+useEffect(() => {})
 
 // Executed when component rendered initially
-useEffect(() => {}, []);
+useEffect(() => {}, [])
 
 // Executed when component rendered initially
 // and when variable changes.
-useEffect(() => {}, [variable]);
+useEffect(() => {}, [variable])
 ```
 
 ----
@@ -513,14 +513,14 @@ useEffect(() => {}, [variable]);
 
 ```js
 const signInAction = {
-  type: "signIn",
+  type: 'signIn',
   payload: {
-    username: "peter",
-    password: "the clam"
+    username: 'peter',
+    password: 'the clam'
   }
 }
 
-store.dispatch(signInAction);
+store.dispatch(signInAction)
 ```
 ----
 
@@ -532,25 +532,25 @@ store.dispatch(signInAction);
 
 ```js
 const actionCreator = () => (dispatch) => {
-  dispatch({ type: 'action1', payload: {} });
-  dispatch({ type: 'action2', payload: { something: 'random' } });
-  dispatch({ type: 'action3', payload: { something: 'random' } });
+  dispatch({ type: 'action1', payload: {} })
+  dispatch({ type: 'action2', payload: { something: 'random' } })
+  dispatch({ type: 'action3', payload: { something: 'random' } })
   // ...
-};
+}
 
-store.dispatch(actionCreator());
+store.dispatch(actionCreator())
 ```
 
 ----
 #### Action creator with params
 
 ```js
-const actionCreatorWithData = ({ username, password}) => (dispatch) => {
-  dispatch({ type: 'action1', payload: { username, password } });
-  dispatch({ type: 'action2/success', payload: { something: 'random' } });
-};
+const actionCreatorWithData = ({ username, password }) => (dispatch) => {
+  dispatch({ type: 'action1', payload: { username, password } })
+  dispatch({ type: 'action2/success', payload: { something: 'random' } })
+}
 
-store.dispatch(signInAction({ username: 'Mike', password: '1234' }));
+store.dispatch(signInAction({ username: 'Mike', password: '1234' }))
 ```
 
 ----
@@ -559,23 +559,23 @@ store.dispatch(signInAction({ username: 'Mike', password: '1234' }));
 ```js
 const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
   async (dispatch) => {
-    dispatch({ type: 'createMoneyTransaction/initiated', payload: {}});
+    dispatch({ type: 'createMoneyTransaction/initiated', payload: {} })
     try {
       const moneyTransaction = await fetch('/money-transaction/', {
         creditorId,
         debitorId,
-        amount,
-      });
+        amount
+      })
       dispatch({
         type: 'createMoneyTransaction/success',
         payload: moneyTransaction
-      });
+      })
     } catch (e) {
-      dispatch({ type: 'createMoneyTransaction/error', payload: e });
+      dispatch({ type: 'createMoneyTransaction/error', payload: e })
     };
-  };
+  }
 
-store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
+store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
 
 ---
@@ -597,10 +597,10 @@ store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.
   - output next application state
 
 ```js
-const initialState = {};
+const initialState = {}
 const reducer = (previousState = initialState, action) => {
   // do something with the state
-  return nextState;
+  return nextState
 }
 ```
 
@@ -608,17 +608,17 @@ const reducer = (previousState = initialState, action) => {
 ### Reducers
 
 ```js
-const initialState = [];
+const initialState = []
 const moneyTransactionReducer = (previousState = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'createMoneyTransaction/success':
-      return [...previousState, action.payload];
+      return [...previousState, action.payload]
     case 'reset':
-      return initialState;
+      return initialState
     default:
-      return previousState;
+      return previousState
   };
-};
+}
 ```
 
 ---
@@ -641,20 +641,20 @@ import { createMoneyTransaction } from '../action-creators/money-transactions'
 const mapStateToProps = (state, props) => {
   return {
     moneyTransactions: state.moneyTransactions
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     createMoneyTransaction: (payload) =>
       dispatch(createMoneyTransaction(payload))
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(MoneyTransactionList);
+  mapDispatchToProps
+)(MoneyTransactionList)
 ```
 
 ----
@@ -805,34 +805,34 @@ const Routes = () => (
 ### Add Links from html
 
  ```js
- import { Link } from "react-router-dom";
-
-const Routes = () => (
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/sign-in">Sign in</Link>
-  </nav>
-);
+ import { Link } from 'react-router-dom'
+ 
+ const Routes = () => (
+   <nav>
+     <Link to='/'>Home</Link>
+     <Link to='/sign-in'>Sign in</Link>
+   </nav>
+)
 ```
 
 ----
 ### Add redirects from JS
 
  ```js
- import { withRouter } from "react-router-dom";
-
-const SignIn = withRouter(({ history }) => {
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    history.push('/')
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      { /* ... */ }
-    </form>
-  )
-});
+ import { withRouter } from 'react-router-dom'
+ 
+ const SignIn = withRouter(({ history }) => {
+   const onSubmit = (evt) => {
+     evt.preventDefault()
+     history.push('/')
+   }
+ 
+   return (
+     <form onSubmit={onSubmit}>
+       {/* ... */}
+     </form>
+   )
+})
 ```
 
 ---

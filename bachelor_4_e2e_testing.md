@@ -56,12 +56,12 @@ await driver.get('https://compup.agilesoftware.dev');
 
 ```js
 const clickLink = async (driver, href) => {
-  const element = By.js(`return document.querySelector('[href="${href}"]');`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.js(`return document.querySelector('[href="${href}"]');`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
-};
+    .click()
+}
 ```
 
 ----
@@ -70,11 +70,11 @@ const clickLink = async (driver, href) => {
 ```js
 const fillFormField = async (driver, { name, value }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(value); // Sends form values to field
-};
+    .sendKeys(value) // Sends form values to field
+}
 ```
 
 ----
@@ -82,11 +82,11 @@ const fillFormField = async (driver, { name, value }) => {
 
 ```js
 const clickText = async (driver, text) => {
-  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
+    .click()
 }
 ```
 
@@ -96,11 +96,11 @@ const clickText = async (driver, text) => {
 ```js
 const hitEnterInFormField = async (driver, { name }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(Key.ENTER);
-};
+    .sendKeys(Key.ENTER)
+}
 ```
 
 ----

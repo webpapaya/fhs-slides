@@ -94,8 +94,8 @@
 
 ```js
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -104,13 +104,13 @@ it('returns 3$, when product A given', () => {
   - if there is only 1 product just return 3$
 
 ```js
-function caluculatePrice() {
-  return '3$';
+function caluculatePrice () {
+  return '3$'
 };
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ----
@@ -119,11 +119,11 @@ it('returns 3$, when product A given', () => {
 - "Clean the kitchen"
 
 ```js
-const caluculatePrice = () => '3$';
+const caluculatePrice = () => '3$'
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 
 ---
@@ -141,15 +141,15 @@ it('returns a list of employees ordered by their name', () => {
   const employees = [
     { name: 'Sepp' },
     { name: 'Max' },
-    { name: 'Anton' },
-  ];
+    { name: 'Anton' }
+  ]
 
   // Act
-  const result = employeeReport(employees);
+  const result = employeeReport(employees)
 
   // Assert
-  assertThat(result, orderedBy((a, b) => a.name < b.name));
-});
+  assertThat(result, orderedBy((a, b) => a.name < b.name))
+})
 ```
 
 ---
@@ -188,7 +188,7 @@ afterEach(cleanup)
 describe('Button', () => {
   it('renders given text', () => {
     const givenText = 'A Button'
-    const { container } = render(<Button>{givenText}</Button>);
+    const { container } = render(<Button>{givenText}</Button>)
     expect(queryByText(container, givenText)).toBeTruthy()
   })
 })
@@ -239,7 +239,7 @@ describe('Button', () => {
 
 ```js
 const retrieveGPSPosition = () =>
-  Promise.resolve({ lat: 12.12, lng: 14.15 });
+  Promise.resolve({ lat: 12.12, lng: 14.15 })
 ```
 
 ----
@@ -250,10 +250,10 @@ const retrieveGPSPosition = () =>
 
 ```js
 it('sends an email on sign up', () => {
-  const sendEmail = buildFunctionSpy();
-  const signUp = signUp({ sendEmail }, username, password);
-  assertThat(sendEmail, wasCalled());
-});
+  const sendEmail = buildFunctionSpy()
+  const signUp = signUp({ sendEmail }, username, password)
+  assertThat(sendEmail, wasCalled())
+})
 ```
 
 

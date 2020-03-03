@@ -185,14 +185,14 @@
 
 ```js
 const signInAction = {
-  type: "signIn",
+  type: 'signIn',
   payload: {
-    username: "peter",
-    password: "the clam"
+    username: 'peter',
+    password: 'the clam'
   }
 }
 
-store.dispatch(signInAction);
+store.dispatch(signInAction)
 ```
 ----
 
@@ -204,13 +204,13 @@ store.dispatch(signInAction);
 
 ```js
 const actionCreator = () => (dispatch) => {
-  dispatch({ type: 'action1', payload: {} });
-  dispatch({ type: 'action2', payload: { something: 'random' } });
-  dispatch({ type: 'action3', payload: { something: 'random' } });
+  dispatch({ type: 'action1', payload: {} })
+  dispatch({ type: 'action2', payload: { something: 'random' } })
+  dispatch({ type: 'action3', payload: { something: 'random' } })
   // ...
-};
+}
 
-store.dispatch(actionCreator());
+store.dispatch(actionCreator())
 ```
 
 ----
@@ -219,23 +219,23 @@ store.dispatch(actionCreator());
 ```js
 const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
   async (dispatch) => {
-    dispatch({ type: 'createMoneyTransaction/initiated', payload: {}});
+    dispatch({ type: 'createMoneyTransaction/initiated', payload: {} })
     try {
       const moneyTransaction = await fetch('/money-transaction/', {
         creditorId,
         debitorId,
-        amount,
-      });
+        amount
+      })
       dispatch({
         type: 'createMoneyTransaction/success',
         payload: moneyTransaction
-      });
+      })
     } catch (e) {
-      dispatch({ type: 'createMoneyTransaction/error', payload: e });
+      dispatch({ type: 'createMoneyTransaction/error', payload: e })
     };
-  };
+  }
 
-store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
+store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
 
 ---
@@ -257,10 +257,10 @@ store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }));
   - output next application state
 
 ```js
-const initialState = {};
+const initialState = {}
 const reducer = (previousState = initialState, action) => {
   // do something with the state
-  return nextState;
+  return nextState
 }
 ```
 
@@ -268,17 +268,17 @@ const reducer = (previousState = initialState, action) => {
 ### Reducers
 
 ```js
-const initialState = [];
+const initialState = []
 const moneyTransactionReducer = (previousState = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'createMoneyTransaction/success':
-      return [...previousState, action.payload];
+      return [...previousState, action.payload]
     case 'reset':
-      return initialState;
+      return initialState
     default:
-      return previousState;
+      return previousState
   };
-};
+}
 ```
 
 ---
@@ -301,20 +301,20 @@ import { createMoneyTransaction } from '../action-creators/money-transactions'
 const mapStateToProps = (state, props) => {
   return {
     moneyTransactions: state.moneyTransactions
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     createMoneyTransaction: (payload) =>
       dispatch(createMoneyTransaction(payload))
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(MoneyTransactionList);
+  mapDispatchToProps
+)(MoneyTransactionList)
 ```
 
 ----
