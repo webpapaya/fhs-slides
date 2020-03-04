@@ -1,11 +1,5 @@
 # Testing React Components
-
----
-
-# About/Contact
-
-- Thomas Mayrhofer (@webpapaya)
-- E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
+## (MMT-M2019)
 
 ---
 
@@ -168,13 +162,12 @@ it('returns a list of employees ordered by their name', () => {
 ### TDD Trap
 
 - Bad tests
-- How do good tests look like
+- Endless discussions "How do good tests look like"
 - Don't focus on implementation detail but behaviour
 - Tests are getting in their way
 - TDD is not easy to start
 - Extremely hard to master
 - Deleting tests is fine (if they're not required anymore)
-
 
 ---
 ### TDD React Components
@@ -222,6 +215,7 @@ describe('Button', () => {
 - Objects which aren't used
   - so that the compiler doesn't complain
   - used to fill parameter lists
+
 
 ----
 # Fake objects
@@ -375,9 +369,5 @@ proxyquire
 ---
 # Feedback
 
-https://de.surveymonkey.com/r/XQ96YZX
-
----
-# TODOs:
-- spy section
-- mocking node modules
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- https://de.surveymonkey.com/r/XQ96YZX

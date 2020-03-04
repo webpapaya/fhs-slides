@@ -1,4 +1,5 @@
 # React Introduction
+## (MMT-M2019)
 
 ---
 
@@ -6,7 +7,6 @@
 
 - Thomas Mayrhofer (@webpapaya)
 - E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
-
 
 ---
 
@@ -424,4 +424,6 @@ const ANestedComponent = () => {
 ---
 # Feedback
 
-https://de.surveymonkey.com/r/XQ96YZX
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- https://de.surveymonkey.com/r/XQ96YZX
+

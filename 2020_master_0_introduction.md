@@ -29,4 +29,5 @@ Build/Test/Deploy Client Side Web-Applications
 
 # Feedback
 
-https://de.surveymonkey.com/r/XQ96YZX
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- https://de.surveymonkey.com/r/XQ96YZX
