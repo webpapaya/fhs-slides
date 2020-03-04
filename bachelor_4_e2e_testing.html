@@ -58,33 +58,33 @@ await driver.get('https://compup.agilesoftware.dev');
 
 ```js
 const clickLink = async (driver, href) => {
-  const element = By.js(`return document.querySelector('[href="${href}"]');`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.js(`return document.querySelector('[href="${href}"]');`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
-};
+    .click()
+}
 ```
 </script></section><section data-markdown><script type="text/template"># Fill a form field
 
 ```js
 const fillFormField = async (driver, { name, value }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(value); // Sends form values to field
-};
+    .sendKeys(value) // Sends form values to field
+}
 ```
 </script></section><section data-markdown><script type="text/template"># Click some text
 
 ```js
 const clickText = async (driver, text) => {
-  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`);
-  await driver.wait(until.elementLocated(element));
+  const element = By.xpath(`//*[text()[contains(.,'${text}')]]`)
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .click();
+    .click()
 }
 ```
 </script></section><section data-markdown><script type="text/template"># Hit Enter in text field
@@ -92,11 +92,11 @@ const clickText = async (driver, text) => {
 ```js
 const hitEnterInFormField = async (driver, { name }) => {
   const element = By.js(`return document.querySelector('[name=${name}]');`)
-  await driver.wait(until.elementLocated(element));
+  await driver.wait(until.elementLocated(element))
   await driver
     .findElement(element)
-    .sendKeys(Key.ENTER);
-};
+    .sendKeys(Key.ENTER)
+}
 ```
 </script></section><section data-markdown><script type="text/template"># E2E tests
 - What would be good E2E tests for

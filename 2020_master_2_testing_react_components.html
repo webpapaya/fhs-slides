@@ -15,11 +15,7 @@
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template"># Testing React Components
-</script></section><section  data-markdown><script type="text/template">
-# About/Contact
-
-- Thomas Mayrhofer (@webpapaya)
-- E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
+## (MMT-M2019)
 </script></section><section ><section data-markdown><script type="text/template">
 ### Testing Pyramid
 
@@ -84,32 +80,32 @@
 
 ```js
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section><section data-markdown><script type="text/template">### Green
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
 ```js
-function caluculatePrice() {
-  return '3$';
+function caluculatePrice () {
+  return '3$'
 };
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section><section data-markdown><script type="text/template">### Refactor
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
 ```js
-const caluculatePrice = () => '3$';
+const caluculatePrice = () => '3$'
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section></section><section ><section data-markdown><script type="text/template"># Anatomy of a Test
 
@@ -123,15 +119,15 @@ it('returns a list of employees ordered by their name', () => {
   const employees = [
     { name: 'Sepp' },
     { name: 'Max' },
-    { name: 'Anton' },
-  ];
+    { name: 'Anton' }
+  ]
 
   // Act
-  const result = employeeReport(employees);
+  const result = employeeReport(employees)
 
   // Assert
-  assertThat(result, orderedBy((a, b) => a.name < b.name));
-});
+  assertThat(result, orderedBy((a, b) => a.name < b.name))
+})
 ```
 </script></section></section><section ><section data-markdown><script type="text/template"># What makes a good test
 
@@ -146,13 +142,12 @@ it('returns a list of employees ordered by their name', () => {
 </script></section><section data-markdown><script type="text/template">### TDD Trap
 
 - Bad tests
-- How do good tests look like
+- Endless discussions "How do good tests look like"
 - Don't focus on implementation detail but behaviour
 - Tests are getting in their way
 - TDD is not easy to start
 - Extremely hard to master
 - Deleting tests is fine (if they're not required anymore)
-
 </script></section></section><section  data-markdown><script type="text/template">### TDD React Components
 
 ```js
@@ -164,7 +159,7 @@ afterEach(cleanup)
 describe('Button', () => {
   it('renders given text', () => {
     const givenText = 'A Button'
-    const { container } = render(<Button>{givenText}</Button>);
+    const { container } = render(<Button>{givenText}</Button>)
     expect(queryByText(container, givenText)).toBeTruthy()
   })
 })
@@ -192,6 +187,7 @@ describe('Button', () => {
 - Objects which aren't used
   - so that the compiler doesn't complain
   - used to fill parameter lists
+
 </script></section><section data-markdown><script type="text/template"># Fake objects
 - Objects have a working implementation
   - but take some shortcuts
@@ -205,7 +201,7 @@ describe('Button', () => {
 
 ```js
 const retrieveGPSPosition = () =>
-  Promise.resolve({ lat: 12.12, lng: 14.15 });
+  Promise.resolve({ lat: 12.12, lng: 14.15 })
 ```
 </script></section><section data-markdown><script type="text/template"># Spy objects
 - Are stubs that also record the way they were called
@@ -214,10 +210,10 @@ const retrieveGPSPosition = () =>
 
 ```js
 it('sends an email on sign up', () => {
-  const sendEmail = buildFunctionSpy();
-  const signUp = signUp({ sendEmail }, username, password);
-  assertThat(sendEmail, wasCalled());
-});
+  const sendEmail = buildFunctionSpy()
+  const signUp = signUp({ sendEmail }, username, password)
+  assertThat(sendEmail, wasCalled())
+})
 ```
 
 </script></section></section><section ><section data-markdown><script type="text/template"># Integrated tests  <!-- .element: class="color--white" -->
@@ -305,10 +301,9 @@ proxyquire
 - https://gist.github.com/webpapaya/0532e52ba6f64db9ceb8500c0167c680
 </script></section><section  data-markdown><script type="text/template"># Feedback
 
-https://de.surveymonkey.com/r/XQ96YZX
-</script></section><section  data-markdown><script type="text/template"># TODOs:
-- spy section
-- mocking node modules</script></section></div>
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- https://de.surveymonkey.com/r/XQ96YZX
+</script></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>

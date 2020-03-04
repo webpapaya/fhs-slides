@@ -128,32 +128,32 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 
 ```js
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section><section data-markdown><script type="text/template">### Green
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
 ```js
-function caluculatePrice() {
-  return '3$';
+function caluculatePrice () {
+  return '3$'
 };
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section><section data-markdown><script type="text/template">### Refactor
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
 ```js
-const caluculatePrice = () => '3$';
+const caluculatePrice = () => '3$'
 
 it('returns 3$, when product A given', () => {
-  assert.equal(calculatePrice('productA'), '3$');
-});
+  assert.equal(calculatePrice('productA'), '3$')
+})
 ```
 </script></section></section><section ><section data-markdown><script type="text/template"># Anatomy of a Test
 
@@ -167,15 +167,15 @@ it('returns a list of employees ordered by their name', () => {
   const employees = [
     { name: 'Sepp' },
     { name: 'Max' },
-    { name: 'Anton' },
-  ];
+    { name: 'Anton' }
+  ]
 
   // Act
-  const result = employeeReport(employees);
+  const result = employeeReport(employees)
 
   // Assert
-  assertThat(result, orderedBy((a, b) => a.name < b.name));
-});
+  assertThat(result, orderedBy((a, b) => a.name < b.name))
+})
 ```
 </script></section></section><section ><section data-markdown><script type="text/template"># What makes a good test
 

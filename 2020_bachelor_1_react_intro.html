@@ -14,14 +14,8 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React</script></section><section ><section data-markdown><script type="text/template"># What we'll build in the next 2 days
-</script></section><section data-markdown><script type="text/template">
-![sign_in](assets/sign_in_wireframe.png)
-</script></section><section data-markdown><script type="text/template">
-![sign_up](assets/sign_up_wireframe.png)
-</script></section><section data-markdown><script type="text/template">
-![app](assets/app_wireframe.png)
-</script></section></section><section  data-markdown><script type="text/template">
+      <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React
+</script></section><section  data-markdown><script type="text/template">
 ## React
 
 - Component based library to build composable UIs
@@ -79,7 +73,37 @@ const Button = () => {
   )
 }
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section></section><section ><section data-markdown><script type="text/template">### Loop over arrays
+
+```js
+const Button = ({ users }) => {
+  return (
+    <ul type='button'>
+      {users.map((user) => {
+        return (<li key={user.id}>{user.name}</li>)
+      })}
+    </ul>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+### key property in loops
+
+- Is required when interating over lists
+- Helps react to decide if an element needs to be rerendered
+- [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
+- [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
+</script></section></section><section  data-markdown><script type="text/template">
+## Types of components
+
+- Possible conceptual structure for components
+  - components/
+    - could be reused in other applications
+    - don't have domain logic (eg. Button)
+  - container/<container_name>/organism/
+    - contain domain logic
+    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
+</script></section><section ><section data-markdown><script type="text/template">
 ## Which components do you see?
 
 ![app](assets/sign_in_wireframe.png)
@@ -89,7 +113,6 @@ const Button = () => {
 # Building the first react component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="./assets/coding.gif" -->
-
 </script></section><section ><section data-markdown><script type="text/template">
 ## Component composition
 
@@ -117,93 +140,43 @@ const Button = ({ children, disabled = false }) => {
 
 const usage = <Button disabled>A button</Button>
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">
-### React Hooks
+</script></section><section data-markdown><script type="text/template">
+# React State (with Hooks)
 
-- Introduced recently to reduce boilerplate
-- Makes it possible to use state in functional components
-  - Previously one had to convert between functional/class components when state introduced
-- hooks are prefixed with `use`
-- Can't be called inside loops, conditions or nested functions
-</script></section><section data-markdown><script type="text/template">### State without hooks
-
-```js
-class App extends React.Component {
-  state = { count: 0 }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 })
-  }
-  render() {
-    return (
-      <div>
-        <div>
-          {this.state.count}
-        </div>
-        <button onClick={this.handleIncrement}>Increment by 1</button>
-      </div>
-    )
-  }
-}
-```
-</script></section><section data-markdown><script type="text/template">### State with hooks
-
-```js
-const App = () => {
-  const [count, setCount] => useState(0);
-  const handleIncrement = () => setCount(count + 1);
-
-  return (
-    <div>
-      <div>{count}</div>
-      <button onClick={handleIncrement}>Increment by 1</button>
-    </div>
-  );
-}
-```
-</script></section><section data-markdown><script type="text/template">### useEffect
+- State allows components to by dynamic/interactive
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
-  const [counter, setCounter] = useState(0);
-
-  // Is executed when component is rendered for the first time
-  // And when the counter variable changes.
-  useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
-
+  const [firstName, setFirstName] = useState('')
   return (
-    <Button onClick={() => setCounter(counter + 1)}>
-      {counter}
-    <Button>
-  );
-};
+    <input
+      type='text'
+      name='firstName'
+      value={firstName}
+      onChange={evt => setFirstName(evt.target.value)}
+    />
+  )
+}
 ```
-</script></section><section data-markdown><script type="text/template">### useEffect
+</script></section><section data-markdown><script type="text/template">
+# React State (without hooks)
 
 ```js
-// Executed on every rerender
-useEffect(() => {})
-
-// Executed when component rendered initially
-useEffect(() => {}, [])
-
-// Executed when component rendered initially
-// and when variable changes.
-useEffect(() => {}, [variable])
+class SimpleForm extends React.Component {
+  state = { username: '' };
+  render() {
+    return (
+      <input
+        type="text"
+        name="firstName"
+        value={this.state.userName}
+        onChange={evt => this.setState({ username: evt.target.value }) }
+      />
+    );
+  }
+}
 ```
-</script></section><section data-markdown><script type="text/template">### Other hooks
-
-- [API Reference](https://reactjs.org/docs/hooks-reference.html)
-  - useReducer
-  - useCallback
-  - useMemo
-  - useRef
-  - useImperativeHandle
-  - useLayoutEffect
-  - useDebugValue
-</script></section></section><section  data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
 ## State vs. Props
 
 | _props_ | _state_ |
@@ -216,7 +189,7 @@ Can set initial value for child Components? | Yes | Yes
 Can change in child Components? | Yes | No
 
 [source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
-</script></section><section  data-markdown><script type="text/template">
+</script></section></section><section  data-markdown><script type="text/template">
 ## Task
 
 - Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
@@ -227,6 +200,7 @@ Can change in child Components? | Yes | No
   - Username
   - Password
 - If you're done help others
+
 </script></section><section ><section data-markdown><script type="text/template">### React Router
 
  - dynamic routing library for
@@ -276,7 +250,7 @@ const Routes = () => (
 
  ```js
 // path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
+// path === "/sign-in" => renderes SignIn
 const Routes = () => (
   <Switch>
     <Route path="/sign-in" component={SignIn}>
@@ -300,7 +274,7 @@ const Routes = () => (
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -312,13 +286,13 @@ const Routes = () => (
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -326,11 +300,45 @@ const Routes = () => (
    )
 })
 ```
-</script></section><section data-markdown><script type="text/template">### Task
-- Add the following routes to your application
-- /sign-in
-- /sign-up
-- /app
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Homework
+
+- Build the following components in Storybook
+  - UserSignIn -> onSubmit => { username, password }
+  - UserSignUp -> onSubmit => { username, password }
+  - MoneyTransactionCreate
+    - users => { id, name }
+    - onSubmit => { debitorId, creditorId, amount }
+
+  - MoneyTransactionList (Lists all Money Transactions)
+    - moneyTransactions
+    - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
+
+- You probably need the following core components
+  - `<TextInput {...} />`
+  - `<DecimalInput {...} />`
+  - `<SelectInput {...} />`
+  - `<Button {...} />`
+  - ...
+
+- Allowed to use CSS Frameworks
+- Not allowed to use Component Libraries
+- You can use as a starting point https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Mock Data for the API https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
+- Add the following routes
+  - /sign-in
+    - Sign-In component is rendered
+  - /sign-up
+    - Sign-Up component is rendered
+  - /money-transactions
+    - money-transactions-create component is rendered
+    - money-transaction-list component is rendered
+</script></section><section data-markdown><script type="text/template">
+![sign_in](assets/sign_in_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![sign_up](assets/sign_up_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![app](assets/app_wireframe.png)
 </script></section></section><section  data-markdown><script type="text/template">
 ## Tools/Resources
 
@@ -339,9 +347,11 @@ const Routes = () => (
   - [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
 - [Overreacted](https://overreacted.io/)
 </script></section><section  data-markdown><script type="text/template">
-## Feedback
+## Feedback/Questions
 
-https://de.surveymonkey.com/r/J6693VN</script></section></div>
+- https://de.surveymonkey.com/r/J6693VN
+- tmayrhofer.lba@fh-salzburg.ac.at
+</script></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>

@@ -15,12 +15,12 @@
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template"># React Introduction
+## (MMT-M2019)
 </script></section><section  data-markdown><script type="text/template">
 # About/Contact
 
 - Thomas Mayrhofer (@webpapaya)
 - E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
-
 </script></section><section  data-markdown><script type="text/template">
 ## React
 
@@ -40,14 +40,14 @@
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 
 // Usage
-React.renderComponent(<Button />, document.body);
+React.renderComponent(<Button />, document.body)
 ```
 </script></section><section data-markdown><script type="text/template">
 ## JSX
@@ -59,10 +59,10 @@ React.renderComponent(<Button />, document.body);
 ```js
 const Button = () => {
   return (
-    <button type="button">
+    <button type='button'>
       A button
     </button>
-  );
+  )
 }
 ```
 </script></section><section data-markdown><script type="text/template">
@@ -74,9 +74,9 @@ const Button = () => {
 const Button = () => {
   return React.createElement(
     'button',
-    {type: 'button'},
+    { type: 'button' },
     'A button'
-  );
+  )
 }
 ```
 </script></section></section><section ><section data-markdown><script type="text/template">
@@ -98,12 +98,12 @@ const Button = () => {
 ```js
 const Button = ({ users }) => {
   return (
-    <ul type="button">
-      { users.map((user) => {
+    <ul type='button'>
+      {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
-      }) }
+      })}
     </ul>
-  );
+  )
 }
 ```
 </script></section><section data-markdown><script type="text/template">### key property in loops
@@ -124,13 +124,13 @@ const Button = ({ users }) => {
 ```js
 const Button = ({ children, disabled = false }) => {
   return (
-    <button disabled={disabled} className="button">
-      { children }
+    <button disabled={disabled} className='button'>
+      {children}
     </button>
-  );
+  )
 }
 
-const usage = <Button disabled>A button</Button>;
+const usage = <Button disabled>A button</Button>
 ```
 </script></section></section><section ><section data-markdown><script type="text/template">
 # React State (with Hooks)
@@ -139,16 +139,16 @@ const usage = <Button disabled>A button</Button>;
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState('')
   return (
     <input
-      type="text"
-      name="firstName"
+      type='text'
+      name='firstName'
       value={firstName}
       onChange={evt => setFirstName(evt.target.value)}
     />
-  );
-};
+  )
+}
 ```
 </script></section><section data-markdown><script type="text/template"># React State (without hooks)
 
@@ -251,20 +251,20 @@ const App = () => {
 
 ```js
 // Executed on every rerender
-useEffect(() => {});
+useEffect(() => {})
 
 // Executed when component rendered initially
-useEffect(() => {}, []);
+useEffect(() => {}, [])
 
 // Executed when component rendered initially
 // and when variable changes.
-useEffect(() => {}, [variable]);
+useEffect(() => {}, [variable])
 
 // Cleanup when component unmounts (eg. eventHandlers, setInterval/setTimeout)
 useEffect(() => {
   // do something fancy
   return () => { console.log('cleanup') }
-}, [variable]);
+}, [variable])
 ```
 </script></section><section data-markdown><script type="text/template">### Previous Example
 
@@ -346,8 +346,8 @@ const App = () => {
 ![global state tree](assets/global_state_tree.png)
 </script></section><section data-markdown><script type="text/template">### Creating a context
 ```js
-const DEFAULT_VALUE = 1;
-const MyContext = React.createContext(DEFAULT_VALUE);
+const DEFAULT_VALUE = 1
+const MyContext = React.createContext(DEFAULT_VALUE)
 
 const RootComponent = () => {
   return (
@@ -380,7 +380,9 @@ const ANestedComponent = () => {
   - useDebugValue
 </script></section></section><section  data-markdown><script type="text/template"># Feedback
 
-https://de.surveymonkey.com/r/XQ96YZX
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- https://de.surveymonkey.com/r/XQ96YZX
+
 </script></section></div>
     </div>
 
