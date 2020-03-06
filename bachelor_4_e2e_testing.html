@@ -15,19 +15,25 @@
   <body>
     <div class="reveal">
       <div class="slides"><section ><section data-markdown><script type="text/template"># E2E tests
+
 ## (MMT-B2017)
-</script></section><section data-markdown><script type="text/template">### E2E tests
+</script></section><section data-markdown><script type="text/template">
+### E2E tests
+
 - Test the whole application from start to finish
 - Ensure right information is passed between systems
 - Hard to setup/maintain
   - Changing submit button label to sign-up might break tests
-</script></section><section data-markdown><script type="text/template">### E2E testing recommendation
+</script></section><section data-markdown><script type="text/template">
+### E2E testing recommendation
+
 - Find a couple of happy paths through the app
   - max 10
 - Run those happy paths agains supported browsers
 - Many things can go wrong
   - retry your tests
-</script></section><section data-markdown><script type="text/template"># Selenium
+</script></section><section data-markdown><script type="text/template">
+# Selenium
 
 - Tool to automate browsers
 - Can be used to write e2e tests
@@ -36,12 +42,14 @@
   - Firefox
   - IE/Edge
   - Safari
-</script></section><section data-markdown><script type="text/template">### API
+</script></section><section data-markdown><script type="text/template">
+### API
 
 - Pretty low level
 - Poor documentation
 - build own API on top of Selenium API
-</script></section><section data-markdown><script type="text/template"># Setup a new driver
+</script></section><section data-markdown><script type="text/template">
+# Setup a new driver
 
 ```js
 // process.env.SELENIUM_DRIVER one of chrome, edge, safari, firefox
@@ -49,12 +57,14 @@ const driver = await new Builder().forBrowser(process.env.SELENIUM_DRIVER).build
 
 await driver.quit();
 ```
-</script></section><section data-markdown><script type="text/template"># Navigate somewhere
+</script></section><section data-markdown><script type="text/template">
+# Navigate somewhere
 
 ```js
 await driver.get('https://compup.agilesoftware.dev');
 ```
-</script></section><section data-markdown><script type="text/template"># Click a link
+</script></section><section data-markdown><script type="text/template">
+# Click a link
 
 ```js
 const clickLink = async (driver, href) => {
@@ -65,7 +75,8 @@ const clickLink = async (driver, href) => {
     .click()
 }
 ```
-</script></section><section data-markdown><script type="text/template"># Fill a form field
+</script></section><section data-markdown><script type="text/template">
+# Fill a form field
 
 ```js
 const fillFormField = async (driver, { name, value }) => {
@@ -76,7 +87,8 @@ const fillFormField = async (driver, { name, value }) => {
     .sendKeys(value) // Sends form values to field
 }
 ```
-</script></section><section data-markdown><script type="text/template"># Click some text
+</script></section><section data-markdown><script type="text/template">
+# Click some text
 
 ```js
 const clickText = async (driver, text) => {
@@ -87,7 +99,8 @@ const clickText = async (driver, text) => {
     .click()
 }
 ```
-</script></section><section data-markdown><script type="text/template"># Hit Enter in text field
+</script></section><section data-markdown><script type="text/template">
+# Hit Enter in text field
 
 ```js
 const hitEnterInFormField = async (driver, { name }) => {
@@ -98,18 +111,24 @@ const hitEnterInFormField = async (driver, { name }) => {
     .sendKeys(Key.ENTER)
 }
 ```
-</script></section><section data-markdown><script type="text/template"># E2E tests
+</script></section><section data-markdown><script type="text/template">
+# E2E tests
+
 - What would be good E2E tests for
-  - https://compup.agilesoftware.dev
-</script></section><section data-markdown><script type="text/template"># Task 1/2
-- clone https://github.com/webpapaya/fhs-e2e-tests
+  - <https://compup.agilesoftware.dev>
+</script></section><section data-markdown><script type="text/template">
+# Task 1/2
+
+- clone <https://github.com/webpapaya/fhs-e2e-tests>
 - Write the following tests
   - Lending money to somebody else
     - Sign up 2 different users
     - One is lending money to somebody
     - The other pays back
     - Verify sum at top changed to 0
-</script></section><section data-markdown><script type="text/template">### Task 2/2
+</script></section><section data-markdown><script type="text/template">
+### Task 2/2
+
 - Write the following tests
   - Changing username
     - Sign up

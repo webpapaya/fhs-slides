@@ -15,15 +15,18 @@
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template"># Testing
+
 ## (MMT-B2017)
-</script></section><section ><section data-markdown><script type="text/template"># Exam
+</script></section><section ><section data-markdown><script type="text/template">
+# Exam
 
 - possible theoretical questions
   - Welche der folgenden Funktionen sind pur?
   - Welche Arten von State unterscheidet man?
   - Was macht ein `Reducer` in Redux?
   - ...
-</script></section><section data-markdown><script type="text/template"># Exam
+</script></section><section data-markdown><script type="text/template">
+# Exam
 
 - possible coding questions
   - Gegeben ist ein Redux-Store. Schreibe eine mapStateToProps welche den angemeldeten Nutzer zurückliefert.
@@ -31,13 +34,16 @@
     - Als externer Lektor, will ich eine nach Namen sortierte Liste der Studierenden, um herauszufinden wer abwesend ist.
 </script></section></section><section  data-markdown><script type="text/template">
 ### Roadmap
+
 - Testing
 - 2-3 coding katas sessions
 - Tomorrow: doing homework together
-</script></section><section ><section data-markdown><script type="text/template">### Testing Pyramid
+</script></section><section ><section data-markdown><script type="text/template">
+### Testing Pyramid
 
 ![testing pyramid](assets/testing_pyramid.png)
-</script></section><section data-markdown><script type="text/template">### Testing Pyramid
+</script></section><section data-markdown><script type="text/template">
+### Testing Pyramid
 
 - Unit tests
   - lots of small and isolated tests which are fast to execute
@@ -45,16 +51,19 @@
   - some integration tests which test external systems like databases
 - E2E
   - few tests which test the whole system
-</script></section><section data-markdown><script type="text/template">### Enterprise test pyramid
+</script></section><section data-markdown><script type="text/template">
+### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
-</script></section></section><section ><section data-markdown><script type="text/template"># Unit testing and TDD
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Unit testing and TDD
 
 - Test driven development (also known as TDD)
 - Type of software development
 - Introduced by Kent Beck
   - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
-</script></section><section data-markdown><script type="text/template">### Why TDD
+</script></section><section data-markdown><script type="text/template">
+### Why TDD
 
 - early/fast feedback during development
 - Driving the design of our application
@@ -66,15 +75,17 @@
 - executable documentation
   - Can't get out of sync
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
-</script></section><section data-markdown><script type="text/template">### TDD to me
+</script></section><section data-markdown><script type="text/template">
+### TDD to me
 
 > Getting confidence that refactoring doesn't break a feature.
-</script></section><section data-markdown><script type="text/template">### TDD
+</script></section><section data-markdown><script type="text/template">
+### TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
-
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
-</script></section><section data-markdown><script type="text/template">### What is TDD not
+</script></section><section data-markdown><script type="text/template">
+### What is TDD not
 
 - Silver bullet for clean code
   - it eventually leads to better code
@@ -82,10 +93,12 @@
   - TDD doesn't catch all bugs
   - Helps adding regression tests
 </script></section><section data-markdown><script type="text/template">> The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
-</script></section></section><section ><section data-markdown><script type="text/template">### TDD intro in 7:26 minutes
+</script></section></section><section ><section data-markdown><script type="text/template">
+### TDD intro in 7:26 minutes
 
-https://www.youtube.com/watch?v=WSes_PexXcA
-</script></section><section data-markdown><script type="text/template">### Essential vs. accidental complication
+<https://www.youtube.com/watch?v=WSes_PexXcA>
+</script></section><section data-markdown><script type="text/template">
+### Essential vs. accidental complication
 
 - Essential complication
   - The problem is hard
@@ -96,7 +109,8 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - eg. future proofing code
     - (it might be useful in the future)
   - we can try to improve ourselves
-</script></section><section data-markdown><script type="text/template">### Accidental complication
+</script></section><section data-markdown><script type="text/template">
+### Accidental complication
 
 - future proofing code
 - cutting corners
@@ -106,7 +120,8 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - mostly the feature isn't complex
   - the way the app is built drives the cost of a feature
 - big refactoring is hard to sell
-</script></section><section data-markdown><script type="text/template">### Avoid accidental complication
+</script></section><section data-markdown><script type="text/template">
+### Avoid accidental complication
 
 - Baby steps and TDD
 - Refactor a little after every feature/green test
@@ -114,15 +129,19 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - prevents big bang refactoring
     - which are hard to sell to business
 - Without refactoring features will take longer
-</script></section></section><section ><section data-markdown><script type="text/template"># TDD Cycle
+</script></section></section><section ><section data-markdown><script type="text/template">
+# TDD Cycle
 
 ![tdd cycle](assets/tdd_cycle.png)
-</script></section><section data-markdown><script type="text/template">### TDD Cycle
+</script></section><section data-markdown><script type="text/template">
+### TDD Cycle
 
 - Red: Write a test and watch it fail
 - Green: Write just as much code to make the test pass
 - Refactor: Clean up
-</script></section><section data-markdown><script type="text/template">### Red
+</script></section><section data-markdown><script type="text/template">
+### Red
+
 - Think about the test description
 - Descriptions should reflect the behaviour of the program
 
@@ -131,7 +150,9 @@ it('returns 3$, when product A given', () => {
   assert.equal(calculatePrice('productA'), '3$')
 })
 ```
-</script></section><section data-markdown><script type="text/template">### Green
+</script></section><section data-markdown><script type="text/template">
+### Green
+
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
@@ -144,7 +165,9 @@ it('returns 3$, when product A given', () => {
   assert.equal(calculatePrice('productA'), '3$')
 })
 ```
-</script></section><section data-markdown><script type="text/template">### Refactor
+</script></section><section data-markdown><script type="text/template">
+### Refactor
+
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
@@ -155,12 +178,15 @@ it('returns 3$, when product A given', () => {
   assert.equal(calculatePrice('productA'), '3$')
 })
 ```
-</script></section></section><section ><section data-markdown><script type="text/template"># Anatomy of a Test
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Anatomy of a Test
 
 - **A**rrange => test setup
 - **A**act => call the unit to test
 - **A**ssert => verify the result
-</script></section><section data-markdown><script type="text/template">### Anatomy of a Test
+</script></section><section data-markdown><script type="text/template">
+### Anatomy of a Test
+
 ```js
 it('returns a list of employees ordered by their name', () => {
   // Setup
@@ -177,7 +203,8 @@ it('returns a list of employees ordered by their name', () => {
   assertThat(result, orderedBy((a, b) => a.name < b.name))
 })
 ```
-</script></section></section><section ><section data-markdown><script type="text/template"># What makes a good test
+</script></section></section><section ><section data-markdown><script type="text/template">
+# What makes a good test
 
 - Deterministic
   - randomness hard to test
@@ -187,7 +214,8 @@ it('returns a list of employees ordered by their name', () => {
 - no external systems
 - little test setup
 - behaviour is described and not implementation details
-</script></section><section data-markdown><script type="text/template">### TDD Trap
+</script></section><section data-markdown><script type="text/template">
+### TDD Trap
 
 - Bad tests
 - How do good tests look like
@@ -196,14 +224,15 @@ it('returns a list of employees ordered by their name', () => {
 - TDD is not easy to start
 - Extremely hard to master
 - Deleting tests is fine (if they're not required anymore)
-
-</script></section></section><section  data-markdown><script type="text/template"># Code Kata
+</script></section></section><section  data-markdown><script type="text/template">
+# Code Kata
 
 - Small exercise
   - to improve programming skills
   - by challenging your abilities
   - and encouraging you to find multiple approaches
-</script></section><section ><section data-markdown><script type="text/template"># Steps
+</script></section><section ><section data-markdown><script type="text/template">
+# Steps
 
 - Step 1: Think
 - Step 2: Write a test
@@ -211,15 +240,18 @@ it('returns a list of employees ordered by their name', () => {
 - Step 4: Run the test and watch it fail
 - Step 5: Write just enough code to make it pass
 - Step 6: Cleanup
-</script></section><section data-markdown><script type="text/template"># Task
+</script></section><section data-markdown><script type="text/template">
+# Task
 
 - [Tennis kata](http://codingdojo.org/kata/Tennis/)
 - 2-3 sessions a 30min
   - No mouse allowed
-</script></section><section data-markdown><script type="text/template"># Delete your code <!-- .element: class="color--white" -->
+</script></section><section data-markdown><script type="text/template">
+# Delete your code <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/QxHzTRigoD9HG/giphy.gif" -->
-</script></section><section data-markdown><script type="text/template"># Task
+</script></section><section data-markdown><script type="text/template">
+# Task
 
 - [Tennis kata](http://codingdojo.org/kata/Tennis/)
 - Restrictions (pick 4)
@@ -231,12 +263,14 @@ it('returns a list of employees ordered by their name', () => {
   - No loops
   - No if/else (ternary is allowed)
   - No mutable state
-</script></section><section data-markdown><script type="text/template"># Delete your code <!-- .element: class="color--white" -->
+</script></section><section data-markdown><script type="text/template">
+# Delete your code <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/d10dMmzqCYqQ0/giphy.gif" -->
-</script></section><section data-markdown><script type="text/template"># Task
+</script></section><section data-markdown><script type="text/template">
+# Task
 
-- (Tennis kata)[http://codingdojo.org/kata/Tennis/]
+- (Tennis kata)[<http://codingdojo.org/kata/Tennis/]>
 - Restrictions (pick 4)
   - Mouse is still not allowed =)
   - Only one level of indentation per function
@@ -246,7 +280,9 @@ it('returns a list of employees ordered by their name', () => {
   - No loops
   - No if/else (ternary is allowed)
   - No mutable state
-</script></section></section><section ><section data-markdown><script type="text/template"># Homework
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Homework
+
 - Due date 31.05. 23:59:59
 - Finish Money-Transaction Homework
 - connect to backend Sign-In screen
@@ -257,7 +293,9 @@ it('returns a list of employees ordered by their name', () => {
 - connect Money-Transacton-List to backend
 - connect Create-Money-Transacton to backend
   - on submit the Transaction list should update
-</script></section><section data-markdown><script type="text/template"># Resources
+</script></section><section data-markdown><script type="text/template">
+# Resources
+
 - [Functional calisthenics](https://codurance.com/2017/10/12/functional-calisthenics/#noexplicitrecursion)
 - [Object calisthenics](https://williamdurand.fr/2013/06/03/object-calisthenics/)
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
@@ -266,10 +304,10 @@ it('returns a list of employees ordered by their name', () => {
 - [Mocks,Stubs,Spys](https://martinfowler.com/bliki/TestDouble.html)
 - [Extreme Programming](https://www.amazon.de/Extreme-Programming-Manifest-Kent-Beck/dp/3827317096)
 - [TDD](https://www.amazon.de/Test-Driven-Development-Example-Signature/dp/0321146530/ref=pd_lpo_sbs_14_img_2?_encoding=UTF8&psc=1&refRID=KGXDT4ZNWGXMT5Y96H3F)
+</script></section></section><section  data-markdown><script type="text/template">
+# Feedback
 
-</script></section></section><section  data-markdown><script type="text/template"># Feedback
-
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>
 </script></section></div>
     </div>
 

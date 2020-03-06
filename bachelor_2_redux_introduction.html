@@ -15,19 +15,23 @@
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">### State Management with Redux
+
 #### (MMT-B2017)
 </script></section><section  data-markdown><script type="text/template">
 ### Roadmap
+
 - Recap of homework
 - Functional Programming 101
 - Hooks
 - State Management with Redux
 </script></section><section ><section data-markdown><script type="text/template">
 ### Recap of Homework
-</script></section><section data-markdown><script type="text/template">### Mutable state
+</script></section><section data-markdown><script type="text/template">
+### Mutable state
 
-https://codesandbox.io/embed/zqqkxrk14l?fontsize=14
-</script></section><section data-markdown><script type="text/template">### Depending on data which might not be loaded
+<https://codesandbox.io/embed/zqqkxrk14l?fontsize=14>
+</script></section><section data-markdown><script type="text/template">
+### Depending on data which might not be loaded
 
 ```js
 function getUserName (users, id) {
@@ -38,7 +42,8 @@ function getUserName (users, id) {
   return user[0].name // Might crash if user wasn't found
 }
 ```
-</script></section><section data-markdown><script type="text/template">### God Components
+</script></section><section data-markdown><script type="text/template">
+### God Components
 
 ```js
 const FormInput = ({ type, ...otherProps }) => {
@@ -51,21 +56,27 @@ const FormInput = ({ type, ...otherProps }) => {
   }
   //....
 }
-```</script></section><section data-markdown><script type="text/template">### Misc
+```
+</script></section><section data-markdown><script type="text/template">
+### Misc
+
 - use === instead of ==
 - you're big fans of console.log debugging
 - extra elements in markup
 - use mocked data in components
 - linting
-</script></section></section><section  data-markdown><script type="text/template">### Functional Programming 101
+</script></section></section><section  data-markdown><script type="text/template">
+### Functional Programming 101
 
 - Immutability
 - Pure functions
 - Side Effect
-</script></section><section  data-markdown><script type="text/template">## What is functional programming
+</script></section><section  data-markdown><script type="text/template">
+## What is functional programming
 
 > Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
-</script></section><section  data-markdown><script type="text/template">## Why functional programming
+</script></section><section  data-markdown><script type="text/template">
+## Why functional programming
 
 - More testable
   - pure functions simplify testing
@@ -74,61 +85,71 @@ const FormInput = ({ type, ...otherProps }) => {
   - State is pushed out of the application core to the boundaries
 - Simple caching
   - pure functions easy to cache
-</script></section><section ><section data-markdown><script type="text/template">## Immutability
+</script></section><section ><section data-markdown><script type="text/template">
+## Immutability
 
 > An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
-</script></section><section data-markdown><script type="text/template">## Immutable objects in JS
+</script></section><section data-markdown><script type="text/template">
+## Immutable objects in JS
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
 immutableObject.test = 10
 console.log(immutableObject) // => { test: 1 }
 ````
-</script></section><section data-markdown><script type="text/template">## Changing an immutable value
+</script></section><section data-markdown><script type="text/template">
+## Changing an immutable value
 
 ````js
 const immutableObject = Object.freeze({ a: 1, b: 2 })
 const updatedObject = Object.freeze({ ...immutableObject, a: 2 })
 console.log(updatedObject) // => { a: 2, b: 2 }
 ````
-</script></section><section data-markdown><script type="text/template">## Unfreeze an object
+</script></section><section data-markdown><script type="text/template">
+## Unfreeze an object
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
 const unfrozenCopy = { ...immutableObject }
 ````
-</script></section><section data-markdown><script type="text/template">## Why immutability
+</script></section><section data-markdown><script type="text/template">
+## Why immutability
 
 - race conditions impossible
 - state of the application is easier to reason about
 - easier to test
-</script></section></section><section ><section data-markdown><script type="text/template">## Side-Effects
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Side-Effects
 
 > A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
-</script></section><section data-markdown><script type="text/template">## Some side effects
+</script></section><section data-markdown><script type="text/template">
+## Some side effects
 
 - DB/HTTP calls
 - changing the file system
 - querying the DOM
 - printing/logging
 - accessing system state (eg. Clock, Geolocation,...)
-</script></section><section data-markdown><script type="text/template">## Where to deal with side effects
+</script></section><section data-markdown><script type="text/template">
+## Where to deal with side effects
 
 - Moved to the boundaries of the system
 - Business logic stays pure functional
 
 ![Side effects](assets/side_effects.png)
-</script></section></section><section ><section data-markdown><script type="text/template">## Pure Functions
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Pure Functions
 
 - A function is considered pure when:
   - for the same input it always returns the same output
   - it has no side effects
-      - no mutation of non-local state
+    - no mutation of non-local state
 
 ```js
 const add = (a, b) => a + b
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -141,7 +162,8 @@ const fn6 = (array) => [...array].sort((a, b) => a - b)
 const fn7 = (array) => array.map((item) => item * 2)
 const fn8 = (array) => array.forEach((item) => console.log(item))
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -154,7 +176,8 @@ const fn6 = (array) => [...array].sort((a, b) => a - b) // ✅
 const fn7 = (array) => array.map((item) => item * 2) // ✅
 const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
@@ -165,7 +188,8 @@ const isAllowedToDrink = (age) => age >= config.minimumAge
 const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or in-pure?
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
@@ -183,7 +207,9 @@ isAllowedToDring(18) // true
 config.minimumAge = 19
 isAllowedToDring(18) // false
 ```
-</script></section><section data-markdown><script type="text/template">## Pure or inpure? 2/2
+</script></section><section data-markdown><script type="text/template">
+## Pure or inpure? 2/2
+
 ```js
 const config = Object.freeze({ minimumAge: 18 })
 const isAllowedToDrink = (age) => age >= config.minimumAge
@@ -194,8 +220,10 @@ const isAllowedToDrink = (age) => age >= config.minimumAge
 isAllowedToDring(18) // true
 config.minimumAge = 19
 isAllowedToDring(18) // true
-```</script></section></section><section  data-markdown><script type="text/template">
+```
+</script></section></section><section  data-markdown><script type="text/template">
 ## Summary FP
+
 - Immutability
   - Object can't be changed after its creation
 - Side-Effects
@@ -211,7 +239,8 @@ isAllowedToDring(18) // true
   - Previously one had to convert between functional/class components when state introduced
 - hooks are prefixed with `use`
 - Can't be called inside loops, conditions or nested functions
-</script></section><section data-markdown><script type="text/template">### State without hooks
+</script></section><section data-markdown><script type="text/template">
+### State without hooks
 
 ```js
 class App extends React.Component {
@@ -232,7 +261,8 @@ class App extends React.Component {
   }
 }
 ```
-</script></section><section data-markdown><script type="text/template">### State with hooks
+</script></section><section data-markdown><script type="text/template">
+### State with hooks
 
 ```js
 const App = () => {
@@ -247,7 +277,8 @@ const App = () => {
   );
 }
 ```
-</script></section><section data-markdown><script type="text/template">### useEffect
+</script></section><section data-markdown><script type="text/template">
+### useEffect
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
@@ -266,7 +297,8 @@ const SimpleForm = ({ onSubmit }) => {
   );
 };
 ```
-</script></section><section data-markdown><script type="text/template">### useEffect
+</script></section><section data-markdown><script type="text/template">
+### useEffect
 
 ```js
 // Executed on every rerender
@@ -279,7 +311,8 @@ useEffect(() => {}, [])
 // and when variable changes.
 useEffect(() => {}, [variable])
 ```
-</script></section><section data-markdown><script type="text/template">### Other hooks
+</script></section><section data-markdown><script type="text/template">
+### Other hooks
 
 - [API Reference](https://reactjs.org/docs/hooks-reference.html)
   - useReducer
@@ -289,17 +322,22 @@ useEffect(() => {}, [variable])
   - useImperativeHandle
   - useLayoutEffect
   - useDebugValue
-</script></section></section><section ><section data-markdown><script type="text/template">### State Management with Redux
-</script></section><section data-markdown><script type="text/template">### What is application state
+</script></section></section><section ><section data-markdown><script type="text/template">
+### State Management with Redux
+</script></section><section data-markdown><script type="text/template">
+### What is application state
 
 > An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
-</script></section><section data-markdown><script type="text/template">### State in Redux terms
+</script></section><section data-markdown><script type="text/template">
+### State in Redux terms
 
 > Every bit of information the application needs in order to render.
-</script></section><section data-markdown><script type="text/template">### What information do we need to render this page?
+</script></section><section data-markdown><script type="text/template">
+### What information do we need to render this page
 
 ![app wireframe](assets/app_wireframe.png)
-</script></section><section data-markdown><script type="text/template">### What information do we need to render this page?
+</script></section><section data-markdown><script type="text/template">
+### What information do we need to render this page
 
 | Question?                                  | State Name           |
 |--------------------------------------------|----------------------|
@@ -310,13 +348,16 @@ useEffect(() => {}, [variable])
 | Is somebody owning me some money?          | moneyTransactions    |
 | Which users can I owe some money?          | users                |
 | Which components should be rendered?       | url                  |
-</script></section><section data-markdown><script type="text/template">### Categorising different types
+</script></section><section data-markdown><script type="text/template">
+### Categorising different types
+
 - Relevant for other parts of the application?
   - add to global state
 - Irrelevant for other parts of the application?
   - use component state (useState or setState)
   - also known as UI State
-</script></section><section data-markdown><script type="text/template">### Global/Local/URL?
+</script></section><section data-markdown><script type="text/template">
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -326,7 +367,8 @@ useEffect(() => {}, [variable])
 | formValues           |            |
 | inputStatus          |            |
 | url                  |            |
-</script></section><section data-markdown><script type="text/template">### Global/Local/URL?
+</script></section><section data-markdown><script type="text/template">
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -336,32 +378,41 @@ useEffect(() => {}, [variable])
 | formValues           | local      |
 | inputStatus          | local      |
 | url                  | url        |
+</script></section><section data-markdown><script type="text/template">
+### Global State
 
-</script></section><section data-markdown><script type="text/template">### Global State
 - relevant for other components
 - could be seen as a client side database
   - or a cached version of the server data
 - domain object should be stored here
   - eg. users, money transactions, authentication token
-</script></section><section data-markdown><script type="text/template">### UI State
+</script></section><section data-markdown><script type="text/template">
+### UI State
+
 - irrelevant for other parts of the application
   - or state which shouldn't be shared with others
 - What to store in UI state?
   - Form states
   - visual enhancements
-</script></section><section data-markdown><script type="text/template">### URL State
+</script></section><section data-markdown><script type="text/template">
+### URL State
+
 - defines which set of components should be rendered
 - persists on page reloads
 - What to store in URL state?
   - the current route
   - the current page of a paginated list
-</script></section></section><section ><section data-markdown><script type="text/template">### React component tree
+</script></section></section><section ><section data-markdown><script type="text/template">
+### React component tree
 
 ![Component Tree](assets/react_component_tree.png)
-</script></section><section data-markdown><script type="text/template">### Storing state in components
+</script></section><section data-markdown><script type="text/template">
+### Storing state in components
 
 ![Local state tree](assets/local_state_tree.png)
-</script></section><section data-markdown><script type="text/template">### Storing state in components
+</script></section><section data-markdown><script type="text/template">
+### Storing state in components
+
 - Pros
   - Components are independent
     - eg. "Navigation" doesn't know about "User Update"
@@ -369,10 +420,12 @@ useEffect(() => {}, [variable])
   - User data needs to be fetched multiple times
   - If UserUpdate component changes name of user
     - Navigation needs to refetch user data
-</script></section><section data-markdown><script type="text/template">### Storing state in the root component
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
 
 ![Global state tree](assets/global_state_tree.png)
-</script></section><section data-markdown><script type="text/template">### Storing state in the root component
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
 
 - Pros
   - User data could be fetched only once
@@ -381,13 +434,16 @@ useEffect(() => {}, [variable])
 - Cons
   - State needs to be passed down to every component
   - (Root component contains all state logic)
-</script></section><section data-markdown><script type="text/template">### Storing state in the root component
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
 
 ![twitter component tree](assets/twitter_component_tree.gif)
-</script></section><section data-markdown><script type="text/template">### Storing state in redux
+</script></section><section data-markdown><script type="text/template">
+### Storing state in redux
 
 ![connected tree](assets/connected_tree.png)
-</script></section><section data-markdown><script type="text/template">### Storing state in redux
+</script></section><section data-markdown><script type="text/template">
+### Storing state in redux
 
 - Global state which acts like local state
 - Pros:
@@ -397,10 +453,12 @@ useEffect(() => {}, [variable])
   - State doesn't need to be passed down the tree
 - Cons:
   - "Complex" architecture for small apps
-</script></section></section><section ><section data-markdown><script type="text/template">### Redux
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Redux
 
 ![redux overview](assets/redux_overview.png)
-</script></section><section data-markdown><script type="text/template">### Why Redux
+</script></section><section data-markdown><script type="text/template">
+### Why Redux
 
 - Managing state in react can be challenging
   - How to synchronise state between distant UI parts
@@ -408,13 +466,16 @@ useEffect(() => {}, [variable])
 - State can only be changed by dispatching an action
 - Each action might change the previous state to a new updated state
 - Works with react, vue, angular, ...
-</script></section></section><section ><section data-markdown><script type="text/template">### Actions
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Actions
 
 ![Redux Actions](assets/redux_action_highlight.png)
-</script></section><section data-markdown><script type="text/template">### Actions
+</script></section><section data-markdown><script type="text/template">
+### Actions
 
 > Something happened in the app which might be interesting.
-</script></section><section data-markdown><script type="text/template">### Actions
+</script></section><section data-markdown><script type="text/template">
+### Actions
 
 - An action is data from the application which might be relevant for the store
 - Information is sent to the store via store.dispatch
@@ -429,7 +490,8 @@ const signInAction = {
 }
 
 store.dispatch(signInAction)
-```</script></section><section data-markdown><script type="text/template">
+```
+</script></section><section data-markdown><script type="text/template">
 ### Action Creators
 
 - A functions which creates actions
@@ -446,7 +508,8 @@ const actionCreator = () => (dispatch) => {
 
 store.dispatch(actionCreator())
 ```
-</script></section><section data-markdown><script type="text/template">#### Action creator with params
+</script></section><section data-markdown><script type="text/template">
+#### Action creator with params
 
 ```js
 const actionCreatorWithData = ({ username, password }) => (dispatch) => {
@@ -456,7 +519,8 @@ const actionCreatorWithData = ({ username, password }) => (dispatch) => {
 
 store.dispatch(signInAction({ username: 'Mike', password: '1234' }))
 ```
-</script></section><section data-markdown><script type="text/template">### Async action creators
+</script></section><section data-markdown><script type="text/template">
+### Async action creators
 
 ```js
 const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
@@ -479,13 +543,16 @@ const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
 
 store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">### Reducers
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Reducers
 
 ![redux overview](assets/redux_reducer_highlight.png)
-</script></section><section data-markdown><script type="text/template">### Reducers
+</script></section><section data-markdown><script type="text/template">
+### Reducers
 
 > Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
-</script></section><section data-markdown><script type="text/template">### Reducers
+</script></section><section data-markdown><script type="text/template">
+### Reducers
 
 - Specify how state changes in response to actions.
 - Pure function
@@ -499,7 +566,8 @@ const reducer = (previousState = initialState, action) => {
   return nextState
 }
 ```
-</script></section><section data-markdown><script type="text/template">### Reducers
+</script></section><section data-markdown><script type="text/template">
+### Reducers
 
 ```js
 const initialState = []
@@ -514,15 +582,18 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
   };
 }
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">### Container components
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Container components
 
 ![redux overview](assets/redux_container_highlight.png)
-</script></section><section data-markdown><script type="text/template">### Container components
+</script></section><section data-markdown><script type="text/template">
+### Container components
 
 - Glue between react and redux
 - Provides data from the global store to the components
 - Provides "callbacks" to trigger actions
-</script></section><section data-markdown><script type="text/template">### Container Components
+</script></section><section data-markdown><script type="text/template">
+### Container Components
 
 ```js
 import { createMoneyTransaction } from '../action-creators/money-transactions'
@@ -544,25 +615,32 @@ export default connect(
   mapDispatchToProps
 )(MoneyTransactionList)
 ```
-</script></section><section data-markdown><script type="text/template">### mapStateToProps
+</script></section><section data-markdown><script type="text/template">
+### mapStateToProps
+
 - extract data from the store and provides it to a component
 - data filtering can be done here
 - `function mapStateToProps(state, ownProps?)`
   - state -> the entire application state
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
-</script></section><section data-markdown><script type="text/template">### mapDispatchToProps
+</script></section><section data-markdown><script type="text/template">
+### mapDispatchToProps
+
 - binds actions with the store and provides those actions to a component
 - `function mapStateToProps(dispatch, ownProps?)`
   - dispatch -> the stores dispatch function
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
-</script></section><section data-markdown><script type="text/template">### Example from lecture
+</script></section><section data-markdown><script type="text/template">
+### Example from lecture
 
 [Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
 
 Might contain syntax error =)
-</script></section></section><section ><section data-markdown><script type="text/template">## Task 1 (Actions)
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Task 1 (Actions)
+
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
   - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
@@ -574,17 +652,21 @@ Might contain syntax error =)
 - create fetchUsers action creator (type fetchUser/success)
   - mock user data for now
   - `dispatch(fetchUsers())`
-</script></section><section data-markdown><script type="text/template">## Task 2 (Reducer)
+</script></section><section data-markdown><script type="text/template">
+## Task 2 (Reducer)
 
 - Add a userReducer reducer
   - entry point: `src/reducer/index.js`
   - listen to 'fetchUser/success'
     - try to populate the redux store with a new user
-</script></section><section data-markdown><script type="text/template">## Task 3 (Container)
+</script></section><section data-markdown><script type="text/template">
+## Task 3 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
-</script></section><section data-markdown><script type="text/template">## Task 4 (connect to backend)
-- install https://www.npmjs.com/package/compup-api-wrapper
+</script></section><section data-markdown><script type="text/template">
+## Task 4 (connect to backend)
+
+- install <https://www.npmjs.com/package/compup-api-wrapper>
 - Try to connect fetchUsers action creator to backend
 
 ```js
@@ -593,16 +675,17 @@ import { userRepository } from 'compup-api-wrapper'
 // Returns all users
 await userRepository.all();
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">### React Router
+</script></section></section><section ><section data-markdown><script type="text/template">
+### React Router
 
- - dynamic routing library for
-  - react native
-  - react web
+- dynamic routing library for
+- react native
+- react web
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 </script></section><section data-markdown><script type="text/template">
 ### Installation
 
- ```
+```txt
 npm install react-router-dom --save
 ```
 </script></section><section data-markdown><script type="text/template">
@@ -626,19 +709,21 @@ import SignIn from './components/sign-in'
   );
 }
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (without exact)
 
  ```js
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
+    <Route path="/" component={Homepage} />
+    <Route path="/sign-in" component={SignIn} />
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (without exact)
 
  ```js
 // path === "/" => renderes Homepage
@@ -650,7 +735,8 @@ const Routes = () => (
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (with exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (with exact)
 
  ```js
 // path === "/" => renderes Homepage
@@ -662,11 +748,12 @@ const Routes = () => (
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Add Links from html
+</script></section><section data-markdown><script type="text/template">
+### Add Links from html
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -674,17 +761,18 @@ const Routes = () => (
    </nav>
 )
 ```
-</script></section><section data-markdown><script type="text/template">### Add redirects from JS
+</script></section><section data-markdown><script type="text/template">
+### Add redirects from JS
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -692,7 +780,8 @@ const Routes = () => (
    )
 })
 ```
-</script></section></section><section  data-markdown><script type="text/template">## Homework 1
+</script></section></section><section  data-markdown><script type="text/template">
+## Homework 1
 
 - Implement routing with react router (50%)
   - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -703,28 +792,37 @@ const Routes = () => (
       - Sign-Up component is rendered
     - /money-transactions
       - money-transactions-create component is rendered
-      - money-transaction-list component is rendered</script></section><section  data-markdown><script type="text/template">## Homework 2
+      - money-transaction-list component is rendered
+</script></section><section  data-markdown><script type="text/template">
+## Homework 2
 
 - Connect the createMoneyTransaction with the backend (50%)
-  - install https://www.npmjs.com/package/compup-api-wrapper
+  - install <https://www.npmjs.com/package/compup-api-wrapper>
   - read users with `userRepository.all()` and put them in the redux store
     - when the component is rendered the api call is triggered
-    - use `useEffect` hook</script></section><section  data-markdown><script type="text/template">## For questions
+    - use `useEffect` hook
+</script></section><section  data-markdown><script type="text/template">
+## For questions
+
 - I'll be in Salzburg 6.5. - 7.5.
 - I can offer an inoffical tutorium
   - E-Mail me
-</script></section><section  data-markdown><script type="text/template">## Next Homework
+</script></section><section  data-markdown><script type="text/template">
+## Next Homework
+
 - If you want to start with the next homework
 - Connect the remaining components with the backend
   - TODO: better description will follow
-</script></section><section  data-markdown><script type="text/template"># Further Links
+</script></section><section  data-markdown><script type="text/template">
+# Further Links
 
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
-</script></section><section  data-markdown><script type="text/template"># Feedback
+</script></section><section  data-markdown><script type="text/template">
+# Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>
 </script></section></div>
     </div>
 

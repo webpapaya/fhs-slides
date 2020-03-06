@@ -14,41 +14,55 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template">## Scaling CSS
+      <div class="slides"><section  data-markdown><script type="text/template"># Scaling CSS
+
 #### (MMT-M2018)
-</script></section><section ><section data-markdown><script type="text/template"># Problems with CSS
+</script></section><section ><section data-markdown><script type="text/template">
+# Problems with CSS
 
 - Global Namespace
 - Dead Code elimination
 - Sharing Constants
 - Non-deterministic Resolution
-</script></section><section data-markdown><script type="text/template"># Dead Code elimination
+</script></section><section data-markdown><script type="text/template">
+# Dead Code elimination
+
 - Remove code which does not affect a programs result
 - With SPAs CSS dead code elimination becomes tough
-    - eg. button--disabled only used conditionally
-    - compiler would need to check all possible app states
+  - eg. button--disabled only used conditionally
+  - compiler would need to check all possible app states
 - CSS code is left
-</script></section><section data-markdown><script type="text/template"># Sharing constants
+</script></section><section data-markdown><script type="text/template">
+# Sharing constants
+
 - Constants couldn't be shared
-    - SASS/Less helped with that
-    - now we have CSS variables
+  - SASS/Less helped with that
+  - now we have CSS variables
 - IE11 can't handle CSS variables
-</script></section><section data-markdown><script type="text/template"># Theming during runtime
+</script></section><section data-markdown><script type="text/template">
+# Theming during runtime
+
 - Dynamically change the appearance of the app
 - eg. twitters profile color
-</script></section><section data-markdown><script type="text/template"># Non-deterministic resolution
+</script></section><section data-markdown><script type="text/template">
+# Non-deterministic resolution
+
 - Order of selectors decides what is rendered
 - Hard to tell what overrules what
 - in SPAs CSS might be loaded dynamically
 - Race condition might occur
-</script></section><section data-markdown><script type="text/template"># FOUC
+</script></section><section data-markdown><script type="text/template">
+# FOUC
+
 - Flash of unstyled content
 - Web page shortly appears without styles
-- https://www.youtube.com/watch?v=O_jsUI5JD8c
-</script></section></section><section ><section data-markdown><script type="text/template"># Global
+- <https://www.youtube.com/watch?v=O_jsUI5JD8c>
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Global
+
 - Available to the whole site
 - What if external scripts add css?
-    - eg. FB share buttons?
+  - eg. FB share buttons?
 - eg. Bootstrap adds 600 globals
 
 ```css
@@ -59,19 +73,23 @@
     background: green;
 }
 ```
-</script></section><section data-markdown><script type="text/template"># Global with naming convention
+</script></section><section data-markdown><script type="text/template">
+# Global with naming convention
+
 - BEM -> Block element modifier
 - Block:
-    - Standalone entity that is meaningful on its own
-    - eg. Button/TextInput/...
+  - Standalone entity that is meaningful on its own
+  - eg. Button/TextInput/...
 - Element:
-    - Part of a block
-    - eg. label of input, icon in input,...
+  - Part of a block
+  - eg. label of input, icon in input,...
 - Modifiers:
-    - Flagging blocks or elements
-    - Change the appearance of an item
-    - eg. primary/disabled/...
-</script></section><section data-markdown><script type="text/template"># Global CSS
+  - Flagging blocks or elements
+  - Change the appearance of an item
+  - eg. primary/disabled/...
+</script></section><section data-markdown><script type="text/template">
+# Global CSS
+
 | Question?                                  | Possible  |
 |--------------------------------------------|-----------|
 | No naming clashes possible?                | no        |
@@ -83,31 +101,14 @@
 | No flash of unstyled content?              | yes       |
 | Can be used on landing page?               | yes       |
 | Refactoring?                               | partially |
+</script></section><section data-markdown><script type="text/template">
+# CSS in JS
 
-</script></section><section data-markdown><script type="text/template"># CSS in JS
 - JS is used to generate CSS during runtime
 - CSS classes can be unique
 - CSS is only loaded when required
-
-</script></section><section data-markdown><script type="text/template"># Styled components
-
-```js
-const Button = styled.a`
-  display: inline-block;
-  border-radius: 3px;
-  padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
-
-  ${props => props.primary && css`
-    background: white;
-    color: palevioletred;
-  `}
-`;
-
-<Button>
-<Button primary>
-```
-</script></section><section data-markdown><script type="text/template"># Styled components
+</script></section><section data-markdown><script type="text/template">
+# Styled components
 
 ```js
 const Button = styled.a`
@@ -125,7 +126,28 @@ const Button = styled.a`
 <Button>
 <Button primary>
 ```
-</script></section><section data-markdown><script type="text/template"># CSS-in-JS
+</script></section><section data-markdown><script type="text/template">
+# Styled components
+
+```js
+const Button = styled.a`
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+
+  ${props => props.primary && css`
+    background: white;
+    color: palevioletred;
+  `}
+`
+
+const button1 = <Button />
+const button2 = <Button primary />
+```
+</script></section><section data-markdown><script type="text/template">
+# CSS-in-JS
+
 | Question?                                  | Possible  |
 |--------------------------------------------|-----------|
 | No naming clashes possible?                | yes       |
@@ -137,11 +159,14 @@ const Button = styled.a`
 | No flash of unstyled content?              | no        |
 | Can be used on landing page?               | no        |
 | Refactoring?                               | yes       |
-</script></section></section><section ><section data-markdown><script type="text/template"># CSS Modules
+</script></section></section><section ><section data-markdown><script type="text/template">
+# CSS Modules
+
 - regular CSS file
 - can be imported in JS
 - Compiler makes classnames unique
-</script></section><section data-markdown><script type="text/template"># CSS Modules
+</script></section><section data-markdown><script type="text/template">
+# CSS Modules
 
 ```ts
 import styles from './centered-panel.css';
@@ -154,7 +179,8 @@ const Component = ({ children }) => (
   </section>
 );
 ```
-</script></section><section data-markdown><script type="text/template"># Angular
+</script></section><section data-markdown><script type="text/template">
+# Angular
 
 ```ts
 @Component({
@@ -166,7 +192,9 @@ const Component = ({ children }) => (
   styles: ['h1 { font-weight: normal; }']
 })
 ```
-</script></section><section data-markdown><script type="text/template"># CSS modules
+</script></section><section data-markdown><script type="text/template">
+# CSS modules
+
 | Question?                                  | Possible  |
 |--------------------------------------------|-----------|
 | No naming clashes possible?                | yes       |
@@ -178,8 +206,8 @@ const Component = ({ children }) => (
 | No flash of unstyled content?              | yes       |
 | Can be used on landing page?               | yes       |
 | Refactoring?                               | partially |
-
-</script></section></section><section  data-markdown><script type="text/template"># Final Comparison
+</script></section></section><section  data-markdown><script type="text/template">
+# Final Comparison
 
 | Question?                     | global    | CSS-in-JS | modules   |
 |-------------------------------|-----------|-----------|-----------|
@@ -192,10 +220,10 @@ const Component = ({ children }) => (
 | No flash of unstyled content? | yes       | no        | yes       |
 | Can be used on landing page?  | yes       | no        | yes       |
 | Refactoring?                  | partially | yes       | partially |
-</script></section><section  data-markdown><script type="text/template"># Feedback
+</script></section><section  data-markdown><script type="text/template">
+# Feedback
 
-https://de.surveymonkey.com/r/J6693VN
-
+<https://de.surveymonkey.com/r/J6693VN>
 </script></section></div>
     </div>
 

@@ -15,6 +15,8 @@
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React
+
+## (MMT-B2018)
 </script></section><section  data-markdown><script type="text/template">
 ## React
 
@@ -25,7 +27,13 @@
   - React-Native
   - React-Native-Desktop
   - React-Native-Windows
-  - React-VR</script></section><section ><section data-markdown><script type="text/template">
+  - React-VR
+</script></section><section  data-markdown><script type="text/template">
+## Components
+
+> Components let you split the UI into independent, reusable pieces.
+[React Docs](https://reactjs.org/docs/components-and-props.html)
+</script></section><section ><section data-markdown><script type="text/template">
 ## React Components
 
 - Main Building block of a React App
@@ -73,12 +81,60 @@ const Button = () => {
   )
 }
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">### Loop over arrays
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Which components do you see
+
+![app](assets/sign_in_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+![app](assets/app_wireframe.png)
+</script></section></section><section  data-markdown><script type="text/template">
+## Types of components
+
+- Possible conceptual structure for components
+  - `components/`
+    - could be reused in other applications
+    - don't have domain logic (eg. Button)
+  - `container/<container_name>/organism/`
+    - contain domain logic
+    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
+</script></section><section  data-markdown><script type="text/template">
+# Building the first react component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/coding.gif" -->
+</script></section><section ><section data-markdown><script type="text/template">
+### Embedding expressions
 
 ```js
-const Button = ({ users }) => {
+const CurrentTime = () => {
   return (
-    <ul type='button'>
+    <h1>
+      {(new Date()).toLocaleDateString()}
+    </h1>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday
+        ? 'Today'
+        : 'Not Today' }
+    </h1>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+### Loop over arrays
+
+```js
+const UserList = ({ users }) => {
+  return (
+    <ul>
       {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
       })}
@@ -93,41 +149,19 @@ const Button = ({ users }) => {
 - Helps react to decide if an element needs to be rerendered
 - [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
 - [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
-</script></section></section><section  data-markdown><script type="text/template">
-## Types of components
-
-- Possible conceptual structure for components
-  - components/
-    - could be reused in other applications
-    - don't have domain logic (eg. Button)
-  - container/<container_name>/organism/
-    - contain domain logic
-    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
-</script></section><section ><section data-markdown><script type="text/template">
-## Which components do you see?
-
-![app](assets/sign_in_wireframe.png)
-</script></section><section data-markdown><script type="text/template">
-![app](assets/app_wireframe.png)
-</script></section></section><section  data-markdown><script type="text/template">
-# Building the first react component  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="./assets/coding.gif" -->
-</script></section><section ><section data-markdown><script type="text/template">
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Component composition
 
 - Components can be nested and composed together
 
 ![app](assets/tree.png)
 </script></section><section data-markdown><script type="text/template">
-
 ## React props
 
 - Possibility to customize components
   - Can be seen as component configuration
 - Props are passed to the component
   - A component at a lower level of the tree can't modify given props directly
-
 
 ```js
 const Button = ({ children, disabled = false }) => {
@@ -189,10 +223,45 @@ Can set initial value for child Components? | Yes | Yes
 Can change in child Components? | Yes | No
 
 [source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Fragments
+
+- Groups a list of children without adding a dom element
+
+```js
+const AComponent = () => {
+  return (
+    <>
+      <label>An input</label>
+      <input type="text" />
+    </>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Keyed Fragments
+
+- Same as fragment but a key can be provided (eg.: definition list)
+
+```js
+const AComponent = ({ items }) => {
+  return (
+    <dl>
+      {items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  )
+}
+```
 </script></section></section><section  data-markdown><script type="text/template">
 ## Task
 
-- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - npm install
 - npm run start:storybook
 - Reuse/Adapt existing Button
@@ -200,146 +269,7 @@ Can change in child Components? | Yes | No
   - Username
   - Password
 - If you're done help others
-
-</script></section><section ><section data-markdown><script type="text/template">### React Router
-
- - dynamic routing library for
-  - react native
-  - react web
-- [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
-</script></section><section data-markdown><script type="text/template">
-### Installation
-
- ```
-npm install react-router-dom --save
-```
-</script></section><section data-markdown><script type="text/template">
-### Usage
-
- ```js
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Homepage from './components/homepage'
-import SignIn from './components/sign-in'
- const App = () => {
-  return (
-    <Router> { /* creates a new routing context */ }
-      <Switch> { /* render only one route */ }
-        { /* define routes and pass component as prop to the route */ }
-        <Route path="/sign-in" component={SignIn}>
-        <Route path="/" component={Homepage}>
-        { /* if no route matches redirect to 'Homepage' */ }
-        <Redirect to='/'>
-      </Switch>
-    </Router>
-  );
-}
-```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
-const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes SignIn
-const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
-  </Switch>
-);
-```
-</script></section><section data-markdown><script type="text/template">### Route priority (with exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes sign-in
-const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Homepage}>
-    <Route exact path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-</script></section><section data-markdown><script type="text/template">### Add Links from html
-
- ```js
- import { Link } from 'react-router-dom'
-
- const Routes = () => (
-   <nav>
-     <Link to='/'>Home</Link>
-     <Link to='/sign-in'>Sign in</Link>
-   </nav>
-)
-```
-</script></section><section data-markdown><script type="text/template">### Add redirects from JS
-
- ```js
- import { withRouter } from 'react-router-dom'
-
- const SignIn = withRouter(({ history }) => {
-   const onSubmit = (evt) => {
-     evt.preventDefault()
-     history.push('/')
-   }
-
-   return (
-     <form onSubmit={onSubmit}>
-       {/* ... */}
-     </form>
-   )
-})
-```
-</script></section></section><section ><section data-markdown><script type="text/template">
-## Homework
-
-- Build the following components in Storybook
-  - UserSignIn -> onSubmit => { username, password }
-  - UserSignUp -> onSubmit => { username, password }
-  - MoneyTransactionCreate
-    - users => { id, name }
-    - onSubmit => { debitorId, creditorId, amount }
-
-  - MoneyTransactionList (Lists all Money Transactions)
-    - moneyTransactions
-    - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
-
-- You probably need the following core components
-  - `<TextInput {...} />`
-  - `<DecimalInput {...} />`
-  - `<SelectInput {...} />`
-  - `<Button {...} />`
-  - ...
-
-- Allowed to use CSS Frameworks
-- Not allowed to use Component Libraries
-- You can use as a starting point https://github.com/webpapaya/fhs-react-redux-starter-kit
-- Mock Data for the API https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
-- Add the following routes
-  - /sign-in
-    - Sign-In component is rendered
-  - /sign-up
-    - Sign-Up component is rendered
-  - /money-transactions
-    - money-transactions-create component is rendered
-    - money-transaction-list component is rendered
-</script></section><section data-markdown><script type="text/template">
-![sign_in](assets/sign_in_wireframe.png)
-</script></section><section data-markdown><script type="text/template">
-![sign_up](assets/sign_up_wireframe.png)
-</script></section><section data-markdown><script type="text/template">
-![app](assets/app_wireframe.png)
-</script></section></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 ## Tools/Resources
 
 - [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
@@ -349,7 +279,7 @@ const Routes = () => (
 </script></section><section  data-markdown><script type="text/template">
 ## Feedback/Questions
 
-- https://de.surveymonkey.com/r/J6693VN
+- <https://de.surveymonkey.com/r/J6693VN>
 - tmayrhofer.lba@fh-salzburg.ac.at
 </script></section></div>
     </div>

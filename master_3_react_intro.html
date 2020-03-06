@@ -14,7 +14,9 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React</script></section><section ><section data-markdown><script type="text/template"># What we'll build in the next 2 days
+      <div class="slides"><section  data-markdown><script type="text/template"># Introduction to React
+</script></section><section ><section data-markdown><script type="text/template">
+# What we'll build in the next 2 days
 </script></section><section data-markdown><script type="text/template">
 ![sign_in](assets/sign_in_wireframe.png)
 </script></section><section data-markdown><script type="text/template">
@@ -31,7 +33,8 @@
   - React-Native
   - React-Native-Desktop
   - React-Native-Windows
-  - React-VR</script></section><section ><section data-markdown><script type="text/template">
+  - React-VR
+</script></section><section ><section data-markdown><script type="text/template">
 ## React Components
 
 - Main Building block of a React App
@@ -80,7 +83,7 @@ const Button = () => {
 }
 ```
 </script></section></section><section ><section data-markdown><script type="text/template">
-## Which components do you see?
+## Which components do you see
 
 ![app](assets/sign_in_wireframe.png)
 </script></section><section data-markdown><script type="text/template">
@@ -89,7 +92,6 @@ const Button = () => {
 # Building the first react component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="./assets/coding.gif" -->
-
 </script></section><section ><section data-markdown><script type="text/template">
 ## Component composition
 
@@ -97,14 +99,12 @@ const Button = () => {
 
 ![app](assets/tree.png)
 </script></section><section data-markdown><script type="text/template">
-
 ## React props
 
 - Possibility to customize components
   - Can be seen as component configuration
 - Props are passed to the component
   - A component at a lower level of the tree can't modify given props directly
-
 
 ```js
 const Button = ({ children, disabled = false }) => {
@@ -125,15 +125,17 @@ const usage = <Button disabled>A button</Button>
   - Previously one had to convert between functional/class components when state introduced
 - hooks are prefixed with `use`
 - Can't be called inside loops, conditions or nested functions
-</script></section><section data-markdown><script type="text/template">### State without hooks
+</script></section><section data-markdown><script type="text/template">
+### State without hooks
 
 ```js
 class App extends React.Component {
-  state = { count: 0 }
+  state = { count: 0 };
 
   handleIncrement = () => {
     this.setState({ count: this.state.count + 1 })
-  }
+  };
+
   render() {
     return (
       <div>
@@ -146,7 +148,8 @@ class App extends React.Component {
   }
 }
 ```
-</script></section><section data-markdown><script type="text/template">### State with hooks
+</script></section><section data-markdown><script type="text/template">
+### State with hooks
 
 ```js
 const App = () => {
@@ -161,7 +164,8 @@ const App = () => {
   );
 }
 ```
-</script></section><section data-markdown><script type="text/template">### useEffect
+</script></section><section data-markdown><script type="text/template">
+### useEffect
 
 ```js
 const SimpleForm = ({ onSubmit }) => {
@@ -180,7 +184,8 @@ const SimpleForm = ({ onSubmit }) => {
   );
 };
 ```
-</script></section><section data-markdown><script type="text/template">### useEffect
+</script></section><section data-markdown><script type="text/template">
+### useEffect
 
 ```js
 // Executed on every rerender
@@ -193,7 +198,8 @@ useEffect(() => {}, [])
 // and when variable changes.
 useEffect(() => {}, [variable])
 ```
-</script></section><section data-markdown><script type="text/template">### Other hooks
+</script></section><section data-markdown><script type="text/template">
+### Other hooks
 
 - [API Reference](https://reactjs.org/docs/hooks-reference.html)
   - useReducer
@@ -219,7 +225,7 @@ Can change in child Components? | Yes | No
 </script></section><section  data-markdown><script type="text/template">
 ## Task
 
-- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - npm install
 - npm run start:storybook
 - Reuse/Adapt existing Button
@@ -227,16 +233,17 @@ Can change in child Components? | Yes | No
   - Username
   - Password
 - If you're done help others
-</script></section><section ><section data-markdown><script type="text/template">### React Router
+</script></section><section ><section data-markdown><script type="text/template">
+### React Router
 
- - dynamic routing library for
-  - react native
-  - react web
+- dynamic routing library for
+- react native
+- react web
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 </script></section><section data-markdown><script type="text/template">
 ### Installation
 
- ```
+```txt
 npm install react-router-dom --save
 ```
 </script></section><section data-markdown><script type="text/template">
@@ -260,9 +267,10 @@ import SignIn from './components/sign-in'
   );
 }
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (without exact)
 
- ```js
+```js
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
@@ -272,19 +280,21 @@ const Routes = () => (
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (without exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (without exact)
 
  ```js
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
+    <Route path="/sign-in" component={SignIn} />
+    <Route path="/" component={Homepage} />
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Route priority (with exact)
+</script></section><section data-markdown><script type="text/template">
+### Route priority (with exact)
 
  ```js
 // path === "/" => renderes Homepage
@@ -296,11 +306,12 @@ const Routes = () => (
   </Switch>
 );
 ```
-</script></section><section data-markdown><script type="text/template">### Add Links from html
+</script></section><section data-markdown><script type="text/template">
+### Add Links from html
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -308,17 +319,18 @@ const Routes = () => (
    </nav>
 )
 ```
-</script></section><section data-markdown><script type="text/template">### Add redirects from JS
+</script></section><section data-markdown><script type="text/template">
+### Add redirects from JS
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -326,7 +338,9 @@ const Routes = () => (
    )
 })
 ```
-</script></section><section data-markdown><script type="text/template">### Task
+</script></section><section data-markdown><script type="text/template">
+### Task
+
 - Add the following routes to your application
 - /sign-in
 - /sign-up
@@ -341,7 +355,8 @@ const Routes = () => (
 </script></section><section  data-markdown><script type="text/template">
 ## Feedback
 
-https://de.surveymonkey.com/r/J6693VN</script></section></div>
+<https://de.surveymonkey.com/r/J6693VN>
+</script></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>
