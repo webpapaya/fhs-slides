@@ -1,7 +1,9 @@
 # Testing
+
 ## (MMT-B2017)
 
 ---
+
 # Exam
 
 - possible theoretical questions
@@ -11,6 +13,7 @@
   - ...
 
 ----
+
 # Exam
 
 - possible coding questions
@@ -21,16 +24,19 @@
 ---
 
 ### Roadmap
+
 - Testing
 - 2-3 coding katas sessions
 - Tomorrow: doing homework together
 
 ---
+
 ### Testing Pyramid
 
 ![testing pyramid](assets/testing_pyramid.png)
 
 ----
+
 ### Testing Pyramid
 
 - Unit tests
@@ -41,11 +47,13 @@
   - few tests which test the whole system
 
 ----
+
 ### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
+
 # Unit testing and TDD
 
 - Test driven development (also known as TDD)
@@ -54,6 +62,7 @@
   - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
 
 ----
+
 ### Why TDD
 
 - early/fast feedback during development
@@ -68,18 +77,20 @@
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
 
 ----
+
 ### TDD to me
 
 > Getting confidence that refactoring doesn't break a feature.
 
 ----
+
 ### TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
-
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
 
 ----
+
 ### What is TDD not
 
 - Silver bullet for clean code
@@ -92,11 +103,13 @@
 > The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
 
 ---
+
 ### TDD intro in 7:26 minutes
 
-https://www.youtube.com/watch?v=WSes_PexXcA
+<https://www.youtube.com/watch?v=WSes_PexXcA>
 
 ----
+
 ### Essential vs. accidental complication
 
 - Essential complication
@@ -110,6 +123,7 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - we can try to improve ourselves
 
 ----
+
 ### Accidental complication
 
 - future proofing code
@@ -122,6 +136,7 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - big refactoring is hard to sell
 
 ----
+
 ### Avoid accidental complication
 
 - Baby steps and TDD
@@ -132,11 +147,13 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - Without refactoring features will take longer
 
 ---
+
 # TDD Cycle
 
 ![tdd cycle](assets/tdd_cycle.png)
 
 ----
+
 ### TDD Cycle
 
 - Red: Write a test and watch it fail
@@ -144,7 +161,9 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - Refactor: Clean up
 
 ----
+
 ### Red
+
 - Think about the test description
 - Descriptions should reflect the behaviour of the program
 
@@ -155,7 +174,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Green
+
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
@@ -170,7 +191,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Refactor
+
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
@@ -183,6 +206,7 @@ it('returns 3$, when product A given', () => {
 ```
 
 ---
+
 # Anatomy of a Test
 
 - **A**rrange => test setup
@@ -190,7 +214,9 @@ it('returns 3$, when product A given', () => {
 - **A**ssert => verify the result
 
 ----
+
 ### Anatomy of a Test
+
 ```js
 it('returns a list of employees ordered by their name', () => {
   // Setup
@@ -209,6 +235,7 @@ it('returns a list of employees ordered by their name', () => {
 ```
 
 ---
+
 # What makes a good test
 
 - Deterministic
@@ -221,6 +248,7 @@ it('returns a list of employees ordered by their name', () => {
 - behaviour is described and not implementation details
 
 ----
+
 ### TDD Trap
 
 - Bad tests
@@ -231,8 +259,8 @@ it('returns a list of employees ordered by their name', () => {
 - Extremely hard to master
 - Deleting tests is fine (if they're not required anymore)
 
-
 ---
+
 # Code Kata
 
 - Small exercise
@@ -241,6 +269,7 @@ it('returns a list of employees ordered by their name', () => {
   - and encouraging you to find multiple approaches
 
 ---
+
 # Steps
 
 - Step 1: Think
@@ -251,6 +280,7 @@ it('returns a list of employees ordered by their name', () => {
 - Step 6: Cleanup
 
 ----
+
 # Task
 
 - [Tennis kata](http://codingdojo.org/kata/Tennis/)
@@ -258,11 +288,13 @@ it('returns a list of employees ordered by their name', () => {
   - No mouse allowed
 
 ----
+
 # Delete your code <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/QxHzTRigoD9HG/giphy.gif" -->
 
 ----
+
 # Task
 
 - [Tennis kata](http://codingdojo.org/kata/Tennis/)
@@ -277,14 +309,16 @@ it('returns a list of employees ordered by their name', () => {
   - No mutable state
 
 ----
+
 # Delete your code <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/d10dMmzqCYqQ0/giphy.gif" -->
 
 ----
+
 # Task
 
-- (Tennis kata)[http://codingdojo.org/kata/Tennis/]
+- (Tennis kata)[<http://codingdojo.org/kata/Tennis/]>
 - Restrictions (pick 4)
   - Mouse is still not allowed =)
   - Only one level of indentation per function
@@ -296,7 +330,9 @@ it('returns a list of employees ordered by their name', () => {
   - No mutable state
 
 ---
+
 # Homework
+
 - Due date 31.05. 23:59:59
 - Finish Money-Transaction Homework
 - connect to backend Sign-In screen
@@ -309,7 +345,9 @@ it('returns a list of employees ordered by their name', () => {
   - on submit the Transaction list should update
 
 ----
+
 # Resources
+
 - [Functional calisthenics](https://codurance.com/2017/10/12/functional-calisthenics/#noexplicitrecursion)
 - [Object calisthenics](https://williamdurand.fr/2013/06/03/object-calisthenics/)
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
@@ -319,8 +357,8 @@ it('returns a list of employees ordered by their name', () => {
 - [Extreme Programming](https://www.amazon.de/Extreme-Programming-Manifest-Kent-Beck/dp/3827317096)
 - [TDD](https://www.amazon.de/Test-Driven-Development-Example-Signature/dp/0321146530/ref=pd_lpo_sbs_14_img_2?_encoding=UTF8&psc=1&refRID=KGXDT4ZNWGXMT5Y96H3F)
 
-
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

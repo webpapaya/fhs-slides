@@ -1,5 +1,7 @@
 # Introduction to React
+
 ---
+
 # What we'll build in the next 2 days
 
 ----
@@ -26,6 +28,7 @@
   - React-Native-Desktop
   - React-Native-Windows
   - React-VR
+
 ---
 
 ## React Components
@@ -82,7 +85,7 @@ const Button = () => {
 
 ---
 
-## Which components do you see?
+## Which components do you see
 
 ![app](assets/sign_in_wireframe.png)
 
@@ -96,7 +99,6 @@ const Button = () => {
 
 <!-- .slide: data-background="./assets/coding.gif" -->
 
-
 ---
 
 ## Component composition
@@ -107,14 +109,12 @@ const Button = () => {
 
 ----
 
-
 ## React props
 
 - Possibility to customize components
   - Can be seen as component configuration
 - Props are passed to the component
   - A component at a lower level of the tree can't modify given props directly
-
 
 ```js
 const Button = ({ children, disabled = false }) => {
@@ -139,6 +139,7 @@ const usage = <Button disabled>A button</Button>
 - Can't be called inside loops, conditions or nested functions
 
 ----
+
 ### State without hooks
 
 ```js
@@ -162,6 +163,7 @@ class App extends React.Component {
 ```
 
 ----
+
 ### State with hooks
 
 ```js
@@ -179,6 +181,7 @@ const App = () => {
 ```
 
 ----
+
 ### useEffect
 
 ```js
@@ -200,6 +203,7 @@ const SimpleForm = ({ onSubmit }) => {
 ```
 
 ----
+
 ### useEffect
 
 ```js
@@ -215,6 +219,7 @@ useEffect(() => {}, [variable])
 ```
 
 ----
+
 ### Other hooks
 
 - [API Reference](https://reactjs.org/docs/hooks-reference.html)
@@ -245,7 +250,7 @@ Can change in child Components? | Yes | No
 
 ## Task
 
-- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - npm install
 - npm run start:storybook
 - Reuse/Adapt existing Button
@@ -255,11 +260,12 @@ Can change in child Components? | Yes | No
 - If you're done help others
 
 ---
+
 ### React Router
 
- - dynamic routing library for
-  - react native
-  - react web
+- dynamic routing library for
+- react native
+- react web
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 
 ----
@@ -294,6 +300,7 @@ import SignIn from './components/sign-in'
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -308,6 +315,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -322,6 +330,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (with exact)
 
  ```js
@@ -336,11 +345,12 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add Links from html
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -350,17 +360,18 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add redirects from JS
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -370,7 +381,9 @@ const Routes = () => (
 ```
 
 ----
+
 ### Task
+
 - Add the following routes to your application
 - /sign-in
 - /sign-up
@@ -389,4 +402,4 @@ const Routes = () => (
 
 ## Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

@@ -12,6 +12,7 @@
   - React-Native-Desktop
   - React-Native-Windows
   - React-VR
+
 ---
 
 ## React Components
@@ -67,6 +68,7 @@ const Button = () => {
 ```
 
 ---
+
 ### Loop over arrays
 
 ```js
@@ -90,10 +92,9 @@ const Button = ({ users }) => {
 - [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
 - [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
 
-
 ---
 
-## Which components do you see?
+## Which components do you see
 
 ![app](assets/sign_in_wireframe.png)
 
@@ -107,7 +108,6 @@ const Button = ({ users }) => {
 
 <!-- .slide: data-background="./assets/coding.gif" -->
 
-
 ---
 
 ## Component composition
@@ -118,14 +118,12 @@ const Button = ({ users }) => {
 
 ----
 
-
 ## React props
 
 - Possibility to customize components
   - Can be seen as component configuration
 - Props are passed to the component
   - A component at a lower level of the tree can't modify given props directly
-
 
 ```js
 const Button = ({ children, disabled = false }) => {
@@ -179,7 +177,6 @@ class SimpleForm extends React.Component {
 }
 ```
 
-
 ----
 
 ## State vs. Props
@@ -199,7 +196,7 @@ Can change in child Components? | Yes | No
 
 ## Task
 
-- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - npm install
 - npm run start:storybook
 - Reuse/Adapt existing Button
@@ -232,8 +229,8 @@ Can change in child Components? | Yes | No
 
 - Allowed to use CSS Frameworks
 - Not allowed to use Component Libraries
-- You can use as a starting point https://github.com/webpapaya/fhs-react-redux-starter-kit
-- Mock Data for the API https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
+- You can use as a starting point <https://github.com/webpapaya/fhs-react-redux-starter-kit>
+- Mock Data for the API <https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65>
 
 ----
 
@@ -260,4 +257,4 @@ Can change in child Components? | Yes | No
 
 ## Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

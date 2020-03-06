@@ -1,31 +1,38 @@
 ### State Management with Redux
+
 #### (MMT-B2017)
 
 ---
 
 ### Roadmap
+
 - State Management with Redux
 
 ---
+
 ### State Management with Redux
 
 ----
+
 ### What is application state
 
 > An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
 
 ----
+
 ### State in Redux terms
 
 > Every bit of information the application needs in order to render.
 
 ----
-### What information do we need to render this page?
+
+### What information do we need to render this page
 
 ![app wireframe](assets/app_wireframe.png)
 
 ----
-### What information do we need to render this page?
+
+### What information do we need to render this page
 
 | Question?                                  | State Name           |
 |--------------------------------------------|----------------------|
@@ -38,7 +45,9 @@
 | Which components should be rendered?       | url                  |
 
 ----
+
 ### Categorising different types
+
 - Relevant for other parts of the application?
   - add to global state
 - Irrelevant for other parts of the application?
@@ -46,7 +55,8 @@
   - also known as UI State
 
 ----
-### Global/Local/URL?
+
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -58,7 +68,8 @@
 | url                  |            |
 
 ----
-### Global/Local/URL?
+
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -69,9 +80,10 @@
 | inputStatus          | local      |
 | url                  | url        |
 
-
 ----
+
 ### Global State
+
 - relevant for other components
 - could be seen as a client side database
   - or a cached version of the server data
@@ -79,7 +91,9 @@
   - eg. users, money transactions, authentication token
 
 ----
+
 ### UI State
+
 - irrelevant for other parts of the application
   - or state which shouldn't be shared with others
 - What to store in UI state?
@@ -87,7 +101,9 @@
   - visual enhancements
 
 ----
+
 ### URL State
+
 - defines which set of components should be rendered
 - persists on page reloads
 - What to store in URL state?
@@ -95,17 +111,21 @@
   - the current page of a paginated list
 
 ---
+
 ### React component tree
 
 ![Component Tree](assets/react_component_tree.png)
 
 ----
+
 ### Storing state in components
 
 ![Local state tree](assets/local_state_tree.png)
 
 ----
+
 ### Storing state in components
+
 - Pros
   - Components are independent
     - eg. "Navigation" doesn't know about "User Update"
@@ -115,11 +135,13 @@
     - Navigation needs to refetch user data
 
 ----
+
 ### Storing state in the root component
 
 ![Global state tree](assets/global_state_tree.png)
 
 ----
+
 ### Storing state in the root component
 
 - Pros
@@ -131,16 +153,19 @@
   - (Root component contains all state logic)
 
 ----
+
 ### Storing state in the root component
 
 ![twitter component tree](assets/twitter_component_tree.gif)
 
 ----
+
 ### Storing state in redux
 
 ![connected tree](assets/connected_tree.png)
 
 ----
+
 ### Storing state in redux
 
 - Global state which acts like local state
@@ -153,11 +178,13 @@
   - "Complex" architecture for small apps
 
 ---
+
 ### Redux
 
 ![redux overview](assets/redux_overview.png)
 
 ----
+
 ### Why Redux
 
 - Managing state in react can be challenging
@@ -168,16 +195,19 @@
 - Works with react, vue, angular, ...
 
 ---
+
 ### Actions
 
 ![Redux Actions](assets/redux_action_highlight.png)
 
 ----
+
 ### Actions
 
 > Something happened in the app which might be interesting.
 
 ----
+
 ### Actions
 
 - An action is data from the application which might be relevant for the store
@@ -194,6 +224,7 @@ const signInAction = {
 
 store.dispatch(signInAction)
 ```
+
 ----
 
 ### Action Creators
@@ -214,6 +245,7 @@ store.dispatch(actionCreator())
 ```
 
 ----
+
 ### Async action creators
 
 ```js
@@ -239,16 +271,19 @@ store.dispatch(signInAction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
 
 ---
+
 ### Reducers
 
 ![redux overview](assets/redux_reducer_highlight.png)
 
 ----
+
 ### Reducers
 
 > Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
 
 ----
+
 ### Reducers
 
 - Specify how state changes in response to actions.
@@ -265,6 +300,7 @@ const reducer = (previousState = initialState, action) => {
 ```
 
 ----
+
 ### Reducers
 
 ```js
@@ -282,11 +318,13 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 ```
 
 ---
+
 ### Container components
 
 ![redux overview](assets/redux_container_highlight.png)
 
 ----
+
 ### Container components
 
 - Glue between react and redux
@@ -294,6 +332,7 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 - Provides "callbacks" to trigger actions
 
 ----
+
 ### Container Components
 
 ```js
@@ -318,7 +357,9 @@ export default connect(
 ```
 
 ----
+
 ### mapStateToProps
+
 - extract data from the store and provides it to a component
 - data filtering can be done here
 - `function mapStateToProps(state, ownProps?)`
@@ -327,7 +368,9 @@ export default connect(
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
 
 ----
+
 ### mapDispatchToProps
+
 - binds actions with the store and provides those actions to a component
 - `function mapStateToProps(dispatch, ownProps?)`
   - dispatch -> the stores dispatch function
@@ -335,7 +378,9 @@ export default connect(
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
 
 ---
+
 ## Task 1 (Actions)
+
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
   - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
@@ -349,6 +394,7 @@ export default connect(
   - `dispatch(fetchUsers())`
 
 ----
+
 ## Task 2 (Reducer)
 
 - Add a userReducer reducer
@@ -357,13 +403,16 @@ export default connect(
     - try to populate the redux store with a new user
 
 ----
+
 ## Task 3 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 
 ----
+
 ## Task 4 (connect to backend)
-- install https://www.npmjs.com/package/compup-api-wrapper
+
+- install <https://www.npmjs.com/package/compup-api-wrapper>
 - Try to connect fetchUsers action creator to backend
 
 ```js
@@ -374,6 +423,7 @@ await userRepository.all();
 ```
 
 ---
+
 # Further Links
 
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
@@ -381,6 +431,7 @@ await userRepository.all();
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
 
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

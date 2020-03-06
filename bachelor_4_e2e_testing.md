@@ -1,15 +1,20 @@
 # E2E tests
+
 ## (MMT-B2017)
 
 ----
+
 ### E2E tests
+
 - Test the whole application from start to finish
 - Ensure right information is passed between systems
 - Hard to setup/maintain
   - Changing submit button label to sign-up might break tests
 
 ----
+
 ### E2E testing recommendation
+
 - Find a couple of happy paths through the app
   - max 10
 - Run those happy paths agains supported browsers
@@ -17,6 +22,7 @@
   - retry your tests
 
 ----
+
 # Selenium
 
 - Tool to automate browsers
@@ -28,6 +34,7 @@
   - Safari
 
 ----
+
 ### API
 
 - Pretty low level
@@ -35,6 +42,7 @@
 - build own API on top of Selenium API
 
 ----
+
 # Setup a new driver
 
 ```js
@@ -45,6 +53,7 @@ await driver.quit();
 ```
 
 ----
+
 # Navigate somewhere
 
 ```js
@@ -52,6 +61,7 @@ await driver.get('https://compup.agilesoftware.dev');
 ```
 
 ----
+
 # Click a link
 
 ```js
@@ -65,6 +75,7 @@ const clickLink = async (driver, href) => {
 ```
 
 ----
+
 # Fill a form field
 
 ```js
@@ -78,6 +89,7 @@ const fillFormField = async (driver, { name, value }) => {
 ```
 
 ----
+
 # Click some text
 
 ```js
@@ -91,6 +103,7 @@ const clickText = async (driver, text) => {
 ```
 
 ----
+
 # Hit Enter in text field
 
 ```js
@@ -104,13 +117,17 @@ const hitEnterInFormField = async (driver, { name }) => {
 ```
 
 ----
+
 # E2E tests
+
 - What would be good E2E tests for
-  - https://compup.agilesoftware.dev
+  - <https://compup.agilesoftware.dev>
 
 ----
+
 # Task 1/2
-- clone https://github.com/webpapaya/fhs-e2e-tests
+
+- clone <https://github.com/webpapaya/fhs-e2e-tests>
 - Write the following tests
   - Lending money to somebody else
     - Sign up 2 different users
@@ -119,7 +136,9 @@ const hitEnterInFormField = async (driver, { name }) => {
     - Verify sum at top changed to 0
 
 ----
+
 ### Task 2/2
+
 - Write the following tests
   - Changing username
     - Sign up

@@ -1,4 +1,5 @@
 # Frontend Development 2
+
 ## (MMT-B2017)
 
 Build/Test/Deploy Client Side Web-Applications
@@ -41,7 +42,7 @@ Build/Test/Deploy Client Side Web-Applications
 
 ----
 
-# Things I will look at:
+# Things I will look at
 
 - functionality
 - naming
@@ -72,4 +73,4 @@ Build/Test/Deploy Client Side Web-Applications
 
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

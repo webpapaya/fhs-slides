@@ -1,9 +1,11 @@
 ### Client Side Testing
+
 #### (MMT-M2018)
 
 ---
 
-### Wunschkonzert for next time?
+### Wunschkonzert for next time
+
 - debugging/logging
 - i18n
 - Scaling CSS
@@ -11,6 +13,7 @@
 - Functional programming 2?
 
 ---
+
 # Roadmap
 
 - Recap of React/Redux
@@ -24,19 +27,22 @@
 - (validations with io-ts)
 
 ---
+
 # Recap of react/redux  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/jJOKTwGlSS7OU/giphy.gif" -->
 
 ---
+
 ### React Router
 
- - dynamic routing library for
-  - react native
-  - react web
+- dynamic routing library for
+- react native
+- react web
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 
 ----
+
 ### Installation
 
  ```
@@ -44,6 +50,7 @@ npm install react-router-dom --save
 ```
 
 ----
+
 ### Usage
 
  ```js
@@ -66,6 +73,7 @@ import SignIn from './components/sign-in'
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -80,6 +88,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -94,6 +103,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (with exact)
 
  ```js
@@ -108,11 +118,12 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add Links from html
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -122,17 +133,18 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add redirects from JS
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -142,27 +154,31 @@ const Routes = () => (
 ```
 
 ----
+
 ### Task
 
 - finish user data fetching
 - add sign up component with redirect after submit
 
 ----
+
 ### Example Redux App
 
-- Source: https://github.com/webpapaya/compup
-- Live: https://compup.agilesoftware.dev
+- Source: <https://github.com/webpapaya/compup>
+- Live: <https://compup.agilesoftware.dev>
 
 ---
 
 # Client Side Testing
 
 ---
+
 ### Testing Pyramid
 
 ![testing pyramid](assets/testing_pyramid.png)
 
 ----
+
 ### Testing Pyramid
 
 - Unit tests
@@ -173,11 +189,13 @@ const Routes = () => (
   - few tests which test the whole system
 
 ----
+
 ### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
+
 # Unit testing and TDD
 
 - Test driven development (also known as TDD)
@@ -186,6 +204,7 @@ const Routes = () => (
   - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
 
 ----
+
 ### Why TDD
 
 - early/fast feedback during development
@@ -200,18 +219,20 @@ const Routes = () => (
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
 
 ----
+
 ### TDD to me
 
 > Getting confidence that refactoring doesn't break a feature.
 
 ----
+
 ### TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
-
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
 
 ----
+
 ### What is TDD not
 
 - Silver bullet for clean code
@@ -224,11 +245,13 @@ const Routes = () => (
 > The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
 
 ---
+
 ### TDD intro in 7:26 minutes
 
-https://www.youtube.com/watch?v=WSes_PexXcA
+<https://www.youtube.com/watch?v=WSes_PexXcA>
 
 ----
+
 ### Essential vs. accidental complication
 
 - Essential complication
@@ -242,6 +265,7 @@ https://www.youtube.com/watch?v=WSes_PexXcA
   - we can try to improve ourselves
 
 ----
+
 ### Accidental complication
 
 - future proofing code
@@ -254,6 +278,7 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - big refactoring is hard to sell
 
 ----
+
 ### Avoid accidental complication
 
 - Baby steps and TDD
@@ -264,11 +289,13 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - Without refactoring features will take longer
 
 ---
+
 # TDD Cycle
 
 ![tdd cycle](assets/tdd_cycle.png)
 
 ----
+
 ### TDD Cycle
 
 - Red: Write a test and watch it fail
@@ -276,7 +303,9 @@ https://www.youtube.com/watch?v=WSes_PexXcA
 - Refactor: Clean up
 
 ----
+
 ### Red
+
 - Think about the test description
 - Descriptions should reflect the behaviour of the program
 
@@ -287,7 +316,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Green
+
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
@@ -302,7 +333,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Refactor
+
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
@@ -315,6 +348,7 @@ it('returns 3$, when product A given', () => {
 ```
 
 ---
+
 # Anatomy of a Test
 
 - **A**rrange => test setup
@@ -322,7 +356,9 @@ it('returns 3$, when product A given', () => {
 - **A**ssert => verify the result
 
 ----
+
 ### Anatomy of a Test
+
 ```js
 it('returns a list of employees ordered by their name', () => {
   // Setup
@@ -341,6 +377,7 @@ it('returns a list of employees ordered by their name', () => {
 ```
 
 ---
+
 # Code Kata
 
 - Small exercise
@@ -349,6 +386,7 @@ it('returns a list of employees ordered by their name', () => {
   - and encouraging you to find multiple approaches
 
 ---
+
 # Steps
 
 - Step 1: Think
@@ -359,13 +397,14 @@ it('returns a list of employees ordered by their name', () => {
 - Step 6: Cleanup
 
 ----
+
 ### Roman numerals
 
-- go to http://tddbin.com/
-- http://codingdojo.org/kata/RomanNumerals/
-
+- go to <http://tddbin.com/>
+- <http://codingdojo.org/kata/RomanNumerals/>
 
 ---
+
 # What makes a good test
 
 - Deterministic
@@ -378,6 +417,7 @@ it('returns a list of employees ordered by their name', () => {
 - behaviour is described and not implementation details
 
 ---
+
 ### TDD Trap
 
 - Bad tests
@@ -393,19 +433,25 @@ it('returns a list of employees ordered by their name', () => {
 # Tools to test units under isolation
 
 ----
+
 # Dummy objects
+
 - Objects which aren't used
   - so that the compiler doesn't complain
   - used to fill parameter lists
 
 ----
+
 # Fake objects
+
 - Objects have a working implementation
   - but take some shortcuts
   - eg. inMemoryDatabases instead of persistent DB
 
 ----
+
 # Stub objects
+
 - Predefined return values for testing
 - Instead of calling the real API we return a value for testing
 - Useful when:
@@ -418,7 +464,9 @@ const retrieveGPSPosition = () =>
 ```
 
 ----
+
 # Spy objects
+
 - Are stubs that also record the way they were called
 - Useful when:
   - A hard to verify side effect is triggered (eg. E-Mail sending)
@@ -432,12 +480,14 @@ it('sends an email on sign up', () => {
 ```
 
 ---
+
 ### Clock in kata
 
-- go to http://tddbin.com/
-- http://kata-log.rocks/clock-in-kata
+- go to <http://tddbin.com/>
+- <http://kata-log.rocks/clock-in-kata>
 
 ----
+
 # Remember steps
 
 - Step 1: Think
@@ -451,31 +501,37 @@ it('sends an email on sign up', () => {
 ![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
 
 ---
+
 # Integrated tests  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
 
 ----
-# What is an integrated test?
+
+# What is an integrated test
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
 
 ----
-### What is an integrated test?
+
+### What is an integrated test
 
 > Any test where the reason of a failure is hard to track down. (@jbrains)
 
 ----
-### How many code paths?
+
+### How many code paths
 
 ![code paths](assets/code_paths.png)
 
 ----
-### How many code paths?
+
+### How many code paths
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
+
 ### has authentication
 
 - auth given
@@ -485,6 +541,7 @@ it('sends an email on sign up', () => {
 - not auth given?
 
 ----
+
 ### create user auth
 
 - email already taken?
@@ -493,6 +550,7 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
+
 ### create membership
 
 - group does not exist anymore?
@@ -502,12 +560,14 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
-### How many integration tests to write?
+
+### How many integration tests to write
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
-### Integrated tests:
+
+### Integrated tests
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
@@ -516,7 +576,8 @@ it('sends an email on sign up', () => {
   - `4 * 3 * 4 = 48 tests`
 
 ----
-### Unit tests:
+
+### Unit tests
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
@@ -524,11 +585,13 @@ it('sends an email on sign up', () => {
 - `4 + 3 + 4 = 11 tests + 2 contract tests`
 
 ----
+
 # Unit tests only?  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
 
 ----
+
 ### Happy path tests
 
 - 1 integrated test per use-case
@@ -539,6 +602,7 @@ it('sends an email on sign up', () => {
     - ...
 
 ---
+
 # Testing Databases
 
 - Arrange
@@ -551,23 +615,30 @@ it('sends an email on sign up', () => {
   - Rollback the transaction
 
 ----
+
 # Task
-- Clone https://github.com/webpapaya/fhs-neo4j-tests
+
+- Clone <https://github.com/webpapaya/fhs-neo4j-tests>
 - Update tests so that they run inside a transaction
   - rollback the transaction before the test finishes
 
 ---
+
 # E2E tests
 
 ----
+
 ### E2E tests
+
 - Test the whole application from start to finish
 - Ensure right information is passed between systems
 - Hard to setup/maintain
   - Changing submit button label to sign-up might break tests
 
 ----
+
 ### E2E testing recommendation
+
 - Find a couple of happy paths through the app
   - max 10
 - Run those happy paths agains supported browsers
@@ -575,6 +646,7 @@ it('sends an email on sign up', () => {
   - retry your tests
 
 ----
+
 # Selenium
 
 - Tool to automate browsers
@@ -586,6 +658,7 @@ it('sends an email on sign up', () => {
   - Safari
 
 ----
+
 ### API
 
 - Pretty low level
@@ -593,6 +666,7 @@ it('sends an email on sign up', () => {
 - build own API on top of Selenium API
 
 ----
+
 # Setup a new driver
 
 ```js
@@ -603,6 +677,7 @@ await driver.quit();
 ```
 
 ----
+
 # Navigate somewhere
 
 ```js
@@ -610,6 +685,7 @@ await driver.get('https://compup.agilesoftware.dev');
 ```
 
 ----
+
 # Click a link
 
 ```js
@@ -623,6 +699,7 @@ const clickLink = async (driver, href) => {
 ```
 
 ----
+
 # Fill a form field
 
 ```js
@@ -636,6 +713,7 @@ const fillFormField = async (driver, { name, value }) => {
 ```
 
 ----
+
 # Click some text
 
 ```js
@@ -649,6 +727,7 @@ const clickText = async (driver, text) => {
 ```
 
 ----
+
 # Hit Enter in text field
 
 ```js
@@ -662,13 +741,17 @@ const hitEnterInFormField = async (driver, { name }) => {
 ```
 
 ----
+
 # E2E tests
+
 - What would be good E2E tests for
-  - https://compup.agilesoftware.dev
+  - <https://compup.agilesoftware.dev>
 
 ----
+
 # Task 1/2
-- clone https://github.com/webpapaya/fhs-e2e-tests
+
+- clone <https://github.com/webpapaya/fhs-e2e-tests>
 - Write the following tests
   - Lending money to somebody else
     - Sign up 2 different users
@@ -677,7 +760,9 @@ const hitEnterInFormField = async (driver, { name }) => {
     - Verify sum at top changed to 0
 
 ----
+
 ### Task 2/2
+
 - Write the following tests
   - Changing username
     - Sign up
@@ -688,13 +773,16 @@ const hitEnterInFormField = async (driver, { name }) => {
     - verify username
 
 ----
+
 ### Homework
 
 - We'll review it together next time
   - Think about some e2e test cases for your project
 
 ---
+
 # Resources
+
 - [Integrated Tests are a Scam](https://vimeo.com/80533536)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
 - [Is TDD Dead](https://www.youtube.com/watch?v=z9quxZsLcfo&list=PLJb2p0qX8R_qSRhs14CiwKuDuzERXSU8m)
@@ -703,7 +791,7 @@ const hitEnterInFormField = async (driver, { name }) => {
 - [TDD](https://www.amazon.de/Test-Driven-Development-Example-Signature/dp/0321146530/ref=pd_lpo_sbs_14_img_2?_encoding=UTF8&psc=1&refRID=KGXDT4ZNWGXMT5Y96H3F)
 
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
-
+<https://de.surveymonkey.com/r/J6693VN>

@@ -1,7 +1,9 @@
 # Wunschkonzert
 
 ---
+
 # Roadmap
+
 - Better test assertions
 - i18n/l10n
 - How to CSS at scale
@@ -9,6 +11,7 @@
 - ~~caching graphql~~
 
 ---
+
 # Exam
 
 - Theoretical questions
@@ -25,6 +28,7 @@
 # Homework review
 
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

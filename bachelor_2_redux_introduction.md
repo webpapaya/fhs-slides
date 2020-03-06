@@ -1,9 +1,11 @@
 ### State Management with Redux
+
 #### (MMT-B2017)
 
 ---
 
 ### Roadmap
+
 - Recap of homework
 - Functional Programming 101
 - Hooks
@@ -14,11 +16,13 @@
 ### Recap of Homework
 
 ----
+
 ### Mutable state
 
-https://codesandbox.io/embed/zqqkxrk14l?fontsize=14
+<https://codesandbox.io/embed/zqqkxrk14l?fontsize=14>
 
 ----
+
 ### Depending on data which might not be loaded
 
 ```js
@@ -32,6 +36,7 @@ function getUserName (users, id) {
 ```
 
 ----
+
 ### God Components
 
 ```js
@@ -46,8 +51,11 @@ const FormInput = ({ type, ...otherProps }) => {
   //....
 }
 ```
+
 ----
+
 ### Misc
+
 - use === instead of ==
 - you're big fans of console.log debugging
 - extra elements in markup
@@ -55,6 +63,7 @@ const FormInput = ({ type, ...otherProps }) => {
 - linting
 
 ---
+
 ### Functional Programming 101
 
 - Immutability
@@ -62,11 +71,13 @@ const FormInput = ({ type, ...otherProps }) => {
 - Side Effect
 
 ---
+
 ## What is functional programming
 
 > Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
 
 ---
+
 ## Why functional programming
 
 - More testable
@@ -78,11 +89,13 @@ const FormInput = ({ type, ...otherProps }) => {
   - pure functions easy to cache
 
 ---
+
 ## Immutability
 
 > An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
 
 ----
+
 ## Immutable objects in JS
 
 ````js
@@ -92,6 +105,7 @@ console.log(immutableObject) // => { test: 1 }
 ````
 
 ----
+
 ## Changing an immutable value
 
 ````js
@@ -101,6 +115,7 @@ console.log(updatedObject) // => { a: 2, b: 2 }
 ````
 
 ----
+
 ## Unfreeze an object
 
 ````js
@@ -109,6 +124,7 @@ const unfrozenCopy = { ...immutableObject }
 ````
 
 ----
+
 ## Why immutability
 
 - race conditions impossible
@@ -116,11 +132,13 @@ const unfrozenCopy = { ...immutableObject }
 - easier to test
 
 ---
+
 ## Side-Effects
 
 > A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
 
 ----
+
 ## Some side effects
 
 - DB/HTTP calls
@@ -130,6 +148,7 @@ const unfrozenCopy = { ...immutableObject }
 - accessing system state (eg. Clock, Geolocation,...)
 
 ----
+
 ## Where to deal with side effects
 
 - Moved to the boundaries of the system
@@ -138,19 +157,21 @@ const unfrozenCopy = { ...immutableObject }
 ![Side effects](assets/side_effects.png)
 
 ---
+
 ## Pure Functions
 
 - A function is considered pure when:
   - for the same input it always returns the same output
   - it has no side effects
-      - no mutation of non-local state
+    - no mutation of non-local state
 
 ```js
 const add = (a, b) => a + b
 ```
 
 ----
-## Pure or in-pure?
+
+## Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -165,7 +186,8 @@ const fn8 = (array) => array.forEach((item) => console.log(item))
 ```
 
 ----
-## Pure or in-pure?
+
+## Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -180,7 +202,8 @@ const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ```
 
 ----
-## Pure or in-pure?
+
+## Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
@@ -193,7 +216,8 @@ const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
 ----
-## Pure or in-pure?
+
+## Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
@@ -213,7 +237,9 @@ isAllowedToDring(18) // false
 ```
 
 ----
+
 ## Pure or inpure? 2/2
+
 ```js
 const config = Object.freeze({ minimumAge: 18 })
 const isAllowedToDrink = (age) => age >= config.minimumAge
@@ -225,9 +251,11 @@ isAllowedToDring(18) // true
 config.minimumAge = 19
 isAllowedToDring(18) // true
 ```
+
 ---
 
 ## Summary FP
+
 - Immutability
   - Object can't be changed after its creation
 - Side-Effects
@@ -247,6 +275,7 @@ isAllowedToDring(18) // true
 - Can't be called inside loops, conditions or nested functions
 
 ----
+
 ### State without hooks
 
 ```js
@@ -270,6 +299,7 @@ class App extends React.Component {
 ```
 
 ----
+
 ### State with hooks
 
 ```js
@@ -287,6 +317,7 @@ const App = () => {
 ```
 
 ----
+
 ### useEffect
 
 ```js
@@ -308,6 +339,7 @@ const SimpleForm = ({ onSubmit }) => {
 ```
 
 ----
+
 ### useEffect
 
 ```js
@@ -323,6 +355,7 @@ useEffect(() => {}, [variable])
 ```
 
 ----
+
 ### Other hooks
 
 - [API Reference](https://reactjs.org/docs/hooks-reference.html)
@@ -335,25 +368,30 @@ useEffect(() => {}, [variable])
   - useDebugValue
 
 ---
+
 ### State Management with Redux
 
 ----
+
 ### What is application state
 
 > An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
 
 ----
+
 ### State in Redux terms
 
 > Every bit of information the application needs in order to render.
 
 ----
-### What information do we need to render this page?
+
+### What information do we need to render this page
 
 ![app wireframe](assets/app_wireframe.png)
 
 ----
-### What information do we need to render this page?
+
+### What information do we need to render this page
 
 | Question?                                  | State Name           |
 |--------------------------------------------|----------------------|
@@ -366,7 +404,9 @@ useEffect(() => {}, [variable])
 | Which components should be rendered?       | url                  |
 
 ----
+
 ### Categorising different types
+
 - Relevant for other parts of the application?
   - add to global state
 - Irrelevant for other parts of the application?
@@ -374,7 +414,8 @@ useEffect(() => {}, [variable])
   - also known as UI State
 
 ----
-### Global/Local/URL?
+
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -386,7 +427,8 @@ useEffect(() => {}, [variable])
 | url                  |            |
 
 ----
-### Global/Local/URL?
+
+### Global/Local/URL
 
 | State Name           | State Type |
 |----------------------|------------|
@@ -397,9 +439,10 @@ useEffect(() => {}, [variable])
 | inputStatus          | local      |
 | url                  | url        |
 
-
 ----
+
 ### Global State
+
 - relevant for other components
 - could be seen as a client side database
   - or a cached version of the server data
@@ -407,7 +450,9 @@ useEffect(() => {}, [variable])
   - eg. users, money transactions, authentication token
 
 ----
+
 ### UI State
+
 - irrelevant for other parts of the application
   - or state which shouldn't be shared with others
 - What to store in UI state?
@@ -415,7 +460,9 @@ useEffect(() => {}, [variable])
   - visual enhancements
 
 ----
+
 ### URL State
+
 - defines which set of components should be rendered
 - persists on page reloads
 - What to store in URL state?
@@ -423,17 +470,21 @@ useEffect(() => {}, [variable])
   - the current page of a paginated list
 
 ---
+
 ### React component tree
 
 ![Component Tree](assets/react_component_tree.png)
 
 ----
+
 ### Storing state in components
 
 ![Local state tree](assets/local_state_tree.png)
 
 ----
+
 ### Storing state in components
+
 - Pros
   - Components are independent
     - eg. "Navigation" doesn't know about "User Update"
@@ -443,11 +494,13 @@ useEffect(() => {}, [variable])
     - Navigation needs to refetch user data
 
 ----
+
 ### Storing state in the root component
 
 ![Global state tree](assets/global_state_tree.png)
 
 ----
+
 ### Storing state in the root component
 
 - Pros
@@ -459,16 +512,19 @@ useEffect(() => {}, [variable])
   - (Root component contains all state logic)
 
 ----
+
 ### Storing state in the root component
 
 ![twitter component tree](assets/twitter_component_tree.gif)
 
 ----
+
 ### Storing state in redux
 
 ![connected tree](assets/connected_tree.png)
 
 ----
+
 ### Storing state in redux
 
 - Global state which acts like local state
@@ -481,11 +537,13 @@ useEffect(() => {}, [variable])
   - "Complex" architecture for small apps
 
 ---
+
 ### Redux
 
 ![redux overview](assets/redux_overview.png)
 
 ----
+
 ### Why Redux
 
 - Managing state in react can be challenging
@@ -496,16 +554,19 @@ useEffect(() => {}, [variable])
 - Works with react, vue, angular, ...
 
 ---
+
 ### Actions
 
 ![Redux Actions](assets/redux_action_highlight.png)
 
 ----
+
 ### Actions
 
 > Something happened in the app which might be interesting.
 
 ----
+
 ### Actions
 
 - An action is data from the application which might be relevant for the store
@@ -522,6 +583,7 @@ const signInAction = {
 
 store.dispatch(signInAction)
 ```
+
 ----
 
 ### Action Creators
@@ -542,6 +604,7 @@ store.dispatch(actionCreator())
 ```
 
 ----
+
 #### Action creator with params
 
 ```js
@@ -554,6 +617,7 @@ store.dispatch(signInAction({ username: 'Mike', password: '1234' }))
 ```
 
 ----
+
 ### Async action creators
 
 ```js
@@ -579,16 +643,19 @@ store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.
 ```
 
 ---
+
 ### Reducers
 
 ![redux overview](assets/redux_reducer_highlight.png)
 
 ----
+
 ### Reducers
 
 > Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
 
 ----
+
 ### Reducers
 
 - Specify how state changes in response to actions.
@@ -605,6 +672,7 @@ const reducer = (previousState = initialState, action) => {
 ```
 
 ----
+
 ### Reducers
 
 ```js
@@ -622,11 +690,13 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 ```
 
 ---
+
 ### Container components
 
 ![redux overview](assets/redux_container_highlight.png)
 
 ----
+
 ### Container components
 
 - Glue between react and redux
@@ -634,6 +704,7 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 - Provides "callbacks" to trigger actions
 
 ----
+
 ### Container Components
 
 ```js
@@ -658,7 +729,9 @@ export default connect(
 ```
 
 ----
+
 ### mapStateToProps
+
 - extract data from the store and provides it to a component
 - data filtering can be done here
 - `function mapStateToProps(state, ownProps?)`
@@ -667,7 +740,9 @@ export default connect(
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
 
 ----
+
 ### mapDispatchToProps
+
 - binds actions with the store and provides those actions to a component
 - `function mapStateToProps(dispatch, ownProps?)`
   - dispatch -> the stores dispatch function
@@ -675,6 +750,7 @@ export default connect(
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
 
 ----
+
 ### Example from lecture
 
 [Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
@@ -682,7 +758,9 @@ export default connect(
 Might contain syntax error =)
 
 ---
+
 ## Task 1 (Actions)
+
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
   - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
@@ -696,6 +774,7 @@ Might contain syntax error =)
   - `dispatch(fetchUsers())`
 
 ----
+
 ## Task 2 (Reducer)
 
 - Add a userReducer reducer
@@ -704,13 +783,16 @@ Might contain syntax error =)
     - try to populate the redux store with a new user
 
 ----
+
 ## Task 3 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 
 ----
+
 ## Task 4 (connect to backend)
-- install https://www.npmjs.com/package/compup-api-wrapper
+
+- install <https://www.npmjs.com/package/compup-api-wrapper>
 - Try to connect fetchUsers action creator to backend
 
 ```js
@@ -721,11 +803,12 @@ await userRepository.all();
 ```
 
 ---
+
 ### React Router
 
- - dynamic routing library for
-  - react native
-  - react web
+- dynamic routing library for
+- react native
+- react web
 - [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
 
 ----
@@ -760,6 +843,7 @@ import SignIn from './components/sign-in'
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -774,6 +858,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (without exact)
 
  ```js
@@ -788,6 +873,7 @@ const Routes = () => (
 ```
 
 ----
+
 ### Route priority (with exact)
 
  ```js
@@ -802,11 +888,12 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add Links from html
 
  ```js
  import { Link } from 'react-router-dom'
- 
+
  const Routes = () => (
    <nav>
      <Link to='/'>Home</Link>
@@ -816,17 +903,18 @@ const Routes = () => (
 ```
 
 ----
+
 ### Add redirects from JS
 
  ```js
  import { withRouter } from 'react-router-dom'
- 
+
  const SignIn = withRouter(({ history }) => {
    const onSubmit = (evt) => {
      evt.preventDefault()
      history.push('/')
    }
- 
+
    return (
      <form onSubmit={onSubmit}>
        {/* ... */}
@@ -836,6 +924,7 @@ const Routes = () => (
 ```
 
 ---
+
 ## Homework 1
 
 - Implement routing with react router (50%)
@@ -848,27 +937,35 @@ const Routes = () => (
     - /money-transactions
       - money-transactions-create component is rendered
       - money-transaction-list component is rendered
+
 ---
+
 ## Homework 2
 
 - Connect the createMoneyTransaction with the backend (50%)
-  - install https://www.npmjs.com/package/compup-api-wrapper
+  - install <https://www.npmjs.com/package/compup-api-wrapper>
   - read users with `userRepository.all()` and put them in the redux store
     - when the component is rendered the api call is triggered
     - use `useEffect` hook
+
 ---
+
 ## For questions
+
 - I'll be in Salzburg 6.5. - 7.5.
 - I can offer an inoffical tutorium
   - E-Mail me
 
 ---
+
 ## Next Homework
+
 - If you want to start with the next homework
 - Connect the remaining components with the backend
   - TODO: better description will follow
 
 ---
+
 # Further Links
 
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
@@ -876,6 +973,7 @@ const Routes = () => (
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
 
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

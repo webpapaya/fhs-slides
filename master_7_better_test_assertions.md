@@ -1,4 +1,5 @@
 # Better Test assertions
+
 #### (MMT-M2018)
 
 ---
@@ -6,15 +7,18 @@
 ![failing tests](assets/failing_tests.png)
 
 ----
+
 # What am I doing wrong? <!-- .element: class="color--white" -->
 <!-- .slide: data-background="./assets/angry.gif" -->
 
 ----
+
 # Started to question TDD <!-- .element: class="color--white" -->
 <!-- .slide: data-background="./assets/questioning_myself.gif" -->
 
 ---
-# What is a test assertions?
+
+# What is a test assertions
 
 ----
 
@@ -59,11 +63,13 @@ assert(1 === 2, '1 should be equal to 1') // Throws exception
 ---
 
 # Links
+
 - [Blog Post](https://dev.to/webpapaya/writing-better-test-assertions-lml)
 - [Hamjest](https://github.com/rluba/hamjest/wiki/Matcher-documentation)
 - [Source Code](https://github.com/webpapaya/better-test-assertions)
 
 ---
+
 # Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

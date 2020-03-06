@@ -1,4 +1,5 @@
 # Defactoring
+
 ## (MMT-M2018)
 
 ---
@@ -69,6 +70,7 @@ const formatISODate = (isoDate) => {
 ----
 
 # Large function/method
+
 - A function/method which has to many responsibilities and does to much
 - Possible refactoring:
   - split the function/method into multiple small methods
@@ -76,6 +78,7 @@ const formatISODate = (isoDate) => {
 ----
 
 # Large class
+
 - A class which has to many responsibilities
 - also called God Object
 - Possible refactoring:
@@ -84,6 +87,7 @@ const formatISODate = (isoDate) => {
 ----
 
 # Long code lines
+
 - A line which is doing to much
 - possible refactorings
   - Split the line into multiple lines
@@ -116,7 +120,7 @@ public boolean isAvailable() {
 
 > Refactoring is a controlled technique for improving the design of an existing code base. [Fowler]
 
-https://martinfowler.com/articles/refactoring-2nd-ed.html
+<https://martinfowler.com/articles/refactoring-2nd-ed.html>
 
 ----
 
@@ -132,10 +136,10 @@ https://martinfowler.com/articles/refactoring-2nd-ed.html
 - Mob programming session
 - Timebox 45 minutes
 - Use the following:
-  - https://github.com/webpapaya/fhs-defactoring
+  - <https://github.com/webpapaya/fhs-defactoring>
 
 ---
 
 ## Feedback
 
-https://de.surveymonkey.com/r/J6693VN
+<https://de.surveymonkey.com/r/J6693VN>

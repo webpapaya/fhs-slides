@@ -10,7 +10,7 @@
     "build:html": "npm run start -- --static --static-dirs=assets && touch _static/.nojekyll",
     "build:pdf": "npm run start -- --print build/slides.pdf",
     "deploy": "npm run build:html && gh-pages --dotfiles -d _static && rm -rf _static",
-    "lint": "standard --plugin markdown '**/*.md'"
+    "lint": "markdownlint . -i node_modules --fix && standard --plugin markdown '**/*.md' "
   },
   "author": "Thomas Mayrhofer",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "standard": "^14.3.1"
   },
   "dependencies": {
+    "markdownlint-cli": "^0.22.0",
     "reveal-md": "^3.0.0-1"
   }
 }
