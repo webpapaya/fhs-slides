@@ -1,5 +1,7 @@
 # Introduction to React
 
+## (MMT-B2018)
+
 ---
 
 ## React
@@ -12,6 +14,14 @@
   - React-Native-Desktop
   - React-Native-Windows
   - React-VR
+
+---
+
+## Components
+
+> Components let you split the UI into independent, reusable pieces.
+[React Docs](https://reactjs.org/docs/components-and-props.html)
+
 ---
 
 ## React Components
@@ -67,12 +77,72 @@ const Button = () => {
 ```
 
 ---
+
+## Which components do you see
+
+![app](assets/sign_in_wireframe.png)
+
+----
+
+![app](assets/app_wireframe.png)
+
+---
+
+## Types of components
+
+- Possible conceptual structure for components
+  - `components/`
+    - could be reused in other applications
+    - don't have domain logic (eg. Button)
+  - `container/<container_name>/organism/`
+    - contain domain logic
+    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
+
+---
+
+# Building the first react component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/coding.gif" -->
+
+---
+
+### Embedding expressions
+
+```js
+const CurrentTime = () => {
+  return (
+    <h1>
+      {(new Date()).toLocaleDateString()}
+    </h1>
+  )
+}
+```
+
+----
+
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday
+        ? 'Today'
+        : 'Not Today' }
+    </h1>
+  )
+}
+```
+
+----
+
 ### Loop over arrays
 
 ```js
-const Button = ({ users }) => {
+const UserList = ({ users }) => {
   return (
-    <ul type='button'>
+    <ul>
       {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
       })}
@@ -92,34 +162,6 @@ const Button = ({ users }) => {
 
 ---
 
-## Types of components
-
-- Possible conceptual structure for components
-  - components/
-    - could be reused in other applications
-    - don't have domain logic (eg. Button)
-  - container/<container_name>/organism/
-    - contain domain logic
-    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
-
----
-
-## Which components do you see?
-
-![app](assets/sign_in_wireframe.png)
-
-----
-
-![app](assets/app_wireframe.png)
-
----
-
-# Building the first react component  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="./assets/coding.gif" -->
-
----
-
 ## Component composition
 
 - Components can be nested and composed together
@@ -128,14 +170,12 @@ const Button = ({ users }) => {
 
 ----
 
-
 ## React props
 
 - Possibility to customize components
   - Can be seen as component configuration
 - Props are passed to the component
   - A component at a lower level of the tree can't modify given props directly
-
 
 ```js
 const Button = ({ children, disabled = false }) => {
@@ -206,9 +246,48 @@ Can change in child Components? | Yes | No
 
 ---
 
+### Fragments
+
+- Groups a list of children without adding a dom element
+
+```js
+const AComponent = () => {
+  return (
+    <>
+      <label>An input</label>
+      <input type="text" />
+    </>
+  )
+}
+```
+
+----
+
+## Keyed Fragments
+
+- Same as fragment but a key can be provided (eg.: definition list)
+
+```js
+const AComponent = ({ items }) => {
+  return (
+    <dl>
+      {items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  )
+}
+```
+
+---
+
 ## Task
 
-- Fork/clone the following https://github.com/webpapaya/fhs-react-redux-starter-kit
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - npm install
 - npm run start:storybook
 - Reuse/Adapt existing Button
@@ -216,169 +295,6 @@ Can change in child Components? | Yes | No
   - Username
   - Password
 - If you're done help others
-
-
----
-### React Router
-
- - dynamic routing library for
-  - react native
-  - react web
-- [Documentation](https://reacttraining.com/react-router/web/guides/quick-start)
-
-----
-
-### Installation
-
- ```
-npm install react-router-dom --save
-```
-
-----
-
-### Usage
-
- ```js
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Homepage from './components/homepage'
-import SignIn from './components/sign-in'
- const App = () => {
-  return (
-    <Router> { /* creates a new routing context */ }
-      <Switch> { /* render only one route */ }
-        { /* define routes and pass component as prop to the route */ }
-        <Route path="/sign-in" component={SignIn}>
-        <Route path="/" component={Homepage}>
-        { /* if no route matches redirect to 'Homepage' */ }
-        <Redirect to='/'>
-      </Switch>
-    </Router>
-  );
-}
-```
-
-----
-### Route priority (without exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
-const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-
-----
-### Route priority (without exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes SignIn
-const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
-  </Switch>
-);
-```
-
-----
-### Route priority (with exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes sign-in
-const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Homepage}>
-    <Route exact path="/sign-in" component={SignIn}>
-  </Switch>
-);
-```
-
-----
-### Add Links from html
-
- ```js
- import { Link } from 'react-router-dom'
-
- const Routes = () => (
-   <nav>
-     <Link to='/'>Home</Link>
-     <Link to='/sign-in'>Sign in</Link>
-   </nav>
-)
-```
-
-----
-### Add redirects from JS
-
- ```js
- import { withRouter } from 'react-router-dom'
-
- const SignIn = withRouter(({ history }) => {
-   const onSubmit = (evt) => {
-     evt.preventDefault()
-     history.push('/')
-   }
-
-   return (
-     <form onSubmit={onSubmit}>
-       {/* ... */}
-     </form>
-   )
-})
-```
-
----
-
-## Homework
-
-- Build the following components in Storybook
-  - UserSignIn -> onSubmit => { username, password }
-  - UserSignUp -> onSubmit => { username, password }
-  - MoneyTransactionCreate
-    - users => { id, name }
-    - onSubmit => { debitorId, creditorId, amount }
-
-  - MoneyTransactionList (Lists all Money Transactions)
-    - moneyTransactions
-    - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
-
-- You probably need the following core components
-  - `<TextInput {...} />`
-  - `<DecimalInput {...} />`
-  - `<SelectInput {...} />`
-  - `<Button {...} />`
-  - ...
-
-- Allowed to use CSS Frameworks
-- Not allowed to use Component Libraries
-- You can use as a starting point https://github.com/webpapaya/fhs-react-redux-starter-kit
-- Mock Data for the API https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65
-- Add the following routes
-  - /sign-in
-    - Sign-In component is rendered
-  - /sign-up
-    - Sign-Up component is rendered
-  - /money-transactions
-    - money-transactions-create component is rendered
-    - money-transaction-list component is rendered
-
-----
-
-![sign_in](assets/sign_in_wireframe.png)
-
-----
-
-![sign_up](assets/sign_up_wireframe.png)
-
-----
-
-![app](assets/app_wireframe.png)
 
 ---
 
@@ -393,5 +309,5 @@ const Routes = () => (
 
 ## Feedback/Questions
 
-- https://de.surveymonkey.com/r/J6693VN
+- <https://de.surveymonkey.com/r/J6693VN>
 - tmayrhofer.lba@fh-salzburg.ac.at

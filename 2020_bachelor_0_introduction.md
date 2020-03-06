@@ -1,5 +1,6 @@
 # Fullstack Development
-## (MMT-B2019)
+
+## (MMT-B2018)
 
 Build/Test/Deploy Client Side Web-Applications
 
@@ -9,6 +10,18 @@ Build/Test/Deploy Client Side Web-Applications
 
 - Thomas Mayrhofer (@webpapaya)
 - E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
+
+---
+
+![sign_in](assets/sign_in_wireframe.png)
+
+----
+
+![sign_up](assets/sign_up_wireframe.png)
+
+----
+
+![app](assets/app_wireframe.png)
 
 ---
 
@@ -28,4 +41,4 @@ Build/Test/Deploy Client Side Web-Applications
 # Feedback
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
-- https://de.surveymonkey.com/r/XQ96YZX
+- <https://de.surveymonkey.com/r/XQ96YZX>

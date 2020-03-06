@@ -1,15 +1,18 @@
 # Client Side Web Engineering
+
 ## (MMT-M2019)
 
 Build/Test/Deploy Client Side Web-Applications
 
 ---
+
 # About/Contact
 
 - Thomas Mayrhofer (@webpapaya)
 - E-Mail: tmayrhofer.lba@fh-salzburg.ac.at
 
 ---
+
 # Roadmap
 
 9.3.-10.3 4EH (introduction to react/testing react components)
@@ -19,6 +22,7 @@ Build/Test/Deploy Client Side Web-Applications
 ---
 
 # Master Project (2x ~1h)
+
 - Activise: 30.3. 10:00, 11.5. 10:00
 - Turtlet: 30.3. 11:00, 11.5. 11:00
 - Expo Generator: 31.3. 10:00, 12.5. 10:00
@@ -30,4 +34,4 @@ Build/Test/Deploy Client Side Web-Applications
 # Feedback
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
-- https://de.surveymonkey.com/r/XQ96YZX
+- <https://de.surveymonkey.com/r/XQ96YZX>

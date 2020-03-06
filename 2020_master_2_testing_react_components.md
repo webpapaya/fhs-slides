@@ -1,4 +1,5 @@
 # Testing React Components
+
 ## (MMT-M2019)
 
 ---
@@ -8,6 +9,7 @@
 ![testing pyramid](assets/testing_pyramid.png)
 
 ----
+
 ### Testing Pyramid
 
 - Unit tests
@@ -18,11 +20,13 @@
   - few tests which test the whole system
 
 ----
+
 ### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
 ---
+
 # Unit testing and TDD
 
 - Test driven development (also known as TDD)
@@ -31,6 +35,7 @@
   - Author of [Extreme Programming](https://www.amazon.de/Extreme-Programming-Explained-Embrace-Change/dp/8131704513/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=kent+beck+extreme+programming+englisch&qid=1557045753&s=books&sr=1-1-catcorr)
 
 ----
+
 ### Why TDD
 
 - early/fast feedback during development
@@ -45,18 +50,20 @@
   - [Docs for pomeranian-durations](https://github.com/webpapaya/pomeranian-durations)
 
 ----
+
 ### TDD to me
 
 > Getting confidence that refactoring doesn't break a feature.
 
 ----
+
 ### TDD
 
 > TDD doesn't drive good design. TDD gives you immediate feedback about what is likely to be bad design. (Kent Beck)
-
 > I want to go home on Friday and don't think I broke something. (Kent Beck)
 
 ----
+
 ### What is TDD not
 
 - Silver bullet for clean code
@@ -70,11 +77,13 @@
 > The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
 
 ---
+
 # TDD Cycle
 
 ![tdd cycle](assets/tdd_cycle.png)
 
 ----
+
 ### TDD Cycle
 
 - Red: Write a test and watch it fail
@@ -82,7 +91,9 @@
 - Refactor: Clean up
 
 ----
+
 ### Red
+
 - Think about the test description
 - Descriptions should reflect the behaviour of the program
 
@@ -93,7 +104,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Green
+
 - Write just enough code to make the test pass
   - if there is only 1 product just return 3$
 
@@ -108,7 +121,9 @@ it('returns 3$, when product A given', () => {
 ```
 
 ----
+
 ### Refactor
+
 - Change the code without changing any of the behaviour
 - "Clean the kitchen"
 
@@ -121,6 +136,7 @@ it('returns 3$, when product A given', () => {
 ```
 
 ---
+
 # Anatomy of a Test
 
 - **A**rrange => test setup
@@ -128,7 +144,9 @@ it('returns 3$, when product A given', () => {
 - **A**ssert => verify the result
 
 ----
+
 ### Anatomy of a Test
+
 ```js
 it('returns a list of employees ordered by their name', () => {
   // Setup
@@ -147,6 +165,7 @@ it('returns a list of employees ordered by their name', () => {
 ```
 
 ---
+
 # What makes a good test
 
 - Deterministic
@@ -159,6 +178,7 @@ it('returns a list of employees ordered by their name', () => {
 - behaviour is described and not implementation details
 
 ----
+
 ### TDD Trap
 
 - Bad tests
@@ -170,6 +190,7 @@ it('returns a list of employees ordered by their name', () => {
 - Deleting tests is fine (if they're not required anymore)
 
 ---
+
 ### TDD React Components
 
 ```js
@@ -188,6 +209,7 @@ describe('Button', () => {
 ```
 
 ---
+
 ### Testing callbacks
 
 ```js
@@ -208,23 +230,29 @@ describe('Button', () => {
 ```
 
 ---
+
 # Tools to test units under isolation
 
 ----
+
 # Dummy objects
+
 - Objects which aren't used
   - so that the compiler doesn't complain
   - used to fill parameter lists
 
-
 ----
+
 # Fake objects
+
 - Objects have a working implementation
   - but take some shortcuts
   - eg. inMemoryDatabases instead of persistent DB
 
 ----
+
 # Stub objects
+
 - Predefined return values for testing
 - Instead of calling the real API we return a value for testing
 - Useful when:
@@ -237,7 +265,9 @@ const retrieveGPSPosition = () =>
 ```
 
 ----
+
 # Spy objects
+
 - Are stubs that also record the way they were called
 - Useful when:
   - A hard to verify side effect is triggered (eg. E-Mail sending)
@@ -250,33 +280,38 @@ it('sends an email on sign up', () => {
 })
 ```
 
-
 ---
+
 # Integrated tests  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
 
 ----
-# What is an integrated test?
+
+# What is an integrated test
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
 
 ----
-### What is an integrated test?
+
+### What is an integrated test
 
 > Any test where the reason of a failure is hard to track down. (@jbrains)
 
 ----
-### How many code paths?
+
+### How many code paths
 
 ![code paths](assets/code_paths.png)
 
 ----
-### How many code paths?
+
+### How many code paths
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
+
 ### has authentication
 
 - auth given
@@ -286,6 +321,7 @@ it('sends an email on sign up', () => {
 - not auth given?
 
 ----
+
 ### create user auth
 
 - email already taken?
@@ -294,6 +330,7 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
+
 ### create membership
 
 - group does not exist anymore?
@@ -303,12 +340,14 @@ it('sends an email on sign up', () => {
 - ...
 
 ----
-### How many integration tests to write?
+
+### How many integration tests to write
 
 ![code paths](assets/code_paths_hightlight.png)
 
 ----
-### Integrated tests:
+
+### Integrated tests
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
@@ -317,7 +356,8 @@ it('sends an email on sign up', () => {
   - `4 * 3 * 4 = 48 tests`
 
 ----
-### Unit tests:
+
+### Unit tests
 
 - hasAuth (4 paths)
 - create user auth (3 paths)
@@ -325,11 +365,13 @@ it('sends an email on sign up', () => {
 - `4 + 3 + 4 = 11 tests + 2 contract tests`
 
 ----
+
 # Unit tests only?  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
 
 ----
+
 ### Happy path tests
 
 - 1 integrated test per use-case
@@ -340,11 +382,13 @@ it('sends an email on sign up', () => {
     - ...
 
 ---
+
 ### Mocking node modules
+
 proxyquire
 
-
 ---
+
 ### Exercise
 
 - You're building an issue tracking system
@@ -362,12 +406,14 @@ proxyquire
   - don't display a "show more" button
 
 ---
+
 # Possible Solution
 
-- https://gist.github.com/webpapaya/0532e52ba6f64db9ceb8500c0167c680
+- <https://gist.github.com/webpapaya/0532e52ba6f64db9ceb8500c0167c680>
 
 ---
+
 # Feedback
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
-- https://de.surveymonkey.com/r/XQ96YZX
+- <https://de.surveymonkey.com/r/XQ96YZX>
