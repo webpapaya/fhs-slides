@@ -36,13 +36,13 @@ class App extends React.Component {
 }
 ```
 
----
+----
 
 ### useState
 
 ```js
 const App = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
 
   return (
@@ -182,6 +182,13 @@ const App = () => {
 
 ### React Context API
 
+- Available since the beginning of React
+- Prevent "prop drilling"
+
+----
+
+### React Context API
+
 ![global state tree](assets/global_state_tree.png)
 
 ----
@@ -194,7 +201,7 @@ const App = () => {
 
 ### React Context API
 
-![global state tree](assets/global_state_tree.png)
+![global state tree](assets/local_state_tree.png)
 
 ----
 
@@ -222,11 +229,24 @@ const ANestedComponent = () => {
 
 ----
 
-### Pitfalls
+### Pitfalls 1
 
-- only use when many components need to access same data
-  - prefer passing props to components
-- makes reusing components more complex
+- fine granular context
+
+![global state tree](assets/context_hell.png)
+
+----
+
+### Pitfalls/Tips
+
+- Prefer passing props down to components
+  - prefer explicit (pass down) vs implicit (context)
+- only use when multiple components need to access same data
+  - if possible pass data down
+- don't overuse
+- values from A context are globals
+  - use only a hand full of Context.Providers
+  - testing becomes trickier
 
 ----
 
@@ -240,6 +260,19 @@ const ANestedComponent = () => {
   - useImperativeHandle
   - useLayoutEffect
   - useDebugValue
+
+---
+
+### Task
+
+- build a clock component
+  - component displays current time in seconds
+  - automatically updates itself
+  - remove setInterval when component unmounts
+- You'll need
+  - useEffect, useState
+  - setInterval or setTimeout
+  - (new Date()).toLocaleTimeString()
 
 ---
 
@@ -266,7 +299,8 @@ npm install react-router-dom --save
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Homepage from './components/homepage'
 import SignIn from './components/sign-in'
- const App = () => {
+
+const App = () => {
   return (
     <Router> { /* creates a new routing context */ }
       <Switch> { /* render only one route */ }
@@ -290,8 +324,8 @@ import SignIn from './components/sign-in'
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
+    <Route path="/" component={Homepage} />
+    <Route path="/sign-in" component={SignIn} />
   </Switch>
 );
 ```
@@ -305,8 +339,8 @@ const Routes = () => (
 // path === "/sign-in" => renderes SignIn
 const Routes = () => (
   <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
+    <Route path="/sign-in" component={SignIn} />
+    <Route path="/" component={Homepage} />
   </Switch>
 );
 ```
@@ -320,8 +354,8 @@ const Routes = () => (
 // path === "/sign-in" => renderes sign-in
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={Homepage}>
-    <Route exact path="/sign-in" component={SignIn}>
+    <Route exact path="/" component={Homepage} />
+    <Route exact path="/sign-in" component={SignIn} />
   </Switch>
 );
 ```
@@ -364,7 +398,7 @@ const Routes = () => (
 
 ---
 
-## Homework
+## Homework 1
 
 - Build the following components in Storybook
   - UserSignIn -> onSubmit => { username, password }
@@ -384,6 +418,10 @@ const Routes = () => (
   - `<Button {...} />`
   - ...
 
+----
+
+## Homework 2
+
 - Allowed to use CSS Frameworks
 - Not allowed to use Component Libraries
 - You can use as a starting point <https://github.com/webpapaya/fhs-react-redux-starter-kit>
@@ -399,6 +437,16 @@ const Routes = () => (
 
 ----
 
+## Homework 3
+
+- No need to connect to the backend
+- Form submissions (just log to the screen or alert them)
+- Don't update UI on form submissions
+  - eg.: when creating a transaction the list doesn't need to update
+  - we'll do this together next time with redux
+
+----
+
 ![sign_in](assets/sign_in_wireframe.png)
 
 ----
@@ -408,15 +456,6 @@ const Routes = () => (
 ----
 
 ![app](assets/app_wireframe.png)
-
----
-
-## Tools/Resources
-
-- [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
-- [React Docs](https://reactjs.org)
-  - [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
-- [Overreacted](https://overreacted.io/)
 
 ---
 

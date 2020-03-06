@@ -203,6 +203,8 @@ Can change in child Components? | Yes | No
 
 ----
 
+---
+
 ### React Hooks
 
 - Introduced recently to reduce boilerplate
@@ -235,13 +237,13 @@ class App extends React.Component {
 }
 ```
 
----
+----
 
 ### useState
 
 ```js
 const App = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
 
   return (
@@ -381,6 +383,13 @@ const App = () => {
 
 ### React Context API
 
+- Available since the beginning of React
+- Prevent "prop drilling"
+
+----
+
+### React Context API
+
 ![global state tree](assets/global_state_tree.png)
 
 ----
@@ -393,7 +402,7 @@ const App = () => {
 
 ### React Context API
 
-![global state tree](assets/global_state_tree.png)
+![global state tree](assets/local_state_tree.png)
 
 ----
 
@@ -421,11 +430,24 @@ const ANestedComponent = () => {
 
 ----
 
-### Pitfalls
+### Pitfalls 1
 
-- only use when many components need to access same data
-  - prefer passing props to components
-- makes reusing components more complex
+- fine granular context
+
+![global state tree](assets/context_hell.png)
+
+----
+
+### Pitfalls/Tips
+
+- Prefer passing props down to components
+  - prefer explicit (pass down) vs implicit (context)
+- only use when multiple components need to access same data
+  - if possible pass data down
+- don't overuse
+- values from A context are globals
+  - use only a hand full of Context.Providers
+  - testing becomes trickier
 
 ----
 
@@ -439,6 +461,117 @@ const ANestedComponent = () => {
   - useImperativeHandle
   - useLayoutEffect
   - useDebugValue
+
+---
+
+### Task
+
+- build a clock component
+  - component displays current time in seconds
+  - automatically updates itself
+  - remove setInterval when component unmounts
+- You'll need
+  - useEffect, useState
+  - setInterval or setTimeout
+  - (new Date()).toLocaleTimeString()
+
+---
+
+## React Native
+
+- Create native apps for Android and iOS using React
+
+----
+
+### Key differences 1
+
+- No html tags like div/h1/form/button/...
+  - Native tags like View/Text/TouchableOpacity/...
+- Subset of css supported
+- Interop with native APIs possible
+  - eg. push notifications
+- No links between pages
+
+----
+
+### Key differences 2
+
+- Text needs to be rendered inside a `<Text>My Text</Text>` component
+- No onClick handlers on every dom element
+  - Adding a onPress handler needs to use TouchableOpacity
+- Deployment is much harder (expo helps with that)
+
+---
+
+### CSS in React native
+
+```ts
+const Title = (props: { children: ReactNode}) => (
+  <Text style={styles.container} numberOfLines={1}>
+    { props.children }
+  </Text>
+)
+
+const styles = StyleSheet.create({
+  container: {
+    fontSize: 20, // density indepentent pixels
+    color: '#00ff00', // regular hex value
+  }
+})
+
+export default Title
+```
+
+----
+
+### CSS in React native
+
+- only a subset of css is supported
+  - no pseudo elements (eg: :nth-child, :first-child)
+  - no css grids
+- flexbox per default (no display: block)
+- css: box-shadow: '10px 10px 5px 0px rgba(0,0,0,0.75);'
+  - translates to:
+
+```js
+const styles = StyleSheet.create({{
+  shadowColor: colors.main,
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.15,
+  shadowRadius: 6
+})
+```
+
+---
+
+### Personal recommendations
+
+- if possible build a PWA or use react.js
+  - deployment is much easier
+  - deployment to ios test-flight takes up to 2h
+    - testing a quick-fix is tough
+- use expo
+  - helps with setup and upgrades
+  - helps with deployment (code signing is done by expo)
+    - via: `expo deploy:ios`
+- don't try to use the same components in web and native
+  - share business logic via npm package and build components twice
+
+----
+
+### Downsides
+
+- e2e tests tougher to write
+  - especially with react navigation
+- CI is more expensive
+  - osx server required (Github recently added a free one)
+- no pseudo elements
+
+---
+
+### More infos
+
+- Teams which use react native can come and ask
 
 ---
 
