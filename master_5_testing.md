@@ -45,7 +45,7 @@
 
 ### Installation
 
- ```
+```txt
 npm install react-router-dom --save
 ```
 
@@ -81,8 +81,8 @@ import SignIn from './components/sign-in'
 // path === "/sign-in" => renders Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
+    <Route path="/" component={Homepage} />
+    <Route path="/sign-in" component={SignIn} />
   </Switch>
 );
 ```
@@ -96,10 +96,10 @@ const Routes = () => (
 // path === "/sign-in" => renders Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
+    <Route path="/sign-in" component={SignIn} />
+    <Route path="/" component={Homepage} />
   </Switch>
-);
+)
 ```
 
 ----

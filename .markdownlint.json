@@ -1,0 +1,8 @@
+{
+  "hr-style": false,
+  "line-length": { "line_length": 200 },
+  "no-duplicate-header": false,
+  "header-increment": false,
+  "single-title": false,
+  "first-line-heading": false
+}

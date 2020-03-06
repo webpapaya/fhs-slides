@@ -2,8 +2,6 @@
 
 ## (MMT-M2019)
 
-Build/Test/Deploy Client Side Web-Applications
-
 ---
 
 # About/Contact
@@ -15,10 +13,11 @@ Build/Test/Deploy Client Side Web-Applications
 
 # Roadmap
 
-9.3.-10.3 4EH (introduction to react/testing react components)
-23.3.-24.3 5EH (redux/testing redux)
-27.4. 2EH Debugging in JS/i18n
-4.5.-5.5. 4EH TypeScript
+- 9.3.-10.3 4EH (introduction to react/testing react components)
+- 23.3.-24.3 5EH (redux/testing redux)
+- 27.4. 2EH Debugging in JS/i18n
+- 4.5.-5.5. 4EH TypeScript
+
 ---
 
 # Master Project (2x ~1h)

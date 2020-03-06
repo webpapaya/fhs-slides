@@ -254,7 +254,7 @@ const ANestedComponent = () => {
 
 ### Installation
 
- ```
+ ```txt
 npm install react-router-dom --save
 ```
 

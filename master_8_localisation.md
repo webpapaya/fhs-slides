@@ -166,7 +166,7 @@
 
 # ICU Plural
 
-```
+```txt
 { count, plural,
     =0    {Zero}
     =1    {One}
@@ -177,7 +177,7 @@
 
 # ICU Plural
 
-```
+```txt
 { count, plural,
     zero { Zero items }
     one { One item }
@@ -192,7 +192,7 @@
 
 # ICU Select
 
-```
+```txt
 { gender, select,
     male {He avoids bugs}
   female {She avoids bugs}

@@ -815,7 +815,7 @@ await userRepository.all();
 
 ### Installation
 
- ```
+```txt
 npm install react-router-dom --save
 ```
 
@@ -851,8 +851,8 @@ import SignIn from './components/sign-in'
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/" component={Homepage}>
-    <Route path="/sign-in" component={SignIn}>
+    <Route path="/" component={Homepage} />
+    <Route path="/sign-in" component={SignIn} />
   </Switch>
 );
 ```

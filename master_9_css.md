@@ -1,4 +1,4 @@
-## Scaling CSS
+# Scaling CSS
 
 #### (MMT-M2018)
 
@@ -148,10 +148,10 @@ const Button = styled.a`
     background: white;
     color: palevioletred;
   `}
-`;
+`
 
-<Button>
-<Button primary>
+const button1 = <Button />
+const button2 = <Button primary />
 ```
 
 ----

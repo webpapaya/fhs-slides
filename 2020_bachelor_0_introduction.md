@@ -2,8 +2,6 @@
 
 ## (MMT-B2018)
 
-Build/Test/Deploy Client Side Web-Applications
-
 ---
 
 # About/Contact

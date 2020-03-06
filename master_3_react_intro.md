@@ -144,11 +144,12 @@ const usage = <Button disabled>A button</Button>
 
 ```js
 class App extends React.Component {
-  state = { count: 0 }
+  state = { count: 0 };
 
   handleIncrement = () => {
     this.setState({ count: this.state.count + 1 })
-  }
+  };
+
   render() {
     return (
       <div>
@@ -272,7 +273,7 @@ Can change in child Components? | Yes | No
 
 ### Installation
 
- ```
+```txt
 npm install react-router-dom --save
 ```
 
@@ -303,7 +304,7 @@ import SignIn from './components/sign-in'
 
 ### Route priority (without exact)
 
- ```js
+```js
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
@@ -323,8 +324,8 @@ const Routes = () => (
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
   <Switch>
-    <Route path="/sign-in" component={SignIn}>
-    <Route path="/" component={Homepage}>
+    <Route path="/sign-in" component={SignIn} />
+    <Route path="/" component={Homepage} />
   </Switch>
 );
 ```
