@@ -34,6 +34,12 @@
 ### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
+</script></section><section data-markdown><script type="text/template">
+### We'll focus on
+
+![Focus in this semester](assets/testing_pyramid_focus.png)
+
+- Other parts in "Software Quality Assurance"
 </script></section></section><section ><section data-markdown><script type="text/template">
 # Unit testing and TDD
 
@@ -170,7 +176,14 @@ it('returns a list of employees ordered by their name', () => {
 - Deleting tests is fine (if they're not required anymore)
 </script></section></section><section  data-markdown><script type="text/template">
 ### TDD React Components
+</script></section><section  data-markdown><script type="text/template">
+### Tools
 
+- Cypress (e2e testing "Software Quality Assurance")
+- React Test Utils (Facebook, low level)
+- Enzyme (AirBnB, more high level)
+- React Testing Library (best of both worlds)
+</script></section><section  data-markdown><script type="text/template">
 ```js
 import React from 'react'
 import { render, cleanup, queryByText } from '@testing-library/react'
@@ -179,8 +192,13 @@ import Button from './Button'
 afterEach(cleanup)
 describe('Button', () => {
   it('renders given text', () => {
+    // Arrange
     const givenText = 'A Button'
+
+    // Act
     const { container } = render(<Button>{givenText}</Button>)
+
+    // Assert
     expect(queryByText(container, givenText)).toBeTruthy()
   })
 })
@@ -197,11 +215,35 @@ afterEach(cleanup)
 describe('Button', () => {
   // ...
   it('onClick calls given function', () => {
-    const onClick = jest.fn()
+    const onClick = jest.fn() // Create a function spy
     const { container } = render(<Button onClick={onClick}>A Button</Button>)
     fireEvent.click(container.querySelector('button'))
     expect(onClick).toHaveBeenCalledTimes(1)
   })
+})
+```
+</script></section><section  data-markdown><script type="text/template">
+# Testing forms
+
+```js
+import React from 'react'
+import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
+import Button from './Button'
+
+afterEach(cleanup)
+it('submits username as form value', () => {
+  const username = 'a value'
+  const onSubmit = jest.fn()
+
+  const { container } = render(<Form onSubmit={onSubmit} />)
+
+  fireEvent.change(
+    container.querySelector('[name="username"]'),
+    { target: { value: username } }
+  )
+  fireEvent.submit(container.querySelector('form'))
+
+  expect(onSubmit).toHaveBeenLastCalledWith({ username })
 })
 ```
 </script></section><section ><section data-markdown><script type="text/template">
@@ -321,10 +363,6 @@ it('sends an email on sign up', () => {
     - main function
     - ...
 </script></section></section><section  data-markdown><script type="text/template">
-### Mocking node modules
-
-proxyquire
-</script></section><section  data-markdown><script type="text/template">
 ### Exercise
 
 - You're building an issue tracking system

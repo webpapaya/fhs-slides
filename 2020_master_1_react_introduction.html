@@ -33,6 +33,11 @@
   - React-Native-Desktop
   - React-Native-Windows
   - React-VR
+</script></section><section  data-markdown><script type="text/template">
+## Components
+
+> Components let you split the UI into independent, reusable pieces.
+[React Docs](https://reactjs.org/docs/components-and-props.html)
 </script></section><section ><section data-markdown><script type="text/template">
 ## React Components
 
@@ -88,18 +93,80 @@ const Button = () => {
 </script></section><section data-markdown><script type="text/template">
 ![app](assets/app_wireframe.png)
 </script></section></section><section  data-markdown><script type="text/template">
-## Component composition
+## Types of components
 
-- Components can be nested and composed together
+- Possible conceptual structure for components
+  - `components/`
+    - could be reused in other applications
+    - don't have domain logic (eg. Button)
+  - `container/<container_name>/organism/`
+    - contain domain logic
+    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
+</script></section><section  data-markdown><script type="text/template">
+# Building the first react component  <!-- .element: class="color--white" -->
+#### Counter component  <!-- .element: class="color--white" -->
 
-![app](assets/tree.png)
+<!-- .slide: data-background="./assets/coding.gif" -->
 </script></section><section ><section data-markdown><script type="text/template">
+### Embedding expressions
+
+```js
+const CurrentTime = () => {
+  return (
+    <h1>
+      {(new Date()).toLocaleDateString()}
+    </h1>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+### Embedding expressions
+
+```js
+const FagoMenu = () => {
+  return (
+    <a href={`/menu/${(new Date()).toLocaleDateString()}`}>
+      Go to todays menu
+    </a>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday
+        ? 'Today'
+        : 'Not Today' }
+    </h1>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday && 'Today'}
+      {!isToday && 'Not today'}
+    </h1>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
 ### Loop over arrays
 
 ```js
-const Button = ({ users }) => {
+const UserList = ({ users }) => {
   return (
-    <ul type='button'>
+    <ul>
       {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
       })}
@@ -114,6 +181,12 @@ const Button = ({ users }) => {
 - Helps react to decide if an element needs to be rerendered
 - [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
 - [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Component composition
+
+- Components can be nested and composed together
+
+![app](assets/tree.png)
 </script></section><section data-markdown><script type="text/template">
 ## React props
 
@@ -133,21 +206,22 @@ const Button = ({ children, disabled = false }) => {
 
 const usage = <Button disabled>A button</Button>
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
 # React State (with Hooks)
 
 - State allows components to by dynamic/interactive
 
 ```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState('')
+const ToggleButton = ({ onSubmit }) => {
+  const [backgroundColor, setBackground] = useState('red')
+
   return (
-    <input
-      type='text'
-      name='firstName'
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
+    <button
+      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red') }
+      style={{ backgroundColor }}
+    >
+      {children}
+    </button>
   )
 }
 ```
@@ -156,17 +230,55 @@ const SimpleForm = ({ onSubmit }) => {
 
 ```js
 class SimpleForm extends React.Component {
-  state = { username: '' };
+  state = { backgroundColor: 'red' };
   render() {
     return (
-      <input
-        type="text"
-        name="firstName"
-        value={this.state.userName}
-        onChange={evt => this.setState({ username: evt.target.value }) }
-      />
+       <button
+        onClick={() => this.setState({
+          backgroundColor: backgroundColor === 'red' ? 'blue' : 'red')
+        })}
+        style={{ backgroundColor }}
+      >
+        {children}
+      </button>
     );
   }
+}
+```
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Fragments
+
+- Groups a list of children without adding a dom element
+
+```js
+const AComponent = () => {
+  return (
+    <>
+      <label>An input</label>
+      <input type="text" />
+    </>
+  )
+}
+```
+</script></section><section data-markdown><script type="text/template">
+## Keyed Fragments
+
+- Same as fragment but a key can be provided (eg.: definition list)
+
+```js
+const AComponent = ({ items }) => {
+  return (
+    <dl>
+      {items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  )
 }
 ```
 </script></section><section data-markdown><script type="text/template">
@@ -183,10 +295,11 @@ Can change in child Components? | Yes | No
 
 [source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 </script></section></section><section ><section data-markdown><script type="text/template">
+
 # React Hooks
 
 > Hooks allow you to reuse stateful logic without changing your component hierarchy. [React Docs](https://reactjs.org/docs/hooks-intro.html#its-hard-to-reuse-stateful-logic-between-components)
-</script></section><section data-markdown><script type="text/template"></script></section></section><section ><section data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
 ### React Hooks
 
 - Introduced recently to reduce boilerplate
@@ -194,28 +307,6 @@ Can change in child Components? | Yes | No
   - Previously one had to convert between functional/class components when state introduced
 - hooks are prefixed with `use`
 - Can't be called inside loops, conditions or nested functions
-</script></section><section data-markdown><script type="text/template">
-### State without hooks
-
-```js
-class App extends React.Component {
-  state = { count: 0 }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 })
-  }
-  render() {
-    return (
-      <div>
-        <div>
-          {this.state.count}
-        </div>
-        <button onClick={this.handleIncrement}>Increment by 1</button>
-      </div>
-    )
-  }
-}
-```
 </script></section><section data-markdown><script type="text/template">
 ### useState
 
@@ -252,8 +343,7 @@ const App = () => {
     </div>
   );
 }
-```
-</script></section></section><section ><section data-markdown><script type="text/template">
+```</script></section></section><section ><section data-markdown><script type="text/template">
 ### useEffect
 
 ```js
@@ -310,8 +400,8 @@ const App = () => {
   // Is executed when component is rendered for the first time
   // And when the counter variable changes.
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return (
     <div>
@@ -329,8 +419,8 @@ const useCounter = () => {
   const [count, setCount] => useState(0);
   const handleIncrement = () => setCount(count + 1);
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return { count, handleIncrement };
 }
@@ -414,12 +504,17 @@ const ANestedComponent = () => {
   - useLayoutEffect
   - useDebugValue
 </script></section></section><section  data-markdown><script type="text/template">
+
 ### Task
 
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
+- npm install
+- npm run start:storybook
 - build a clock component
   - component displays current time in seconds
   - automatically updates itself
   - remove setInterval when component unmounts
+
 - You'll need
   - useEffect, useState
   - setInterval or setTimeout
@@ -481,7 +576,7 @@ const styles = StyleSheet.create({{
   shadowRadius: 6
 })
 ```
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
 ### Personal recommendations
 
 - if possible build a PWA or use react.js
@@ -495,7 +590,7 @@ const styles = StyleSheet.create({{
 - don't try to use the same components in web and native
   - share business logic via npm package and build components twice
 </script></section><section data-markdown><script type="text/template">
-### Downsides
+### Downsides React Native
 
 - e2e tests tougher to write
   - especially with react navigation
