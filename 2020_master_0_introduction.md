@@ -28,7 +28,6 @@
 - Photoshot: 31.3. 11:00, 12.5. 11:00
   - (please have a look for appointments afterwards)
 
-
 ---
 
 # Grading

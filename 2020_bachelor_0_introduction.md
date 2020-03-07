@@ -22,7 +22,6 @@
 - 4.5.-5.5. 6EH (Error Handling/TDD Workshop)
   - 10.05. 23:59:59 Abgabe finales Projekt
 
-
 ---
 
 # Grading
@@ -68,7 +67,6 @@
 ----
 
 ![app](assets/app_wireframe.png)
-
 
 ---
 

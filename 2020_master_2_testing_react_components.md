@@ -213,6 +213,7 @@ it('returns a list of employees ordered by their name', () => {
 ---
 
 # Testing components  <!-- .element: class="color--white" -->
+
 ##### Form Component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/32mC2kXYWCsg0/giphy.gif" -->
@@ -451,9 +452,9 @@ it('sends an email on sign up', () => {
 ### Exercise 2
 
 - WHEN the show more button was clicked
-    - display all assignees
-    - a show less button is displayed instead of a show more button
-    - AND the show less button was clicked, only displays 3 assignees
+  - display all assignees
+  - a show less button is displayed instead of a show more button
+  - AND the show less button was clicked, only displays 3 assignees
 - WITH less than 4 assignees,
   - don't display a "show more" button
 

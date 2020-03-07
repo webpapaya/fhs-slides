@@ -108,6 +108,7 @@ const Button = () => {
 ---
 
 # Building the first react component  <!-- .element: class="color--white" -->
+
 ## Counter component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="./assets/coding.gif" -->
@@ -270,7 +271,6 @@ class SimpleForm extends React.Component {
 }
 ```
 
-
 ---
 
 ### Fragments
@@ -327,7 +327,6 @@ Can change in child Components? | Yes | No
 
 ---
 
-
 # React Hooks
 
 > Hooks allow you to reuse stateful logic without changing your component hierarchy. [React Docs](https://reactjs.org/docs/hooks-intro.html#its-hard-to-reuse-stateful-logic-between-components)
@@ -382,6 +381,7 @@ const App = () => {
   );
 }
 ```
+
 ---
 
 ### useEffect
@@ -567,7 +567,6 @@ const ANestedComponent = () => {
   - useDebugValue
 
 ---
-
 
 ### Task
 
