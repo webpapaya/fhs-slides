@@ -108,7 +108,7 @@ const Button = () => {
 ---
 
 # Building the first react component  <!-- .element: class="color--white" -->
-#### Counter component  <!-- .element: class="color--white" -->
+## Counter component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="./assets/coding.gif" -->
 
@@ -676,7 +676,7 @@ const styles = StyleSheet.create({{
   - osx server required (Github recently added a free one)
 - no pseudo elements
 
----
+----
 
 ### More infos
 

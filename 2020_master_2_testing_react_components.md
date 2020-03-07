@@ -212,6 +212,15 @@ it('returns a list of employees ordered by their name', () => {
 
 ---
 
+# Testing components  <!-- .element: class="color--white" -->
+##### Form Component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/32mC2kXYWCsg0/giphy.gif" -->
+
+---
+
+### Testing components
+
 ```js
 import React from 'react'
 import { render, cleanup, queryByText } from '@testing-library/react'
@@ -332,12 +341,6 @@ it('sends an email on sign up', () => {
 
 ---
 
-# Integrated tests  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="https://media.giphy.com/media/l3JDFjQK5E3vr18T6/giphy.gif" -->
-
-----
-
 # What is an integrated test
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
@@ -433,7 +436,7 @@ it('sends an email on sign up', () => {
 
 ---
 
-### Exercise
+### Exercise 1
 
 - You're building an issue tracking system
 - Build a component which displays the names of assignees
@@ -442,18 +445,17 @@ it('sends an email on sign up', () => {
 - WITH more than 3 assigness,
   - only display 3 assignees
   - display a show more button
-  - AND the show more button was clicked
+
+----
+
+### Exercise 2
+
+- WHEN the show more button was clicked
     - display all assignees
     - a show less button is displayed instead of a show more button
     - AND the show less button was clicked, only displays 3 assignees
 - WITH less than 4 assignees,
   - don't display a "show more" button
-
----
-
-# Possible Solution
-
-- <https://gist.github.com/webpapaya/0532e52ba6f64db9ceb8500c0167c680>
 
 ---
 
