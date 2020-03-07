@@ -120,6 +120,20 @@ const CurrentTime = () => {
 
 ----
 
+### Embedding expressions
+
+```js
+const FagoMenu = () => {
+  return (
+    <a href={`/menu/${(new Date()).toLocaleDateString()}`}>
+      Go to todays menu
+    </a>
+  )
+}
+```
+
+----
+
 ## Conditional rendering
 
 ```js
@@ -130,6 +144,22 @@ const CurrentTime = () => {
       {isToday
         ? 'Today'
         : 'Not Today' }
+    </h1>
+  )
+}
+```
+
+----
+
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday && 'Today'}
+      {!isToday && 'Not today'}
     </h1>
   )
 }
@@ -196,15 +226,16 @@ const usage = <Button disabled>A button</Button>
 - State allows components to by dynamic/interactive
 
 ```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState('')
+const ToggleButton = ({ onSubmit }) => {
+  const [backgroundColor, setBackground] = useState('red')
+
   return (
-    <input
-      type='text'
-      name='firstName'
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
+    <button
+      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red') }
+      style={{ backgroundColor }}
+    >
+      {children}
+    </button>
   )
 }
 ```
@@ -215,15 +246,17 @@ const SimpleForm = ({ onSubmit }) => {
 
 ```js
 class SimpleForm extends React.Component {
-  state = { username: '' };
+  state = { backgroundColor: 'red' };
   render() {
     return (
-      <input
-        type="text"
-        name="firstName"
-        value={this.state.userName}
-        onChange={evt => this.setState({ username: evt.target.value }) }
-      />
+       <button
+        onClick={() => this.setState({
+          backgroundColor: backgroundColor === 'red' ? 'blue' : 'red')
+        })}
+        style={{ backgroundColor }}
+      >
+        {children}
+      </button>
     );
   }
 }

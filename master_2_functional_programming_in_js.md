@@ -652,7 +652,7 @@ const user:User = {
 
 ## Type aliases
 
-```js
+```ts
 type Email = string
 ```
 

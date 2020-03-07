@@ -14,7 +14,7 @@
 # Roadmap
 
 - 9.3.-10.3 4EH (introduction to react/testing react components)
-- 23.3.-24.3 5EH (redux/testing redux)
+- 23.3.-24.3 5EH (redux/functional programming)
 - 27.4. 2EH Debugging in JS/i18n
 - 4.5.-5.5. 4EH TypeScript
 
@@ -27,6 +27,16 @@
 - Expo Generator: 31.3. 10:00, 12.5. 10:00
 - Photoshot: 31.3. 11:00, 12.5. 11:00
   - (please have a look for appointments afterwards)
+
+
+---
+
+# Grading
+
+- 50% Homework
+  - mostly Master Project related
+- 50% Exam
+- Both positive
 
 ---
 

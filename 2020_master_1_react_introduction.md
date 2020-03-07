@@ -24,6 +24,13 @@
 
 ---
 
+## Components
+
+> Components let you split the UI into independent, reusable pieces.
+[React Docs](https://reactjs.org/docs/components-and-props.html)
+
+---
+
 ## React Components
 
 - Main Building block of a React App
@@ -88,20 +95,92 @@ const Button = () => {
 
 ---
 
-## Component composition
+## Types of components
 
-- Components can be nested and composed together
-
-![app](assets/tree.png)
+- Possible conceptual structure for components
+  - `components/`
+    - could be reused in other applications
+    - don't have domain logic (eg. Button)
+  - `container/<container_name>/organism/`
+    - contain domain logic
+    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
 
 ---
+
+# Building the first react component  <!-- .element: class="color--white" -->
+#### Counter component  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="./assets/coding.gif" -->
+
+---
+
+### Embedding expressions
+
+```js
+const CurrentTime = () => {
+  return (
+    <h1>
+      {(new Date()).toLocaleDateString()}
+    </h1>
+  )
+}
+```
+
+----
+
+### Embedding expressions
+
+```js
+const FagoMenu = () => {
+  return (
+    <a href={`/menu/${(new Date()).toLocaleDateString()}`}>
+      Go to todays menu
+    </a>
+  )
+}
+```
+
+----
+
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday
+        ? 'Today'
+        : 'Not Today' }
+    </h1>
+  )
+}
+```
+
+----
+
+## Conditional rendering
+
+```js
+const CurrentTime = () => {
+  // ...
+  return (
+    <h1>
+      {isToday && 'Today'}
+      {!isToday && 'Not today'}
+    </h1>
+  )
+}
+```
+
+----
 
 ### Loop over arrays
 
 ```js
-const Button = ({ users }) => {
+const UserList = ({ users }) => {
   return (
-    <ul type='button'>
+    <ul>
       {users.map((user) => {
         return (<li key={user.id}>{user.name}</li>)
       })}
@@ -118,6 +197,14 @@ const Button = ({ users }) => {
 - Helps react to decide if an element needs to be rerendered
 - [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
 - [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
+
+---
+
+## Component composition
+
+- Components can be nested and composed together
+
+![app](assets/tree.png)
 
 ----
 
@@ -140,22 +227,23 @@ const Button = ({ children, disabled = false }) => {
 const usage = <Button disabled>A button</Button>
 ```
 
----
+----
 
 # React State (with Hooks)
 
 - State allows components to by dynamic/interactive
 
 ```js
-const SimpleForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState('')
+const ToggleButton = ({ onSubmit }) => {
+  const [backgroundColor, setBackground] = useState('red')
+
   return (
-    <input
-      type='text'
-      name='firstName'
-      value={firstName}
-      onChange={evt => setFirstName(evt.target.value)}
-    />
+    <button
+      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red') }
+      style={{ backgroundColor }}
+    >
+      {children}
+    </button>
   )
 }
 ```
@@ -166,17 +254,59 @@ const SimpleForm = ({ onSubmit }) => {
 
 ```js
 class SimpleForm extends React.Component {
-  state = { username: '' };
+  state = { backgroundColor: 'red' };
   render() {
     return (
-      <input
-        type="text"
-        name="firstName"
-        value={this.state.userName}
-        onChange={evt => this.setState({ username: evt.target.value }) }
-      />
+       <button
+        onClick={() => this.setState({
+          backgroundColor: backgroundColor === 'red' ? 'blue' : 'red')
+        })}
+        style={{ backgroundColor }}
+      >
+        {children}
+      </button>
     );
   }
+}
+```
+
+
+---
+
+### Fragments
+
+- Groups a list of children without adding a dom element
+
+```js
+const AComponent = () => {
+  return (
+    <>
+      <label>An input</label>
+      <input type="text" />
+    </>
+  )
+}
+```
+
+----
+
+## Keyed Fragments
+
+- Same as fragment but a key can be provided (eg.: definition list)
+
+```js
+const AComponent = ({ items }) => {
+  return (
+    <dl>
+      {items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  )
 }
 ```
 
@@ -197,13 +327,12 @@ Can change in child Components? | Yes | No
 
 ---
 
+
 # React Hooks
 
 > Hooks allow you to reuse stateful logic without changing your component hierarchy. [React Docs](https://reactjs.org/docs/hooks-intro.html#its-hard-to-reuse-stateful-logic-between-components)
 
 ----
-
----
 
 ### React Hooks
 
@@ -212,30 +341,6 @@ Can change in child Components? | Yes | No
   - Previously one had to convert between functional/class components when state introduced
 - hooks are prefixed with `use`
 - Can't be called inside loops, conditions or nested functions
-
-----
-
-### State without hooks
-
-```js
-class App extends React.Component {
-  state = { count: 0 }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 })
-  }
-  render() {
-    return (
-      <div>
-        <div>
-          {this.state.count}
-        </div>
-        <button onClick={this.handleIncrement}>Increment by 1</button>
-      </div>
-    )
-  }
-}
-```
 
 ----
 
@@ -277,7 +382,6 @@ const App = () => {
   );
 }
 ```
-
 ---
 
 ### useEffect
@@ -340,8 +444,8 @@ const App = () => {
   // Is executed when component is rendered for the first time
   // And when the counter variable changes.
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return (
     <div>
@@ -361,8 +465,8 @@ const useCounter = () => {
   const [count, setCount] => useState(0);
   const handleIncrement = () => setCount(count + 1);
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return { count, handleIncrement };
 }
@@ -464,12 +568,17 @@ const ANestedComponent = () => {
 
 ---
 
+
 ### Task
 
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
+- npm install
+- npm run start:storybook
 - build a clock component
   - component displays current time in seconds
   - automatically updates itself
   - remove setInterval when component unmounts
+
 - You'll need
   - useEffect, useState
   - setInterval or setTimeout
@@ -542,7 +651,7 @@ const styles = StyleSheet.create({{
 })
 ```
 
----
+----
 
 ### Personal recommendations
 
@@ -559,7 +668,7 @@ const styles = StyleSheet.create({{
 
 ----
 
-### Downsides
+### Downsides React Native
 
 - e2e tests tougher to write
   - especially with react navigation

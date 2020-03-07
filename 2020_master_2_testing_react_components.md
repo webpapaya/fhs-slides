@@ -25,6 +25,14 @@
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
+----
+
+### We'll focus on
+
+![Focus in this semester](assets/testing_pyramid_focus.png)
+
+- Other parts in "Software Quality Assurance"
+
 ---
 
 # Unit testing and TDD
@@ -193,6 +201,17 @@ it('returns a list of employees ordered by their name', () => {
 
 ### TDD React Components
 
+---
+
+### Tools
+
+- Cypress (e2e testing "Software Quality Assurance")
+- React Test Utils (Facebook, low level)
+- Enzyme (AirBnB, more high level)
+- React Testing Library (best of both worlds)
+
+---
+
 ```js
 import React from 'react'
 import { render, cleanup, queryByText } from '@testing-library/react'
@@ -201,8 +220,13 @@ import Button from './Button'
 afterEach(cleanup)
 describe('Button', () => {
   it('renders given text', () => {
+    // Arrange
     const givenText = 'A Button'
+
+    // Act
     const { container } = render(<Button>{givenText}</Button>)
+
+    // Assert
     expect(queryByText(container, givenText)).toBeTruthy()
   })
 })
@@ -221,11 +245,37 @@ afterEach(cleanup)
 describe('Button', () => {
   // ...
   it('onClick calls given function', () => {
-    const onClick = jest.fn()
+    const onClick = jest.fn() // Create a function spy
     const { container } = render(<Button onClick={onClick}>A Button</Button>)
     fireEvent.click(container.querySelector('button'))
     expect(onClick).toHaveBeenCalledTimes(1)
   })
+})
+```
+
+---
+
+# Testing forms
+
+```js
+import React from 'react'
+import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
+import Button from './Button'
+
+afterEach(cleanup)
+it('submits username as form value', () => {
+  const username = 'a value'
+  const onSubmit = jest.fn()
+
+  const { container } = render(<Form onSubmit={onSubmit} />)
+
+  fireEvent.change(
+    container.querySelector('[name="username"]'),
+    { target: { value: username } }
+  )
+  fireEvent.submit(container.querySelector('form'))
+
+  expect(onSubmit).toHaveBeenLastCalledWith({ username })
 })
 ```
 
@@ -380,12 +430,6 @@ it('sends an email on sign up', () => {
     - controller
     - main function
     - ...
-
----
-
-### Mocking node modules
-
-proxyquire
 
 ---
 
