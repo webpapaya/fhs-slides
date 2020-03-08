@@ -230,6 +230,45 @@ const usage = <Button disabled>A button</Button>
 
 ----
 
+# Unidirectional Dataflow
+- Props only flow from parent to children
+- Parent is responsible to update data
+  - might provide callbacks to do so
+- set state rerenders all children of component
+
+---
+
+# Virtual DOM
+- makes DOM updates faster
+- after setState subtree is rerendered in memory
+- compares DOM to in memory representation
+- applies DOM changes when needed
+
+----
+# React.memo
+
+> `Memoizing' a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. (<https://metacpan.org/pod/Memoize)>
+
+----
+# React.memo
+
+![app](assets/tree.png)
+
+----
+
+# React.memo
+- Caches the rendered component
+- Only rerenderes when one of the props changes
+  - shallow comparison
+
+```ts
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+```
+
+---
+
 # React State (with Hooks)
 
 - State allows components to by dynamic/interactive
