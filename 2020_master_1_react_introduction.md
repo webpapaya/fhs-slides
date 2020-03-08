@@ -271,6 +271,21 @@ class SimpleForm extends React.Component {
 }
 ```
 
+----
+
+## State vs. Props
+
+| _props_ | _state_ |
+--- | --- | ---
+Can get initial value from parent Component? | Yes | Yes
+Can be changed by parent Component? | Yes | No
+Can set default values inside Component?* | Yes | Yes
+Can change inside Component? | No | Yes
+Can set initial value for child Components? | Yes | Yes
+Can change in child Components? | Yes | No
+
+[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+
 ---
 
 ### Fragments
@@ -309,21 +324,6 @@ const AComponent = ({ items }) => {
   )
 }
 ```
-
-----
-
-## State vs. Props
-
-| _props_ | _state_ |
---- | --- | ---
-Can get initial value from parent Component? | Yes | Yes
-Can be changed by parent Component? | Yes | No
-Can set default values inside Component?* | Yes | Yes
-Can change inside Component? | No | Yes
-Can set initial value for child Components? | Yes | Yes
-Can change in child Components? | Yes | No
-
-[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 
 ---
 
