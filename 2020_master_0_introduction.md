@@ -13,10 +13,21 @@
 
 # Roadmap
 
-- 9.3.-10.3 4EH (introduction to react/testing react components)
-- 23.3.-24.3 5EH (redux/functional programming)
-- 27.4. 2EH Debugging in JS/i18n
-- 4.5.-5.5. 4EH TypeScript
+- 9.3.-10.3 4EH react/react-native 4.5 ⭐/testing react components 4.2 ⭐️
+- 23.3.-24.3 5EH redux 3.4 ⭐/functional programming 3.2 ⭐
+- 27.4. 2EH Debugging in JS 4.2 ⭐
+- 4.5.-5.5. 4EH TypeScript 4.1 ⭐
+
+----
+# Misc
+
+- MobX/Redux-Saga
+  - depending on time we could look into it next time
+- Vuex
+  - no production experience so far
+- Cypress E2E Testing ("Software Quality Management")
+- Xstate
+  - DDD with TS might solve similar issue
 
 ---
 

@@ -94,9 +94,11 @@ const Button = () => {
   - `components/`
     - could be reused in other applications
     - don't have domain logic (eg. Button)
+    - should not contain side effects (eg. API calls)
   - `container/<container_name>/organism/`
     - contain domain logic
     - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
+    - should not contain side effects (eg. API calls)
 
 ---
 
