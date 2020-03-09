@@ -26,7 +26,7 @@
 - Turtlet: 30.3. 11:00, 11.5. 11:00
 - Expo Generator: 31.3. 10:00, 12.5. 10:00
 - Photoshot: 31.3. 11:00, 12.5. 11:00
-  - (please have a look for appointments afterwards)
+  - (please have a look at appointments afterwards)
 
 ---
 
