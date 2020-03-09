@@ -411,6 +411,9 @@ const Routes = () => (
     - moneyTransactions
     - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
 
+----
+## Homework 2
+
 - You probably need the following core components
   - `<TextInput {...} />`
   - `<DecimalInput {...} />`
@@ -419,13 +422,16 @@ const Routes = () => (
   - ...
 
 ----
-
-## Homework 2
+## Homework 3
 
 - Allowed to use CSS Frameworks
 - Not allowed to use Component Libraries
 - You can use as a starting point <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - Mock Data for the API <https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65>
+
+----
+## Homework 4
+
 - Add the following routes
   - /sign-in
     - Sign-In component is rendered
@@ -436,8 +442,7 @@ const Routes = () => (
     - money-transaction-list component is rendered
 
 ----
-
-## Homework 3
+## Homework 5
 
 - No need to connect to the backend
 - Form submissions (just log to the screen or alert them)
