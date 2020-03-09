@@ -123,6 +123,104 @@ const styles = StyleSheet.create({{
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
 
+---
+
+
+---
+
+# What is an integrated test
+
+> A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
+
+----
+
+### What is an integrated test
+
+> Any test where the reason of a failure is hard to track down. (@jbrains)
+
+----
+
+### How many code paths
+
+![code paths](assets/code_paths.png)
+
+----
+
+### How many code paths
+
+![code paths](assets/code_paths_hightlight.png)
+
+----
+
+### has authentication
+
+- auth given
+  - but expired?
+  - user was deleted?
+  - user was disabled?
+- not auth given?
+
+----
+
+### create user auth
+
+- email already taken?
+- password to short?
+- db/auth service down?
+- ...
+
+----
+
+### create membership
+
+- group does not exist anymore?
+- group was disabled?
+- invitation got revoked?
+- user was already added from other device?
+- ...
+
+----
+
+### How many integration tests to write
+
+![code paths](assets/code_paths_hightlight.png)
+
+----
+
+### Integrated tests
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- Exponential growth
+  - `4 * 3 * 4 = 48 tests`
+
+----
+
+### Unit tests
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- `4 + 3 + 4 = 11 tests + 2 contract tests`
+
+----
+
+# Unit tests only?  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
+
+----
+
+### Happy path tests
+
+- 1 integrated test per use-case
+  - check if the communication between components work
+  - run against
+    - controller
+    - main function
+    - ...
+
 ----
 
 ### We'll focus on
@@ -344,6 +442,24 @@ describe('Button', () => {
 
 ### Testing callbacks
 
+----
+
+# Spy objects
+
+- Are stubs that also record the way they were called
+- Useful when:
+  - A hard to verify side effect is triggered (eg. E-Mail sending)
+
+```js
+it('sends an email on sign up', () => {
+  const sendEmail = jest.fn()
+  const signUp = signUp({ sendEmail }, username, password)
+  expect(sendEmail).toHaveBeenLastCalledWith({ username, password })
+})
+```
+
+----
+
 ```js
 import React from 'react'
 import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
@@ -386,152 +502,6 @@ it('submits username as form value', () => {
   expect(onSubmit).toHaveBeenLastCalledWith({ username })
 })
 ```
-
----
-
-# Tools to test units under isolation
-
-----
-
-# Dummy objects
-
-- Objects which aren't used
-  - so that the compiler doesn't complain
-  - used to fill parameter lists
-
-----
-
-# Fake objects
-
-- Objects have a working implementation
-  - but take some shortcuts
-  - eg. inMemoryDatabases instead of persistent DB
-
-----
-
-# Stub objects
-
-- Predefined return values for testing
-- Instead of calling the real API we return a value for testing
-- Useful when:
-  - retrieving geolocation
-  - testing edge cases (database throws OutOfMemory exception)
-
-```js
-const retrieveGPSPosition = () =>
-  Promise.resolve({ lat: 12.12, lng: 14.15 })
-```
-
-----
-
-# Spy objects
-
-- Are stubs that also record the way they were called
-- Useful when:
-  - A hard to verify side effect is triggered (eg. E-Mail sending)
-
-```js
-it('sends an email on sign up', () => {
-  const sendEmail = buildFunctionSpy()
-  const signUp = signUp({ sendEmail }, username, password)
-  assertThat(sendEmail, wasCalled())
-})
-```
-
----
-
-# What is an integrated test
-
-> A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
-
-----
-
-### What is an integrated test
-
-> Any test where the reason of a failure is hard to track down. (@jbrains)
-
-----
-
-### How many code paths
-
-![code paths](assets/code_paths.png)
-
-----
-
-### How many code paths
-
-![code paths](assets/code_paths_hightlight.png)
-
-----
-
-### has authentication
-
-- auth given
-  - but expired?
-  - user was deleted?
-  - user was disabled?
-- not auth given?
-
-----
-
-### create user auth
-
-- email already taken?
-- password to short?
-- db/auth service down?
-- ...
-
-----
-
-### create membership
-
-- group does not exist anymore?
-- group was disabled?
-- invitation got revoked?
-- user was already added from other device?
-- ...
-
-----
-
-### How many integration tests to write
-
-![code paths](assets/code_paths_hightlight.png)
-
-----
-
-### Integrated tests
-
-- hasAuth (4 paths)
-- create user auth (3 paths)
-- create membership (4 paths)
-- Exponential growth
-  - `4 * 3 * 4 = 48 tests`
-
-----
-
-### Unit tests
-
-- hasAuth (4 paths)
-- create user auth (3 paths)
-- create membership (4 paths)
-- `4 + 3 + 4 = 11 tests + 2 contract tests`
-
-----
-
-# Unit tests only?  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
-
-----
-
-### Happy path tests
-
-- 1 integrated test per use-case
-  - check if the communication between components work
-  - run against
-    - controller
-    - main function
-    - ...
 
 ---
 
