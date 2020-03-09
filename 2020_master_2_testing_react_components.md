@@ -4,6 +4,104 @@
 
 ---
 
+## React Native
+
+- Create native apps for Android and iOS using React
+
+----
+
+### Key differences 1
+
+- No html tags like div/h1/form/button/...
+  - Native tags like View/Text/TouchableOpacity/...
+- Subset of css supported
+- Interop with native APIs possible
+  - eg. push notifications
+- No links between pages
+
+----
+
+### Key differences 2
+
+- Text needs to be rendered inside a `<Text>My Text</Text>` component
+- No onClick handlers on every dom element
+  - Adding a onPress handler needs to use TouchableOpacity
+- Deployment is much harder (expo helps with that)
+
+---
+
+### CSS in React native
+
+```ts
+const Title = (props: { children: ReactNode}) => (
+  <Text style={styles.container} numberOfLines={1}>
+    { props.children }
+  </Text>
+)
+
+const styles = StyleSheet.create({
+  container: {
+    fontSize: 20, // density indepentent pixels
+    color: '#00ff00', // regular hex value
+  }
+})
+
+export default Title
+```
+
+----
+
+### CSS in React native
+
+- only a subset of css is supported
+  - no pseudo elements (eg: :nth-child, :first-child)
+  - no css grids
+- flexbox per default (no display: block)
+- css: box-shadow: '10px 10px 5px 0px rgba(0,0,0,0.75);'
+  - translates to:
+
+```js
+const styles = StyleSheet.create({{
+  shadowColor: colors.main,
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.15,
+  shadowRadius: 6
+})
+```
+
+----
+
+### Personal recommendations
+
+- if possible build a PWA or use react.js
+  - deployment is much easier
+  - deployment to ios test-flight takes up to 2h
+    - testing a quick-fix is tough
+- use expo
+  - helps with setup and upgrades
+  - helps with deployment (code signing is done by expo)
+    - via: `expo deploy:ios`
+- don't try to use the same components in web and native
+  - share business logic via npm package and build components twice
+
+----
+
+### Downsides React Native
+
+- e2e tests tougher to write
+  - especially with react navigation
+- CI is more expensive
+  - osx server required (Github recently added a free one)
+- no pseudo elements
+
+----
+
+### More infos
+
+- Teams which use react native can come and ask
+
+---
+
 ### Testing Pyramid
 
 ![testing pyramid](assets/testing_pyramid.png)
@@ -457,6 +555,37 @@ it('sends an email on sign up', () => {
   - AND the show less button was clicked, only displays 3 assignees
 - WITH less than 4 assignees,
   - don't display a "show more" button
+
+---
+
+# Homework
+
+- can be done in pairs
+- hand-in via email tmayrhofer.lba@fh-salzburg.ac.at
+  - email contains link to git reporitory
+  - name of students who worked on the assignment
+
+----
+# Things I will look at
+
+- functionality
+- naming
+- duplications
+- code consistency (linting)
+- function/component length
+- commits + commit messages
+
+----
+# Homework Task
+
+- due date: 20.3. 23:59:50
+- build and test 3-4 React Components
+  - 1 component per team member
+- eg. ChatList
+  - possible tests:
+    - without any messages displays 'no messages yet'
+    - when message was not read displays 'not read yet'
+    - ...
 
 ---
 
