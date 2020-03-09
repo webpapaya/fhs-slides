@@ -228,13 +228,19 @@ const Button = ({ children, disabled = false }) => {
 const usage = <Button disabled>A button</Button>
 ```
 
-----
+---
 
 # Unidirectional Dataflow
 - Props only flow from parent to children
 - Parent is responsible to update data
   - might provide callbacks to do so
 - set state rerenders all children of component
+
+----
+# Unidirectional Dataflow
+
+![Unidirectional Dataflow](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
+> [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
 
 ---
 
