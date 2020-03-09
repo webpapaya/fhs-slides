@@ -18,6 +18,88 @@
 
 ## (MMT-M2019)
 </script></section><section ><section data-markdown><script type="text/template">
+## React Native
+
+- Create native apps for Android and iOS using React
+</script></section><section data-markdown><script type="text/template">
+### Key differences 1
+
+- No html tags like div/h1/form/button/...
+  - Native tags like View/Text/TouchableOpacity/...
+- Subset of css supported
+- Interop with native APIs possible
+  - eg. push notifications
+- No links between pages
+</script></section><section data-markdown><script type="text/template">
+### Key differences 2
+
+- Text needs to be rendered inside a `<Text>My Text</Text>` component
+- No onClick handlers on every dom element
+  - Adding a onPress handler needs to use TouchableOpacity
+- Deployment is much harder (expo helps with that)
+</script></section></section><section ><section data-markdown><script type="text/template">
+### CSS in React native
+
+```ts
+const Title = (props: { children: ReactNode}) => (
+  <Text style={styles.container} numberOfLines={1}>
+    { props.children }
+  </Text>
+)
+
+const styles = StyleSheet.create({
+  container: {
+    fontSize: 20, // density indepentent pixels
+    color: '#00ff00', // regular hex value
+  }
+})
+
+export default Title
+```
+</script></section><section data-markdown><script type="text/template">
+### CSS in React native
+
+- only a subset of css is supported
+  - no pseudo elements (eg: :nth-child, :first-child)
+  - no css grids
+- flexbox per default (no display: block)
+- css: box-shadow: '10px 10px 5px 0px rgba(0,0,0,0.75);'
+  - translates to:
+
+```js
+const styles = StyleSheet.create({{
+  shadowColor: colors.main,
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.15,
+  shadowRadius: 6
+})
+```
+</script></section><section data-markdown><script type="text/template">
+### Personal recommendations
+
+- if possible build a PWA or use react.js
+  - deployment is much easier
+  - deployment to ios test-flight takes up to 2h
+    - testing a quick-fix is tough
+- use expo
+  - helps with setup and upgrades
+  - helps with deployment (code signing is done by expo)
+    - via: `expo deploy:ios`
+- don't try to use the same components in web and native
+  - share business logic via npm package and build components twice
+</script></section><section data-markdown><script type="text/template">
+### Downsides React Native
+
+- e2e tests tougher to write
+  - especially with react navigation
+- CI is more expensive
+  - osx server required (Github recently added a free one)
+- no pseudo elements
+</script></section><section data-markdown><script type="text/template">
+### More infos
+
+- Teams which use react native can come and ask
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### Testing Pyramid
 
 ![testing pyramid](assets/testing_pyramid.png)
@@ -34,6 +116,78 @@
 ### Enterprise test pyramid
 
 ![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
+</script></section></section><section  data-markdown><script type="text/template">
+</script></section><section ><section data-markdown><script type="text/template">
+# What is an integrated test
+
+> A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
+</script></section><section data-markdown><script type="text/template">
+### What is an integrated test
+
+> Any test where the reason of a failure is hard to track down. (@jbrains)
+</script></section><section data-markdown><script type="text/template">
+### How many code paths
+
+![code paths](assets/code_paths.png)
+</script></section><section data-markdown><script type="text/template">
+### How many code paths
+
+![code paths](assets/code_paths_hightlight.png)
+</script></section><section data-markdown><script type="text/template">
+### has authentication
+
+- auth given
+  - but expired?
+  - user was deleted?
+  - user was disabled?
+- not auth given?
+</script></section><section data-markdown><script type="text/template">
+### create user auth
+
+- email already taken?
+- password to short?
+- db/auth service down?
+- ...
+</script></section><section data-markdown><script type="text/template">
+### create membership
+
+- group does not exist anymore?
+- group was disabled?
+- invitation got revoked?
+- user was already added from other device?
+- ...
+</script></section><section data-markdown><script type="text/template">
+### How many integration tests to write
+
+![code paths](assets/code_paths_hightlight.png)
+</script></section><section data-markdown><script type="text/template">
+### Integrated tests
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- Exponential growth
+  - `4 * 3 * 4 = 48 tests`
+</script></section><section data-markdown><script type="text/template">
+### Unit tests
+
+- hasAuth (4 paths)
+- create user auth (3 paths)
+- create membership (4 paths)
+- `4 + 3 + 4 = 11 tests + 2 contract tests`
+</script></section><section data-markdown><script type="text/template">
+# Unit tests only?  <!-- .element: class="color--white" -->
+
+<!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
+</script></section><section data-markdown><script type="text/template">
+### Happy path tests
+
+- 1 integrated test per use-case
+  - check if the communication between components work
+  - run against
+    - controller
+    - main function
+    - ...
 </script></section><section data-markdown><script type="text/template">
 ### We'll focus on
 
@@ -211,9 +365,23 @@ describe('Button', () => {
   })
 })
 ```
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section ><section data-markdown><script type="text/template">
 ### Testing callbacks
+</script></section><section data-markdown><script type="text/template">
+# Spy objects
 
+- Are stubs that also record the way they were called
+- Useful when:
+  - A hard to verify side effect is triggered (eg. E-Mail sending)
+
+```js
+it('sends an email on sign up', () => {
+  const sendEmail = jest.fn()
+  const signUp = signUp({ sendEmail }, username, password)
+  expect(sendEmail).toHaveBeenLastCalledWith({ username, password })
+})
+```
+</script></section><section data-markdown><script type="text/template">
 ```js
 import React from 'react'
 import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
@@ -230,7 +398,7 @@ describe('Button', () => {
   })
 })
 ```
-</script></section><section  data-markdown><script type="text/template">
+</script></section></section><section  data-markdown><script type="text/template">
 # Testing forms
 
 ```js
@@ -255,118 +423,6 @@ it('submits username as form value', () => {
 })
 ```
 </script></section><section ><section data-markdown><script type="text/template">
-# Tools to test units under isolation
-</script></section><section data-markdown><script type="text/template">
-# Dummy objects
-
-- Objects which aren't used
-  - so that the compiler doesn't complain
-  - used to fill parameter lists
-</script></section><section data-markdown><script type="text/template">
-# Fake objects
-
-- Objects have a working implementation
-  - but take some shortcuts
-  - eg. inMemoryDatabases instead of persistent DB
-</script></section><section data-markdown><script type="text/template">
-# Stub objects
-
-- Predefined return values for testing
-- Instead of calling the real API we return a value for testing
-- Useful when:
-  - retrieving geolocation
-  - testing edge cases (database throws OutOfMemory exception)
-
-```js
-const retrieveGPSPosition = () =>
-  Promise.resolve({ lat: 12.12, lng: 14.15 })
-```
-</script></section><section data-markdown><script type="text/template">
-# Spy objects
-
-- Are stubs that also record the way they were called
-- Useful when:
-  - A hard to verify side effect is triggered (eg. E-Mail sending)
-
-```js
-it('sends an email on sign up', () => {
-  const sendEmail = buildFunctionSpy()
-  const signUp = signUp({ sendEmail }, username, password)
-  assertThat(sendEmail, wasCalled())
-})
-```
-</script></section></section><section ><section data-markdown><script type="text/template">
-# What is an integrated test
-
-> A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
-</script></section><section data-markdown><script type="text/template">
-### What is an integrated test
-
-> Any test where the reason of a failure is hard to track down. (@jbrains)
-</script></section><section data-markdown><script type="text/template">
-### How many code paths
-
-![code paths](assets/code_paths.png)
-</script></section><section data-markdown><script type="text/template">
-### How many code paths
-
-![code paths](assets/code_paths_hightlight.png)
-</script></section><section data-markdown><script type="text/template">
-### has authentication
-
-- auth given
-  - but expired?
-  - user was deleted?
-  - user was disabled?
-- not auth given?
-</script></section><section data-markdown><script type="text/template">
-### create user auth
-
-- email already taken?
-- password to short?
-- db/auth service down?
-- ...
-</script></section><section data-markdown><script type="text/template">
-### create membership
-
-- group does not exist anymore?
-- group was disabled?
-- invitation got revoked?
-- user was already added from other device?
-- ...
-</script></section><section data-markdown><script type="text/template">
-### How many integration tests to write
-
-![code paths](assets/code_paths_hightlight.png)
-</script></section><section data-markdown><script type="text/template">
-### Integrated tests
-
-- hasAuth (4 paths)
-- create user auth (3 paths)
-- create membership (4 paths)
-- Exponential growth
-  - `4 * 3 * 4 = 48 tests`
-</script></section><section data-markdown><script type="text/template">
-### Unit tests
-
-- hasAuth (4 paths)
-- create user auth (3 paths)
-- create membership (4 paths)
-- `4 + 3 + 4 = 11 tests + 2 contract tests`
-</script></section><section data-markdown><script type="text/template">
-# Unit tests only?  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="https://media.giphy.com/media/d5ut1zCCPGta0/giphy.gif" -->
-</script></section><section data-markdown><script type="text/template">
-### Happy path tests
-
-- 1 integrated test per use-case
-  - check if the communication between components work
-  - run against
-    - controller
-    - main function
-    - ...
-</script></section></section><section ><section data-markdown><script type="text/template">
 ### Exercise 1
 
 - You're building an issue tracking system
@@ -385,6 +441,31 @@ it('sends an email on sign up', () => {
   - AND the show less button was clicked, only displays 3 assignees
 - WITH less than 4 assignees,
   - don't display a "show more" button
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Homework
+
+- can be done in pairs
+- hand-in via email tmayrhofer.lba@fh-salzburg.ac.at
+  - email contains link to git reporitory
+  - name of students who worked on the assignment
+</script></section><section data-markdown><script type="text/template"># Things I will look at
+
+- functionality
+- naming
+- duplications
+- code consistency (linting)
+- function/component length
+- commits + commit messages
+</script></section><section data-markdown><script type="text/template"># Homework Task
+
+- due date: 20.3. 23:59:50
+- build and test 3-4 React Components
+  - 1 component per team member
+- eg. ChatList
+  - possible tests:
+    - without any messages displays 'no messages yet'
+    - when message was not read displays 'not read yet'
+    - ...
 </script></section></section><section  data-markdown><script type="text/template">
 # Feedback
 
