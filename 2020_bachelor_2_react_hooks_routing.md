@@ -4,6 +4,39 @@
 
 ---
 
+### storybook.js
+> Storybook is an open source tool for developing UI components in isolation for React, Vue, and Angular
+
+----
+
+### storybook.js
+- helps develop components in isolation
+- makes debugging components more easy
+  - especially styling
+- makes it possible to insert fake data
+  - bring components in different states
+
+----
+
+### storybook.js
+
+```js
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import UserList from './UserList'
+
+const FAKE_USERS =  [
+  {id: 1, name: "Sepp"},
+  {id: 2, name: "Mike"}
+]
+
+storiesOf('UserList', module)
+  .add('default', () => <UserList users={FAKE_USERS} />)
+  .add('without any users', () => <UserList users={[]} />)
+```
+
+---
+
 ### React Hooks
 
 - Introduced recently to reduce boilerplate
