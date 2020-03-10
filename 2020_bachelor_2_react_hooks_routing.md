@@ -95,13 +95,13 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
@@ -140,13 +140,13 @@ useEffect(() => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
@@ -163,19 +163,19 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   // Is executed when component is rendered for the first time
   // And when the counter variable changes.
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return (
     <div>
@@ -192,17 +192,17 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   useEffect(() => {
-    document.title = `Counter clicked ${counter} times`;
-  }, [counter]);
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
 
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
