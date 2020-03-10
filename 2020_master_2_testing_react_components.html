@@ -57,6 +57,34 @@ const styles = StyleSheet.create({
 export default Title
 ```
 </script></section><section data-markdown><script type="text/template">
+# Styling :first-child in react native
+
+```js
+const Title = (users}) => {
+  return (
+    <>
+     { props.users.map((user, idx) => {
+       return (
+        <Text style={[styles.listItem, idx === 0 && styles.listItemFirst]}>
+          { user }
+        </Text>
+       )
+     }) }
+    </>
+  )
+}
+
+
+const styles = StyleSheet.create({
+  listItem: {
+    color: 'green',
+  },
+  listItemFirst: {
+    color: 'red',
+  }
+})
+```
+</script></section><section data-markdown><script type="text/template">
 ### CSS in React native
 
 - only a subset of css is supported
@@ -342,9 +370,10 @@ it('returns a list of employees ordered by their name', () => {
 ##### Form Component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/32mC2kXYWCsg0/giphy.gif" -->
-</script></section><section data-markdown><script type="text/template"># Result
+</script></section><section data-markdown><script type="text/template">
+# Result
 
-https://gist.github.com/webpapaya/f2912dd7f62462e8ca87c2241b95a8fc
+<https://gist.github.com/webpapaya/f2912dd7f62462e8ca87c2241b95a8fc>
 </script></section></section><section  data-markdown><script type="text/template">
 ### Testing components
 
@@ -475,25 +504,6 @@ it('submits username as form value', () => {
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/XQ96YZX>
-</script></section><section  data-markdown><script type="text/template">
-
-
-
-TODO:
-
-const Title = (props: { users: ReactNode}) => {
-  return (
-    <>
-     { props.users.map((user, idx) => {
-       return (
-        <Text style={[styles.container, idx === 0 && styles.firstItems]} numberOfLines={1}>
-          { props.children }
-        </Text>
-       )
-     }) }
-    </>
-  )
-}
 </script></section></div>
     </div>
 
