@@ -51,6 +51,36 @@ export default Title
 
 ----
 
+# Styling :first-child in react native
+
+```js
+const Title = (users}) => {
+  return (
+    <>
+     { props.users.map((user, idx) => {
+       return (
+        <Text style={[styles.listItem, idx === 0 && styles.listItemFirst]}>
+          { user }
+        </Text>
+       )
+     }) }
+    </>
+  )
+}
+
+
+const styles = StyleSheet.create({
+  listItem: {
+    color: 'green',
+  },
+  listItemFirst: {
+    color: 'red',
+  }
+})
+```
+
+----
+
 ### CSS in React native
 
 - only a subset of css is supported
@@ -411,6 +441,12 @@ it('returns a list of employees ordered by their name', () => {
 
 <!-- .slide: data-background="https://media.giphy.com/media/32mC2kXYWCsg0/giphy.gif" -->
 
+----
+
+# Result
+
+<https://gist.github.com/webpapaya/f2912dd7f62462e8ca87c2241b95a8fc>
+
 ---
 
 ### Testing components
@@ -481,7 +517,7 @@ describe('Button', () => {
 ```js
 import React from 'react'
 import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
-import Button from './Button'
+import Form from './Form'
 
 afterEach(cleanup)
 it('submits username as form value', () => {
