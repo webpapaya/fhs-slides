@@ -336,13 +336,16 @@ it('returns a list of employees ordered by their name', () => {
 - React Test Utils (Facebook, low level)
 - Enzyme (AirBnB, more high level)
 - React Testing Library (best of both worlds)
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section ><section data-markdown><script type="text/template">
 # Testing components  <!-- .element: class="color--white" -->
 
 ##### Form Component  <!-- .element: class="color--white" -->
 
 <!-- .slide: data-background="https://media.giphy.com/media/32mC2kXYWCsg0/giphy.gif" -->
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template"># Result
+
+https://gist.github.com/webpapaya/f2912dd7f62462e8ca87c2241b95a8fc
+</script></section></section><section  data-markdown><script type="text/template">
 ### Testing components
 
 ```js
@@ -403,7 +406,7 @@ describe('Button', () => {
 ```js
 import React from 'react'
 import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
-import Button from './Button'
+import Form from './Form'
 
 afterEach(cleanup)
 it('submits username as form value', () => {
@@ -472,6 +475,25 @@ it('submits username as form value', () => {
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/XQ96YZX>
+</script></section><section  data-markdown><script type="text/template">
+
+
+
+TODO:
+
+const Title = (props: { users: ReactNode}) => {
+  return (
+    <>
+     { props.users.map((user, idx) => {
+       return (
+        <Text style={[styles.container, idx === 0 && styles.firstItems]} numberOfLines={1}>
+          { props.children }
+        </Text>
+       )
+     }) }
+    </>
+  )
+}
 </script></section></div>
     </div>
 
