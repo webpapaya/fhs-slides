@@ -125,9 +125,6 @@ const styles = StyleSheet.create({{
 
 ---
 
-
----
-
 # What is an integrated test
 
 > A test where the success or failure depends on many different bits of interesting behaviour at once. (@jbrains)
@@ -536,6 +533,7 @@ it('submits username as form value', () => {
   - name of students who worked on the assignment
 
 ----
+
 # Things I will look at
 
 - functionality
@@ -546,6 +544,7 @@ it('submits username as form value', () => {
 - commits + commit messages
 
 ----
+
 # Homework Task
 
 - due date: 20.3. 23:59:50

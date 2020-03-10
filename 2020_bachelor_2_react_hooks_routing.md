@@ -5,11 +5,13 @@
 ---
 
 ### storybook.js
+
 > Storybook is an open source tool for developing UI components in isolation for React, Vue, and Angular
 
 ----
 
 ### storybook.js
+
 - helps develop components in isolation
 - makes debugging components more easy
   - especially styling
@@ -445,6 +447,7 @@ const Routes = () => (
     - onMoneyTransactionPaid => { id, paidAt: (new Date()).toISOSTring() }
 
 ----
+
 ## Homework 2
 
 - You probably need the following core components
@@ -455,6 +458,7 @@ const Routes = () => (
   - ...
 
 ----
+
 ## Homework 3
 
 - Allowed to use CSS Frameworks
@@ -463,6 +467,7 @@ const Routes = () => (
 - Mock Data for the API <https://gist.github.com/webpapaya/ba25ac39138b6f6a50a04f2b0820cf65>
 
 ----
+
 ## Homework 4
 
 - Add the following routes
@@ -475,6 +480,7 @@ const Routes = () => (
     - money-transaction-list component is rendered
 
 ----
+
 ## Homework 5
 
 - No need to connect to the backend
