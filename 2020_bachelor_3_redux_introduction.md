@@ -14,6 +14,82 @@
 
 ### Recap of Homework
 
+----
+
+### Template literals in JSX
+
+```tsx
+<label className={`${styles.label}`}>{labelText}</label>
+//              ^^^^^^^^^^^^^^^^^^^^
+// Only necessary when you'd like to interpolate strings. The following is enough
+<label className={styles.label}>{labelText}</label>
+```
+
+----
+
+### Routing I
+- Regular links instead of react router links
+- Router Links have a couple of additional feature
+  - activeClassName
+  - no hard reload of pages
+  - ...
+
+```ts
+import { Link } from "react-router-dom";
+
+<a href="#">Link</a> // 🚫
+<Link to="/whatever">Link</Link> // ✅
+```
+
+----
+### Routing II
+- Storybook breaks after routing added
+- Error: `You should not use <Link> outside a <Router>`
+- Wrap the component in a router
+- Or use decorator
+
+```js
+// .storybook/config.js
+import { configure, addDecorator } from '@storybook/react';
+import StoryRouter from 'storybook-react-router';
+
+addDecorator(StoryRouter());
+```
+----
+### import mock data in components
+- Try to import data only in the .stories.js file
+- Redux will pass the data from a server to the components
+  - in storybook we don't want any server interaction
+
+![redux overview](assets/pass_mocked_data.png)
+
+----
+### DRY components
+
+- DRY (don't repeat yourself)
+- SignIn/SignUp combined into an AuthenticationForm component
+  - As those are organisms repeating yourself is fine here
+
+----
+### Unnecessary state
+
+```js
+const debts = [/* ... */]
+const user = [/* ... */]
+
+const List = () => {
+    const [list, setList] = useState(debts);
+    const [users, setUser] = useState(user);
+    // ...
+```
+
+----
+### Deleting Code is fine
+
+- Nobody wanted to delete my button 😊
+  - If some code is not used, just remove it
+  - it's in git anyways
+
 ---
 
 ### Functional Programming 101
