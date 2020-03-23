@@ -692,7 +692,7 @@ Might contain syntax error =)
 - in src/store.js
   - add `window.store = store`;
 - `npm run start:app`
-- go to localhost:8081
+- go to localhost:3000
 - open dev tools/redux tab
 - `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
 
