@@ -569,7 +569,7 @@ export default connect(
 [Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
 
 Might contain syntax error =)
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section></section><section  data-markdown><script type="text/template">
 ## Task 1 (Actions)
 
 - Download
@@ -580,22 +580,23 @@ Might contain syntax error =)
 - `npm run start:app`
 - go to localhost:8081
 - open dev tools/redux tab
-- create fetchUsers action creator (type fetchUser/success)
-  - mock user data for now (eg. Promise.resolve([user1, user2, ...]))
-  - `dispatch(fetchUsers())`
+- `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
+</script></section><section ><section data-markdown><script type="text/template">## Task 2 (Action creator)
+- Create an action creator which calls a fake api
+- eg: const user = await fetch({ id: 1, name: 'sepp' })
 </script></section><section data-markdown><script type="text/template">
-## Task 2 (Reducer)
+## Task 3 (Reducer)
 
 - Add a userReducer reducer
   - entry point: `src/reducer/index.js`
   - listen to 'fetchUser/success'
     - try to populate the redux store with a new user
 </script></section><section data-markdown><script type="text/template">
-## Task 3 (Container)
+## Task 4 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 </script></section><section data-markdown><script type="text/template">
-## Task 4 (connect to backend)
+## Task 5 (connect to backend)
 
 - Try to connect fetchUsers action creator to your rails backend
 </script></section></section><section  data-markdown><script type="text/template">
