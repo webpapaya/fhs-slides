@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/assets/styles.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">### State Management with Redux
+
+## (MMT-B2018)
+</script></section><section  data-markdown><script type="text/template">
+### Roadmap
+
+- Recap of homework
+- Functional Programming 101
+- State Management with Redux
+</script></section><section ><section data-markdown><script type="text/template">
+### Recap of Homework
+</script></section><section data-markdown><script type="text/template">
+### Template literals in JSX
+
+```tsx
+<label className={`${styles.label}`}>{labelText}</label>
+//              ^^^^^^^^^^^^^^^^^^^^
+// Only necessary when you'd like to interpolate strings. The following is enough
+<label className={styles.label}>{labelText}</label>
+```
+</script></section><section data-markdown><script type="text/template">
+### Routing I
+- Regular links instead of react router links
+- Router Links have a couple of additional feature
+  - activeClassName
+  - no hard reload of pages
+  - ...
+
+```ts
+import { Link } from "react-router-dom";
+
+<a href="#">Link</a> // 🚫
+<Link to="/whatever">Link</Link> // ✅
+```
+</script></section><section data-markdown><script type="text/template">### Routing II
+- Storybook breaks after routing added
+- Error: `You should not use <Link> outside a <Router>`
+- Wrap the component in a router
+- Or use decorator
+
+```js
+// .storybook/config.js
+import { configure, addDecorator } from '@storybook/react';
+import StoryRouter from 'storybook-react-router';
+
+addDecorator(StoryRouter());
+```</script></section><section data-markdown><script type="text/template">### import mock data in components
+- Try to import data only in the .stories.js file
+- Redux will pass the data from a server to the components
+  - in storybook we don't want any server interaction
+
+![redux overview](assets/pass_mocked_data.png)
+</script></section><section data-markdown><script type="text/template">### DRY components
+
+- DRY (don't repeat yourself)
+- SignIn/SignUp combined into an AuthenticationForm component
+  - As those are organisms repeating yourself is fine here
+</script></section><section data-markdown><script type="text/template">### Unnecessary state
+
+```js
+const debts = [/* ... */]
+const user = [/* ... */]
+
+const List = () => {
+    const [list, setList] = useState(debts);
+    const [users, setUser] = useState(user);
+    // ...
+```
+</script></section><section data-markdown><script type="text/template">### Deleting Code is fine
+
+- Nobody wanted to delete my button 😊
+  - If some code is not used, just remove it
+  - it's in git anyways
+</script></section></section><section  data-markdown><script type="text/template">
+### Functional Programming 101
+
+- Immutability
+- Pure functions
+- Side Effect
+</script></section><section  data-markdown><script type="text/template">
+## What is functional programming
+
+> Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
+</script></section><section  data-markdown><script type="text/template">
+## Why functional programming
+
+- More testable
+  - pure functions simplify testing
+- Declarative APIs which are easier to reason about
+- Easy concurrency because of statelessness and immutability
+  - State is pushed out of the application core to the boundaries
+- Simple caching
+  - pure functions easy to cache
+</script></section><section ><section data-markdown><script type="text/template">
+## Immutability
+
+> An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
+</script></section><section data-markdown><script type="text/template">
+## Immutable objects in JS
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+immutableObject.test = 10
+console.log(immutableObject) // => { test: 1 }
+````
+</script></section><section data-markdown><script type="text/template">
+## Changing an immutable value
+
+````js
+const immutableObject = Object.freeze({ a: 1, b: 2 })
+const updatedObject = Object.freeze({ ...immutableObject, a: 2 })
+console.log(updatedObject) // => { a: 2, b: 2 }
+````
+</script></section><section data-markdown><script type="text/template">
+## Unfreeze an object
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+const unfrozenCopy = { ...immutableObject }
+````
+</script></section><section data-markdown><script type="text/template">
+## Why immutability
+
+- race conditions impossible
+- state of the application is easier to reason about
+- easier to test
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Side-Effects
+
+> A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
+</script></section><section data-markdown><script type="text/template">
+## Some side effects
+
+- DB/HTTP calls
+- changing the file system
+- querying the DOM
+- printing/logging
+- accessing system state (eg. Clock, Geolocation,...)
+</script></section><section data-markdown><script type="text/template">
+## Where to deal with side effects
+
+- Moved to the boundaries of the system
+- Business logic stays pure functional
+
+![Side effects](assets/side_effects.png)
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Pure Functions
+
+- A function is considered pure when:
+  - for the same input it always returns the same output
+  - it has no side effects
+    - no mutation of non-local state
+
+```js
+const add = (a, b) => a + b
+```
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
+
+```js
+const array = [1, 2, 3, 4, 5, 6]
+const fn1 = (array) => array.slice(0, 3)
+const fn2 = (array) => array.splice(0, 3)
+const fn3 = (array) => array.shift()
+const fn4 = (array) => array.pop()
+const fn5 = (array) => array.sort((a, b) => a - b)
+const fn6 = (array) => [...array].sort((a, b) => a - b)
+const fn7 = (array) => array.map((item) => item * 2)
+const fn8 = (array) => array.forEach((item) => console.log(item))
+```
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
+
+```js
+const array = [1, 2, 3, 4, 5, 6]
+const fn1 = (array) => array.slice(0, 3) // ✅
+const fn2 = (array) => array.splice(0, 3) // 🚫
+const fn3 = (array) => array.shift() // 🚫
+const fn4 = (array) => array.pop() // 🚫
+const fn5 = (array) => array.sort((a, b) => a - b) // 🚫
+const fn6 = (array) => [...array].sort((a, b) => a - b) // ✅
+const fn7 = (array) => array.map((item) => item * 2) // ✅
+const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
+```
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
+
+```js
+let config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
+
+```js
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
+</script></section><section data-markdown><script type="text/template">
+## Pure or in-pure
+
+```js
+let config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
+
+```js
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
+
+```js
+// both are not pure. const saves the pointer. config is still mutable
+isAllowedToDrink(18) // true
+config.minimumAge = 19
+isAllowedToDrink(18) // false
+```
+</script></section><section data-markdown><script type="text/template">
+## Pure or inpure? 2/2
+
+```js
+const config = Object.freeze({ minimumAge: 18 })
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
+
+```js
+// freezing the config makes the function pure
+isAllowedToDrink(18) // true
+config.minimumAge = 19
+isAllowedToDrink(18) // true
+```
+</script></section></section><section  data-markdown><script type="text/template">
+## Summary FP
+
+- Immutability
+  - Object can't be changed after its creation
+- Side-Effects
+  - Communication with the outside world (eg. db, http, ...)
+- Pure-Functions
+  - returns the same output for the same input
+  - simple mapping from a to b
+</script></section><section ><section data-markdown><script type="text/template">
+### State Management with Redux
+</script></section><section data-markdown><script type="text/template">
+### What is application state
+
+> An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
+</script></section><section data-markdown><script type="text/template">
+### State in Redux terms
+
+> Every bit of information the application needs in order to render.
+</script></section><section data-markdown><script type="text/template">
+### What information do we need to render this page
+
+![app wireframe](assets/app_wireframe.png)
+</script></section><section data-markdown><script type="text/template">
+### What information do we need to render this page
+
+| Question?                                  | State Name           |
+|--------------------------------------------|----------------------|
+| Is the user authenticated?                 | authenticationStatus |
+| Is a form already filled with values?      | formValues           |
+| Is the input field hovered/focused/filled? | inputStatus          |
+| Am I owning money to somebody?             | moneyTransactions    |
+| Is somebody owning me some money?          | moneyTransactions    |
+| Which users can I owe some money?          | users                |
+| Which components should be rendered?       | url                  |
+</script></section><section data-markdown><script type="text/template">
+### Categorising different types
+
+- Relevant for other parts of the application?
+  - add to global state
+- Irrelevant for other parts of the application?
+  - use component state (useState or setState)
+  - also known as UI State
+</script></section><section data-markdown><script type="text/template">
+### Global/Local/URL
+
+| State Name           | State Type |
+|----------------------|------------|
+| authenticationStatus |            |
+| moneyTransactions    |            |
+| users                |            |
+| formValues           |            |
+| inputStatus          |            |
+| url                  |            |
+</script></section><section data-markdown><script type="text/template">
+### Global/Local/URL
+
+| State Name           | State Type |
+|----------------------|------------|
+| authenticationStatus | global     |
+| moneyTransactions    | global     |
+| users                | global     |
+| formValues           | local      |
+| inputStatus          | local      |
+| url                  | url        |
+</script></section><section data-markdown><script type="text/template">
+### Global State
+
+- relevant for other components
+- could be seen as a client side database
+  - or a cached version of the server data
+- domain object should be stored here
+  - eg. users, money transactions, authentication token
+</script></section><section data-markdown><script type="text/template">
+### UI State
+
+- irrelevant for other parts of the application
+  - or state which shouldn't be shared with others
+- What to store in UI state?
+  - Form states
+  - visual enhancements
+</script></section><section data-markdown><script type="text/template">
+### URL State
+
+- defines which set of components should be rendered
+- persists on page reloads
+- What to store in URL state?
+  - the current route
+  - the current page of a paginated list
+</script></section></section><section ><section data-markdown><script type="text/template">
+### React component tree
+
+![Component Tree](assets/react_component_tree.png)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in components
+
+![Local state tree](assets/local_state_tree.png)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in components
+
+- Pros
+  - Components are independent
+    - eg. "Navigation" doesn't know about "User Update"
+- Cons
+  - User data needs to be fetched multiple times
+  - If UserUpdate component changes name of user
+    - Navigation needs to refetch user data
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
+
+![Global state tree](assets/global_state_tree.png)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
+
+- Pros
+  - User data could be fetched only once
+  - If UserUpdate component changes name of user
+    - navigation component is automatically updated
+- Cons
+  - State needs to be passed down to every component
+  - (Root component contains all state logic)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in the root component
+
+![twitter component tree](assets/twitter_component_tree.gif)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in redux
+
+![connected tree](assets/connected_tree.png)
+</script></section><section data-markdown><script type="text/template">
+### Storing state in redux
+
+- Global state which acts like local state
+- Pros:
+  - Components are independent
+    - eg. Navigation doesn't know about UserUpdate
+  - State changes are synchronised with the whole app
+  - State doesn't need to be passed down the tree
+- Cons:
+  - "Complex" architecture for small apps
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Redux
+
+![redux overview](assets/redux_overview.png)
+</script></section><section data-markdown><script type="text/template">
+### Why Redux
+
+- Managing state in react can be challenging
+  - How to synchronize state between distant UI parts
+- Redux provides a predictable way to manage state
+- State can only be changed by dispatching an action
+- Each action might change the previous state to a new updated state
+- Works with react, vue, angular, ...
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Actions
+
+![Redux Actions](assets/redux_action_highlight.png)
+</script></section><section data-markdown><script type="text/template">
+### Actions
+
+> Something happened in the app which might be interesting.
+</script></section><section data-markdown><script type="text/template">
+### Actions
+
+- An action is data from the application which might be relevant for the store
+- Information is sent to the store via store.dispatch
+
+```js
+const signInAction = {
+  type: 'signIn',
+  payload: {
+    username: 'peter',
+    password: 'the clam'
+  }
+}
+
+store.dispatch(signInAction)
+```
+</script></section><section data-markdown><script type="text/template">
+### Action Creators
+
+- A functions which creates actions
+- With redux-thunk action creators can dispatch itself
+  - This is where side effects are handled
+
+```js
+const actionCreator = () => (dispatch) => {
+  dispatch({ type: 'action1', payload: {} })
+  dispatch({ type: 'action2', payload: { something: 'random' } })
+  dispatch({ type: 'action3', payload: { something: 'random' } })
+  // ...
+}
+
+store.dispatch(actionCreator())
+```
+</script></section><section data-markdown><script type="text/template">
+#### Action creator with params
+
+```js
+const actionCreatorWithData = ({ username, password }) => (dispatch) => {
+  dispatch({ type: 'action1', payload: { username, password } })
+  dispatch({ type: 'action2/success', payload: { something: 'random' } })
+}
+
+store.dispatch(signInAction({ username: 'Mike', password: '1234' }))
+```
+</script></section><section data-markdown><script type="text/template">
+### Async action creators
+
+```js
+const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
+  async (dispatch) => {
+    dispatch({ type: 'createMoneyTransaction/initiated', payload: {} })
+    try {
+      const moneyTransaction = await fetch('/money-transaction/', {
+        creditorId,
+        debitorId,
+        amount
+      })
+      dispatch({
+        type: 'createMoneyTransaction/success',
+        payload: moneyTransaction
+      })
+    } catch (e) {
+      dispatch({ type: 'createMoneyTransaction/error', payload: e })
+    };
+  }
+
+store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Reducers
+
+![redux overview](assets/redux_reducer_highlight.png)
+</script></section><section data-markdown><script type="text/template">
+### Reducers
+
+> Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
+</script></section><section data-markdown><script type="text/template">
+### Reducers
+
+- Specify how state changes in response to actions.
+- Pure function
+  - input appState and action
+  - output next application state
+
+```js
+const initialState = {}
+const reducer = (previousState = initialState, action) => {
+  // do something with the state
+  return nextState
+}
+```
+</script></section><section data-markdown><script type="text/template">
+### Reducers
+
+```js
+const initialState = []
+const moneyTransactionReducer = (previousState = initialState, action) => {
+  switch (action.type) {
+    case 'createMoneyTransaction/success':
+      return [...previousState, action.payload]
+    case 'reset':
+      return initialState
+    default:
+      return previousState
+  };
+}
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Container components
+
+![redux overview](assets/redux_container_highlight.png)
+</script></section><section data-markdown><script type="text/template">
+### Container components
+
+- Glue between react and redux
+- Provides data from the global store to the components
+- Provides "callbacks" to trigger actions
+</script></section><section data-markdown><script type="text/template">
+### Container Components
+
+```js
+import { createMoneyTransaction } from '../action-creators/money-transactions'
+const mapStateToProps = (state, props) => {
+  return {
+    moneyTransactions: state.moneyTransactions
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    createMoneyTransaction: (payload) =>
+      dispatch(createMoneyTransaction(payload))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MoneyTransactionList)
+```
+</script></section><section data-markdown><script type="text/template">
+### mapStateToProps
+
+- extract data from the store and provides it to a component
+- data filtering can be done here
+- `function mapStateToProps(state, ownProps?)`
+  - state -> the entire application state
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
+</script></section><section data-markdown><script type="text/template">
+### mapDispatchToProps
+
+- binds actions with the store and provides those actions to a component
+- `function mapStateToProps(dispatch, ownProps?)`
+  - dispatch -> the stores dispatch function
+  - ownProps -> properties which are passed from other components
+- [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
+</script></section><section data-markdown><script type="text/template">
+### Example from lecture
+
+[Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
+
+Might contain syntax error =)
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Task 1 (Actions)
+
+- Download
+  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
+- in src/store.js
+  - add `window.store = store`;
+- `npm run start:app`
+- go to localhost:8081
+- open dev tools/redux tab
+- create fetchUsers action creator (type fetchUser/success)
+  - mock user data for now (eg. Promise.resolve([user1, user2, ...]))
+  - `dispatch(fetchUsers())`
+</script></section><section data-markdown><script type="text/template">
+## Task 2 (Reducer)
+
+- Add a userReducer reducer
+  - entry point: `src/reducer/index.js`
+  - listen to 'fetchUser/success'
+    - try to populate the redux store with a new user
+</script></section><section data-markdown><script type="text/template">
+## Task 3 (Container)
+
+- Try to connect your moneyTransactionCreate dropdown with users from the store
+</script></section><section data-markdown><script type="text/template">
+## Task 4 (connect to backend)
+
+- Try to connect fetchUsers action creator to your rails backend
+</script></section></section><section  data-markdown><script type="text/template">
+# Further Links
+
+- [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
+- [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
+- [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
+</script></section><section  data-markdown><script type="text/template">
+# Feedback/Questions
+
+- <https://de.surveymonkey.com/r/J6693VN>
+- tmayrhofer.lba@fh-salzburg.ac.at
+</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
