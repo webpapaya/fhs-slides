@@ -729,7 +729,7 @@ Might contain syntax error =)
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
-
+- [Immutable Data Structures](https://hackernoon.com/how-immutable-data-structures-e-g-immutable-js-are-optimized-using-structural-sharing-e4424a866d56)
 ---
 
 # Feedback/Questions
