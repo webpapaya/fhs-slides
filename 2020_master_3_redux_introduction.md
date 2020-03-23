@@ -395,9 +395,7 @@ export default connect(
 
 ### Example from lecture
 
-[Example](https://gist.github.com/webpapaya/acd14d815bd4090502aa39fb54c3fa35)
-
-Might contain syntax error =)
+[Example](https://github.com/webpapaya/fhs-react-redux-starter-kit/tree/2020-fhs-master)
 
 ---
 
