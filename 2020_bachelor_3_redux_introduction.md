@@ -694,13 +694,16 @@ Might contain syntax error =)
 - `npm run start:app`
 - go to localhost:8081
 - open dev tools/redux tab
-- create fetchUsers action creator (type fetchUser/success)
-  - mock user data for now (eg. Promise.resolve([user1, user2, ...]))
-  - `dispatch(fetchUsers())`
+- `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
+
+---
+## Task 2 (Action creator)
+- Create an action creator which calls a fake api
+- eg: const user = await fetch({ id: 1, name: 'sepp' })
 
 ----
 
-## Task 2 (Reducer)
+## Task 3 (Reducer)
 
 - Add a userReducer reducer
   - entry point: `src/reducer/index.js`
@@ -709,13 +712,13 @@ Might contain syntax error =)
 
 ----
 
-## Task 3 (Container)
+## Task 4 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 
 ----
 
-## Task 4 (connect to backend)
+## Task 5 (connect to backend)
 
 - Try to connect fetchUsers action creator to your rails backend
 
