@@ -490,6 +490,14 @@ const compose = (...fns) => (initialValue) =>
 ``` -->
 
 ---
+
+# Homework
+- Decide for a state management solution
+- eg. redux/apollo/hooks/...
+  - describe your decision in an ADR
+    - see: https://github.com/joelparkerhenderson/architecture_decision_record
+
+---
 # Ressources
 
 ----
