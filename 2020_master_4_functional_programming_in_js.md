@@ -4,15 +4,6 @@
 
 ---
 
-## Roadmap
-
-- Functional Programming introduction
-- Domain-Modeling in TS
-- Event-Storming Session
-- Model results from Event-Storming in TS
-
----
-
 ## What is functional programming
 
 > Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
