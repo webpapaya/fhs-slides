@@ -4,6 +4,31 @@
 
 ---
 
+# Roadmap
+
+- JWT in next lecture
+- Localisation for Web Applications
+- Redux Recap (no "Anwesenheitspflicht")
+- Working together on the project
+- 17:00 tutorium if we run out of time earlier
+
+---
+
+## Homework until 4.5. 06:00 in the morning
+
+- connect Money-Transacton-List to backend
+  - display Users/Money-Transactions
+- connect Create-Money-Transacton to backend
+  - read users and display them in the dropdown
+  - on submit the Transaction list should update
+  - handle both cases:
+    - somebody owes me
+    - i owe somebody
+- please make sure your deployed backend works
+  - otherwise I can't check the exercise
+
+---
+
 # Numeronym
 
 - Number based word

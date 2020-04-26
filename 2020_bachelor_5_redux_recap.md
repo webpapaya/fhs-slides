@@ -244,20 +244,6 @@ export default connect(
 
 ----
 
-## Homework until 4.5. 06:00 in the morning
-- connect Money-Transacton-List to backend
-  - display Users/Money-Transactions
-- connect Create-Money-Transacton to backend
-  - read users and display them in the dropdown
-  - on submit the Transaction list should update
-  - handle both cases:
-    - somebody owes me
-    - i owe somebody
-- please make sure your deployed backend works
-  - otherwise I can't check the exercise
-
-----
-
 # Feedback/Questions
 
 - <https://de.surveymonkey.com/r/J6693VN>
