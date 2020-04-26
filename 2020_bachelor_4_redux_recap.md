@@ -244,7 +244,7 @@ export default connect(
 
 ----
 
-## Homework until 4.5.
+## Homework until 4.5. 06:00 in the morning
 - connect Money-Transacton-List to backend
   - display Users/Money-Transactions
 - connect Create-Money-Transacton to backend
