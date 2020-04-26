@@ -1,25 +1,6 @@
 # Better Test assertions
 
-## ViennaJS (2019-04-24)
-
 ---
-
-# About
-
-- Thomas Mayrhofer (@webpapaya)
-  - Software Developer
-  - External lecturer at FH Salzburg
-- E-Mail: thomas@mayrhofer.at
-
----
-
-# Who is writing tests
-
-----
-
-# Who is doing TDD
-
-----
 
 ![failing tests](assets/failing_tests.png)
 
