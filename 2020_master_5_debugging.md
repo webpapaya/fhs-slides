@@ -208,16 +208,7 @@ performance.measure("measure a to b", START_MARK, END_MARK);
 window.performance.getEntries().slice(-3) // returns the marks + the measure entry
 ```
 
-----
-
-# Task 1
-
-- clone: <https://github.com/webpapaya/compup>
-- npm i && npm run start:development
-- Users complain that some button clicks take very long
-  - Don't look on commit history =)
-
-----
+---
 
 # Task 2
 
