@@ -86,7 +86,7 @@ export default isForm(({ form }) => {
 </script></section></section><section ><section data-markdown><script type="text/template">
 # Debugging performance issues
 </script></section><section data-markdown><script type="text/template">
-# Chrome performance tab
+## Chrome performance tab
 
 - Determine why CPU is busy
 - Flame graph Visualisation of
@@ -111,13 +111,13 @@ export default isForm(({ form }) => {
 
 ![Slow device/network](assets/chrome_cpu_throttle.png)
 </script></section></section><section  data-markdown><script type="text/template">
-# Web Performance API
+### Web Performance API
 - Set of tools which expos information about
   - Performance of a Web Page
   - Network
   - Internal Browser operations
 </script></section><section  data-markdown><script type="text/template">
-# window.performance.timing
+### window.performance.timing
 
 - Performance information about current webpage
   - DNS/TCP timing
@@ -126,7 +126,7 @@ export default isForm(({ form }) => {
   - ...
 
 ![Performance timing](assets/performance_timing.png)
-</script></section><section ><section data-markdown><script type="text/template"># Measure time in JS code
+</script></section><section ><section data-markdown><script type="text/template">### Measure time in JS code
 
 ```js
 const t0 = performance.now();
@@ -134,7 +134,7 @@ doSomething();
 const t1 = performance.now();
 console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
 ```
-</script></section><section data-markdown><script type="text/template"># Why not use Date.now()
+</script></section><section data-markdown><script type="text/template">### Why not use Date.now()
 - Date.now() is based on system time
   - synchronized from time to time
     - might lead to wrong measurements
@@ -142,12 +142,12 @@ console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
     - depending on implementation
       - 1 second !== 1 system second
   - max resolution: milliseconds
-</script></section><section data-markdown><script type="text/template"># performance.now()
+</script></section><section data-markdown><script type="text/template">### performance.now()
 - monotonic time between time origin/current time
   - uniformly increasing
   - time origin when document initiated
 - max resolution: floating point milliseconds
-</script></section></section><section ><section data-markdown><script type="text/template"># Performance Entry List
+</script></section></section><section ><section data-markdown><script type="text/template">### Performance Entry List
 
 - Global Buffer:
   - stores performance relevant information
@@ -163,7 +163,7 @@ interface PerformanceObserverEntryList {
 ```js
 window.performance.getEntries()
 ```
-</script></section><section data-markdown><script type="text/template"># PerformanceEntry
+</script></section><section data-markdown><script type="text/template">### PerformanceEntry
 
 ```ts
 interface PerformanceEntry {
@@ -175,7 +175,7 @@ interface PerformanceEntry {
   // + additional properties depending on entryType
 };
 ```
-</script></section></section><section  data-markdown><script type="text/template">## performance.mark()
+</script></section></section><section  data-markdown><script type="text/template">### performance.mark()
 - adds a PerformanceEntry to global buffer
 - used to measure timings in distant parts of the app
 
@@ -193,7 +193,7 @@ performance.measure("measure a to b", START_MARK, END_MARK);
 window.performance.getEntries().slice(-3) // returns the marks + the measure entry
 ```
 </script></section><section  data-markdown><script type="text/template">
-# Task 2
+### Task
 
 - Go to your master project
 - Open profiler
@@ -201,8 +201,8 @@ window.performance.getEntries().slice(-3) // returns the marks + the measure ent
 </script></section><section  data-markdown><script type="text/template">
 # Feedback
 
-- <https://de.surveymonkey.com/r/XQ96YZX>
-</script></section></div>
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- <https://de.surveymonkey.com/r/XQ96YZX></script></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>
