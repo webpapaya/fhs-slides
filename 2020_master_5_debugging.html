@@ -30,8 +30,7 @@
 - Breakpoints are a way to pause a programm
   - variables can be inspected
   - custom code can be executed via js console
-</script></section><section data-markdown><script type="text/template">
-# How to add breakpoints
+</script></section><section data-markdown><script type="text/template"># How to add breakpoints
 
 - Via EventListeners
   - DevTools > Sources > EventListener Breakpoints
@@ -41,6 +40,7 @@
   - Sources > find line of code > click on line number
 - Via Code
   - add debugger statement
+
 </script></section><section data-markdown><script type="text/template"># Via Debugger Statement
 
 ```js
@@ -60,20 +60,27 @@ export default isForm(({ form }) => {
 		</Form>
 	);
 });
-```</script></section><section data-markdown><script type="text/template"># Chrome dev tools
+```
+</script></section><section data-markdown><script type="text/template"># DOM event breakpoints
 
-![Chrome dev tools](chrome_dev_tools.png)
+![DOM breakpoints](assets/chrome_dom_breakpoints.png)
+</script></section><section data-markdown><script type="text/template"># Breakpoint navigation
 
-</script></section><section data-markdown><script type="text/template">
+![Chrome dev tools](assets/chrome_dev_tools.png)
+</script></section></section><section ><section data-markdown><script type="text/template">
 # Debugging NodeJS
 
-- <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
-</script></section><section data-markdown><script type="text/template">
-# Task
+- VS Code Setup
+  - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
+- Webstorm Setup
+  - https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html
+</script></section><section data-markdown><script type="text/template"># Task
 
 - Try to setup debugger for backend
 - Start the backend and set breakpoint
+  - make sure to start node with `--inspect-brk`
 - Maybe you have a bug which you want to investigate
+- Timebox: 15min
 </script></section></section><section ><section data-markdown><script type="text/template">
 # Debugging performance issues
 </script></section><section data-markdown><script type="text/template">
