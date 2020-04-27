@@ -90,7 +90,7 @@ export default isForm(({ form }) => {
 
 ----
 
-# Chrome performance tab
+## Chrome performance tab
 
 - Determine why CPU is busy
 - Flame graph Visualisation of
@@ -123,7 +123,7 @@ export default isForm(({ form }) => {
 
 ---
 
-# Web Performance API
+### Web Performance API
 - Set of tools which expos information about
   - Performance of a Web Page
   - Network
@@ -131,7 +131,7 @@ export default isForm(({ form }) => {
 
 ---
 
-# window.performance.timing
+### window.performance.timing
 
 - Performance information about current webpage
   - DNS/TCP timing
@@ -142,7 +142,7 @@ export default isForm(({ form }) => {
 ![Performance timing](assets/performance_timing.png)
 
 ---
-# Measure time in JS code
+### Measure time in JS code
 
 ```js
 const t0 = performance.now();
@@ -152,7 +152,7 @@ console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
 ```
 
 ----
-# Why not use Date.now()
+### Why not use Date.now()
 - Date.now() is based on system time
   - synchronized from time to time
     - might lead to wrong measurements
@@ -162,14 +162,14 @@ console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
   - max resolution: milliseconds
 
 ----
-# performance.now()
+### performance.now()
 - monotonic time between time origin/current time
   - uniformly increasing
   - time origin when document initiated
 - max resolution: floating point milliseconds
 
 ---
-# Performance Entry List
+### Performance Entry List
 
 - Global Buffer:
   - stores performance relevant information
@@ -187,7 +187,7 @@ window.performance.getEntries()
 ```
 
 ----
-# PerformanceEntry
+### PerformanceEntry
 
 ```ts
 interface PerformanceEntry {
@@ -201,7 +201,7 @@ interface PerformanceEntry {
 ```
 
 ---
-## performance.mark()
+### performance.mark()
 - adds a PerformanceEntry to global buffer
 - used to measure timings in distant parts of the app
 
@@ -221,7 +221,7 @@ window.performance.getEntries().slice(-3) // returns the marks + the measure ent
 
 ---
 
-# Task 2
+### Task
 
 - Go to your master project
 - Open profiler
@@ -231,4 +231,5 @@ window.performance.getEntries().slice(-3) // returns the marks + the measure ent
 
 # Feedback
 
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/XQ96YZX>

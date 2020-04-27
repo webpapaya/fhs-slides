@@ -418,4 +418,5 @@ const applicationTime = new Date('2016-11-08 08:00')
 
 # Feedback
 
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/XQ96YZX>
