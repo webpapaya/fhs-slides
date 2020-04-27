@@ -71,6 +71,9 @@ export default isForm(({ form }) => {
   - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
 - Webstorm Setup
   - https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html
+- Staring tests
+  - JEST `node --inspect-brk node_modules/.bin/jest --runInBand --watch`
+  - mocha `npm run test -- --inspect-brk --watch`
 
 ----
 # Task
