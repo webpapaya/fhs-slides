@@ -20,7 +20,6 @@
   - custom code can be executed via js console
 
 ----
-
 # How to add breakpoints
 
 - Via EventListeners
@@ -31,6 +30,7 @@
   - Sources > find line of code > click on line number
 - Via Code
   - add debugger statement
+
 
 ----
 # Via Debugger Statement
@@ -53,25 +53,34 @@ export default isForm(({ form }) => {
 	);
 });
 ```
-----
-# Chrome dev tools
-
-![Chrome dev tools](chrome_dev_tools.png)
-
 
 ----
+# DOM event breakpoints
+
+![DOM breakpoints](assets/chrome_dom_breakpoints.png)
+
+----
+# Breakpoint navigation
+
+![Chrome dev tools](assets/chrome_dev_tools.png)
+
+---
 
 # Debugging NodeJS
 
-- <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
+- VS Code Setup
+  - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
+- Webstorm Setup
+  - https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html
 
 ----
-
 # Task
 
 - Try to setup debugger for backend
 - Start the backend and set breakpoint
+  - make sure to start node with `--inspect-brk`
 - Maybe you have a bug which you want to investigate
+- Timebox: 15min
 
 ---
 
