@@ -31,7 +31,6 @@
 - Via Code
   - add debugger statement
 
-
 ----
 # Via Debugger Statement
 
@@ -64,7 +63,7 @@ export default isForm(({ form }) => {
 
 ![Chrome dev tools](assets/chrome_dev_tools.png)
 
----
+----
 
 # Debugging NodeJS
 
