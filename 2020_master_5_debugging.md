@@ -20,6 +20,7 @@
   - custom code can be executed via js console
 
 ----
+
 # How to add breakpoints
 
 - Via EventListeners
@@ -32,33 +33,36 @@
   - add debugger statement
 
 ----
+
 # Via Debugger Statement
 
 ```js
 export default isForm(({ form }) => {
-	const { t } = useTranslation();
-	return (
-		<Form
-			{...form}
-			onSubmit={(evt) => {
-				debugger; // <= this opens a new debugger session
-				form.onSubmit(evt);
-			}}
-		>
-			<TextInput name="email" label={t('email')} {...form} />
-			<PasswordInput name="password" label={t('password')} {...form} />
-      { /* ... */ }
-		</Form>
-	);
-});
+  const { t } = useTranslation()
+  return (
+    <Form
+      {...form}
+      onSubmit={(evt) => {
+        debugger // <= this opens a new debugger session
+        form.onSubmit(evt)
+      }}
+    >
+      <TextInput name='email' label={t('email')} {...form} />
+      <PasswordInput name='password' label={t('password')} {...form} />
+      {/* ... */}
+    </Form>
+  )
+})
 ```
 
 ----
+
 # DOM event breakpoints
 
 ![DOM breakpoints](assets/chrome_dom_breakpoints.png)
 
 ----
+
 # Breakpoint navigation
 
 ![Chrome dev tools](assets/chrome_dev_tools.png)
@@ -70,12 +74,13 @@ export default isForm(({ form }) => {
 - VS Code Setup
   - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
 - Webstorm Setup
-  - https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html
+  - <https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html>
 - Staring tests
   - JEST `node --inspect-brk node_modules/.bin/jest --runInBand --watch`
   - mocha `npm run test -- --inspect-brk --watch`
 
 ----
+
 # Task
 
 - Try to setup debugger for backend
@@ -124,6 +129,7 @@ export default isForm(({ form }) => {
 ---
 
 ### Web Performance API
+
 - Set of tools which expos information about
   - Performance of a Web Page
   - Network
@@ -142,17 +148,20 @@ export default isForm(({ form }) => {
 ![Performance timing](assets/performance_timing.png)
 
 ---
+
 ### Measure time in JS code
 
 ```js
-const t0 = performance.now();
-doSomething();
-const t1 = performance.now();
-console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
+const t0 = performance.now()
+doSomething()
+const t1 = performance.now()
+console.log(`Call to doSomething took ${t1 - t0} milliseconds.`)
 ```
 
 ----
+
 ### Why not use Date.now()
+
 - Date.now() is based on system time
   - synchronized from time to time
     - might lead to wrong measurements
@@ -162,13 +171,16 @@ console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
   - max resolution: milliseconds
 
 ----
+
 ### performance.now()
+
 - monotonic time between time origin/current time
   - uniformly increasing
   - time origin when document initiated
 - max resolution: floating point milliseconds
 
 ---
+
 ### Performance Entry List
 
 - Global Buffer:
@@ -187,6 +199,7 @@ window.performance.getEntries()
 ```
 
 ----
+
 ### PerformanceEntry
 
 ```ts
@@ -201,7 +214,9 @@ interface PerformanceEntry {
 ```
 
 ---
+
 ### performance.mark()
+
 - adds a PerformanceEntry to global buffer
 - used to measure timings in distant parts of the app
 
@@ -209,13 +224,12 @@ interface PerformanceEntry {
 const START_MARK = 'before Math.random()'
 const END_MARK = 'after Math.random()'
 
-performance.mark(START_MARK);
+performance.mark(START_MARK)
 Math.random()
 // ... some other application logic
-performance.mark(END_MARK);
+performance.mark(END_MARK)
 
-
-performance.measure("measure a to b", START_MARK, END_MARK);
+performance.measure('measure a to b', START_MARK, END_MARK)
 window.performance.getEntries().slice(-3) // returns the marks + the measure entry
 ```
 

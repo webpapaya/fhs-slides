@@ -28,6 +28,7 @@
 ----
 
 ### Routing I
+
 - Regular links instead of react router links
 - Router Links have a couple of additional feature
   - activeClassName
@@ -42,7 +43,9 @@ import { Link } from "react-router-dom";
 ```
 
 ----
+
 ### Routing II
+
 - Storybook breaks after routing added
 - Error: `You should not use <Link> outside a <Router>`
 - Wrap the component in a router
@@ -50,13 +53,16 @@ import { Link } from "react-router-dom";
 
 ```js
 // .storybook/config.js
-import { configure, addDecorator } from '@storybook/react';
-import StoryRouter from 'storybook-react-router';
+import { configure, addDecorator } from '@storybook/react'
+import StoryRouter from 'storybook-react-router'
 
-addDecorator(StoryRouter());
+addDecorator(StoryRouter())
 ```
+
 ----
+
 ### import mock data in components
+
 - Try to import data only in the .stories.js file
 - Redux will pass the data from a server to the components
   - in storybook we don't want any server interaction
@@ -64,6 +70,7 @@ addDecorator(StoryRouter());
 ![redux overview](assets/pass_mocked_data.png)
 
 ----
+
 ### DRY components
 
 - DRY (don't repeat yourself)
@@ -71,6 +78,7 @@ addDecorator(StoryRouter());
   - As those are organisms repeating yourself is fine here
 
 ----
+
 ### Unnecessary state
 
 ```js
@@ -84,6 +92,7 @@ const List = () => {
 ```
 
 ----
+
 ### Deleting Code is fine
 
 - Nobody wanted to delete my button 😊
@@ -234,7 +243,7 @@ const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ## Pure or in-pure
 
 ```js
-let config = { minimumAge: 18 }
+const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
@@ -248,7 +257,7 @@ const isAllowedToDrink = (age) => age >= config.minimumAge
 ## Pure or in-pure
 
 ```js
-let config = { minimumAge: 18 }
+const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
@@ -697,7 +706,9 @@ Might contain syntax error =)
 - `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
 
 ---
+
 ## Task 2 (Action creator)
+
 - Create an action creator which calls a fake api
 - eg: const user = await fetch({ id: 1, name: 'sepp' })
 
@@ -730,6 +741,7 @@ Might contain syntax error =)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
 - [Immutable Data Structures](https://hackernoon.com/how-immutable-data-structures-e-g-immutable-js-are-optimized-using-structural-sharing-e4424a866d56)
+
 ---
 
 # Feedback/Questions

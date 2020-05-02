@@ -217,7 +217,9 @@ export default connect(
 - `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
 
 ---
+
 ## Task 2 (Action creator)
+
 - Create an action creator which calls a fake api
 - eg: const user = await fetch({ id: 1, name: 'sepp' })
 

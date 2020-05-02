@@ -145,7 +145,7 @@ const CurrentTime = () => {
     <h1>
       {isToday
         ? 'Today'
-        : 'Not Today' }
+        : 'Not Today'}
     </h1>
   )
 }
@@ -233,7 +233,7 @@ const ToggleButton = ({ onSubmit }) => {
 
   return (
     <button
-      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red') }
+      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red')}
       style={{ backgroundColor }}
     >
       {children}
@@ -290,7 +290,7 @@ const AComponent = () => {
   return (
     <>
       <label>An input</label>
-      <input type="text" />
+      <input type='text' />
     </>
   )
 }

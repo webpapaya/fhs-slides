@@ -27,9 +27,9 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import UserList from './UserList'
 
-const FAKE_USERS =  [
-  {id: 1, name: "Sepp"},
-  {id: 2, name: "Mike"}
+const FAKE_USERS = [
+  { id: 1, name: 'Sepp' },
+  { id: 2, name: 'Mike' }
 ]
 
 storiesOf('UserList', module)
@@ -77,15 +77,15 @@ class App extends React.Component {
 
 ```js
 const App = () => {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(count + 1);
+  const [count, setCount] = useState(0)
+  const handleIncrement = () => setCount(count + 1)
 
   return (
     <div>
       <div>{count}</div>
       <button onClick={handleIncrement}>Increment by 1</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -95,20 +95,20 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(count + 1);
-  return { count, handleIncrement };
+  const [count, setCount] = useState(0)
+  const handleIncrement = () => setCount(count + 1)
+  return { count, handleIncrement }
 }
 
 const App = () => {
-  const {count,handleIncrement} = useCounter();
+  const { count, handleIncrement } = useCounter()
 
   return (
     <div>
       <div>{count}</div>
       <button onClick={handleIncrement}>Increment by 1</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -140,20 +140,20 @@ useEffect(() => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(count + 1);
-  return { count, handleIncrement };
+  const [count, setCount] = useState(0)
+  const handleIncrement = () => setCount(count + 1)
+  return { count, handleIncrement }
 }
 
 const App = () => {
-  const {count,handleIncrement} = useCounter();
+  const { count, handleIncrement } = useCounter()
 
   return (
     <div>
       <div>{count}</div>
       <button onClick={handleIncrement}>Increment by 1</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -163,26 +163,26 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(count + 1);
-  return { count, handleIncrement };
+  const [count, setCount] = useState(0)
+  const handleIncrement = () => setCount(count + 1)
+  return { count, handleIncrement }
 }
 
 const App = () => {
-  const {count,handleIncrement} = useCounter();
+  const { count, handleIncrement } = useCounter()
 
   // Is executed when component is rendered for the first time
   // And when the counter variable changes.
   useEffect(() => {
-    document.title = `Counter clicked ${count} times`;
-  }, [count]);
+    document.title = `Counter clicked ${count} times`
+  }, [count])
 
   return (
     <div>
       <div>{count}</div>
       <button onClick={handleIncrement}>Increment by 1</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -192,24 +192,24 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => setCount(count + 1);
+  const [count, setCount] = useState(0)
+  const handleIncrement = () => setCount(count + 1)
   useEffect(() => {
-    document.title = `Counter clicked ${count} times`;
-  }, [count]);
+    document.title = `Counter clicked ${count} times`
+  }, [count])
 
-  return { count, handleIncrement };
+  return { count, handleIncrement }
 }
 
 const App = () => {
-  const {count,handleIncrement} = useCounter();
+  const { count, handleIncrement } = useCounter()
 
   return (
     <div>
       <div>{count}</div>
       <button onClick={handleIncrement}>Increment by 1</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -358,11 +358,11 @@ const App = () => {
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage} />
-    <Route path="/sign-in" component={SignIn} />
-  </Switch>
-);
+   <Switch>
+     <Route path='/' component={Homepage} />
+     <Route path='/sign-in' component={SignIn} />
+   </Switch>
+)
 ```
 
 ----
@@ -373,11 +373,11 @@ const Routes = () => (
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes SignIn
 const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn} />
-    <Route path="/" component={Homepage} />
-  </Switch>
-);
+   <Switch>
+     <Route path='/sign-in' component={SignIn} />
+     <Route path='/' component={Homepage} />
+   </Switch>
+)
 ```
 
 ----
@@ -388,11 +388,11 @@ const Routes = () => (
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes sign-in
 const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Homepage} />
-    <Route exact path="/sign-in" component={SignIn} />
-  </Switch>
-);
+   <Switch>
+     <Route exact path='/' component={Homepage} />
+     <Route exact path='/sign-in' component={SignIn} />
+   </Switch>
+)
 ```
 
 ----

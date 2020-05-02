@@ -80,11 +80,11 @@ import SignIn from './components/sign-in'
 // path === "/" => renders Homepage
 // path === "/sign-in" => renders Homepage
 const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage} />
-    <Route path="/sign-in" component={SignIn} />
-  </Switch>
-);
+   <Switch>
+     <Route path='/' component={Homepage} />
+     <Route path='/sign-in' component={SignIn} />
+   </Switch>
+)
 ```
 
 ----
@@ -95,10 +95,10 @@ const Routes = () => (
 // path === "/" => renders Homepage
 // path === "/sign-in" => renders Homepage
 const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn} />
-    <Route path="/" component={Homepage} />
-  </Switch>
+   <Switch>
+     <Route path='/sign-in' component={SignIn} />
+     <Route path='/' component={Homepage} />
+   </Switch>
 )
 ```
 

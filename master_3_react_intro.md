@@ -323,11 +323,11 @@ const Routes = () => (
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
-  <Switch>
-    <Route path="/sign-in" component={SignIn} />
-    <Route path="/" component={Homepage} />
-  </Switch>
-);
+   <Switch>
+     <Route path='/sign-in' component={SignIn} />
+     <Route path='/' component={Homepage} />
+   </Switch>
+)
 ```
 
 ----

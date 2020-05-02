@@ -850,11 +850,11 @@ import SignIn from './components/sign-in'
 // path === "/" => renderes Homepage
 // path === "/sign-in" => renderes Homepage
 const Routes = () => (
-  <Switch>
-    <Route path="/" component={Homepage} />
-    <Route path="/sign-in" component={SignIn} />
-  </Switch>
-);
+   <Switch>
+     <Route path='/' component={Homepage} />
+     <Route path='/sign-in' component={SignIn} />
+   </Switch>
+)
 ```
 
 ----

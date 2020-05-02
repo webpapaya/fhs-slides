@@ -290,6 +290,7 @@ const fibonacci = memoize((num) => {
 ## Possible Implementation
 
 - Will be added after the lecture
+
 <!--
 ```js
 const memoize = (fn) => {
@@ -433,6 +434,7 @@ isApplicableForInsurance(5) // true
 ```
 
 ----
+
 ## Pipe operator
 
 - TS39 proposal which would add the pipe functionality to JS directly:
@@ -473,7 +475,6 @@ compose(third, second, first)
   - [MDN Array.reduce](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
   - [MDN Array.reduceRight](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight)
 
-
 ----
 
 ## Possible solution
@@ -492,12 +493,14 @@ const compose = (...fns) => (initialValue) =>
 ---
 
 # Homework
+
 - Decide for a state management solution
 - eg. redux/apollo/hooks/...
   - describe your decision in an ADR
-    - see: https://github.com/joelparkerhenderson/architecture_decision_record
+    - see: <https://github.com/joelparkerhenderson/architecture_decision_record>
 
 ---
+
 # Ressources
 
 ----
