@@ -1,6 +1,14 @@
 # TypeScript
 
 ---
+# Exam/Grading
+
+- Might happen depending on corona restrictions
+  - you'll get informed about this as soon as we know
+- Otherwise homework will be your grade (from my part)
+  - right now this looks pretty good for all of you
+
+---
 
 # Roadmap for the following days
 
@@ -252,7 +260,207 @@ assignToLecture('sepp@fh-salzburg.ac.at', 'HCI')
 ```
 
 ---
+
 # Generics
+
+- Task in the office build an identity function
+  - identity function returns the same value that it was given as argument
+
+```js
+const identityInJS = (arg) => arg
+```
+
+----
+
+# Generics
+
+- Possible implementation in TS
+
+```ts
+const stringIdentity = (arg: string) => arg
+const numberIdentity = (arg: number) => arg
+const booleanIdentity = (arg: boolean) => arg
+// ...
+```
+
+----
+
+# Generics
+
+- Possible implementation with `any`
+
+```ts
+const identity = (arg: any) => arg
+const value = identity(1)
+value.toUpperCase()
+//   ^^^^^^^^^^^^^^
+// Will throw `value.toUpperCase is not a function`
+```
+
+----
+
+# Generics
+
+- possibility to reuse types with other types
+- written in angle brackets `<NameOfTypeVariable>`
+- I like to see them as:
+  - type level functions
+
+```ts
+const identity = <T>(arg: T): T => arg
+//             1)^^^    2)^  3)^
+// 1) Define a type argument T
+// 2) type of arg is assigned to the type argument T
+// 3) the function returns the type argument T
+```
+
+----
+# Generics
+
+```ts
+const identity = <T>(arg: T): T => arg
+
+const stringValue1 = identity<string>('Hallo MMT')
+//                                   ^^^^^^^^
+// explicitly assign string as the type argument to the identity function
+// string value1 will be of type string
+
+const stringValue2 = identity('Hallo MMT')
+// typescript automatically infers type of the type argument T
+// string value2 will be of type string
+```
+
+----
+# Generics for records
+
+- Generics can be used to compose
+
+```ts
+type ServerResponse<ResponsePayload> = {
+//                 ^^^^^^^^^^^^^^^^
+// Define a type variable called `ResponsePayload`
+  payload: ResponsePayload
+// Use the type variable `ResponsePayload`
+}
+
+type UserResponse = ServerResponse<{ name: string }>
+// resulting type: { payload: {name: string} }
+```
+
+
+----
+# Built in generics
+
+- `Pick<T>`
+- `Omit<T>`
+- `Partial<T>`
+- `Required<T>`
+- `Arguments<T>`
+- `ReturnType<T>`
+- `Readonly<T>`
+- `ReadonlyArray<T>`
+- `Record<T>`
+- `Array<T>`
+- ...
+
+----
+
+# Pick<T>
+
+- Creates a subset of an existing record type
+- Allows to specify a list of properties to extract
+- similar to lodash pick, but on a type level
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  age: number
+}
+
+type UserName = Pick<User, 'firstName' | 'lastName'>
+// type will be { firstName: string, lastName: string }
+```
+
+----
+
+# Omit<T>
+
+- Creates a subset of an existing record type
+- Allows to specify a list of properties to remove
+- similar to lodash omit, but on a type level
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  age: number
+}
+
+type UserName = Omit<User, 'age'>
+// type will be { firstName: string, lastName: string }
+```
+
+----
+
+# Partial<T>
+
+- makes all properties of an object optional
+- might be used to overwrite default configs etc.
+
+```ts
+const defaultTSConfig = {
+  target: 'ES2015',
+  declaration: true,
+}
+type TSConfig = typeof defaultTSConfig
+//              ^^^^^^
+// automatically infer the type of defaultTSConfig
+// TSConfig will be of type { target: string, declaration: boolean }
+
+const start = (options: Partial<TSConfig>) => { /* irrelevant*/ }
+//                      ^^^^^^^^^^^^^^^^^
+// options will be of type { target?: string, declaration?: boolean }
+
+start({ target: 'es5' })
+start({ declarations: false })
+```
+
+----
+
+# Required<T>
+
+- opposite of partial
+- makes all values of a record required
+
+```ts
+type User = Required<{
+  name: string,
+  age?: number
+}>
+const user: User = { name: 'Sepp' }
+//    ^^^^
+// Error: Property 'age' is missing in type
+```
+
+----
+
+# Arguments<T>/ReturnType<T>
+
+- `Argument<T>` returns the type of the arguments of a function
+- `ReturnType<T>` returns the return type of a function
+
+```ts
+const add = (a: number, b: number) => a + b
+type AddArguments  = Arguments<typeof add> // [number, number]
+type AddFirstArgument  = AddArgument[0]
+type AddSecondArgument  = AddArgument[1]
+
+type AddReturnType = ReturnType<typeof add> // number
+```
+
+
+
 
 
 
@@ -480,6 +688,4 @@ type Contact = PostContact | EmailContact | PhoneContact
 ---
 TODOs:
 - unknown type
-- explain generics
 - io-ts slides
--
