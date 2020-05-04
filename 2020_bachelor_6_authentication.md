@@ -80,7 +80,6 @@
   - Every session needs to hit db
   - hard to integrate 3rd party apps
 
-
 ---
 
 ### Stateless Authentication
@@ -309,6 +308,7 @@ const userReducer = (previousState = initialState, action) => {
   - or your own rails backend
   - API endpoints <https://gist.github.com/webpapaya/81bff490a7ed765167f2c404acc1ec36/edit>
   - make sure to clean data afterwards
+  - store JWT in localStorage
 - Code Review you'll receive in the coming days
 
 ---
