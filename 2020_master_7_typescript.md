@@ -1,6 +1,7 @@
 # TypeScript
 
 ---
+
 # Exam/Grading
 
 - Might happen depending on corona restrictions
@@ -22,7 +23,6 @@
 ---
 
 # Roadmap for the following days
-
 
 - Why ts
 - features
@@ -113,6 +113,7 @@ color = 10;
 ```
 
 ----
+
 # any
 
 - opt out of type checking
@@ -185,6 +186,7 @@ printUser(user)
 ----
 
 # Optional values 1
+
 - not all properties of interfaces might be required
 - TS allows to specify optional properties
 
@@ -204,6 +206,7 @@ const userWithoutAge: User = {
 ----
 
 # Optional values 2
+
 - Optional values are type checked
 
 ```js
@@ -315,6 +318,7 @@ const identity = <T>(arg: T): T => arg
 ```
 
 ----
+
 # Generics
 
 ```ts
@@ -331,6 +335,7 @@ const stringValue2 = identity('Hallo MMT')
 ```
 
 ----
+
 # Generics for records
 
 - Generics can be used to compose
@@ -347,8 +352,8 @@ type UserResponse = ServerResponse<{ name: string }>
 // resulting type: { payload: {name: string} }
 ```
 
-
 ----
+
 # Built in generics
 
 - `Pick<T>`
@@ -458,3 +463,8 @@ type AddSecondArgument  = AddArgument[1]
 
 type AddReturnType = ReturnType<typeof add> // number
 ```
+
+----
+TODO:
+
+- tagged unions

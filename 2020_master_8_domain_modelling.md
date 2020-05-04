@@ -2,6 +2,55 @@
 
 ---
 
+# What is DDD
+
+![DDD](assets/ddd_book.jpeg)
+
+> Domain Driven Design by Eric Evans
+
+----
+
+# What is DDD
+
+> Approach to develop software where the application domain model reflects the real business model.
+
+----
+
+# Why
+
+![Reduce Complexity](assets/gitlab_user_rb.gif)
+
+----
+
+# Collaboration
+
+- Developers + Domain Experts work together
+  - try to agree on an unambiguous language
+    - string, numbers, boolean are technical terms
+    - an E-Mail is a string but not every string is an E-Mail address
+- Information sharing
+- Chaotic information is streamlined
+- The model is constantly refined
+
+----
+
+# Technology as an afterthought
+
+- Developers normally focus on the how
+  - i need microservices for scalability
+  - noSQL will solve all issues
+  - Rails does not scale, lets rewrite in node/scala
+  - have you heard of docker/kafka?
+- DDD sharpens the focus on what
+
+----
+
+# One picture two meanings
+
+![One picture two meanings](assets/silhouette_profile_or_a_white_vase.jpg)
+
+---
+
 - Requirements:
   - A user needs to have a first and last name
   - A user needs to have exactly one contact
@@ -196,30 +245,124 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
 }
 ```
 
-----
+---
+
+# Runtime type checking in TS
+
+- TypeScript compiles to JS
+- No type information available during runtime
+- Data needs to be verified on the client
+  - data which was received from a backend
+  - data which will be sent to the backend
+  - otherwise runtime errors
+
+---
+
+# Tools
+
+- [yup](https://github.com/jquense/yup)
+  - sometimes types are wrong
+  - focuses on JS
+- [io-ts](https://github.com/gcanti/io-ts)
+  - supports encoding/decoding
+  - very expressive
+  - complicated at first
+- [validation.ts](https://github.com/AlexGalays/validation.ts)
+  - lightweigt version of io-ts
+  - only supports encoding
+  - easier to get started
+- many more
+
+---
+
+# Email validation
+
+- It's possible to write all validations by hand
+- gets cumbersome if one wants to compose validations
 
 ```ts
 type Maybe<T> = T | null
-type Verifiable<T> = T & { isVerified: boolean }
-
 type Email = string
-type Phone = string
-type Street = string
-type ZipCode = string
-type Country = string
 
-type PostContact = Verifiable<{ street: Street, zipCode: ZipCode, country: Country }>
-type EmailContact = Verifiable<{ email: Email }>
-type PhoneContact = Verifiable<{ phone: Phone }>
-type Contact = PostContact | EmailContact | PhoneContact
-
-//...
+const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
+    if (typeof maybeEmail === 'string' && maybeEmail.match(/.@./)) {
+        return maybeEmail as Email;
+    }
+    return null;
+}
 ```
+
+---
+
+# validation.ts
+
+```ts
+import { string } from 'validation.ts'
+
+const emailValidator = string
+  .filter(maybeEmail => !!maybeEmail.match(/.@./))
+
+type Email = typeof emailValidator['T'] // string
+```
+
+----
+
+# isVerified
+
+```ts
+import { string, Validator, object, boolean } from 'validation.ts'
+
+const emailValidator = // ...
+
+const isVerified = <Val extends Validator<any>>(key: string, validator: Val) => object({
+  value: validator,
+  isVerified: boolean
+})
+
+const validatedEmail = isVerified('email', emailValidator)
+type ValidatedEmail = typeof validatedEmail['T'] // { value: string; isVerified: boolean; }
+```
+
+----
+
+# Full example
+
+```ts
+import { string, object, boolean, union, intersection, ObjectValidator } from 'validation.ts'
+
+const nonEmptyString = string
+  .filter(string => string.length > 0)
+
+const clampedString = (min: number, max: number) => string
+  .filter(string => string.length >= min && string.length <= max)
+
+const emailValidator = string
+  .filter(maybeEmail => !!maybeEmail.match(/.@./))
+
+const validated = <Val extends ObjectValidator<any>>(validator: Val) =>
+  intersection(object({ isValidated: boolean }), validator)
+
+const userValidator = object({
+  firstName: nonEmptyString,
+  lastName: nonEmptyString,
+  contact: union(
+    validated(object({ email: emailValidator })),
+    validated(object({ phone: nonEmptyString })),
+    validated(object({
+      street: nonEmptyString,
+      zipCode: clampedString(4, 5),
+      country: clampedString(3, 3)
+    })),
+  )
+})
+
+
+```
+
 ---
 
 # Homework
+
 - Build the domain model for your application in TS
 - Try to make invalid states impossible
 - Try to think about possible edge cases and how to prevent them
-
-
