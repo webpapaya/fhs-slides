@@ -242,7 +242,7 @@ const signIn = ({ email, password }) => async (dispatch) => {
       },
       "body": JSON.stringify({ user: { email, password }})
     });
-    const token = response.headers.get('authorization')
+    const token = response.headers.get('Authorization')
     dispatch({ type: 'auth/signed_in', payload: { token }}) // still needs to be written
 })
 ```
