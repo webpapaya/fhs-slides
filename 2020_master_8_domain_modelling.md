@@ -258,6 +258,12 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
 
 ---
 
+# Where to validate TS types?
+
+![Runtime type checking](assets/side_effects.png)
+
+---
+
 # Tools
 
 - [yup](https://github.com/jquense/yup)
@@ -355,8 +361,6 @@ const userValidator = object({
     })),
   )
 })
-
-
 ```
 
 ---
