@@ -2,15 +2,15 @@
 
 ---
 
-# Exam
+### Exam
 
 - As of Covid-19 it's unclear if exam will happen
-- the exam should happen on 2.7.
-- if exam won't happen project will be your grade (for my part)
+- if it happens then on 2.7.
+- if it doesn't happen project will be your grade (for my part)
 
 ---
 
-# Roadmap
+### Roadmap
 
 - Today authentication
   - Afterwards project troubleshooting
@@ -18,7 +18,7 @@
 
 ---
 
-# Authentication
+### Authentication
 
 - Verify identity of something
   - Who is somebody
@@ -31,7 +31,7 @@
 
 ----
 
-# Authentication
+### Authentication
 
 - identity is verified by credentials
 - usually combination of username/password
@@ -42,7 +42,7 @@
 
 ---
 
-# Authorization
+### Authorization
 
 - what resources should somebody have access to
   - What am I allowed to do
@@ -53,13 +53,63 @@
   - eg.: reading news articles
 - more to this topic from Brigitte
 
----
-
-# Traditional Applications
 
 ---
 
-# JWT (JSON Web Token)
+### Stateful Authentication
+
+- Session data is stored in the backend
+
+![JWT Traditional](assets/jwt_traditional.png)
+
+1. /money_transactions/ is called
+2. the session for the user is fetched from a db
+3. the session information is returned and verified
+4. result of /money_transactions/ is returned to client
+
+----
+
+### Stateful Authentication
+
+- Pros:
+  - Revoke session anytime
+  - Easy to implement
+  - Session data can be changed anytime
+- Cons:
+  - Increasing server resources
+  - Every session needs to hit db
+  - hard to integrate 3rd party apps
+
+
+---
+
+### Stateless Authentication
+- Session data is stored directly on the client
+- Session data is signed and integrity can be verified
+  - server only needs to verify validity
+  - does not need to refetch data
+
+----
+
+### Stateless Authentication
+
+- Pros:
+  - Lower server overhead
+  - Easy to scale and integrate with 3rd party
+    - 3rd party can read session data
+- Cons:
+  - Session can't be revoked anytime
+  - More complex to implement
+  - Session data can't be changed until it expires
+
+----
+### Stateless Authentication
+
+![JWT Flow](assets/jwt_timeline.png)
+
+---
+
+### JWT (JSON Web Token)
 
 > JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
 
@@ -67,7 +117,7 @@
 
 ----
 
-# Anatomy of JWT
+### Anatomy of JWT
 
 - Header Algorithm & Token type (red)
 - Payload (purple)
@@ -79,7 +129,7 @@
 
 ----
 
-# Header
+### Header
 
 - declare type JWT
 - declare hashing algorithm to use
@@ -94,7 +144,7 @@
 
 ----
 
-# Payload
+### Payload
 
 - Carries the information which we want to transmit
 - Also called JWT claims
@@ -111,7 +161,7 @@
 
 ----
 
-# Signature
+### Signature
 
 - Hash of
   - header
@@ -129,7 +179,7 @@
 
 ----
 
-# Anatomy of JWT
+### Anatomy of JWT
 
 ```json
 // Header
@@ -146,15 +196,10 @@ gets converted to:
 
 ![JWT](assets/jwt.png)
 
-----
-
-# JWT
-
-![JWT Flow](assets/jwt_timeline.png)
 
 ----
 
-# Pros
+### Pros
 
 - Standard by IETF
 - Scalable
@@ -165,13 +210,13 @@ gets converted to:
 
 ---
 
-# JWT in React/Redux
+### JWT in React/Redux
 
 ![JWT Flow](assets/jwt_timeline.png)
 
 ----
 
-# JWT in React/Redux
+### JWT in React/Redux
 
 - Where would it fit best?
 
@@ -179,13 +224,13 @@ gets converted to:
 
 ----
 
-# JWT in React/Redux
+### JWT in React/Redux
 
 ![Redux Action Creators](assets/redux_action_highlight.png)
 
 ----
 
-# Receiving a JWT
+### Receiving a JWT
 
 ```ts
 const signIn = ({ email, password }) => async (dispatch) => {
@@ -204,7 +249,7 @@ const signIn = ({ email, password }) => async (dispatch) => {
 
 ----
 
-# Sending JWT to backend
+### Sending JWT to backend
 
 ```ts
 const getUsers = ({ email, password }) => async (dispatch, getState) => {
@@ -226,7 +271,7 @@ const getUsers = ({ email, password }) => async (dispatch, getState) => {
 
 ----
 
-# Sign out
+### Sign out
 
 ```ts
 const signOut = ({ email, password }) => async (dispatch) => {
@@ -237,7 +282,7 @@ const signOut = ({ email, password }) => async (dispatch) => {
 
 ----
 
-# Sign out caveats
+### Sign out caveats
 
 - items in store need to be removed manually
   - eg. previous money transactions/users
@@ -257,7 +302,7 @@ const userReducer = (previousState = initialState, action) => {
 
 ---
 
-# Homework
+### Homework
 
 - connect sign-in/sign-out screens to backend
   - either <https://gentle-depths-21909.herokuapp.com/>
@@ -268,7 +313,7 @@ const userReducer = (previousState = initialState, action) => {
 
 ---
 
-# Feedback/Questions
+### Feedback/Questions
 
 - <https://de.surveymonkey.com/r/J6693VN>
 - tmayrhofer.lba@fh-salzburg.ac.at
