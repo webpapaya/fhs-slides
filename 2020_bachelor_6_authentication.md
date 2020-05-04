@@ -53,7 +53,6 @@
   - eg.: reading news articles
 - more to this topic from Brigitte
 
-
 ---
 
 ### Stateful Authentication
@@ -83,6 +82,7 @@
 ---
 
 ### Stateless Authentication
+
 - Session data is stored directly on the client
 - Session data is signed and integrity can be verified
   - server only needs to verify validity
@@ -102,6 +102,7 @@
   - Session data can't be changed until it expires
 
 ----
+
 ### Stateless Authentication
 
 ![JWT Flow](assets/jwt_timeline.png)
@@ -194,7 +195,6 @@
 gets converted to:
 
 ![JWT](assets/jwt.png)
-
 
 ----
 

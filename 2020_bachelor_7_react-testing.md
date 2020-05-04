@@ -4,7 +4,8 @@
 
 ---
 
-### Info for Homework:
+### Info for Homework
+
 - you'll get an E-Mail with due date
 - `api/v1/money_transactions` is missing
   - I'll add it as soon as possible

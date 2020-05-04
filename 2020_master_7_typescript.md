@@ -29,8 +29,8 @@
 - Adds static type checking
   - compiles to JavaScript
 - is turing complete
-  - https://github.com/microsoft/TypeScript/issues/14833
-  - https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript
+  - <https://github.com/microsoft/TypeScript/issues/14833>
+  - <https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript>
 
 ---
 

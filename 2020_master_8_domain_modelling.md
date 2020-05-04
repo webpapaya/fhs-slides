@@ -258,7 +258,7 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
 
 ---
 
-# Where to validate TS types?
+# Where to validate TS types
 
 ![Runtime type checking](assets/side_effects.png)
 
