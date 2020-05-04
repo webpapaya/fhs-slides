@@ -36,6 +36,7 @@
 ```
 </script></section><section data-markdown><script type="text/template">
 ### Routing I
+
 - Regular links instead of react router links
 - Router Links have a couple of additional feature
   - activeClassName
@@ -48,7 +49,9 @@ import { Link } from "react-router-dom";
 <a href="#">Link</a> // 🚫
 <Link to="/whatever">Link</Link> // ✅
 ```
-</script></section><section data-markdown><script type="text/template">### Routing II
+</script></section><section data-markdown><script type="text/template">
+### Routing II
+
 - Storybook breaks after routing added
 - Error: `You should not use <Link> outside a <Router>`
 - Wrap the component in a router
@@ -56,22 +59,27 @@ import { Link } from "react-router-dom";
 
 ```js
 // .storybook/config.js
-import { configure, addDecorator } from '@storybook/react';
-import StoryRouter from 'storybook-react-router';
+import { configure, addDecorator } from '@storybook/react'
+import StoryRouter from 'storybook-react-router'
 
-addDecorator(StoryRouter());
-```</script></section><section data-markdown><script type="text/template">### import mock data in components
+addDecorator(StoryRouter())
+```
+</script></section><section data-markdown><script type="text/template">
+### import mock data in components
+
 - Try to import data only in the .stories.js file
 - Redux will pass the data from a server to the components
   - in storybook we don't want any server interaction
 
 ![redux overview](assets/pass_mocked_data.png)
-</script></section><section data-markdown><script type="text/template">### DRY components
+</script></section><section data-markdown><script type="text/template">
+### DRY components
 
 - DRY (don't repeat yourself)
 - SignIn/SignUp combined into an AuthenticationForm component
   - As those are organisms repeating yourself is fine here
-</script></section><section data-markdown><script type="text/template">### Unnecessary state
+</script></section><section data-markdown><script type="text/template">
+### Unnecessary state
 
 ```js
 const debts = [/* ... */]
@@ -82,7 +90,8 @@ const List = () => {
     const [users, setUser] = useState(user);
     // ...
 ```
-</script></section><section data-markdown><script type="text/template">### Deleting Code is fine
+</script></section><section data-markdown><script type="text/template">
+### Deleting Code is fine
 
 - Nobody wanted to delete my button 😊
   - If some code is not used, just remove it
@@ -202,7 +211,7 @@ const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ## Pure or in-pure
 
 ```js
-let config = { minimumAge: 18 }
+const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
@@ -214,7 +223,7 @@ const isAllowedToDrink = (age) => age >= config.minimumAge
 ## Pure or in-pure
 
 ```js
-let config = { minimumAge: 18 }
+const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
@@ -581,7 +590,9 @@ Might contain syntax error =)
 - go to localhost:3000
 - open dev tools/redux tab
 - `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
-</script></section><section ><section data-markdown><script type="text/template">## Task 2 (Action creator)
+</script></section><section ><section data-markdown><script type="text/template">
+## Task 2 (Action creator)
+
 - Create an action creator which calls a fake api
 - eg: const user = await fetch({ id: 1, name: 'sepp' })
 </script></section><section data-markdown><script type="text/template">
@@ -605,7 +616,8 @@ Might contain syntax error =)
 - [Redux Tutorial](https://redux.js.org/basics/basic-tutorial)
 - [Mostly adequate guide to FP](https://github.com/MostlyAdequate/)
 - [Hands-On Functional Programming with TypeScript](https://www.amazon.com/Hands-Functional-Programming-TypeScript-applications/dp/1788831438)
-- [Immutable Data Structures](https://hackernoon.com/how-immutable-data-structures-e-g-immutable-js-are-optimized-using-structural-sharing-e4424a866d56)</script></section><section  data-markdown><script type="text/template">
+- [Immutable Data Structures](https://hackernoon.com/how-immutable-data-structures-e-g-immutable-js-are-optimized-using-structural-sharing-e4424a866d56)
+</script></section><section  data-markdown><script type="text/template">
 # Feedback/Questions
 
 - <https://de.surveymonkey.com/r/J6693VN>

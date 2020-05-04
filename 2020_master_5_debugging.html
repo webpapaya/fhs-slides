@@ -30,7 +30,8 @@
 - Breakpoints are a way to pause a programm
   - variables can be inspected
   - custom code can be executed via js console
-</script></section><section data-markdown><script type="text/template"># How to add breakpoints
+</script></section><section data-markdown><script type="text/template">
+# How to add breakpoints
 
 - Via EventListeners
   - DevTools > Sources > EventListener Breakpoints
@@ -40,30 +41,33 @@
   - Sources > find line of code > click on line number
 - Via Code
   - add debugger statement
-</script></section><section data-markdown><script type="text/template"># Via Debugger Statement
+</script></section><section data-markdown><script type="text/template">
+# Via Debugger Statement
 
 ```js
 export default isForm(({ form }) => {
-	const { t } = useTranslation();
-	return (
-		<Form
-			{...form}
-			onSubmit={(evt) => {
-				debugger; // <= this opens a new debugger session
-				form.onSubmit(evt);
-			}}
-		>
-			<TextInput name="email" label={t('email')} {...form} />
-			<PasswordInput name="password" label={t('password')} {...form} />
-      { /* ... */ }
-		</Form>
-	);
-});
+  const { t } = useTranslation()
+  return (
+    <Form
+      {...form}
+      onSubmit={(evt) => {
+        debugger // <= this opens a new debugger session
+        form.onSubmit(evt)
+      }}
+    >
+      <TextInput name='email' label={t('email')} {...form} />
+      <PasswordInput name='password' label={t('password')} {...form} />
+      {/* ... */}
+    </Form>
+  )
+})
 ```
-</script></section><section data-markdown><script type="text/template"># DOM event breakpoints
+</script></section><section data-markdown><script type="text/template">
+# DOM event breakpoints
 
 ![DOM breakpoints](assets/chrome_dom_breakpoints.png)
-</script></section><section data-markdown><script type="text/template"># Breakpoint navigation
+</script></section><section data-markdown><script type="text/template">
+# Breakpoint navigation
 
 ![Chrome dev tools](assets/chrome_dev_tools.png)
 </script></section><section data-markdown><script type="text/template">
@@ -72,11 +76,12 @@ export default isForm(({ form }) => {
 - VS Code Setup
   - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
 - Webstorm Setup
-  - https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html
+  - <https://www.jetbrains.com/help/webstorm/run-debug-configuration-node-js-remote-debug.html>
 - Staring tests
   - JEST `node --inspect-brk node_modules/.bin/jest --runInBand --watch`
   - mocha `npm run test -- --inspect-brk --watch`
-</script></section><section data-markdown><script type="text/template"># Task
+</script></section><section data-markdown><script type="text/template">
+# Task
 
 - Try to setup debugger for backend
 - Start the backend and set breakpoint
@@ -112,6 +117,7 @@ export default isForm(({ form }) => {
 ![Slow device/network](assets/chrome_cpu_throttle.png)
 </script></section></section><section  data-markdown><script type="text/template">
 ### Web Performance API
+
 - Set of tools which expos information about
   - Performance of a Web Page
   - Network
@@ -126,15 +132,18 @@ export default isForm(({ form }) => {
   - ...
 
 ![Performance timing](assets/performance_timing.png)
-</script></section><section ><section data-markdown><script type="text/template">### Measure time in JS code
+</script></section><section ><section data-markdown><script type="text/template">
+### Measure time in JS code
 
 ```js
-const t0 = performance.now();
-doSomething();
-const t1 = performance.now();
-console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
+const t0 = performance.now()
+doSomething()
+const t1 = performance.now()
+console.log(`Call to doSomething took ${t1 - t0} milliseconds.`)
 ```
-</script></section><section data-markdown><script type="text/template">### Why not use Date.now()
+</script></section><section data-markdown><script type="text/template">
+### Why not use Date.now()
+
 - Date.now() is based on system time
   - synchronized from time to time
     - might lead to wrong measurements
@@ -142,12 +151,15 @@ console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
     - depending on implementation
       - 1 second !== 1 system second
   - max resolution: milliseconds
-</script></section><section data-markdown><script type="text/template">### performance.now()
+</script></section><section data-markdown><script type="text/template">
+### performance.now()
+
 - monotonic time between time origin/current time
   - uniformly increasing
   - time origin when document initiated
 - max resolution: floating point milliseconds
-</script></section></section><section ><section data-markdown><script type="text/template">### Performance Entry List
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Performance Entry List
 
 - Global Buffer:
   - stores performance relevant information
@@ -163,7 +175,8 @@ interface PerformanceObserverEntryList {
 ```js
 window.performance.getEntries()
 ```
-</script></section><section data-markdown><script type="text/template">### PerformanceEntry
+</script></section><section data-markdown><script type="text/template">
+### PerformanceEntry
 
 ```ts
 interface PerformanceEntry {
@@ -175,7 +188,9 @@ interface PerformanceEntry {
   // + additional properties depending on entryType
 };
 ```
-</script></section></section><section  data-markdown><script type="text/template">### performance.mark()
+</script></section></section><section  data-markdown><script type="text/template">
+### performance.mark()
+
 - adds a PerformanceEntry to global buffer
 - used to measure timings in distant parts of the app
 
@@ -183,13 +198,12 @@ interface PerformanceEntry {
 const START_MARK = 'before Math.random()'
 const END_MARK = 'after Math.random()'
 
-performance.mark(START_MARK);
+performance.mark(START_MARK)
 Math.random()
 // ... some other application logic
-performance.mark(END_MARK);
+performance.mark(END_MARK)
 
-
-performance.measure("measure a to b", START_MARK, END_MARK);
+performance.measure('measure a to b', START_MARK, END_MARK)
 window.performance.getEntries().slice(-3) // returns the marks + the measure entry
 ```
 </script></section><section  data-markdown><script type="text/template">
@@ -202,7 +216,8 @@ window.performance.getEntries().slice(-3) // returns the marks + the measure ent
 # Feedback
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
-- <https://de.surveymonkey.com/r/XQ96YZX></script></section></div>
+- <https://de.surveymonkey.com/r/XQ96YZX>
+</script></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>
