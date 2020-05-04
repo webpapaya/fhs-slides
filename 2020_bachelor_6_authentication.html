@@ -58,7 +58,6 @@
   - Anonymous resources might be accessible without authz
   - eg.: reading news articles
 - more to this topic from Brigitte
-
 </script></section><section ><section data-markdown><script type="text/template">
 ### Stateful Authentication
 
@@ -81,9 +80,9 @@
   - Increasing server resources
   - Every session needs to hit db
   - hard to integrate 3rd party apps
-
 </script></section></section><section ><section data-markdown><script type="text/template">
 ### Stateless Authentication
+
 - Session data is stored directly on the client
 - Session data is signed and integrity can be verified
   - server only needs to verify validity
@@ -99,7 +98,8 @@
   - Session can't be revoked anytime
   - More complex to implement
   - Session data can't be changed until it expires
-</script></section><section data-markdown><script type="text/template">### Stateless Authentication
+</script></section><section data-markdown><script type="text/template">
+### Stateless Authentication
 
 ![JWT Flow](assets/jwt_timeline.png)
 </script></section></section><section ><section data-markdown><script type="text/template">
@@ -179,7 +179,6 @@
 gets converted to:
 
 ![JWT](assets/jwt.png)
-
 </script></section><section data-markdown><script type="text/template">
 ### Pros
 
@@ -275,6 +274,7 @@ const userReducer = (previousState = initialState, action) => {
   - or your own rails backend
   - API endpoints <https://gist.github.com/webpapaya/81bff490a7ed765167f2c404acc1ec36/edit>
   - make sure to clean data afterwards
+  - store JWT in localStorage
 - Code Review you'll receive in the coming days
 </script></section><section  data-markdown><script type="text/template">
 ### Feedback/Questions

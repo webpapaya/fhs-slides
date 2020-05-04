@@ -230,6 +230,10 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
   - data which will be sent to the backend
   - otherwise runtime errors
 </script></section><section  data-markdown><script type="text/template">
+# Where to validate TS types
+
+![Runtime type checking](assets/side_effects.png)
+</script></section><section  data-markdown><script type="text/template">
 # Tools
 
 - [yup](https://github.com/jquense/yup)
@@ -319,8 +323,6 @@ const userValidator = object({
     })),
   )
 })
-
-
 ```
 </script></section></section><section  data-markdown><script type="text/template">
 # Homework
