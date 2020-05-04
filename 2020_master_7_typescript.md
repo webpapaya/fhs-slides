@@ -15,29 +15,34 @@
 
 - Today:
   - Introduction to typescript
-  - Introduction to domain modeling in ts
 - Tomorrow:
-  - Either type
+  - Introduction to domain modeling in ts
   - Runtime type checking with IO-TS
-
----
-
-# Roadmap for the following days
-
-- Why ts
-- features
-  - type inference
-  - const assertions
-  - generics
-  - type assertions
 
 ---
 
 ## About Typescript
 
+- Developed by Microsoft
+  - first public release 2012
 - Superset of JavaScript
 - Adds static type checking
   - compiles to JavaScript
+- is turing complete
+  - https://github.com/microsoft/TypeScript/issues/14833
+  - https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript
+
+---
+
+## Why Typescript
+
+- Prevent runtime errors
+- self documenting code
+- IDE support
+  - code completion
+  - automated refactoring
+- generate API docs from types
+- easier code lookup
 
 ---
 
@@ -238,7 +243,7 @@ type User = AnonymousUser | RegisteredUser
 // A user is either an AnonymousUser OR a RegisteredUser
 ```
 
----
+----
 
 # Literals
 
@@ -464,7 +469,34 @@ type AddSecondArgument  = AddArgument[1]
 type AddReturnType = ReturnType<typeof add> // number
 ```
 
-----
-TODO:
+---
 
-- tagged unions
+# React and TypeScript
+
+- React integrates with TypeScript
+- can replace prop types from React
+
+```ts
+type AvatarsProps = {
+  images: string[]
+}
+
+const Avatars = (props: AvatarsProps) => (
+    <div className={css(styles.wrapper)}>
+      { props.images.map((imageUrl) => (
+        <img src={imageUrl} className={css(styles.image)} />
+      ))}
+    </div>
+)
+
+<Avatars images={[1,2,3]} />
+//                ^^^^^^
+// Error: number is not assignable to string
+```
+
+---
+
+# Feedback
+
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- <https://de.surveymonkey.com/r/XQ96YZX>
