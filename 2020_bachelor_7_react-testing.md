@@ -6,10 +6,15 @@
 
 ### Info for Homework
 
-- you'll get an E-Mail with due date
-- `api/v1/money_transactions` is missing
-  - I'll add it as soon as possible
-- store JWT in local storage
+- Please change API to:
+  - https://iou-brigitte.herokuapp.com/api-docs/index.html
+- Due Date: 24.5.
+- `api/v1/money_transactions`
+  - is missing and will be added until tomorrow
+- JWT can be stored in local storage
+
+---
+# Store JWT in local storage
 
 ```ts
 const initialState = { token: null }
