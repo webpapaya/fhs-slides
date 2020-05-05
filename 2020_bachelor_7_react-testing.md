@@ -464,6 +464,10 @@ it('submits username as form value', () => {
   - don't display a "show more" button
 
 ---
+# Code from the lecture
+
+- https://gist.github.com/webpapaya/42464e23dfeda38d78822d068eedec6a
+---
 
 # Feedback
 
