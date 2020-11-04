@@ -886,6 +886,16 @@ myApp()
 
 ![fit](./assets/coding.gif)
 
+---
+
+# Homework
+- Due Date: 10.11. 8pm
+- can be done in pairs
+- hand-in via email tmayrhofer.lba@fh-salzburg.ac.at
+  - email contains link to git reporitory
+  - name of students who worked on the assignment
+
+![left, filtered](./assets/background_2.jpg)
 
 ---
 # Homework
@@ -893,8 +903,14 @@ myApp()
 - We'll be building a application quiz
 - This assignment includes the game logic only (no ui)
 - setup
-   - clone `TODO: add repository`
-   - run `npm run start` (if you're having troubles with npm let me know)
+   - clone [Repository](https://github.com/webpapaya/fhs-modules)
+   - if you're having troubles let me know
+
+![right, filtered](./assets/background_3.jpg)
+
+---
+# Homework
+
 - define and export a list of questions from `questions.js`
   - a question looks like this: `{ question: 'some question', correctAnswer: 'a', a: 'answer', b: '', c: '', d: ''  }`
 - implement a function `askQuestion()` in `quiz.js`
@@ -926,3 +942,12 @@ console.log(question)
 const answer = answerQuestion(question, 'a')
 console.log(answer ? 'correct' : 'incorrect')
 ```
+
+---
+
+# Feedback
+
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- [Feedback Link](https://de.surveymonkey.com/r/8TW92LL)
+
+![right, filtered](./assets/background_4.jpg)
