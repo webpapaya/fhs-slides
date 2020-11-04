@@ -407,7 +407,11 @@ counter2(); // Counter2: 2
 - go to (jsfiddle)[https://jsfiddle.net/] or open dev tools
 - implement a calculator using a closure (see previous slide)
 - calculator should support adding and subtracting numbers
-- usage:
+
+---
+
+# 👩🏻‍💻 Exercise 👩🏻‍💻
+## Usage
 
 ```javascript
 const calculator1 = calculator()
@@ -417,10 +421,9 @@ calculator1(-1) // logs: 9
 const calculator1 = calculator()
 calculator1(5) // logs: 5
 ```
-
 ---
 
-[fit](./assets/classroom.gif)
+![fit](./assets/classroom.gif)
 
 ---
 
@@ -900,7 +903,7 @@ myApp()
 ---
 # Homework
 
-- We'll be building a application quiz
+- We'll be building a quiz application
 - This assignment includes the game logic only (no ui)
 - setup
    - clone [Repository](https://github.com/webpapaya/fhs-modules)
