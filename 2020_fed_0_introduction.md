@@ -1,3 +1,6 @@
+footer: FHS
+slidenumbers: true
+
 # Frontend Development
 
 ## Wintersemester 2020
@@ -18,25 +21,35 @@
   - Modules
   - build setup
 - 11.11. 2EH
-  - ES 6
-- 24.11. 2EH
   - Asynchronous JS
+- 24.11. 2EH
+  - ES 6
+
+![right, filtered](./assets/background_7.jpg)
+
+---
+
+# Roadmap
+
 - 3.12. 2EH
   - Single Page App Routing
 - 17.12. 3EH
-  -
+  - JS Build tools
 - 22.12. 2EH
   - Recap
   - Gimme your questions!
-- Date of Exam
+
+![right, filtered](./assets/background_7.jpg)
 
 ---
 
 # Grading
 
 - 50% Homework
-- 50% Exam
+- 50% Exam (Date will be sent to you)
 - Both positive
+
+![left, filtered](./assets/background_1.jpg)
 
 ---
 
@@ -47,6 +60,8 @@
   - email contains link to git reporitory
   - name of students who worked on the assignment
 
+![left, filtered](./assets/background_2.jpg)
+
 ----
 
 # Things I will look at
@@ -54,17 +69,20 @@
 - functionality
 - naming
 - duplications
-- code consistency (linting)
+- code consistency
 - function/component length
 - commits + commit messages
+
+![left, filtered](./assets/background_3.jpg)
 
 ---
 
 # Feedback
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
-- <https://de.surveymonkey.com/r/XQ96YZX>
+- [Feedback Link](https://de.surveymonkey.com/r/8TW92LL)
 
+![right, filtered](./assets/background_4.jpg)
 
 ---
 
@@ -124,6 +142,10 @@ function myFunction() {
 - Everything between curly brackets `{}`
 - Before es6 all variables were function scoped
 
+---
+
+# Block Scope (before es6)
+
 ```javascript
 function myFunction() {
   if (true) {
@@ -147,7 +169,6 @@ function findBestUniversity() {
   console.log(bestUniversity)
 }
 ```
-
 
 ---
 
@@ -180,7 +201,7 @@ function myFunction() {
   let university = 'FHS'
   if (true) {
     let university = 'Hagenberg'
-    // code here CAN use university
+    // university is set to Hagenberg
   }
   console.log(university)
   // FHS will be logged 🎉🎉🎉
@@ -230,6 +251,54 @@ function myFunction() {
   console.log(university3) // FHS3 overwritten
 }
 ```
+
+---
+
+# `let` vs `const`
+- variables declared with let can be reassigned
+- variables declared with const can NOT be reassigned
+
+```javascript
+let mutable = "some value"
+mutable = "some updated value"
+console.log(someValue) // "some updated value"
+
+const immutable = "some value"
+immutable = "some updated value" // Uncaught TypeError: Assignment to constant variable.
+```
+
+---
+
+## Immutability[^5]
+
+> An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
+
+[^5]: This definition won't be part of the exam.
+
+![right, filtered](./assets/background_6.jpg)
+
+---
+
+# const really immutable
+
+- `const` variables cannot be reassigned
+- the objects itself can change
+
+```javascript
+const immutable = { some: "value" }
+immutable.some = "updated"
+console.log(immutable.some) // "some updated value"
+```
+
+----
+
+## Immutable objects in JS
+
+````js
+const immutableObject = Object.freeze({ test: 1 })
+immutableObject.test = 10
+console.log(immutableObject) // => { test: 1 }
+````
 
 ---
 
@@ -333,7 +402,29 @@ counter2(); // Counter2: 2
 
 ---
 
-# TODO: Small exercise
+# 👩🏻‍💻 Exercise 👩🏻‍💻
+
+- go to (jsfiddle)[https://jsfiddle.net/] or open dev tools
+- implement a calculator using a closure (see previous slide)
+- calculator should support adding and subtracting numbers
+- usage:
+
+```javascript
+const calculator1 = calculator()
+calculator1(10) // logs: 10
+calculator1(-1) // logs: 9
+
+const calculator1 = calculator()
+calculator1(5) // logs: 5
+```
+
+---
+
+[fit](./assets/classroom.gif)
+
+---
+
+# [fit] Possible solution will be added after the lecture
 
 
 ---
@@ -622,7 +713,7 @@ export function getValue () {
 }
 
 // app.js
-import { increment, getValue } from './counter'
+import { increment, getValue } from './counter.js'
 
 increment()
 console.log(getValue()) // 1
@@ -640,7 +731,7 @@ console.log(getValue()) // 2
 // ...
 
 // app.js
-import * as myCalculator from './counter'
+import * as myCalculator from './counter.js'
 
 myCalculator.increment()
 console.log(myCalculator.getValue()) // 1
@@ -661,8 +752,8 @@ export default function myAmazingJSFunction () {
 
 // app.js
 
-import myAmazingJSFunction from './myModule'
-import nameCanBeAnythingForDefaultExports from './myModule'
+import myAmazingJSFunction from './myModule.js'
+import nameCanBeAnythingForDefaultExports from './myModule.js'
 
 myAmazingJSFunction() // will log "FHS"
 nameCanBeAnythingForDefaultExports() // will log "FHS"
@@ -672,14 +763,34 @@ nameCanBeAnythingForDefaultExports() // will log "FHS"
 
 # ES6 Modules
 ## dynamic import
-- import statement can be used top level
+
+- import statement must be top level
 - conditional loading of scripts is not possible
-  - dynamic import to rescue
+
+```javascript
+if (Math.random()) {
+    import 'foo'; // SyntaxError
+}
+```
+
+---
+# ES6 Modules
+## dynamic import
+
+- dynamic import to rescue
+- adds ability to load scripts
+  - conditionally
+  - on demand
+- harder to analyze statically
+
+---
+# ES6 Modules
+## dynamic import
 
 ```js
 if (loadCounter) {
   // counter won't be loaded when loadCounter === false
-  const { increment, getValue } = await import('./counter')
+  const { increment, getValue } = await import('./counter.js')
   increment()
   console.log(getValue()) // 1
   increment()
@@ -694,20 +805,124 @@ if (loadCounter) {
 
 ```js
 // import a default export
-import someModule from './my-module'
+import someModule from './my-module.js'
 
 // import an entire module (excluding the default export)
-import * as namedExports from './my-module'
+import * as namedExports from './my-module.js'
 
 // import an entire module (including the default export)
-import defaultExport, * as namedExports from './my-module'
+import defaultExport, * as namedExports from './my-module.js'
 
 // import a named export
-import { export1, export2 } from './my-module'
+import { export1, export2 } from './my-module.js'
 
 // alias a a named export
-import { export1 as aliasedExport1 } from './my-module'
+import { export1 as aliasedExport1 } from './my-module.js'
 
 // dynamic import
-const { default, export1, export2 } = await import('./my-module')
+const { default, export1, export2 } = await import('./my-module.js')
+```
+
+---
+
+# ES6 Modules
+## export [^5]
+
+```js
+export let myVar2 = '···';
+export const MY_CONST = '···';
+
+export function myFunc() {
+    //···
+}
+export function* myGeneratorFunc() {
+    //···
+}
+export class MyClass {
+    //···
+}
+```
+
+[^5]: https://exploringjs.com/es6/ch_modules.html#sec_importing-exporting-details
+
+---
+
+# ES6 Modules
+## export [^5]
+
+```js
+const MY_CONST = 'MY_CONST'
+function muFunc() {}
+
+// Export all at the end
+export { MY_CONST, myFunc };
+
+// Export with a different name
+export { MY_CONST as FOO, myFunc as myAliasedFunc };
+```
+
+[^5]: https://exploringjs.com/es6/ch_modules.html#sec_importing-exporting-details
+
+---
+
+# Using ES6 modules in the browser
+
+```HTML
+<!-- index.html -->
+<script src="./index.js" type="module"></script>
+<!--                          ^^^^^^^^-->
+<!-- required so the browser knows you're using modules -->
+```
+
+```javascript
+import { myApp } from './appliction.js'
+// import application from a different module
+// note .js extension is required in the browser
+
+myApp()
+```
+
+---
+
+![fit](./assets/coding.gif)
+
+
+---
+# Homework
+
+- We'll be building a application quiz
+- This assignment includes the game logic only (no ui)
+- setup
+   - clone `TODO: add repository`
+   - run `npm run start` (if you're having troubles with npm let me know)
+- define and export a list of questions from `questions.js`
+  - a question looks like this: `{ question: 'some question', correctAnswer: 'a', a: 'answer', b: '', c: '', d: ''  }`
+- implement a function `askQuestion()` in `quiz.js`
+  - this function returns a random question (without the correctAnswer property)
+- implement a function `answerQuestion(question, answer)` in `quiz.js`
+  - this function returns true or false depending on the given answer
+
+---
+# Homework
+## Example usage in index.js
+
+```js
+// index.js
+import { askQuestion, answerQuestion } from './quiz.js'
+
+const question = askQuestion()
+console.log(question)
+
+/**
+ * {
+ *   question: 'Whats the best university?',
+ *   a: 'Hagenberg',
+ *   b: 'FHS',
+ *   c: 'TU',
+ *   d: 'JKU'
+ * }
+ */
+
+const answer = answerQuestion(question, 'a')
+console.log(answer ? 'correct' : 'incorrect')
 ```
