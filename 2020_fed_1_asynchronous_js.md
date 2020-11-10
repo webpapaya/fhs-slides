@@ -783,4 +783,15 @@ async function fetchBestFriend(id) {
 }
 ```
 
+---
 
+# Homework
+
+- please see wiki
+
+---
+
+# Feedback
+
+- Questions: tmayrhofer.lba@fh-salzburg.ac.at
+- [Feedback Link](https://de.surveymonkey.com/r/8TW92LL)
