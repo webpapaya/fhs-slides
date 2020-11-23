@@ -11,172 +11,6 @@ slidenumbers: true
 
 ![cover](./assets/background_11.jpg)
 
----
-
-# [fit] Array methods
-
-![cover](./assets/background_3.jpg)
-
----
-
-# Array methods
-
-## Array.prototype.forEach
-
-- calls given callback for each element inside the array
-
-```javascript
-const myArray = [1, 2, 3, 4, 5]
-const result = myArray.forEach((item) => { console.log(item * 2) })
-// logs 1
-// logs 2
-// ...
-// result === undefined
-```
-
----
-
-# Array methods
-
-## Array.prototype.map
-
-- creates a new array populated with the result of the provided function
-
-```javascript
-const myArray = [1,2,3,4,5]
-const result = myArray.map((item) => item * 2)
-// result will be [2, 4, 6, 8, 10]
-```
-
----
-
-# Array methods
-
-## Array.prototype.filter
-
-- creates a new array with all elements that pass the given function
-
-```javascript
-const myArray = [1,2,3,4,5]
-const result = myArray.filter((item) => (item % 2) === 0)
-// result will be [2, 4]
-```
-
----
-
-# Array methods
-
-## Array.prototype.reduce
-
-- executes a reducer function on each element of the array
-- results in a single value
-
-```javascript
-const myArray = [1,2,3,4,5]
-const sumOfArray = myArray.reduce((result, item) => {
-  return result + item
-}, 0)
-// sum of array 15
-```
-
----
-
-# Array methods
-
-# Array.prototype.reduce
-
-```javascript
-const myArray = [1,2,3,4,5]
-const sumOfArray = myArray.reduce((accumulator, item) => {
-  //                            1) ^^^^^^^^^^^^^^^^^
-  //                            2) ^^^^^^
-  //                            3)              ^^^^
-  // 1) reducer function
-  // 2) accumulated value of previous iterations
-  // 3) the current value of the iteration (1, 2, 3, ...)
-
-  return accumulator + item
-  // 4)  ^^^^^^^^^^^^^^^^^^
-  // 4) return the result for the next iteration
-}, 0)
-// ^
-// define initial value
-```
-
----
-
-# Array methods
-
-## Array methods can be combined
-
-```javascript
-const makeSmoothie = (ingredients) => {
-  return ingredients
-    .filter((ingredient) => ingredient.rotten === false)
-    .map((ingredient) => ingredient.slice())
-    .reduce((smoothie, ingredient) => smoothie.add(ingredient), new Smoothie())
-}
-```
-
----
-
-# Array methods
-
-## Array.prototype.find
-
-- finds the first matching element in an array
-
-```javascript
-const myArray = [1,2,3,4,5]
-const result = myArray.find(((item) => (item % 2) === 0)
-// result will be 2
-```
-
----
-
-# Array methods
-
-## Array.prototype.flat
-
-- The flat() method converts nested objects into a flat list
-
-```javascript
-const myArray = [1,[2,[3],4],5]
-myArray.flat() // [1, 2, [3], 4, 5]
-myArray.flat(2) // [1, 2, 3, 4, 5]
-//          ^^^
-// amount of levels to flatten
-```
-
----
-
-# [fit] Exercise time 🎉🎉
-
-![cover](./assets/background_10.jpg)
-
----
-
-# Exercise time
-
-- You have a list of students:
-  - create a function `countStudentLength` which
-    - gets a string as argument
-    - filter students by given string
-    - sum the length of the students names  
-
----
-
-# Exercise time
-
-```javascript
-const students = [
-  { name: "Hans" },
-  { name: "Mike" },
-  { name: "Fabian" },
-  { name: "Anna" }
-]
-// todo: implement me
-```
 
 ---
 
@@ -672,6 +506,173 @@ myFunction(1, 2, 3, 4, 5, 6) // [1, 2, 3, 4, 5, 6]
 # [fit] Template literals
 
 ![cover](./assets/background_10.jpg)
+
+---
+
+# [fit] Array methods
+
+![cover](./assets/background_3.jpg)
+
+---
+
+# Array methods
+
+## Array.prototype.forEach
+
+- calls given callback for each element inside the array
+
+```javascript
+const myArray = [1, 2, 3, 4, 5]
+const result = myArray.forEach((item) => { console.log(item * 2) })
+// logs 1
+// logs 2
+// ...
+// result === undefined
+```
+
+---
+
+# Array methods
+
+## Array.prototype.map
+
+- creates a new array populated with the result of the provided function
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.map((item) => item * 2)
+// result will be [2, 4, 6, 8, 10]
+```
+
+---
+
+# Array methods
+
+## Array.prototype.filter
+
+- creates a new array with all elements that pass the given function
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.filter((item) => (item % 2) === 0)
+// result will be [2, 4]
+```
+
+---
+
+# Array methods
+
+## Array.prototype.reduce
+
+- executes a reducer function on each element of the array
+- results in a single value
+
+```javascript
+const myArray = [1,2,3,4,5]
+const sumOfArray = myArray.reduce((result, item) => {
+  return result + item
+}, 0)
+// sum of array 15
+```
+
+---
+
+# Array methods
+
+# Array.prototype.reduce
+
+```javascript
+const myArray = [1,2,3,4,5]
+const sumOfArray = myArray.reduce((accumulator, item) => {
+  //                            1) ^^^^^^^^^^^^^^^^^
+  //                            2) ^^^^^^
+  //                            3)              ^^^^
+  // 1) reducer function
+  // 2) accumulated value of previous iterations
+  // 3) the current value of the iteration (1, 2, 3, ...)
+
+  return accumulator + item
+  // 4)  ^^^^^^^^^^^^^^^^^^
+  // 4) return the result for the next iteration
+}, 0)
+// ^
+// define initial value
+```
+
+---
+
+# Array methods
+
+## Array methods can be combined
+
+```javascript
+const makeSmoothie = (ingredients) => {
+  return ingredients
+    .filter((ingredient) => ingredient.rotten === false)
+    .map((ingredient) => ingredient.slice())
+    .reduce((smoothie, ingredient) => smoothie.add(ingredient), new Smoothie())
+}
+```
+
+---
+
+# Array methods
+
+## Array.prototype.find
+
+- finds the first matching element in an array
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.find(((item) => (item % 2) === 0)
+// result will be 2
+```
+
+---
+
+# Array methods
+
+## Array.prototype.flat
+
+- The flat() method converts nested objects into a flat list
+
+```javascript
+const myArray = [1,[2,[3],4],5]
+myArray.flat() // [1, 2, [3], 4, 5]
+myArray.flat(2) // [1, 2, 3, 4, 5]
+//          ^^^
+// amount of levels to flatten
+```
+
+---
+
+# [fit] Exercise time 🎉🎉
+
+![cover](./assets/background_10.jpg)
+
+---
+
+# Exercise time
+
+- You have a list of students:
+  - create a function `countStudentLength` which
+    - gets a string as argument
+    - filter students by given string
+    - sum the length of the students names  
+
+---
+
+# Exercise time
+
+```javascript
+const students = [
+  { name: "Hans" },
+  { name: "Mike" },
+  { name: "Fabian" },
+  { name: "Anna" }
+]
+// todo: implement me
+```
 
 ---
 
