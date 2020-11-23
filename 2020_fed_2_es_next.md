@@ -15,32 +15,171 @@ slidenumbers: true
 
 TODO: some short history
 
----
-
-- arrow functions 👍
-- named parameters 👍
-- destructuring 👍
-- map/filter/reduce/flat/flatMap/find. 👍
-  - TODO: add exercise
-- Rest Parameters 👍
-- Default Parameters 👍
-- Template Literals 👍
-- optional chaining
-- Classes
-- Object.entries/Object.values
-- .string padding
-- nullish coalescing
-- Proxy
-- BigInt
-- for in/for of
 
 ---
 
-# Destructuring/Spread operator
+# [fit] Array methods
+
+![cover](./assets/background_3.jpg)
 
 ---
 
-# Arrays destructuring assignment 
+# Array methods
+## Array.prototype.forEach
+
+- calls given callback for each element inside the array
+
+```javascript
+const myArray = [1, 2, 3, 4, 5]
+const result = myArray.forEach((item) => { console.log(item * 2) }) 
+// logs 1
+// logs 2
+// ...
+// result === undefined
+```
+
+---
+# Array methods
+## Array.prototype.map
+
+- creates a new array populated with the result of the provided function
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.map((item) => item * 2) 
+// result will be [2, 4, 6, 8, 10]
+```
+
+---
+# Array methods
+## Array.prototype.filter
+
+- creates a new array with all elements that pass the given function
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.filter((item) => (item % 2) === 0)
+// result will be [2, 4]
+```
+
+---
+# Array methods
+## Array.prototype.reduce
+
+- executes a reducer function on each element of the array
+- results in a single value
+
+```javascript
+const myArray = [1,2,3,4,5]
+const sumOfArray = myArray.reduce((result, item) => {
+  return result + item
+}, 0)
+// sum of array 15
+```
+
+---
+# Array methods
+# Array.prototype.reduce
+
+```javascript
+const myArray = [1,2,3,4,5]
+const sumOfArray = myArray.reduce((accumulator, item) => {
+  //                            1) ^^^^^^^^^^^^^^^^^
+  //                            2) ^^^^^^
+  //                            3)              ^^^^
+  // 1) reducer function
+  // 2) accumulated value of previous iterations
+  // 3) the current value of the iteration (1, 2, 3, ...)
+
+  return accumulator + item
+  // 4)  ^^^^^^^^^^^^^^^^^^
+  // 4) return the result for the next iteration
+}, 0)
+// ^
+// define initial value
+```
+
+---
+# Array methods
+## Array methods can be combined
+
+```javascript
+const makeSmoothie = (ingredients) => {
+  return ingredients
+    .filter((ingredient) => ingredient.rotten === false)
+    .map((ingredient) => ingredient.slice())
+    .reduce((smoothie, ingredient) => smoothie.add(ingredient), new Smoothie())
+}
+```
+
+---
+# Array methods
+## Array.prototype.find
+
+- finds the first matching element in an array
+
+```javascript
+const myArray = [1,2,3,4,5]
+const result = myArray.find(((item) => (item % 2) === 0) 
+// result will be 2
+```
+
+---
+# Array methods
+## Array.prototype.flat
+
+- The flat() method converts nested objects into a flat list
+
+```javascript
+const myArray = [1,[2,[3],4],5]
+myArray.flat() // [1, 2, [3], 4, 5]
+myArray.flat(2) // [1, 2, 3, 4, 5]
+//          ^^^
+// amount of levels to flatten
+```
+
+---
+
+# [fit] Exercise time 🎉🎉
+
+![cover](./assets/background_10.jpg)
+
+---
+
+# Exercise time
+- You have a list of students:
+  - create a function `countStudentLength` which 
+    - gets a string as argument
+    - filter students by given string
+    - sum the length of the students names  
+
+---
+
+# Exercise time
+
+```javascript
+const students = [
+  { name: "Hans" }, 
+  { name: "Mike" }, 
+  { name: "Fabian" }, 
+  { name: "Anna" }
+]
+// todo: implement me
+```
+
+---
+
+# [fit] Destructuring
+
+![cover](./assets/background_6.jpg)
+
+---
+
+![inline](./assets/destructuring_meme.jpg)
+
+---
+# Destructuring
+## array destructuring assignment 
 
 - makes it possible to unpack values from arrays
 
@@ -51,8 +190,8 @@ console.log(b) // 2
 ```
 
 ---
-
-# Object destructuring assignment 
+# Destructuring
+## Object destructuring assignment 
 
 - makes it possible to unpack values from arrays
 
@@ -63,8 +202,8 @@ console.log(b) // 2
 ```
 
 ---
-
-# Object destructuring renaming
+# Destructuring
+## Object destructuring renaming
 
 ```js
 const { a: otherA, b: otherB } = { a: 1, b: 2 }
@@ -431,9 +570,6 @@ const myString = `My University is ${myUniversity()}`
 // functions and methods can be called ``
 ```
 
-
-
-
 ---
 # Template literals
 ## Multi line strings
@@ -456,104 +592,177 @@ World`;
 // will be put into one line
 ```
 
+---
+
+# Optional Chaining
 
 ---
-# Array methods
+
+# Optional Chaining
+
+[inline](./assets/uncaught_type_error.png)
 
 ---
-# Array.prototype.map
 
-- Array.prototype.map
-- creates a new array populated with the result of the provided function
+# Optional Chaining
+# object values [^3]
+
+- Allows to read values deep within an object chain
+- When value is null or undefined returns null
 
 ```javascript
-const myArray = [1,2,3,4,5]
-myArray.map((item) => item * 2) 
-// [2, 4, 6, 8, 10]
-```
-
----
-
-# Array.prototype.filter
-
-- Array.prototype.filter
-- creates a new array with all elements that pass the given function
-
-```javascript
-const myArray = [1,2,3,4,5]
-myArray.filter((item) => (item % 2) === 0)
-// [2, 4]
-```
-
----
-
-# Array.prototype.reduce
-
-- executes a reducer function on each element of the array
-- results in a single value
-
-```javascript
-const myArray = [1,2,3,4,5]
-const sumOfArray = myArray.reduce((result, item) => {
-  return result + item
-}, 0)
-// 15
-```
-
----
-# Array.prototype.reduce
-
-```javascript
-const myArray = [1,2,3,4,5]
-const sumOfArray = myArray.reduce((accumulator, item) => {
-  //                            1) ^^^^^^^^^^^^^^^^^
-  //                            2) ^^^^^^
-  //                            3)              ^^^^
-  // 1) reducer function
-  // 2) accumulated value of previous iterations
-  // 3) the current value of the iteration (1, 2, 3, ...)
-
-  return accumulator + item
-  // 4)  ^^^^^^^^^^^^^^^^^^
-  // 4) return the result for the next iteration
-}, 0)
-// ^
-// define initial value
-```
-
----
-# Array methods can be combined
-
-```javascript
-const makeSmoothie = (ingredients) => {
-  return ingredients
-    .filter((ingredient) => ingredient.rotten === false)
-    .map((ingredient) => ingredient.slice())
-    .reduce((smoothie, ingredient) => smoothie.add(ingredient), new Smoothie())
+const adventurer = {
+  name: 'Alice',
+  cat: {
+    name: 'Dinah'
+  }
 }
+
+const dogName = adventurer.dog?.name;
+//                        ^^^^^
+// dogName will be undefined and no error
+// will be thrown.
+
+const catName = adventurer.cat?.name;
+//                        ^^^^^
+// catName will be 'Dinah' as cat is defined
+```
+
+[^3]: [Compiled Source](https://babeljs.io/repl#?browsers=defaults%2C%20ie%2011&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAhgEwG4FMxQK4CcVZgXhgG8AoGGMOAWxQC4YByAQQBsBLYFBgGjJmDhR6pcuUo16DACJtKACwZ8AviRUlQkWAhABzAHLUUBeMjSYcWAHTadAfkviUAbiA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.12.7&externalPlugins=)
+
+---
+
+# Optional Chaining
+# nested functions [^4]
+
+```javascript
+const adventurer = {
+  name: 'Alice',
+  dogName: () => 'Dinah'
+}
+adventurer.dogName.?() // undefined
+adventurer.catName.?() // 'Dinah'
+
+```
+[^4]: [Compiled Source](https://babeljs.io/repl#?browsers=defaults%2C%20ie%2011&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAhgEwG4FMxQK4CcVZgXhgG8AoGGMOAWxQC4YByAQQBsBLYFBgGjJmDhQActTowAFAEoCAPkYARNpQAWDEgF8SiVOmy4AdAOGiA_PqkkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.12.7&externalPlugins=)
+
+---
+
+# OOP and JS
+
+---
+
+# OOP and JS
+
+- JS has a simple object based paradigm
+- An object is a collection of properties
+- A property is an ssociation between a name and a value
+- Objects can be linked together, via prototypes
+
+---
+# OOP and JS
+# class based OOP
+
+> A class is like a blueprint — a description of the object to be created.
+
+---
+# OOP and JS
+# class based OOP
+
+- class: plan for a house
+- object: the actual house
+
+---
+
+# OOP and JS
+# Prototypal Inheritance
+
+> A prototype is a working object instance. Objects inherit directly from objects
+
+---
+
+# OOP and JS
+# Prototypal Inheritance
+
+- Prototypal inheritance is delegation
+  - You ask a friend for a pen
+  - Your friend does not have a pen but asks his neighbor
+  - This chain goes on until you either have a pen or non of your related friends have a pen
+- This is could be seen as the prototype chain
+
+---
+
+# OOP and JS [^5]
+
+![inline](./assets/proto_class.png)
+
+[^5]: image from [medium](https://medium.com/@Gaurav.Chaudhary/decoding-the-prototypal-inheritance-in-javascript-everything-you-need-to-know-9c56bfc32129)
+
+---
+
+# OOP and JS
+# create object instances
+
+```javascript
+function University(name) {
+  this.name = name
+//^^^^
+// define an instance variable
+}
+
+University.prototype.isBestUniversity = function() { 
+//                                      ^^^^^^^^
+// you need to use function here, as () -> {} don't support `this`
+  return this.name === 'FHS' 
+//       ^^^^
+// prototype is able to access instance variables
+} 
+
+const fhs = new University('FHS')
+fhs.isBestUniversity() // true
 ```
 
 ---
-# Array.prototype.find
 
-- finds the first matching element in an array
+# OOP and JS
+# with class syntax
+
+- Emulates class based oop with prototypes
 
 ```javascript
-const myArray = [1,2,3,4,5]
-myArray.find(((item) => (item % 2) === 0) // 2
+class University {
+  constructor(name) {
+    this.name = name
+    //^^^^
+    // define an instance variable
+  }
+
+  isBestUniversity() {
+    return this.name === 'FHS' 
+  }
+}
+
+const fhs = new University('FHS')
+fhs.isBestUniversity() // true
 ```
 
 ---
-# Array.prototype.flat
 
-- The find() method returns the value of the first element in the provided array 
-- that satisfies the provided testing function.
+# OOP and JS
+# extending classes
+
+- Emulates class based oop with prototypes
 
 ```javascript
-const myArray = [1,2,3,4,5]
-myArray.find(((item) => (item % 2) === 0) // 2
-```
+class FHS extends University {
+  isBestUniversity() {
+    return true 
+  }
+}
 
+const fhs = new University('FHS')
+fhs.isBestUniversity() // true
+```
 
 
 
