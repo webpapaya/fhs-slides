@@ -100,7 +100,7 @@ slidenumbers: true
 
 ---
 
-# [fit] Scope determines the accessibility (visibility) of variables.
+# [fit] Scope determines the accessibility (visibility) of variables
 
 ---
 
@@ -115,6 +115,7 @@ In JavaScript there are 3 types of scope:
 Define the visibility of a variable within a program.
 
 ---
+
 # Local Scope
 
 Variables declared within a JavaScript function, become **LOCAL** to the function.
@@ -131,7 +132,6 @@ function myFunction() {
 
 - Created when function execution starts
 - Deleted when function execution completes
-
 
 ---
 
@@ -158,7 +158,7 @@ function myFunction() {
 
 ---
 
-# [fit] What is the best university?
+# [fit] What is the best university
 
 ```javascript
 function findBestUniversity() {
@@ -172,7 +172,7 @@ function findBestUniversity() {
 
 ---
 
-# [fit] What is the best university?
+# [fit] What is the best university
 
 ```javascript
 function findBestUniversity() {
@@ -210,7 +210,7 @@ function myFunction() {
 
 ---
 
-# What will be the logged?
+# What will be the logged
 
 ```javascript
 function myFunction() {
@@ -232,7 +232,7 @@ function myFunction() {
 
 ---
 
-# What will be the result?
+# What will be the result
 
 ```javascript
 function myFunction() {
@@ -255,6 +255,7 @@ function myFunction() {
 ---
 
 # `let` vs `const`
+
 - variables declared with let can be reassigned
 - variables declared with const can NOT be reassigned
 
@@ -375,6 +376,7 @@ function outerFunction () {
 ```
 
 ---
+
 # Closures
 
 ![inline](./assets/nested_scopes.png)
@@ -404,13 +406,14 @@ counter2(); // Counter2: 2
 
 # 👩🏻‍💻 Exercise 👩🏻‍💻
 
-- go to (jsfiddle)[https://jsfiddle.net/] or open dev tools
+- go to (jsfiddle)[<https://jsfiddle.net/]> or open dev tools
 - implement a calculator using a closure (see previous slide)
 - calculator should support adding and subtracting numbers
 
 ---
 
 # 👩🏻‍💻 Exercise 👩🏻‍💻
+
 ## Usage
 
 ```javascript
@@ -421,6 +424,7 @@ calculator1(-1) // logs: 9
 const calculator1 = calculator()
 calculator1(5) // logs: 5
 ```
+
 ---
 
 ![fit](./assets/classroom.gif)
@@ -428,7 +432,6 @@ calculator1(5) // logs: 5
 ---
 
 # [fit] Possible solution will be added after the lecture
-
 
 ---
 
@@ -452,11 +455,12 @@ calculator1(5) // logs: 5
 [^1]: https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/
 
 ---
+
 # Module Pattern
+
 ## Mimic objects with private variables
 
 ---
-
 
 # Anonymous Closure
 
@@ -543,7 +547,6 @@ console.log(myCalculator.getValue()) // 2
 
 ![fill](./assets/background_1.jpg)
 
-
 ---
 
 # CommonJS and AMD
@@ -559,11 +562,12 @@ console.log(myCalculator.getValue()) // 2
 ---
 
 # CommonJS and AMD
+
 ## Order of scripts
 
 - finding the right order is tough
 - eg: backbone requires underscore.js
-    - underscore.js needs to be loaded before backbone
+  - underscore.js needs to be loaded before backbone
 - complexity of finding right script order increases with amount of modules
 - Naming clashes can still arise for same module in different versions
 
@@ -638,7 +642,6 @@ define(
 - Work both on the server and on the client
   - When building a library use UMD as target
 
-
 ---
 
 # UMD Module [^2]
@@ -688,7 +691,7 @@ define(
   - asynchronous loading
   - server and browser
 
-[^4]: source: https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc
+[^4]: source: <https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc>
 
 ---
 
@@ -696,12 +699,12 @@ define(
 
 ![inline](./assets/es6-modules-compatibility.png)
 
-[^3]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules 01.11.2020
-
+[^3]: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules> 01.11.2020
 
 ---
 
 # ES6 Modules
+
 ## named exports
 
 ```javascript
@@ -727,6 +730,7 @@ console.log(getValue()) // 2
 ---
 
 # ES6 Modules
+
 ## named exports, import entire module
 
 ```javascript
@@ -745,6 +749,7 @@ console.log(myCalculator.getValue()) // 2
 ---
 
 # ES6 Modules
+
 ## default export
 
 ```javascript
@@ -765,6 +770,7 @@ nameCanBeAnythingForDefaultExports() // will log "FHS"
 ---
 
 # ES6 Modules
+
 ## dynamic import
 
 - import statement must be top level
@@ -777,7 +783,9 @@ if (Math.random()) {
 ```
 
 ---
+
 # ES6 Modules
+
 ## dynamic import
 
 - dynamic import to rescue
@@ -787,7 +795,9 @@ if (Math.random()) {
 - harder to analyze statically
 
 ---
+
 # ES6 Modules
+
 ## dynamic import
 
 ```js
@@ -804,6 +814,7 @@ if (loadCounter) {
 ---
 
 # ES6 Modules
+
 ## importing styles
 
 ```js
@@ -829,6 +840,7 @@ const { default, export1, export2 } = await import('./my-module.js')
 ---
 
 # ES6 Modules
+
 ## export [^5]
 
 ```js
@@ -851,6 +863,7 @@ export class MyClass {
 ---
 
 # ES6 Modules
+
 ## export [^5]
 
 ```js
@@ -892,6 +905,7 @@ myApp()
 ---
 
 # Homework
+
 - Due Date: 10.11. 8pm
 - can be done in pairs
 - hand-in via email tmayrhofer.lba@fh-salzburg.ac.at
@@ -901,17 +915,19 @@ myApp()
 ![left, filtered](./assets/background_2.jpg)
 
 ---
+
 # Homework
 
 - We'll be building a quiz application
 - This assignment includes the game logic only (no ui)
 - setup
-   - clone [Repository](https://github.com/webpapaya/fhs-modules)
-   - if you're having troubles let me know
+  - clone [Repository](https://github.com/webpapaya/fhs-modules)
+  - if you're having troubles let me know
 
 ![right, filtered](./assets/background_3.jpg)
 
 ---
+
 # Homework
 
 - define and export a list of questions from `questions.js`
@@ -922,7 +938,9 @@ myApp()
   - this function returns true or false depending on the given answer
 
 ---
+
 # Homework
+
 ## Example usage in index.js
 
 ```js

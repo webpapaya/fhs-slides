@@ -15,7 +15,6 @@ slidenumbers: true
 
 TODO: some short history
 
-
 ---
 
 # [fit] Array methods
@@ -25,13 +24,14 @@ TODO: some short history
 ---
 
 # Array methods
+
 ## Array.prototype.forEach
 
 - calls given callback for each element inside the array
 
 ```javascript
 const myArray = [1, 2, 3, 4, 5]
-const result = myArray.forEach((item) => { console.log(item * 2) }) 
+const result = myArray.forEach((item) => { console.log(item * 2) })
 // logs 1
 // logs 2
 // ...
@@ -39,19 +39,23 @@ const result = myArray.forEach((item) => { console.log(item * 2) })
 ```
 
 ---
+
 # Array methods
+
 ## Array.prototype.map
 
 - creates a new array populated with the result of the provided function
 
 ```javascript
 const myArray = [1,2,3,4,5]
-const result = myArray.map((item) => item * 2) 
+const result = myArray.map((item) => item * 2)
 // result will be [2, 4, 6, 8, 10]
 ```
 
 ---
+
 # Array methods
+
 ## Array.prototype.filter
 
 - creates a new array with all elements that pass the given function
@@ -63,7 +67,9 @@ const result = myArray.filter((item) => (item % 2) === 0)
 ```
 
 ---
+
 # Array methods
+
 ## Array.prototype.reduce
 
 - executes a reducer function on each element of the array
@@ -78,7 +84,9 @@ const sumOfArray = myArray.reduce((result, item) => {
 ```
 
 ---
+
 # Array methods
+
 # Array.prototype.reduce
 
 ```javascript
@@ -100,7 +108,9 @@ const sumOfArray = myArray.reduce((accumulator, item) => {
 ```
 
 ---
+
 # Array methods
+
 ## Array methods can be combined
 
 ```javascript
@@ -113,19 +123,23 @@ const makeSmoothie = (ingredients) => {
 ```
 
 ---
+
 # Array methods
+
 ## Array.prototype.find
 
 - finds the first matching element in an array
 
 ```javascript
 const myArray = [1,2,3,4,5]
-const result = myArray.find(((item) => (item % 2) === 0) 
+const result = myArray.find(((item) => (item % 2) === 0)
 // result will be 2
 ```
 
 ---
+
 # Array methods
+
 ## Array.prototype.flat
 
 - The flat() method converts nested objects into a flat list
@@ -147,8 +161,9 @@ myArray.flat(2) // [1, 2, 3, 4, 5]
 ---
 
 # Exercise time
+
 - You have a list of students:
-  - create a function `countStudentLength` which 
+  - create a function `countStudentLength` which
     - gets a string as argument
     - filter students by given string
     - sum the length of the students names  
@@ -159,9 +174,9 @@ myArray.flat(2) // [1, 2, 3, 4, 5]
 
 ```javascript
 const students = [
-  { name: "Hans" }, 
-  { name: "Mike" }, 
-  { name: "Fabian" }, 
+  { name: "Hans" },
+  { name: "Mike" },
+  { name: "Fabian" },
   { name: "Anna" }
 ]
 // todo: implement me
@@ -178,8 +193,10 @@ const students = [
 ![inline](./assets/destructuring_meme.jpg)
 
 ---
+
 # Destructuring
-## array destructuring assignment 
+
+## array destructuring assignment
 
 - makes it possible to unpack values from arrays
 
@@ -190,8 +207,10 @@ console.log(b) // 2
 ```
 
 ---
+
 # Destructuring
-## Object destructuring assignment 
+
+## Object destructuring assignment
 
 - makes it possible to unpack values from arrays
 
@@ -202,7 +221,9 @@ console.log(b) // 2
 ```
 
 ---
+
 # Destructuring
+
 ## Object destructuring renaming
 
 ```js
@@ -216,9 +237,9 @@ console.log(otherB) // 2
 
 ---
 
-# Spread operator 
+# Spread operator
 
-- adds the rest syntax to destructuring 
+- adds the rest syntax to destructuring
 
 ```js
 const [a, b, ...rest] = [1, 2, 3, 4]
@@ -241,7 +262,7 @@ const [, { b: otherB }, ...rest] = [{ a: 1 }, { b: 2 }, { c: 3 }]
 // 1) ignore the first value
 // 2) extract value b and rename to otherB
 // 3) get all other elements
-// recommendation don't overuse nested destructuring 
+// recommendation don't overuse nested destructuring
 
 console.log(otherB) // 2
 console.log(rest) // [{ c: 3 }]
@@ -264,7 +285,7 @@ const myFunction = ({ a, b }) => {
   return a + b
 }
 
-myFunction({ a: 1, b: 2 }) // 
+myFunction({ a: 1, b: 2 }) //
 myFunction({ b: 2, a: 1 })
 //           ^^^^^^^^^^
 // order of arguments does not matter anymore
@@ -279,7 +300,7 @@ myFunction({ b: 2, a: 1 })
 ```javascript
 const myFunction = ([ a, b ]) => {
   //                ^^^^^^^^
-  // assign variable names to each value 
+  // assign variable names to each value
   return a + b
 }
 
@@ -298,7 +319,7 @@ myFunction([ 1, 2 ])
 Promise.all([
   fetchAsPromise(`/api/currentUser`),
   fetchAsPromise(`/api/weather`)
-]).then(([ currentUser, weather ]) => 
+]).then(([ currentUser, weather ]) =>
 //       ^^^^^^^^^^^^^^^^^^^^^^^^
 // destructure each value of the promise
   console.log(currentUser)
@@ -324,15 +345,16 @@ const [ currentUser, weather ] = await Promise.all([
 // 2) assign result to variables
 ```
 
-
 ---
+
 # Arrow functions
 
 ---
+
 # functions declaration vs. function expressions
+
 - functions in JavaScript are values
 - can be passed to other functions [^1]
-
 
 ```javascript
 function myFunction() { console.log('Hallo') }
@@ -346,6 +368,7 @@ setTimeout(myFunction, 200)
 [^1]: see callbacks from previous lecture
 
 ---
+
 # functions declaration vs. function expressions
 
 - functions can be defined like other values in JS
@@ -360,18 +383,21 @@ setTimeout(myFunction1, 200)
 ```
 
 ---
+
 # functions declaration vs. function expressions
 
 ```javascript
 // function declaration
-function myFunction1 () { console.log('Hallo') } 
+function myFunction1 () { console.log('Hallo') }
 
 // function expression
 const myFunction2 = function () { console.log('Hallo') }
 ```
 
 ---
+
 # arrow function vs. function declaration
+
 - compact alternative to function expressions
   - can't be used in all situations
     - no binding to `this`
@@ -383,6 +409,7 @@ const myArrowFunction = () => { console.log('hallo') }
 ```
 
 ---
+
 # arrow function
 
 - arrow functions can have an implicit return value
@@ -394,7 +421,9 @@ const myFunction = () => ({ test: 1 }) // returns { test: 1 }
 ```
 
 ---
+
 # function declarations and this
+
 - JavaScript functions bind this when the `new` keyword is used
 
 ```javascript
@@ -413,25 +442,7 @@ window.age === NaN
 ```
 
 ---
-# function declarations and this
 
-
-```javascript
-function Person() {
-  const that = this  // save this as a variable so it can be used in setInterval
-  this.age = 0
-  setInterval(function() {
-    that.age++
-  }, 1000)
-}
-const myPerson = new Person()
-
-// wait a couple of seconds
-myPerson.age === 3
-window.age === undefined
-```
-
----
 # function declarations and this
 
 ```javascript
@@ -450,6 +461,26 @@ window.age === undefined
 ```
 
 ---
+
+# function declarations and this
+
+```javascript
+function Person() {
+  const that = this  // save this as a variable so it can be used in setInterval
+  this.age = 0
+  setInterval(function() {
+    that.age++
+  }, 1000)
+}
+const myPerson = new Person()
+
+// wait a couple of seconds
+myPerson.age === 3
+window.age === undefined
+```
+
+---
+
 # function declarations and this
 
 ```javascript
@@ -467,6 +498,7 @@ window.age === undefined
 ```
 
 ---
+
 # functions in js
 
 ```javascript
@@ -476,6 +508,7 @@ const myFunction = () => { console.log('hallo') } // arrow function
 ```
 
 ---
+
 # function default values
 
 - since es6 functions accept default values
@@ -491,6 +524,7 @@ myFunction(2) // 2
 ```
 
 ---
+
 # function default with named arguments
 
 ```javascript
@@ -517,7 +551,7 @@ function myFunction (...values) {
   // all arguments will be available as values
   console.log(values)
 }
-myFunction() // [] 
+myFunction() // []
 myFunction(1) // [1]
 myFunction(1, 2, 3, 4, 5, 6) // [1, 2, 3, 4, 5, 6]
 ```
@@ -526,7 +560,7 @@ myFunction(1, 2, 3, 4, 5, 6) // [1, 2, 3, 4, 5, 6]
 
 # Template literals
 
-- es6 enhances strings with a completely new syntax 
+- es6 enhances strings with a completely new syntax
   - called template literals
 - they make it possible to
   - interpolate strings
@@ -535,10 +569,12 @@ myFunction(1, 2, 3, 4, 5, 6) // [1, 2, 3, 4, 5, 6]
   - string formatting [^2]
   - string tagging [^2]
 
-[^2]: see https://developers.google.com/web/updates/2015/01/ES6-Template-Strings for more info
+[^2]: see <https://developers.google.com/web/updates/2015/01/ES6-Template-Strings> for more info
   
 ---
+
 # Template literals
+
 ## String interpolation
 
 ```javascript
@@ -549,7 +585,9 @@ const myString = `My University is ${university}`
 ```
 
 ---
+
 # Template literals
+
 ## Embedded expressions
 
 ```javascript
@@ -560,8 +598,8 @@ const myString = `My University is ${myUniversity()}`
 ```
 
 ---
-# Template literals
 
+# Template literals
 
 ```javascript
 const myUniversity = () => 'FHS'
@@ -571,7 +609,9 @@ const myString = `My University is ${myUniversity()}`
 ```
 
 ---
+
 # Template literals
+
 ## Multi line strings
 
 ```javascript
@@ -585,7 +625,7 @@ const greeting2 = "Hello " +
 //                       ^
 // use backslash + to concat 2 strings
 
-const greeting3 = `Hello 
+const greeting3 = `Hello
 World`;
 //                       ^
 // with template literals new lines
@@ -605,6 +645,7 @@ World`;
 ---
 
 # Optional Chaining
+
 # object values [^3]
 
 - Allows to read values deep within an object chain
@@ -633,6 +674,7 @@ const catName = adventurer.cat?.name;
 ---
 
 # Optional Chaining
+
 # nested functions [^4]
 
 ```javascript
@@ -644,6 +686,7 @@ adventurer.dogName.?() // undefined
 adventurer.catName.?() // 'Dinah'
 
 ```
+
 [^4]: [Compiled Source](https://babeljs.io/repl#?browsers=defaults%2C%20ie%2011&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAhgEwG4FMxQK4CcVZgXhgG8AoGGMOAWxQC4YByAQQBsBLYFBgGjJmDhQActTowAFAEoCAPkYARNpQAWDEgF8SiVOmy4AdAOGiA_PqkkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.12.7&externalPlugins=)
 
 ---
@@ -660,13 +703,17 @@ adventurer.catName.?() // 'Dinah'
 - Objects can be linked together, via prototypes
 
 ---
+
 # OOP and JS
+
 # class based OOP
 
 > A class is like a blueprint — a description of the object to be created.
 
 ---
+
 # OOP and JS
+
 # class based OOP
 
 - class: plan for a house
@@ -675,6 +722,7 @@ adventurer.catName.?() // 'Dinah'
 ---
 
 # OOP and JS
+
 # Prototypal Inheritance
 
 > A prototype is a working object instance. Objects inherit directly from objects
@@ -682,6 +730,7 @@ adventurer.catName.?() // 'Dinah'
 ---
 
 # OOP and JS
+
 # Prototypal Inheritance
 
 - Prototypal inheritance is delegation
@@ -701,6 +750,7 @@ adventurer.catName.?() // 'Dinah'
 ---
 
 # OOP and JS
+
 # create object instances
 
 ```javascript
@@ -710,13 +760,13 @@ function University(name) {
 // define an instance variable
 }
 
-University.prototype.isBestUniversity = function() { 
+University.prototype.isBestUniversity = function() {
 //                                      ^^^^^^^^
 // you need to use function here, as () -> {} don't support `this`
-  return this.name === 'FHS' 
+  return this.name === 'FHS'
 //       ^^^^
 // prototype is able to access instance variables
-} 
+}
 
 const fhs = new University('FHS')
 fhs.isBestUniversity() // true
@@ -725,6 +775,7 @@ fhs.isBestUniversity() // true
 ---
 
 # OOP and JS
+
 # with class syntax
 
 - Emulates class based oop with prototypes
@@ -738,7 +789,7 @@ class University {
   }
 
   isBestUniversity() {
-    return this.name === 'FHS' 
+    return this.name === 'FHS'
   }
 }
 
@@ -749,6 +800,7 @@ fhs.isBestUniversity() // true
 ---
 
 # OOP and JS
+
 # extending classes
 
 - Emulates class based oop with prototypes
@@ -756,15 +808,13 @@ fhs.isBestUniversity() // true
 ```javascript
 class FHS extends University {
   isBestUniversity() {
-    return true 
+    return true
   }
 }
 
 const fhs = new University('FHS')
 fhs.isBestUniversity() // true
 ```
-
-
 
 ---
 

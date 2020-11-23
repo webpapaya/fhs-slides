@@ -7,13 +7,14 @@
 ### Info for Homework
 
 - Please change API to:
-  - https://iou-brigitte.herokuapp.com/api-docs/index.html
+  - <https://iou-brigitte.herokuapp.com/api-docs/index.html>
 - Due Date: 24.5.
 - `api/v1/money_transactions`
   - is missing and will be added until tomorrow
 - JWT can be stored in local storage
 
 ---
+
 # Store JWT in local storage
 
 ```ts
@@ -464,9 +465,11 @@ it('submits username as form value', () => {
   - don't display a "show more" button
 
 ---
+
 # Code from the lecture
 
-- https://gist.github.com/webpapaya/42464e23dfeda38d78822d068eedec6a
+- <https://gist.github.com/webpapaya/42464e23dfeda38d78822d068eedec6a>
+
 ---
 
 # Feedback

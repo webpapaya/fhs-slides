@@ -73,7 +73,6 @@ const myFunction = () => 'some value' // es6 arrow functions with implicit retur
 
 # JS and Synchronous Code execution [^3]
 
-
 ```javascript
 const second = () => {
   console.log('Hello there!');
@@ -84,6 +83,7 @@ const first = () => {
   console.log('The End');
 }
 ```
+
 [^3]: [Visualisation of code execution](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gdGhpcmQoKSB7CiAgICBjb25zb2xlLmxvZygndGhpcmQnKQp9CgpmdW5jdGlvbiBzZWNvbmQoKSB7CiAgICB0aGlyZCgpCiAgICBjb25zb2xlLmxvZygnc2Vjb25kJykKfQoKZnVuY3Rpb24gZmlyc3QoKSB7CiAgICBzZWNvbmQoKQogICAgY29uc29sZS5sb2coJ2ZpcnN0IGZ1bmN0aW9uJykKfQoKZmlyc3QoKQ%3D%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
 
 ---
@@ -100,7 +100,7 @@ const first = () => {
 
 ---
 
-# Async JS 
+# Async JS
 
 - multiple non-cpu bound computationscan happen at the same time
   - network requests
@@ -111,7 +111,7 @@ const first = () => {
 
 ---
 
-# Async JS 
+# Async JS
 
 - when waiting for network response
   - js continues doing other tasks
@@ -200,7 +200,7 @@ fs.readFile('file.txt', (err, data) => {
 
 ---
 
-# Usecase:
+# Usecase
 
 - fetch function which fetches data from an api
 - does a HTTP GET request
@@ -213,8 +213,7 @@ fetch(url, (err, response) => {})
 
 ---
 
-# Usecase:
-
+# Usecase
 
 ```js
 function logCurrentUser() {
@@ -226,13 +225,13 @@ function logCurrentUser() {
 
 ---
 
-# [fit] What if additional data needs to be fetched?
+# [fit] What if additional data needs to be fetched
 
 ![cover](./assets/background_11.jpg)
 
 ---
 
-# Callbacks:
+# Callbacks
 
 ```js
 function myBestFriendsAddress() {
@@ -250,13 +249,13 @@ function myBestFriendsAddress() {
 
 ---
 
-# Callback Hell:
+# Callback Hell
 
 ![fit, inline](./assets/callback_hell.jpeg)
 
 ---
 
-# [fit] How could we flatten this tree?
+# [fit] How could we flatten this tree
 
 ---
 
@@ -279,9 +278,9 @@ The Promise object represents the eventual completion (or failure) of an asynchr
 # Promises
 
 - A promise is in one of 3 states
- - pending
- - fulfilled
- - rejected
+- pending
+- fulfilled
+- rejected
 - Other languages call it `futures`
 
 ---
@@ -311,20 +310,22 @@ function myBestFriendsAddress() {
 ---
 
 # Transform callbacks to promise
+
 ## Wrap fetch function in promise
 
 ```javascript
 const fetchAsPromise = (url) => {
-  return new Promise((resolve) => { // create a new promise 
+  return new Promise((resolve) => { // create a new promise
     // call the fetch function and *WHEN* the request is done, resolve the promise
-    fetch(url, resolve) 
-  }) 
+    fetch(url, resolve)
+  })
 }
 ```
 
 ---
 
 # Transform callbacks to promise
+
 ## use fetchAsPromise
 
 ```javascript
@@ -341,6 +342,7 @@ fetchAsPromise('/api/currentUser')
 ----
 
 # Transform callbacks to promise
+
 ## use fetchAsPromise
 
 ```javascript
@@ -366,12 +368,11 @@ const fetchAsPromise = (url) => new Promise((resolve, reject) => {
   // enhance previous fetchAsPromise with reject param
 
   fetch(url, (data) => {
-    if (data.status === 200) { resolve(data) } 
+    if (data.status === 200) { resolve(data) }
     else { reject(data) }
   })
 })
 ```
-
 
 ---
 
@@ -380,7 +381,7 @@ const fetchAsPromise = (url) => new Promise((resolve, reject) => {
 ```javascript
 const fetchAsPromise = (url) => new Promise((resolve, reject) => {
   fetch(url, (data) => {
-    if (data.status === 200) { resolve(data) } 
+    if (data.status === 200) { resolve(data) }
     else { reject(data) }
   })
 })
@@ -430,7 +431,7 @@ Promise.reject(1)
 
 ---
 
-## Didn't you say network requests can be done concurrently?
+## Didn't you say network requests can be done concurrently
 
 ---
 
@@ -492,7 +493,9 @@ Promise.race([
 ---
 
 # Promise in the wild
+
 ## fetch API
+
 - Promise based Browser API for HTTP requests
 - replaces/enhances XHR Request
 - based on promises
@@ -508,7 +511,9 @@ fetch('/api/users')
 ```
 
 ---
+
 # Promise in the wild
+
 ## posting data via fetch
 
 ```javascript
@@ -534,7 +539,7 @@ fetch('/api/users', {
 # Async/Await
 
 - Syntactic Sugar for Promises
-- 2 new keywords 
+- 2 new keywords
   - `async` marks a function to be async
   - `await` pauses execution inside an async function
 - `await` can't be used outside an async function
@@ -544,7 +549,6 @@ fetch('/api/users', {
 ---
 
 # Async/Await
-
 
 ```javascript
 async function someAsyncFunction () {
@@ -560,7 +564,9 @@ async function someAsyncFunction () {
 ```
 
 ---
+
 # Async/Await
+
 ## Promise example
 
 ```javascript
@@ -577,7 +583,9 @@ function bestFriendsAddress() {
 ```
 
 ---
+
 # Async/Await
+
 ## Promise example
 
 ```javascript
@@ -594,7 +602,9 @@ async function bestFriendsAddress() {
 ```
 
 ---
+
 # Async/Await
+
 ## Promise example
 
 ```javascript
@@ -614,7 +624,9 @@ async function bestFriendsAddress() {
 ```
 
 ---
+
 # Async/Await
+
 ## Error handling promises
 
 ```javascript
@@ -641,6 +653,7 @@ async function bestFriendsAddress() {
 ---
 
 # Async/Await Pitfalls
+
 ## `await` in loops
 
 - API is called sequentially
@@ -651,6 +664,7 @@ async function bestFriendsAddress() {
 ---
 
 # Async/Await Pitfalls
+
 ## `await` in loops
 
 ```javascript
@@ -667,14 +681,15 @@ async function awaitInLoops() {
 ---
 
 # Async/Await Pitfalls
-## `await` in loops
 
+## `await` in loops
 
 ![fit, inline](./assets/promise_loops.png)
 
 ---
 
 # Async/Await Pitfalls
+
 ## `await` in loops
 
 - `Promise.all` can fix this
@@ -686,6 +701,7 @@ async function awaitInLoops() {
 ---
 
 # Async/Await Pitfalls
+
 ## `await` in loops
 
 ```javascript
@@ -706,6 +722,7 @@ async function awaitInLoops() {
 ---
 
 # Async/Await Pitfalls
+
 ## error handling without await
 
 ```javascript
@@ -725,6 +742,7 @@ async function fetchBestFriend(id) {
 ---
 
 # Async/Await Pitfalls
+
 ## error handling without await
 
 - Remember:
@@ -750,6 +768,7 @@ async function fetchBestFriend(id) {
 ---
 
 # Async/Await Pitfalls
+
 ## error handling without await
   
 ```javascript
@@ -768,6 +787,7 @@ async function fetchBestFriend(id) {
 ---
 
 # Async/Await Pitfalls
+
 ## error handling without await
   
 ```javascript
