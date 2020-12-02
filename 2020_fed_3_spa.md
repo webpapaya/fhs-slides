@@ -766,18 +766,7 @@ const myTemplate = (someCondition) => {
 
 # Homework
 
-- Add a UI for the quiz
-- There are 3 different routes
-  - `/` for the start screen
-    - contains a link to `/quiz`
-  - `/quiz` renders one question
-    - once a question was selected, redirects to  `/result`
-  - `/result` shows if the answer was correct
-    - contains a link back to the start screen
-- Browser refresh keeps me on the same page
-  - (question can change as we implemented it with a Math.random())
-- Add basic styling
-  - CSS Frameworks like bootstrap, <https://minicss.org> are allowed
+- see [wiki](https://wiki.mediacube.at/wiki/index.php?title=Frontend_Development_-_WS_2020#Donnerstag_3._Dezember_2020_-_Thomas_Mayrhofer)
 
 ---
 
