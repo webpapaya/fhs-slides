@@ -11,7 +11,6 @@ slidenumbers: true
 
 ![cover](./assets/background_11.jpg)
 
-
 ---
 
 # [fit] Destructuring
