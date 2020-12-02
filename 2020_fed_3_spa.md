@@ -490,15 +490,6 @@ const routes = [
 
 ---
 
-# Links & Navigation
-
-- Register click events
-- Prevent default behavior of links
-- Update document address
-- Do something (e.g. render template)
-
----
-
 # Navigating in SPAs
 
 ## Link handling
@@ -601,7 +592,9 @@ const onRouteChange = () => {
 
 ---
 
-# Templates
+# [fit] Templates
+
+![cover](./assets/background_4.jpg)
 
 ---
 
@@ -635,7 +628,7 @@ const onRouteChange = () => {
 
 # Templates
 
-## Tagged template literals
+## Tagged template literals [^3]
 
 ```javascript
 const myTemplate = () => {
@@ -645,23 +638,9 @@ const myTemplate = () => {
     </section>
   `)
 }
+
+render(document.getElementById('content'), myTemplate())
 ```
-
----
-
-# Templates
-
-## Convert template string to DOM nodes [^5]
-
-```js
-const html = (templateString) => {
-  return new DOMParser()
-    .parseFromString(templateString, 'text/html')
-    .body
-}
-```
-
-[^5]: not relevant for the exam. (next semester we'll look into react). For the exercise simply copy this function.
 
 ---
 
@@ -677,6 +656,7 @@ const myTemplate = () => {
     </section>
   `)
 }
+
 ```
 
 ---
@@ -719,6 +699,44 @@ const myTemplate = (someCondition) => {
 
 # Templates
 
+## Loop over lists
+
+```javascript
+const myTemplate = (someArray) => {
+  return html(`
+    <section>
+      <ul>
+        ${someArray.map((value) => `<li>${value}</li>`).join('')}
+      </ul>
+    </section>
+  `)
+}
+```
+
+---
+
+# Templates
+
+## Convert template string to DOM nodes [^5]
+
+```js
+const html = (templateString) => {
+  return new DOMParser()
+    .parseFromString(templateString, 'text/html')
+    .body
+
+const render = (nodeToRenderTo, nodeToRender) => {
+  nodeToRenderTo.innerHTML = ''
+  nodeToRenderTo.appendChild(nodeToRender)
+}
+```
+
+[^5]: not relevant for the exam. (next semester we'll look into react). For the exercise simply copy this functions.
+
+---
+
+# Templates
+
 ## user interactions
 
 ```javascript
@@ -742,6 +760,7 @@ const myTemplate = (someCondition) => {
   return domElements
 }
 ```
+
 
 ---
 
@@ -770,3 +789,5 @@ const myTemplate = (someCondition) => {
 [^1]: https://blog.pshrmn.com/how-single-page-applications-work/
 
 [^2]: https://www.bloomreach.com/en/blog/2018/07/what-is-a-single-page-application.html#whatssingle-page-application
+
+[^3]: html and render are non-standard function and needs to be added to your code
