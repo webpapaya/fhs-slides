@@ -112,21 +112,15 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# SPA vs Traditional apps
+# [fit] SPA vs Traditional apps
 
 ![cover](./assets/spa_vs_traditional.png)
 
 ---
 
-# Single page applications
-
-> A single-page application (SPA) is a web application or web site that fits on a single web page with the goal of providing a user experience similar to that of a desktop application.
-
----
-
 # Traditional Web Applications
 
-- [video](https://media.giphy.com/media/Xpj7yINzSulzLa8Oq7/giphy.gif)
+![inline](./assets/traditional_websites.png)
 
 ---
 
@@ -138,7 +132,7 @@ const fetchWithCallback = (url, callback) => {}
 
 # Traditional Web Applications
 
-- client /quiz
+- client `/quiz`
 - server gets request
   - fetches player info
   - fetches question
@@ -147,13 +141,25 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# Single Page Applications
+# Traditional Web Applications
 
-- [video](https://media.giphy.com/media/KWQVAfIlg5LXQm87cg/giphy.gif)
+- [Video](https://media.giphy.com/media/Xpj7yINzSulzLa8Oq7/giphy.gif)
 
 ---
 
-# Single Page Applications
+# Single page applications
+
+![inline](./assets/spa_app.png)
+
+---
+
+# Single page applications
+
+> A single-page application (SPA) is a web application or web site that fits on a single web page with the goal of providing a user experience similar to that of a desktop application.
+
+---
+
+# Traditional Web Applications
 
 ![inline](./assets/spa_request_response.png)
 
@@ -171,9 +177,9 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# SPA vs Traditional apps
+# Single Page Applications
 
-![inline](./assets/spa_vs_traditional.png)
+- [video](https://media.giphy.com/media/KWQVAfIlg5LXQm87cg/giphy.gif)
 
 ---
 
@@ -191,23 +197,17 @@ const fetchWithCallback = (url, callback) => {}
 
 ## No redundant queries [^2]
 
-![inline](./assets/spa_vs_traditional.png)
-
----
-
-# Single page applications
-
-## No redundant queries [^2]
-
 - client requests data which he needs
 - no need for a full rerender of app
   - removes unnecessary/expensive DB queries
 
 ---
 
-# Single page applications
+# [fit] Single page applications
 
-## Fast and Responsive Front-end Built [^2]
+## Fast and Responsive Front-end Built
+
+![cover](./assets/background_1.jpg)
 
 ---
 
@@ -237,10 +237,17 @@ const fetchWithCallback = (url, callback) => {}
 - no full page refresh required
 - dynamic content loading possible
 - faster page transitions
+  - HTML/CSS already loaded
 
 ---
 
-# Single page applications
+# [fit] Building an SPA
+
+![cover](./assets/background_4.jpg)
+
+---
+
+# Building an SPA
 
 - An SPA consists of the following:
   - Data (see Async JS slides)
@@ -248,8 +255,6 @@ const fetchWithCallback = (url, callback) => {}
   - Templates
 
 ---
-
-# Single page applications
 
 ## Routing
 
@@ -259,7 +264,7 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# Single page applications
+# Routing
 
 ## Location
 
@@ -269,90 +274,38 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# Single page applications
+# Routing
 
 ## Location
 
-> Each browser tab has a “browsing context”. The browsing context maintains a “session history”, which is essentially an array of location entries.
-
-![inline](./assets/spa_routing_2.png)
-
----
-
-# Single page applications
-
-## Routing
-
-- Single-page application generally rely on a router.
-- Routers are made up of routes, which describe the location that they should match.
-
 ```javascript
-const routes = [
- { path: '/' },
- { path: '/about' }, // static
- { path: '/album/:id' } // dynamic
-];
+window.location // returns information about the current location
+
+// {
+//   "ancestorOrigins": {},
+//   "href": "https://www.fh-salzburg.ac.at/studium/dmk/multimediatechnology-bachelor",
+//   "origin": "https://www.fh-salzburg.ac.at",
+//   "protocol": "https:",
+//   "host": "www.fh-salzburg.ac.at",
+//   "hostname": "www.fh-salzburg.ac.at",
+//   "port": "",
+//   "pathname": "/studium/dmk/multimediatechnology-bachelor",
+//   "search": "",
+//   "hash": ""
+// }
 ```
 
 ---
 
-# Single Page Applications
+# [fit] Browser Session
 
-## Route Matching
-
-- The application renders based on the route that matches the location
-
-![inline](./assets/route-matching.png)
-
----
-
-# Routing
-
-## The path to SPA
-
----
-
-# Routes
-
-We have static and dynamic routes.
-
-- GET /contact
-- GET /players/:player
-
----
-
-# Links & Navigation
-
-- Classic Website
-  - Click on a link
-  - Browser send request
-  - Presents document
-
----
-
-# Links & Navigation
-
-- Single Page Application
-  - Click on a link
-  - Browser might do something (e.g. fetch data)
-  - A certain area or complete page gets replaced within the current document
-
----
-
-# Links & Navigation
-
-- Register click events
-- Prevent default behavior of links
-- Update document address
-- Do something (e.g. render template)
-
----
-
-# Routing in the browser
+![cover](./assets/background_10.jpg)
 
 ---
 
 # Browser Session
+
+## Links
 
 ![inline](./assets/browser_session_1.png)
 
@@ -390,9 +343,13 @@ We have static and dynamic routes.
 
 ---
 
-# Browser History
+# Routing
 
-> Early single-page applications relied on the fact that you could change a location’s hash and the browser would create a new location entry without sending a request to the server.
+## Location
+
+> Each browser tab has a “browsing context”. The browsing context maintains a “session history”, which is essentially an array of location entries.
+
+![inline](./assets/spa_routing_2.png)
 
 ---
 
@@ -443,8 +400,6 @@ history.replaceState({}, 'page 2', '/page2')
 
 ---
 
-# TODO: better description for history back stack
-
 # Browser History
 
 ## history.prototype.back
@@ -463,32 +418,84 @@ history.back()
 
 ---
 
-# State
+# Browser history exercise
 
-## Limitations [^3]
-
-- needs to be serializable
-- limited to 640 chars in Firefox
-- when navigating directly state === null
-
-[^3]: Personally never used state (prefer query params as they're navigateable)
+- Go to any webpage (e.g. medium.com) and navigate around
+- Then open the console and type history or window.history
+- Type history.go(-1) or history.back()
 
 ---
 
 # Browser history exercise
 
-## 5 minutes
-
-- Go to any webpage (e.g. medium.com) and navigate around
-- Then open the console and type history or window.history
-- Type history.go(-1) or history.back()
-- Push a new state: history.pushState({ name: 'Lisi' } , '', '/user')
+- Push a new state: history.pushState({ name: 'FHS' } , '', '/user')
   - Check the bar on top and see how it changes the path
   - Check the history object again with history
 - Replace the current state with replaceState(), see how the length of the history doesn't change
 - Check the history state with history.state
 - Assign window.location = "/someroute" in comparison and look at the window.location
-object
+
+---
+
+# [fit] Routing in SPA
+
+![cover](./assets/background_3.jpg)
+
+---
+
+# Links & Navigation
+
+- Classic Website
+  - Click on a link
+  - Browser send request
+  - Presents document
+
+---
+
+# Links & Navigation
+
+- Single Page Application
+  - Click on a link
+  - Browser might do something (e.g. fetch data)
+  - A certain area or complete page gets replaced within the current document
+
+---
+
+# Single page applications
+
+## Routing
+
+- Single-page application generally rely on a router.
+- Routers are made up of routes, which describe the location that they should match.
+
+```javascript
+const routes = [
+ { path: '/' },
+ { path: '/about' }, // static
+ { path: '/album/:id' } // dynamic
+ //             ^^^^
+ // dynamic part
+];
+```
+
+---
+
+# Single Page Applications
+
+## Route Matching
+
+- The application renders based on the route that matches the location
+
+![inline](./assets/route-matching.png)
+
+---
+
+# Links & Navigation
+
+- Register click events
+- Prevent default behavior of links
+- Update document address
+- Do something (e.g. render template)
 
 ---
 
@@ -761,4 +768,5 @@ const myTemplate = (someCondition) => {
 - [Feedback Link](https://de.surveymonkey.com/r/8TW92LL)
 
 [^1]: https://blog.pshrmn.com/how-single-page-applications-work/
+
 [^2]: https://www.bloomreach.com/en/blog/2018/07/what-is-a-single-page-application.html#whatssingle-page-application
