@@ -53,21 +53,7 @@ subtract(4)
 console.log(currentValue) // result should be 1
 ```
 
----
 
-# Example Questions
-
-- Explain the difference between UMD and AMD modules.
-- Write a module './calculator.js' which can be used as the following:
-
-```javascript
-import currentValue, { add, subtract } from './calculator.js'
-
-add(5)
-subtract(4)
-
-console.log(currentValue) // result should be 1
-```
 
 ---
 
@@ -159,7 +145,7 @@ const fetchWithCallback = (url, callback) => {}
 
 ---
 
-# Traditional Web Applications
+# Single page applications
 
 ![inline](./assets/spa_request_response.png)
 
@@ -433,6 +419,10 @@ history.back()
   - Check the history object again with history
 - Replace the current state with replaceState(), see how the length of the history doesn't change
 - Check the history state with history.state
+
+---
+# Browser history exercise
+
 - Assign window.location = "/someroute" in comparison and look at the window.location
 
 ---
