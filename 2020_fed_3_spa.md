@@ -53,8 +53,6 @@ subtract(4)
 console.log(currentValue) // result should be 1
 ```
 
-
-
 ---
 
 # Example questions
@@ -421,6 +419,7 @@ history.back()
 - Check the history state with history.state
 
 ---
+
 # Browser history exercise
 
 - Assign window.location = "/someroute" in comparison and look at the window.location
@@ -750,7 +749,6 @@ const myTemplate = (someCondition) => {
   return domElements
 }
 ```
-
 
 ---
 
