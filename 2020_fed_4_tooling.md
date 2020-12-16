@@ -7,13 +7,17 @@ slidenumbers: true
 
 ---
 
-# Tooling
+# [fit] Tooling
+
+![cover](./assets/background_1.jpg)
 
 ---
 
 # Linting [^1]
 
 > Linting is the automated checking of your source code for programmatic and stylistic errors
+
+![right, filtered](./assets/background_4.jpg)
 
 ---
 
@@ -29,6 +33,8 @@ slidenumbers: true
   - tells problematic sections of the code earlier
 - Enforce code consistency in projects
 
+![right, filtered](./assets/background_5.jpg)
+
 ---
 
 # Linting in JS
@@ -40,13 +46,24 @@ slidenumbers: true
 - code formatting
 - ...
 
+![right, filtered](./assets/background_6.jpg)
+
 ---
 
 # Linting Tools
 
-- EditorConfig
-- eslint
-- prettier
+- various tools exist to validate code consistency
+  - EditorConfig
+  - eslint (defacto standard)
+  - prettier (more code formatter)
+
+![right, filtered](./assets/background_7.jpg)
+
+---
+
+# EditorConfig
+
+![cover, filtered](./assets/background_9.jpg)
 
 ---
 
@@ -67,10 +84,18 @@ insert_final_newline = true
 
 # eslint
 
+![cover, filtered](./assets/background_10.jpg)
+
+---
+
+# eslint
+
 - standard tool for linting
 - easy to extend
 - autofix option
 - can be configured [^2]
+
+![left, filtered](./assets/background_11.jpg)
 
 ---
 
@@ -84,6 +109,8 @@ insert_final_newline = true
   - eslint-config-standard
   - eslint-config-google
   - ...
+
+![left, filtered](./assets/background_1.jpg)
 
 ---
 
@@ -157,6 +184,8 @@ const anExtremelyLongLine = "................" // eslint-disable-line max-len
   - on a CI server (eg. github actions)
   - on a git hook (eg. pre-commit, pre-push hook)
 
+![right, filtered](./assets/background_2.jpg)
+
 ---
 
 # Git hooks
@@ -197,6 +226,12 @@ post-push
 
 ---
 
+# [fit] Task Time
+
+![cover](./assets/background_3.jpg)
+
+---
+
 # Task (20 minutes)
 
 - Go into your homework group
@@ -206,7 +241,9 @@ post-push
 
 ---
 
-# JS bundling
+# [fit] JS bundling
+
+![cover](./assets/background_4.jpg)
 
 ---
 
@@ -214,11 +251,15 @@ post-push
 
 > A bundler compiles small pieces of code into something larger and more complex, such as a library or application [^7]
 
+---
+
 # Why Modules [^1]
 
 - Maintainability
 - Namespacing
 - Reusability
+
+![right, filtered](./assets/background_4.jpg)
 
 [^1]: https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/
 
@@ -232,14 +273,20 @@ post-push
 - older browsers might not understand JS modules
 - older node version might not understand JS modules
 
+![right, filtered](./assets/background_5.jpg)
+
 ---
 
 # JS bundling tools
 
-- [Rollup](https://rollupjs.org/)
-- [Parcel](https://parceljs.org/)
-- [Webpack](https://webpack.js.org/)
-- ...
+- Tools which resolve modules locally and bundle them together into a bigger bundle
+- Bundling tools are:
+  - [Rollup](https://rollupjs.org/)
+  - [Parcel](https://parceljs.org/)
+  - [Webpack](https://webpack.js.org/)
+  - ...
+
+![right, filtered](./assets/background_6.jpg)
 
 ---
 
@@ -252,7 +299,7 @@ post-push
 export default {
   input: "index.js",
   output: [
-    { file: "./build/index.bundle.js", format: "cjs" },
+    { file: "./build/index.bundle.js", format: "iife" },
   ],
 };
 
@@ -270,6 +317,8 @@ export default {
 - when adding a module everything gets added to bundle
   - large libraries could increase the bundle unnecessarily
 - bundlers which support tree shaking remove unused parts
+
+![right, filtered](./assets/background_7.jpg)
 
 ---
 
@@ -302,11 +351,15 @@ npx rollup ./index.js -d build/
 # bFunction won't be part of the bundle
 ```
 
+![right, filtered](./assets/background_8.jpg)
+
 ---
 
 # Minification [^9]
 
 > Minification refers to the process of removing unnecessary or redundant data without affecting how the resource is processed by the browser.
+
+![right, filtered](./assets/background_10.jpg)
 
 ---
 
@@ -320,6 +373,8 @@ npx rollup ./index.js -d build/
   - ...
 - get better google page speed score
 
+![right, filtered](./assets/background_9.jpg)
+
 ---
 
 # Minification
@@ -330,6 +385,14 @@ npx rollup ./index.js -d build/
   - css
   - ...
 
+![right, filtered](./assets/background_11.jpg)
+
+---
+
+# Minification
+
+![cover, filtered](./assets/background_11.jpg)
+
 ---
 
 # Minification
@@ -339,17 +402,18 @@ npx rollup ./index.js -d build/
 - npm i `rollup-plugin-terser`
 
 ```js
+// rollup.config.js
 import { terser } from "rollup-plugin-terser";
 
 export default {
   input: "index.js",
+  plugins: [terser()]
+  //       ^^^^^^^^^^
+  // add the terser plugin which will minify the sources
   output: [
     {
       file: "./build/index.bundle.js",
-      format: "cjs",
-      plugins: [terser()]
-      //       ^^^^^^^^^^
-      // add the terser plugin which will minify the sources
+      format: "iife",
     },
   ],
 };
@@ -379,44 +443,199 @@ export default {
 
 ---
 
+# Using ESNext Features in legacy browser
+
+![cover, filtered](./assets/background_1.jpg)
+
+---
+
 # Transpiling
 
 - source to source translator
 - takes code and converts it to code of a different language
+  - eg. convert ESNext for old browsers
+
+![right, filtered](./assets/background_8.jpg)
 
 ---
 
 # Transpiling
 
-## with babel
+## with babel & Rollup
 
-- babel is a transpiler
-  - makes it possible to write esnext and convert it to old browsers
+- babel is a transpiler [^10]
+  - it converts new syntax for the use in old browsers
+
+```js
+// eg. es6 arrow functions
+const myFunction = () => {}
+
+// will become
+const myFunction = function myFunction () {}
+```
 
 ---
 
-# Task (20 minutes)
+# Transpiling
+
+## with babel & Rollup [^11]
+
+```bash
+# install babel transpiler
+npm install --save-dev @babel/core @babel/preset-env
+
+# install babel plugin for rollup
+npm install --save-dev @rollup/plugin-babel
+```
+
+---
+
+# Transpiling
+
+## configure babel & rollup
+
+```js
+// rollup.config.js
+
+import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel';
+
+export default {
+  input: "index.js",
+  plugins: [
+    babel({ presets: [['@babel/env', {}]] }),
+//1)^^^^^
+//2)                    ^^^^^^^^^^
+
+//1) add the babel plugin
+//2) define the @babel/env
+
+    // ... other plugins
+  ],
+};
+```
+
+---
+
+# Transpiling
+
+## @babel/preset-env
+
+- a preset is a collection of transformations
+  - eg. arrow function to function expression
+- preset-env is smart enough to only add transforms which are required
+  - can be configured via `.browserslistrc`
+
+```
+// .browserlistrc
+
+> 5% in AT
+```
+
+---
+
+# Polyfills
+
+![cover, filtered](./assets/background_8.jpg)
+
+---
+
+# Polyfills [^13]
+
+> New language features may include not only syntax constructs and operators, but also built-in functions.
+
+---
+
+# Polyfills
+
+- `Math.trunc` removes the decimal part of a number
+  - `Math.trunc(1.23) === 1`
+  - older browsers might not implement Math.trunc
+- Polyfills patch the browser with new APIs
+
+```js
+Math.trunc = function trunc(it) {
+  return (it > 0 ? floor : ceil)(it);
+}
+```
+
+---
+
+# Polyfills
+
+## Bundle with our application
+
+- Install dependencies
+
+```bash
+# dependencies needed for bundling polyfills
+npm i @rollup/plugin-node-resolve @rollup/plugin-commonjs --save-dev
+
+# install polyfills
+npm i core-js@3 --save
+```
+
+---
+
+# Polyfills
+
+## Configure rollup [^14]
+
+```js
+// rollup.config.js
+
+import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+
+export default {
+  input: "index.js",
+  plugins: [
+    babel({
+      presets: [['@babel/env', {
+        babelHelpers: 'bundled', // add require statements for polyfills
+        exclude: 'node_modules/**',
+        presets: [
+          ['@babel/env', { "useBuiltIns": "usage", corejs: { version: 3 } }]
+        ]
+      }]]
+    }),
+    commonjs(), // signalize rollup that it should bundle commonjs modules
+    resolve(), // inline libraries from node_modules
+  ],
+  // ...
+};
+```
+
+---
+
+# [fit] Task Time
+
+![cover](./assets/background_3.jpg)
+
+---
+
+# Task
 
 - Go into your homework group
   - on a dedicated branch
 - Add rollup and build your app into one file
   - add minification
   - add babel
-  - add sourcemaps
-
----
-
-# Open Questions
+    - play around with different .browserlistrc configs and see the difference in bundle size
 
 ---
 
 # Homework
 
 - Finish the quiz
-- when not already done
+- when not already done during todays lecture
   - finish linting your application
   - I'll test via `npm run lint`
   - any error will result in -2 points
+
+![left, filtered](./assets/background_2.jpg)
 
 ---
 
@@ -441,4 +660,14 @@ export default {
 
 [^8]: see module slides
 
-[^9]: source https://developers.google.com/speed/docs/insights/MinifyResources#:~:text=Minification%20refers%20to%20the%20process,specific%20optimizations%20to%20learn%20more.
+[^9]: source <https://developers.google.com/speed/docs/insights/MinifyResources#:~:text=Minification%20refers%20to%20the%20process,specific%20optimizations%20to%20learn%20more.>
+
+[^10]: see [babel repl](https://babeljs.io/repl#?browsers=defaults&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAtgTwGIFczCgS3DAvDACgEo8A-GAbwF8g&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.12.7&externalPlugins=)
+
+[^11]: installation instructions for other bundlers <https://babeljs.io/en/setup>
+
+[^12]: full list of possible queries <https://github.com/browserslist/browserslist#queries>
+
+[^13]: source <https://javascript.info/polyfills>
+
+[^14]: complete configuration https://gist.github.com/webpapaya/45c5aae75bbe4e8eb72bc19c33e080bf
