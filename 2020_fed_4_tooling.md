@@ -226,6 +226,17 @@ post-push
 
 ---
 
+# eslint
+## autofix staged files before commit [^15]
+
+- [lint-staged](https://github.com/okonet/lint-staged) only lints files which have changed
+  - adds autofix possibility to githook
+  - installation `npx mrm lint-staged`
+
+---
+
+
+
 # [fit] Task Time
 
 ![cover](./assets/background_3.jpg)
@@ -671,3 +682,5 @@ export default {
 [^13]: source <https://javascript.info/polyfills>
 
 [^14]: complete configuration https://gist.github.com/webpapaya/45c5aae75bbe4e8eb72bc19c33e080bf
+
+[^15]: docs https://github.com/okonet/lint-staged
