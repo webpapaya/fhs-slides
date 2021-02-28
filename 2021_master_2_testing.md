@@ -17,7 +17,7 @@ slidenumbers: true
 
 ### Testing Pyramid
 
-![testing pyramid](assets/testing_pyramid.png)
+![testing pyramid, inline](assets/testing_pyramid.png)
 
 ---
 
@@ -129,7 +129,7 @@ slidenumbers: true
 
 # TDD Cycle
 
-![tdd cycle](assets/tdd_cycle.png)
+![tdd cycle, inline](assets/tdd_cycle.png)
 
 ---
 
@@ -449,7 +449,7 @@ it('sends an email on sign up', () => {
 
 ---
 
-![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
+![Clock in, inline kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
 
 ---
 

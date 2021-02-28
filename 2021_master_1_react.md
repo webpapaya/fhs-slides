@@ -619,7 +619,7 @@ const App = () => {
 
 # React.memo
 
-![app](assets/tree.png)
+![app, inline](assets/tree.png)
 
 ----
 
@@ -646,19 +646,19 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 ### React Context API
 
-![global state tree](assets/global_state_tree.png)
+![global state tree, inline](assets/global_state_tree.png)
 
 ----
 
 ### React Context API
 
-![twitter component tree](assets/twitter_component_tree.gif)
+![twitter component tree, inline](assets/twitter_component_tree.gif)
 
 ----
 
 ### React Context API
 
-![global state tree](assets/local_state_tree.png)
+![global state tree, inline](assets/local_state_tree.png)
 
 ----
 
