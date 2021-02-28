@@ -16,7 +16,6 @@
 - 1.3. 2EH react
 - 2.3. 2EH testing intro
 - 15.3. 2EH testing with react
-  - implement a component in a test driven way
 - 16.3. 2EH State Management (Redux)
 - 6.4.  2EH State Management (Recap/Testing)
   - ... very small redux app (company listing/test components)

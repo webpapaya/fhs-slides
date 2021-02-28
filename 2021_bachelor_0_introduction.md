@@ -13,7 +13,12 @@
 
 # Roadmap
 
-- 1.3.-2.3 8EH (Introduction to React/Routing in React/Forms in React)
+- 1.3.-2.3 8EH
+  - Introduction to React
+  - Forms in React
+  - Routing in React
+  - Routing in React
+  - Side effects
 - 15.3. 4EH Side Effects/Firebase Data Crash course
 - 16.3. 4EH Redux Intro
 - 8.4. 4EH Redux Recap
