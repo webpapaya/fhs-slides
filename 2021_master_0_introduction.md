@@ -1,3 +1,6 @@
+footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
+slidenumbers: true
+
 # Client Side Web Engineering
 
 ## (MMT-M2020)
@@ -16,9 +19,9 @@
 - 1.3. 2EH react
 - 2.3. 2EH testing intro
 - 15.3. 2EH testing with react
-- 16.3. 2EH State Management (Redux)
-- 6.4.  2EH State Management (Recap/Testing)
-- 8.4. 3EH or i18n, functional programming in JS
+- 16.3. 2EH State Management
+- 6.4.  2EH State Management
+- 8.4. 3EH i18n, functional programming in JS
 
 ---
 

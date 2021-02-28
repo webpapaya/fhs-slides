@@ -1,8 +1,17 @@
+footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
+slidenumbers: true
 # Client Side Web Engineering
+## Client Side Testing
 
 ---
+# Why automated testing
 
-# Client Side Testing
+- manual testing is expensive
+  - long feedback loop between developer/testers
+- helps to find and prevent defects
+- allow to change a systems behavior predictably
+- find/prevent defects
+- gain confidence about quality of the software
 
 ---
 
@@ -330,7 +339,7 @@ it('employeeReport: returns a list of employees ordered by their name', () => {
 ### Fizz Buzz (20 minutes)
 
 - go to <http://tddbin.com/>
-- or clone TODO: prepare testing repository
+- or `git clone git@github.com:webpapaya/fhs-tdd-starter.git`
 - <https://codingdojo.org/kata/FizzBuzz/>
 
 ---
@@ -439,6 +448,7 @@ it('sends an email on sign up', () => {
 - Step 6: Cleanup
 
 ---
+
 ![Clock in kata](http://kata-log.rocks/images/clock_in_kata_cases.png)
 
 ---
