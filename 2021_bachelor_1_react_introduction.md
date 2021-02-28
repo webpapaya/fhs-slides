@@ -2,18 +2,11 @@ footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
 slidenumbers: true
 
 # Fullstack Development
-
-## (MMT-B2018)
-
----
-
-# [fit] React
-
-![cover](./assets/background_1.jpg)
-
----
-
 ## React
+
+---
+
+# React
 
 - Component based library to build composable UIs
 - OpenSourced in 2013
@@ -24,6 +17,8 @@ slidenumbers: true
   - React-Native-Windows
   - React-VR
 
+![right, filtered](./assets/background_5.jpg)
+
 ---
 
 ## Components
@@ -32,6 +27,8 @@ slidenumbers: true
 
 - Main Building block of a React App
   - Describe the look and feel of one section in the UI
+
+![right, filtered](./assets/background_6.jpg)
 
 ---
 
@@ -109,33 +106,18 @@ const Button = () => {
 
 ## Which components do you see
 
-![app](assets/sign_in_wireframe.png)
+![app, inline](assets/sign_in_wireframe.png)
 
 ----
 
-![app](assets/app_wireframe.png)
+## Which components do you see
+
+
+![app, inline](assets/app_wireframe.png)
 
 ---
 
-## Types of components
-
-- Possible conceptual structure for components
-  - `components/`
-    - could be reused in other applications
-    - don't have domain logic (eg. Button)
-    - should not contain side effects (eg. API calls)
-  - `container/<container_name>/organism/`
-    - contain domain logic
-    - can't be reused in a different application (eg. MoneyTransactionList/SignUp)
-    - should not contain side effects (eg. API calls)
-
----
-
-# Building the first react component  <!-- .element: class="color--white" -->
-
-## Counter component  <!-- .element: class="color--white" -->
-
-<!-- .slide: data-background="./assets/coding.gif" -->
+# Building the first react component
 
 ---
 
@@ -214,125 +196,8 @@ const UserList = ({ users }) => {
 }
 ```
 
-----
-
-### key property in loops
-
-- Is required when interating over lists
-- Helps react to decide if an element needs to be rerendered
-- [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
-- [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
 
 ---
-
-## Component composition
-
-- Components can be nested and composed together
-
-![app](assets/tree.png)
-
-----
-
-## React props
-
-- Possibility to customize components
-  - Can be seen as component configuration
-- Props are passed to the component
-  - A component at a lower level of the tree can't modify given props directly
-
-```js
-const Button = ({ children, disabled = false }) => {
-  return (
-    <button disabled={disabled} className='button'>
-      {children}
-    </button>
-  )
-}
-
-const usage = <Button disabled>A button</Button>
-```
-
----
-
-# Exercise: (30min)
-
-- I'll create breakout rooms
-- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
-- execute `npm run start:storybook`
-- extend the sign in component to display
-  - Input with username
-  - Input with password
-  - A Sign In Button (reuse existing button)
-- Extract an Input Component
-
----
-
-# State in react
-
-- What we've seen so far:
-  - Components can render chunks of UI
-  - Components can be nested
-
----
-
-# State in react
-
-> How can we interact with components?
-
----
-
-# State in react
-
-> The State of a component is an object that holds some information that may change over the lifetime of the component [^5]
-
-[^1]: https://www.geeksforgeeks.org/reactjs-state-react/#:~:text=What%20is%20State%3F,the%20lifetime%20of%20the%20component.
-
----
-
-# React State (without hooks)
-
-```js
-class ToggleButton extends React.Component {
-  state = { backgroundColor: 'red' };
-  toggleBackgroundColor = () => {
-    const nextBackgroundColor = backgroundColor === 'red' ? 'blue' : 'red'
-    this.setState({ backgroundColor: nextBackgroundColor })
-    //   ^^^^^^^^^
-    // setState calls render method with updated state
-  }
-  render() {
-    return (
-       <button
-        onClick={() => this.toggleBackgroundColor() }
-        style={{ backgroundColor: this.state.backgroundColor }}
-      >
-        {children}
-      </button>
-    );
-  }
-}
-```
-
----
-
-# React State (with Hooks)
-
-- Alternative syntax with hooks
-
-```js
-const ToggleButton = ({ onSubmit }) => {
-  const [backgroundColor, setBackground] = useState('red')
-
-  return (
-    <button
-      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red')}
-      style={{ backgroundColor }}
-    >
-      {children}
-    </button>
-  )
-}
-```
 
 ### Fragments
 
@@ -367,6 +232,151 @@ const AComponent = ({ items }) => {
         </React.Fragment>
       ))}
     </dl>
+  )
+}
+```
+
+----
+
+### key property in loops
+
+- Is required when interating over lists
+- Helps react to decide if an element needs to be rerendered
+- [Video explanation](https://www.youtube.com/watch?v=kFy5dpzdFsM)
+- [Detailed explanation](https://dev.to/jtonzing/the-significance-of-react-keys---a-visual-explanation--56l7)
+
+---
+
+## Component composition
+
+- Components can be nested and composed together
+
+![app, inline](assets/tree.png)
+
+----
+
+## React props
+
+- Possibility to customize components
+  - Can be seen as component configuration
+- Props are passed to the component
+  - A component at a lower level of the tree can't modify given props directly
+
+---
+
+## React props
+
+```js
+const Button = ({ children, disabled = false }) => {
+  //              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // props which are passed to the component
+
+  return (
+    <button disabled={disabled} className='button'>
+      {children}
+    </button>
+  )
+}
+
+const usage = <Button disabled>A button</Button>
+// 1)                 ^^^^^^^^
+// 2)                         ^^^^^^^^^
+// 1) shortcut for disabled={true}
+// 2) child components/nodes passed to a component
+```
+
+---
+
+# Exercise: 30min
+
+- I'll create breakout rooms
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
+- execute `npm run start:storybook`
+
+---
+
+# Exercise: 30min
+
+- extend the sign in component to display
+  - Input with username
+  - Input with password
+  - A Sign In Button (reuse existing button)
+- Extract an Input Component
+  - make it configurable via props
+
+---
+
+# State in react
+
+- What we've seen so far:
+  - Components can render chunks of UI
+  - Components can be nested
+
+---
+
+# State in react
+
+> How can we interact with components?
+
+---
+
+# State in react
+
+> The State of a component is an object that holds some information that may change over the lifetime of the component [^5]
+
+[^5]: [geeksforgeeks.com](https://www.geeksforgeeks.org/reactjs-state-react/#:~:text=What%20is%20State%3F,the%20lifetime%20of%20the%20component.)
+
+---
+
+# React State (without hooks)
+
+```js
+class ToggleButton extends React.Component {
+  state = { backgroundColor: 'red' };
+  // define a default value for background color
+
+  toggleBackgroundColor = () => {
+    const nextBackgroundColor = backgroundColor === 'red' ? 'blue' : 'red'
+    this.setState({ backgroundColor: nextBackgroundColor })
+    //   ^^^^^^^^^
+    // setState calls render method with updated state
+  }
+  render() {
+    return (
+       <button
+        onClick={() => this.toggleBackgroundColor() }
+        style={{ backgroundColor: this.state.backgroundColor }}
+      >
+        {children}
+      </button>
+    );
+  }
+}
+```
+
+---
+
+# React State (with Hooks)
+
+- Alternative syntax with hooks
+
+```js
+const ToggleButton = () => {
+  const [backgroundColor, setBackground] = useState('red')
+  // 1)                                    ^^^^^^^^
+  // 2) ^^^^^^^^^^^^^^^^
+  // 3)                   ^^^^^^^^^^^^^^
+  // 1) define a state with a default value "red"
+  // 2) the current value of the state
+  // 3) function to set the state to something else
+
+  return (
+    <button
+      onClick={() => setBackground(backgroundColor === 'red' ? 'blue' : 'red')}
+      style={{ backgroundColor }}
+    >
+      {children}
+    </button>
   )
 }
 ```
@@ -428,6 +438,47 @@ const App = () => {
 }
 ```
 
+----
+
+## State vs. Props
+
+| _props_ | _state_ |
+--- | --- | ---
+Can get initial value from parent Component? | Yes | Yes
+Can be changed by parent Component? | Yes | No
+Can set default values inside Component?* | Yes | Yes
+Can change inside Component? | No | Yes
+Can set initial value for child Components? | Yes | Yes
+Can change in child Components? | Yes | No
+
+[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+
+---
+
+# Unidirectional Dataflow
+
+- Props only flow from parent to children
+- Parent is responsible to update data
+  - might provide callbacks to do so
+- set state rerenders all children of component
+
+----
+
+# Unidirectional Dataflow
+
+![Unidirectional Dataflow](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
+> [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
+
+---
+
+# Virtual DOM
+
+- makes DOM updates faster
+- after setState subtree is rerendered in memory
+- compares DOM to in memory representation
+- applies DOM changes when needed
+
+
 ---
 
 ### Forms with react hooks
@@ -450,23 +501,38 @@ const App = () => {
 ```
 
 ---
-
-### Exercise (20 minutes)
+### Exercise 1/2 (20 minutes)
 
 - Enhance the SignIn form
   - store username/password in a component state
 - once the submit button is clicked log all values to the console
+
+![right, filtered](./assets/background_7.jpg)
+
+---
+### Exercise 2/2 (20 minutes)
+
 - Bonus: extract a `useForm` hook
-  - usage `const [values, setValue] = useForm({ username: '', password: '' })`
-  - `<Input onChange={setValue('username')} />`
 
-----
+  ```js
+    const [values, setValue] = useForm({
+      username: '',
+      password: ''
+    })
+    return <Input onChange={setValue('username')} />
+  ```
 
-## Other hooks
+![right, filtered](./assets/background_7.jpg)
 
 ---
 
-### useEffect
+## Other hooks
+
+![filtered](./assets/background_9.jpg)
+
+---
+
+### useEffect [^4]
 
 ```js
 // Executed on every rerender
@@ -485,6 +551,8 @@ useEffect(() => {
   return () => { console.log('cleanup') }
 }, [variable])
 ```
+
+[^4]: this will be covered in more detail in the side effect lecture
 
 ----
 
@@ -549,6 +617,7 @@ const useCounter = () => {
   useEffect(() => {
     document.title = `Counter clicked ${count} times`;
   }, [count]);
+  // ^^^^^^ moved to hook
 
   return { count, handleIncrement };
 }
@@ -565,36 +634,13 @@ const App = () => {
 }
 ```
 
----
-
-# Unidirectional Dataflow
-
-- Props only flow from parent to children
-- Parent is responsible to update data
-  - might provide callbacks to do so
-- set state rerenders all children of component
-
-----
-
-# Unidirectional Dataflow
-
-![Unidirectional Dataflow](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
-> [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
-
----
-
-# Virtual DOM
-
-- makes DOM updates faster
-- after setState subtree is rerendered in memory
-- compares DOM to in memory representation
-- applies DOM changes when needed
-
 ----
 
 # React.memo
 
-> `Memoizing' a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. (<https://metacpan.org/pod/Memoize)>
+> `Memoizing` a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. [^7]
+
+[^7]: https://metacpan.org/pod/Memoize
 
 ----
 
@@ -615,23 +661,6 @@ const MyComponent = React.memo(function MyComponent(props) {
   /* render using props */
 });
 ```
-
-----
-
-## State vs. Props
-
-| _props_ | _state_ |
---- | --- | ---
-Can get initial value from parent Component? | Yes | Yes
-Can be changed by parent Component? | Yes | No
-Can set default values inside Component?* | Yes | Yes
-Can change inside Component? | No | Yes
-Can set initial value for child Components? | Yes | Yes
-Can change in child Components? | Yes | No
-
-[source](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
-
----
 
 ---
 

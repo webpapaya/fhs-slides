@@ -1,3 +1,5 @@
+footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
+slidenumbers: true
 # Fullstack Development
 
 ## (MMT-B2018)
@@ -13,15 +15,12 @@
 
 # Roadmap
 
-- 1.3.-2.3 8EH
-  - Introduction to React
-  - Forms in React
-  - Routing in React
-- 15.3. 4EH Side Effects/Firebase Data Crash course
-- 16.3. 4EH Redux Intro
-- 8.4. 4EH Redux Recap
-- 9.4  4EH Testing and Testing with React
-- 23.4. 4EH Klausur Authentication
+- 1.3.-2.3: 8EH React
+- 15.3. 4EH React Side Effects, Firebase Data crash course
+- 16.3. 4EH 4EH Testing and Testing with React
+- 8.4. 4EH Redux Intro
+- 9.4  4EH Redux Recap
+- 23.4. 4EH Authentication
 
 ---
 
@@ -36,9 +35,9 @@
 # Homework
 
 - can be done in pairs
-- for first assignment hand-in via Merge Request
+- hand-in via `Merge Request`
   - for the first homework please send a link to the repository to tmayrhofer.lba@fh-salzburg.ac.at
-  - add name of students who worked on the assignment
+  - add readme with your names
 
 ----
 
@@ -48,11 +47,12 @@
 - naming
 - duplications
 - function/component length
-- commits + commit messages
-  - please read <https://chris.beams.io/posts/git-commit/>
-- code consistency (linting)
-  - please add `npm run lint` as npm script
-  - linting errors will result in -2 points
+- commits + commit messages [^1]
+- code consistency (linting) [^2]
+
+[^1]: please read https://chris.beams.io/posts/git-commit/
+
+[^2]: linting errors will result in -2 points of 5
 
 ----
 
