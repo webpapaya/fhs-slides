@@ -17,8 +17,6 @@
   - Introduction to React
   - Forms in React
   - Routing in React
-  - Routing in React
-  - Side effects
 - 15.3. 4EH Side Effects/Firebase Data Crash course
 - 16.3. 4EH Redux Intro
 - 8.4. 4EH Redux Recap
@@ -51,7 +49,7 @@
 - duplications
 - function/component length
 - commits + commit messages
-  - please read https://chris.beams.io/posts/git-commit/
+  - please read <https://chris.beams.io/posts/git-commit/>
 - code consistency (linting)
   - please add `npm run lint` as npm script
   - linting errors will result in -2 points

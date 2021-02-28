@@ -266,7 +266,6 @@ const usage = <Button disabled>A button</Button>
   - Input with password
   - A Sign In Button (reuse existing button)
 
-
 ---
 
 # State in react
@@ -354,9 +353,6 @@ const ToggleButton = ({ onSubmit }) => {
 ![Unidirectional Dataflow](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
 > [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
 
-
-
-
 ---
 
 # Virtual DOM
@@ -391,7 +387,6 @@ const MyComponent = React.memo(function MyComponent(props) {
   /* render using props */
 });
 ```
-
 
 ----
 
@@ -711,4 +706,3 @@ const ANestedComponent = () => {
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
-

@@ -18,7 +18,6 @@
 - 15.3. 2EH testing with react
 - 16.3. 2EH State Management (Redux)
 - 6.4.  2EH State Management (Recap/Testing)
-  - ... very small redux app (company listing/test components)
 - 8.4. 3EH or i18n, functional programming in JS
 
 ---
@@ -48,7 +47,7 @@
 - duplications
 - function/component length
 - commits + commit messages
-  - please read https://chris.beams.io/posts/git-commit/
+  - please read <https://chris.beams.io/posts/git-commit/>
 - code consistency (linting)
   - please add `npm run lint` as npm script
   - linting errors will result in -2 points

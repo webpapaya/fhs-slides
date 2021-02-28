@@ -227,6 +227,7 @@ post-push
 ---
 
 # eslint
+
 ## autofix staged files before commit [^15]
 
 - [lint-staged](https://github.com/okonet/lint-staged) only lints files which have changed
@@ -234,8 +235,6 @@ post-push
   - installation `npx mrm lint-staged`
 
 ---
-
-
 
 # [fit] Task Time
 
@@ -681,32 +680,31 @@ export default {
 
 [^13]: source <https://javascript.info/polyfills>
 
-[^14]: complete configuration https://gist.github.com/webpapaya/45c5aae75bbe4e8eb72bc19c33e080bf
+[^14]: complete configuration <https://gist.github.com/webpapaya/45c5aae75bbe4e8eb72bc19c33e080bf>
 
-[^15]: docs https://github.com/okonet/lint-staged
+[^15]: docs <https://github.com/okonet/lint-staged>
 
 ----
 
 Rules for exam:
+
 - Please turn on camera
 - Slides can be used:
-  - https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_0_introduction.pdf
-  - https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_1_asynchronous_js.pdf
-  - https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_2_es_next.pdf
-  - https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_3_spa.pdf
-  - https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_4_tooling.pdf
+  - <https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_0_introduction.pdf>
+  - <https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_1_asynchronous_js.pdf>
+  - <https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_2_es_next.pdf>
+  - <https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_3_spa.pdf>
+  - <https://github.com/webpapaya/fhs-slides/raw/master/2020_fed_4_tooling.pdf>
 - You can test your code in the dev tools/node.js
 - 60 minutes time cap (that should be enough)
-- Use moodle (https://elearn.fh-salzburg.ac.at/mod/quiz/view.php?id=120126)
-  - if moodle doesn't work use Google Forms as backup https://docs.google.com/forms/d/e/1FAIpQLScJ9qn-6vAs4KbJ27R31du1xYHCxl2rq3FqxeA9yh0zu3wg_Q/viewform?usp=sf_link (be aware that it can only be submitted once)
+- Use moodle (<https://elearn.fh-salzburg.ac.at/mod/quiz/view.php?id=120126)>
+  - if moodle doesn't work use Google Forms as backup <https://docs.google.com/forms/d/e/1FAIpQLScJ9qn-6vAs4KbJ27R31du1xYHCxl2rq3FqxeA9yh0zu3wg_Q/viewform?usp=sf_link> (be aware that it can only be submitted once)
 
 - You can code in any editor
   - LiveShare/WhatsApp and any other form of transmitting solutions is forbidden
 - After finishing your answer copy the solutions to moodle
 - For questions write me a DM so others don't get interrupted
 - I'll send you the results between Christmas and New Years Eve
-
-
 
 ```js
 const fetchWithCallback = (url) => {

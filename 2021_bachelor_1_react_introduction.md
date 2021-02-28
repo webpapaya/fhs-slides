@@ -1,7 +1,6 @@
 footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
 slidenumbers: true
 
-
 # Fullstack Development
 
 ## (MMT-B2018)
@@ -335,7 +334,6 @@ const ToggleButton = ({ onSubmit }) => {
 }
 ```
 
-
 ### Fragments
 
 - Groups a list of children without adding a dom element
@@ -462,9 +460,7 @@ const App = () => {
   - usage `const [values, setValue] = useForm({ username: '', password: '' })`
   - `<Input onChange={setValue('username')} />`
 
-
 ----
-
 
 ## Other hooks
 
@@ -585,7 +581,6 @@ const App = () => {
 ![Unidirectional Dataflow](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
 > [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
 
-
 ---
 
 # Virtual DOM
@@ -620,7 +615,6 @@ const MyComponent = React.memo(function MyComponent(props) {
   /* render using props */
 });
 ```
-
 
 ----
 
@@ -742,6 +736,5 @@ const ANestedComponent = () => {
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
-
 
 [^1]: https://reactjs.org/docs/components-and-props.html

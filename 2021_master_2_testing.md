@@ -23,12 +23,6 @@
 
 ---
 
-### Enterprise test pyramid
-
-![enterprise testing pyramid](assets/enterprise_testing_pyramid.png)
-
----
-
 # Unit testing and TDD
 
 - Test driven development (also known as TDD)
@@ -453,7 +447,7 @@ it('sends an email on sign up', () => {
 
 - Homework:
   - can be done in pairs
-  - implement https://codingdojo.org/kata/Bowling/
+  - implement <https://codingdojo.org/kata/Bowling/>
   - Work in a strict TDD loop
     - commit before every new test
     - write descriptive commit messages
