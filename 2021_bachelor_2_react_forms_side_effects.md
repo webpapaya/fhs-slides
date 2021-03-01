@@ -7,6 +7,10 @@ slidenumbers: true
 
 ---
 
+# Code solution to yesterdays exercise together
+
+---
+
 ## Forms in React
 
 ---
@@ -161,64 +165,77 @@ const SignUpForm = ({ onSubmit }) => {
 ## Form libraries which make your life easier
 
 - there are multiple libraries which help with validation
-  - [react-hook-form](https://react-hook-form.com/)
   - [formik](https://formik.org/)
+  - [react-hook-form](https://react-hook-form.com/)
   - [react final form](https://final-form.org/react)
 
 ---
 
-## React Hook Form
+## formik
 
-- Form library which uses hooks
-- in contrast to other libs uses uncontrolled components
-  - minimizes rerenders
-- `npm install react-hook-form @hookform/resolvers superstruct`
+- Form library which can be used with hooks
+- uses controlled components
+- `npm install formik yup`
+
+---
+## Formik
+### Example
 
 ```js
-import { useForm } from "react-hook-form";
+import { useFormik } from "react-hook-form";
 
 const SignInForm = () => {
-  const { register, handleSubmit } = useForm();
+  const formik = useFormik({
+    initialValues: { username: '' },
+    onSubmit: values => console.log(values),
+  });
 
   return (
-    <form onSubmit={handleSubmit(d => console.log(d))}>
-      <input name="username" ref={register} />
-      <button type="submit">Sign up</button>
-    <form/>
+    <form onSubmit={formik.handleSubmit}>
+      <input
+        name="username"
+        onChange={formik.handleChange}
+        value={formik.values.username}
+      />
+      {/* ... */}
+    </form>
   )
 }
 ```
 
+
 ---
-
-## React Hook Form
-
-### Validations [^1]
+## Formik
+### With errors
 
 ```js
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { superstructResolver } from '@hookform/resolvers/superstruct'
-import { struct } from 'superstruct'
+import { useFormik } from "react-hook-form";
+import {object, string} from 'yup'
 
-const nonEmptyString = define('NonEmptyString', (value) => { // Define a validator
-  if (typeof value === 'string' && value.length > 0) {
-    return true
-  } else {
-    return { code: 'non_empty_string' }
-  }
+const validationSchema = object({
+  username: string().min(3)
 })
 
-const schema = object({
-  username: nonEmptyString,
-});
-
 const SignInForm = () => {
-   const { register, handleSubmit } = useForm({
-    resolver: superstructResolver(schema), //
+  const formik = useFormik({
+    initialValues: { username: '' },
+    validationSchema: validationSchema,
+    // verify form with schema  ^^^^^^^^^^^
+
   });
-  // ... remaining component
-};
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <input
+        name="username"
+        onChange={formik.handleChange}
+        value={formik.values.username}
+      />
+      { formik.errors.username }
+      {/* display the error */}
+    </form>
+  )
+}
 ```
 
 ---
@@ -226,6 +243,242 @@ const SignInForm = () => {
 # Task 20 minutes
 
 - convert your Sign Up form to use react hooked forms
+
+
+---
+
+## Other hooks
+
+![filtered](./assets/background_9.jpg)
+
+---
+
+### useEffect [^4]
+
+```js
+// Executed on every rerender
+useEffect(() => {})
+
+// Executed when component rendered initially
+useEffect(() => {}, [])
+
+// Executed when component rendered initially
+// and when variable changes.
+useEffect(() => {}, [variable])
+
+// Cleanup when component unmounts (eg. eventHandlers, setInterval/setTimeout)
+useEffect(() => {
+  // do something fancy
+  return () => { console.log('cleanup') }
+}, [variable])
+```
+
+[^4]: this will be covered in more detail in the side effect lecture
+
+----
+
+### Previous Example
+
+```js
+const useCounter = () => {
+  const [count, setCount] = useState(0);
+  const handleIncrement = () => setCount(count + 1);
+  return { count, handleIncrement };
+}
+
+const App = () => {
+  const {count,handleIncrement} = useCounter();
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+
+----
+
+### Update title with counter
+
+```js
+const useCounter = () => {
+  const [count, setCount] = useState(0);
+  const handleIncrement = () => setCount(count + 1);
+  return { count, handleIncrement };
+}
+
+const App = () => {
+  const {count,handleIncrement} = useCounter();
+
+  // Is executed when component is rendered for the first time
+  // And when the counter variable changes.
+  useEffect(() => {
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+
+----
+
+### Extract to custom hook
+
+```js
+const useCounter = () => {
+  const [count, setCount] = useState(0);
+  const handleIncrement = () => setCount(count + 1);
+  useEffect(() => {
+    document.title = `Counter clicked ${count} times`;
+  }, [count]);
+  // ^^^^^^ moved to hook
+
+  return { count, handleIncrement };
+}
+
+const App = () => {
+  const {count,handleIncrement} = useCounter();
+
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={handleIncrement}>Increment by 1</button>
+    </div>
+  );
+}
+```
+
+----
+
+# React.memo
+
+> `Memoizing` a function makes it faster by trading space for time. It does this by caching the return values of the function in a table. [^7]
+
+[^7]: https://metacpan.org/pod/Memoize
+
+----
+
+# React.memo
+
+![app, inline](assets/tree.png)
+
+----
+
+# React.memo
+
+- Caches the rendered component
+- Only rerenderes when one of the props changes
+  - shallow comparison
+
+```ts
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+```
+
+---
+
+### React Context API
+
+- Available since the beginning of React
+- Prevent "prop drilling"
+
+----
+
+### React Context API
+
+![global state tree, inline](assets/global_state_tree.png)
+
+----
+
+### React Context API
+
+![twitter component tree, inline](assets/twitter_component_tree.gif)
+
+----
+
+### React Context API
+
+![global state tree, inline](assets/local_state_tree.png)
+
+----
+
+### Creating a context
+
+```js
+const DEFAULT_VALUE = 1
+const MyContext = React.createContext(DEFAULT_VALUE)
+
+const RootComponent = () => {
+  return (
+    <MyContext.Provider value={2}>
+      <ANestedComponent />
+    </MyContext.Provider>
+  )
+}
+
+const ANestedComponent = () => {
+  const value = useContext(MyContext)
+  return (
+    <h1>The value from context is {value}</h1>
+  )
+}
+```
+
+----
+
+### Pitfalls 1
+
+- fine granular context
+
+![global state tree, inline](assets/context_hell.png)
+
+----
+
+### Pitfalls/Tips
+
+- Prefer passing props down to components
+  - prefer explicit (pass down) vs implicit (context)
+- only use when multiple components need to access same data
+  - if possible pass data down
+- don't overuse
+- values from A context are globals
+  - use only a hand full of Context.Providers
+  - testing becomes trickier
+
+----
+
+### Other hooks
+
+- [API Reference](https://reactjs.org/docs/hooks-reference.html)
+  - useReducer
+  - useCallback
+  - useMemo
+  - useRef
+  - useImperativeHandle
+  - useLayoutEffect
+  - useDebugValue
+
+---
+
+### Task advanced hooks task
+
+- build a clock component
+  - component displays current time in seconds
+  - automatically updates itself
+  - remove setInterval when component unmounts
+
+- You'll need
+  - useEffect, useState
+  - setInterval or setTimeout
+  - (new Date()).toLocaleTimeString()
 
 ---
 
@@ -425,7 +678,7 @@ const Routes = () => (
 - Form submissions (just log to the screen or alert them)
 - Don't update UI on form submissions
   - eg.: when creating a transaction the list doesn't need to update
-  - we'll do this together next time with redux
+  - we'll do this together next time
 
 ---
 
@@ -434,4 +687,4 @@ const Routes = () => (
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
 
-[^1]: whole code https://gist.github.com/webpapaya/1748cec029578215d6c62d04844c3877
+[^1]: whole code https://gist.github.com/webpapaya/2a751dd740ee932bd9f348d780edc518

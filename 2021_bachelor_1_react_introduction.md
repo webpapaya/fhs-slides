@@ -500,8 +500,25 @@ const App = () => {
 }
 ```
 
+
+# Exercise: 30min
+
+- I'll create breakout rooms
+- Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
+- execute `npm run start:storybook`
+
+
 ---
-### Exercise 1/2 (20 minutes)
+
+# Exercise:
+
+- extend the sign in component to display
+  - Input with username
+  - Input with password
+  - A Sign In Button (reuse existing button)
+- Extract an Input Component
+  - make it configurable via props
+
 
 - Enhance the SignIn form
   - store username/password in a component state
@@ -509,8 +526,6 @@ const App = () => {
 
 ![right, filtered](./assets/background_7.jpg)
 
----
-### Exercise 2/2 (20 minutes)
 
 - Bonus: extract a `useForm` hook
 
