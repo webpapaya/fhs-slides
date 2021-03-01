@@ -2,6 +2,7 @@ footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
 slidenumbers: true
 
 # Fullstack Development
+
 ## React
 
 ---
@@ -112,7 +113,6 @@ const Button = () => {
 
 ## Which components do you see
 
-
 ![app, inline](assets/app_wireframe.png)
 
 ---
@@ -195,7 +195,6 @@ const UserList = ({ users }) => {
   )
 }
 ```
-
 
 ---
 
@@ -478,7 +477,6 @@ Can change in child Components? | Yes | No
 - compares DOM to in memory representation
 - applies DOM changes when needed
 
-
 ---
 
 ### Forms with react hooks
@@ -500,17 +498,15 @@ const App = () => {
 }
 ```
 
-
 # Exercise: 30min
 
 - I'll create breakout rooms
 - Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - execute `npm run start:storybook`
 
-
 ---
 
-# Exercise:
+# Exercise
 
 - extend the sign in component to display
   - Input with username
@@ -519,13 +515,11 @@ const App = () => {
 - Extract an Input Component
   - make it configurable via props
 
-
 - Enhance the SignIn form
   - store username/password in a component state
 - once the submit button is clicked log all values to the console
 
 ![right, filtered](./assets/background_7.jpg)
-
 
 - Bonus: extract a `useForm` hook
 

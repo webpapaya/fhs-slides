@@ -1,5 +1,6 @@
 footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
 slidenumbers: true
+
 # Fullstack Development
 
 ## (MMT-B2018)
@@ -50,7 +51,7 @@ slidenumbers: true
 - commits + commit messages [^1]
 - code consistency (linting) [^2]
 
-[^1]: please read https://chris.beams.io/posts/git-commit/
+[^1]: please read <https://chris.beams.io/posts/git-commit/>
 
 [^2]: linting errors will result in -2 points of 5
 

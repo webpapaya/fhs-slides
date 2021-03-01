@@ -1,9 +1,12 @@
 footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
 slidenumbers: true
+
 # Client Side Web Engineering
+
 ## Client Side Testing
 
 ---
+
 # Why automated testing
 
 - manual testing is expensive

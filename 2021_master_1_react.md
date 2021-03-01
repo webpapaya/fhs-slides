@@ -113,7 +113,6 @@ const Button = () => {
 
 ## Which components do you see
 
-
 ![app, inline](assets/app_wireframe.png)
 
 ---
@@ -196,7 +195,6 @@ const UserList = ({ users }) => {
   )
 }
 ```
-
 
 ---
 
@@ -460,7 +458,6 @@ Can change in child Components? | Yes | No
 - compares DOM to in memory representation
 - applies DOM changes when needed
 
-
 ---
 
 ### Forms with react hooks
@@ -483,6 +480,7 @@ const App = () => {
 ```
 
 ---
+
 ### Exercise 2/2 (20 minutes)
 
 - Bonus: extract a `useForm` hook

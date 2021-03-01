@@ -61,10 +61,3 @@ slidenumbers: true
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
-
-
-
-
-
-
-
