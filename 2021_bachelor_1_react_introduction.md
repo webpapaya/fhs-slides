@@ -421,13 +421,13 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
@@ -485,7 +485,7 @@ Can change in child Components? | Yes | No
 
 ```js
 const App = () => {
-  const [username, setUsername] => useState('');
+  const [username, setUsername] = useState('');
   //                               ^^^^^^^^^^^^
   // define a new state with an initial value of empty string
 
@@ -560,13 +560,13 @@ useEffect(() => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
@@ -583,13 +583,13 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   return { count, handleIncrement };
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   // Is executed when component is rendered for the first time
   // And when the counter variable changes.
@@ -612,7 +612,7 @@ const App = () => {
 
 ```js
 const useCounter = () => {
-  const [count, setCount] => useState(0);
+  const [count, setCount] = useState(0);
   const handleIncrement = () => setCount(count + 1);
   useEffect(() => {
     document.title = `Counter clicked ${count} times`;
@@ -623,7 +623,7 @@ const useCounter = () => {
 }
 
 const App = () => {
-  const {count,handleIncrement} => useCounter();
+  const {count,handleIncrement} = useCounter();
 
   return (
     <div>
@@ -646,7 +646,7 @@ const App = () => {
 
 # React.memo
 
-![app](assets/tree.png)
+![app, inline](assets/tree.png)
 
 ----
 
@@ -673,19 +673,19 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 ### React Context API
 
-![global state tree](assets/global_state_tree.png)
+![global state tree, inline](assets/global_state_tree.png)
 
 ----
 
 ### React Context API
 
-![twitter component tree](assets/twitter_component_tree.gif)
+![twitter component tree, inline](assets/twitter_component_tree.gif)
 
 ----
 
 ### React Context API
 
-![global state tree](assets/local_state_tree.png)
+![global state tree, inline](assets/local_state_tree.png)
 
 ----
 
@@ -717,7 +717,7 @@ const ANestedComponent = () => {
 
 - fine granular context
 
-![global state tree](assets/context_hell.png)
+![global state tree, inline](assets/context_hell.png)
 
 ----
 
