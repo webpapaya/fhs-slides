@@ -82,7 +82,7 @@ slidenumbers: true
 
 ---
 
-> The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
+## The best TDD can do, is assure that the code does what the developer thinks it should do. (James Grenning)
 
 ---
 
