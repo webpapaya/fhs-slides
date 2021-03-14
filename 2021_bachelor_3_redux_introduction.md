@@ -586,8 +586,27 @@ const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
 store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
 
----
 
+---
+## Task 1 (Actions)
+
+- Download
+  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
+  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
+- in src/store.js
+  - add `window.store = store`;
+- `npm run start:app`
+- go to localhost:3000
+- open dev tools/redux tab
+- `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
+
+---
+## Task 2 (Action creator)
+
+- Create an action creator which calls `/users` and money transactions
+- eg: const user = await fetch({ id: 1, name: 'sepp' })
+
+---
 ### Reducers
 
 ![redux overview](assets/redux_reducer_highlight.png)
@@ -632,6 +651,15 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
   };
 }
 ```
+
+----
+
+## Task 1 (Reducer)
+
+- Add a userReducer reducer
+  - entry point: `src/reducer/index.js`
+  - listen to 'fetchUser/success'
+    - try to populate the redux store with a new user
 
 ---
 
@@ -693,45 +721,15 @@ export default connect(
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
 
----
-
-## Task 1 (Actions)
-
-- Download
-  - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
-  - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
-- in src/store.js
-  - add `window.store = store`;
-- `npm run start:app`
-- go to localhost:3000
-- open dev tools/redux tab
-- `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
-
----
-
-## Task 2 (Action creator)
-
-- Create an action creator which calls a fake api
-- eg: const user = await fetch({ id: 1, name: 'sepp' })
-
 ----
 
-## Task 3 (Reducer)
-
-- Add a userReducer reducer
-  - entry point: `src/reducer/index.js`
-  - listen to 'fetchUser/success'
-    - try to populate the redux store with a new user
-
-----
-
-## Task 4 (Container)
+## Task 1 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 
 ----
 
-## Task 5 (connect to backend)
+## Task 2 (connect to backend)
 
 - Try to connect fetchUsers action creator
 
