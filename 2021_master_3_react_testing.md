@@ -9,6 +9,111 @@ slidenumbers: true
 
 ## Recap homework
 
+---
+
+## Multiple assertions in one test
+
+```js
+it('score of a roll is stored into the score', () => {
+    const game = new Game();
+    game.roll(5);
+    expect(game.score).toBe(5);
+    game.roll('/');
+    expect(game.score).toBe(10);
+    game.roll('X');
+    expect(game.score).toBe(30);
+})
+```
+
+---
+
+## Multiple assertions in one test
+
+- usually a sign of a test doing to much
+- split into multiple tests
+
+```js
+it('when 5 pins are hit, score is 5', () => {
+    const game = new Game();
+    game.roll(5);
+    expect(game.score).toBe(5);
+})
+
+it('when a strike was hit, score is 10', () => {
+    const game = new Game();
+    game.roll('x');
+    expect(game.score).toBe(10);
+})
+
+it('when a strike was followed by 5 pins, score is 20', () => {
+    const game = new Game();
+    game.roll('x');
+    game.roll(5);
+    expect(game.score).toBe(20);
+})
+```
+
+---
+## Extract constants
+
+```js
+// ...
+    if (item === '-') {
+        return accumulated;
+    }
+    if (item === '/') {
+        let nextThrow = getNextThrows(frames, index, i, 1)[0];
+        if (nextThrow === '-')
+            nextThrow = 0;
+        else if (nextThrow === 'X')
+            nextThrow = 10;
+        else
+            nextThrow = Number(nextThrow);
+        return 10 + nextThrow;
+    }
+```
+
+---
+## Extract constants
+
+```js
+const MISS = '-'
+const SPARE = '/'
+const STRIKE = 'X'
+
+// ...
+    if (item === MISS) {
+//               ^^^^
+// replace magic characters with constants
+        return accumulated;
+    }
+    if (item === SPARE) {
+        let nextThrow = getNextThrows(frames, index, i, 1)[0];
+        if (nextThrow === MISS)
+            nextThrow = 0;
+        else if (nextThrow === STRIKE)
+            nextThrow = 10;
+        else
+            nextThrow = Number(nextThrow);
+        return 10 + nextThrow;
+    }
+```
+
+---
+## No Linting
+
+- next time -2 points
+- please run
+  - `npx eslint --init`
+    - install linter
+  - `npx mrm lint-staged`
+    - automatically verify code before each commit
+
+---
+
+## Good example:
+
+> https://gitlab.mediacube.at/fhs41228/cswe_pircher_maislinger/-/merge_requests/1/diffs
 
 
 ---
@@ -28,7 +133,7 @@ slidenumbers: true
 
 ---
 
-# Testing components  <!-- .element: class="color--white" -->
+# Testing components
 
 ---
 
