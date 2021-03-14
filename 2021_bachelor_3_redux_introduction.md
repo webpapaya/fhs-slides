@@ -1,6 +1,10 @@
+footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
+slidenumbers: true
 ### State Management with Redux
 
 ## (MMT-B2019)
+
+![cover, filtered](./assets/background_8.jpg)
 
 ---
 
@@ -13,7 +17,14 @@
 
 ---
 
-### Questions to homework
+# Questions to homework
+
+![cover, filtered](./assets/background_8.jpg)
+
+---
+# Functional Programming 101
+
+![cover, filtered](./assets/background_11.jpg)
 
 ---
 
@@ -24,14 +35,14 @@
 - Side Effect
 
 ---
-
-## What is functional programming
+## Functional Programming 101
+### What is functional programming
 
 > Applications developed in a functional style use side-effect free functions as their main building blocks. (Made up definition by myself)
 
 ---
-
-## Why functional programming
+## Functional Programming 101
+### Why functional programming
 
 - More testable
   - pure functions simplify testing
@@ -42,14 +53,13 @@
   - pure functions easy to cache
 
 ---
-
-## Immutability
+## Functional Programming - Immutability
 
 > An immutable data structure is an object that doesn't allow us to change its value. (Remo H. Jansen)
 
-----
-
-## Immutable objects in JS
+---
+## Functional Programming - Immutability
+### Immutable objects in JS
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
@@ -57,9 +67,9 @@ immutableObject.test = 10
 console.log(immutableObject) // => { test: 1 }
 ````
 
-----
-
-## Changing an immutable value
+---
+## Functional Programming - Immutability
+### Changing an immutable value
 
 ````js
 const immutableObject = Object.freeze({ a: 1, b: 2 })
@@ -67,32 +77,31 @@ const updatedObject = Object.freeze({ ...immutableObject, a: 2 })
 console.log(updatedObject) // => { a: 2, b: 2 }
 ````
 
-----
-
-## Unfreeze an object
+---
+## Functional Programming - Immutability
+### Unfreeze an object
 
 ````js
 const immutableObject = Object.freeze({ test: 1 })
 const unfrozenCopy = { ...immutableObject }
 ````
 
-----
-
-## Why immutability
+---
+## Functional Programming - Immutability
+### Why immutability
 
 - race conditions impossible
 - state of the application is easier to reason about
 - easier to test
 
 ---
-
-## Side-Effects
+## Functional Programming - Side Effects
 
 > A side effect is a change of system state or observable interaction with the outside world that occurs during the calculation of a result. (Chris Barbour)
 
-----
-
-## Some side effects
+---
+## Functional Programming - Side Effects
+### Some side effects
 
 - DB/HTTP calls
 - changing the file system
@@ -100,18 +109,18 @@ const unfrozenCopy = { ...immutableObject }
 - printing/logging
 - accessing system state (eg. Clock, Geolocation,...)
 
-----
-
-## Where to deal with side effects
+---
+## Functional Programming - Side Effects
+### Where to deal with side effects
 
 - Moved to the boundaries of the system
 - Business logic stays pure functional
 
-![Side effects](assets/side_effects.png)
+![inline](assets/side_effects.png)
 
 ---
+## Functional Programming - Pure Functions
 
-## Pure Functions
 
 - A function is considered pure when:
   - for the same input it always returns the same output
@@ -122,9 +131,9 @@ const unfrozenCopy = { ...immutableObject }
 const add = (a, b) => a + b
 ```
 
-----
-
-## Pure or in-pure
+---
+## Functional Programming - Pure Functions
+### Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -138,9 +147,9 @@ const fn7 = (array) => array.map((item) => item * 2)
 const fn8 = (array) => array.forEach((item) => console.log(item))
 ```
 
-----
-
-## Pure or in-pure
+---
+## Functional Programming - Pure Functions
+### Pure or in-pure
 
 ```js
 const array = [1, 2, 3, 4, 5, 6]
@@ -154,23 +163,23 @@ const fn7 = (array) => array.map((item) => item * 2) // ✅
 const fn8 = (array) => array.forEach((item) => console.log(item)) // 🚫
 ```
 
-----
-
-## Pure or in-pure
-
-```js
-const config = { minimumAge: 18 }
-const isAllowedToDrink = (age) => age >= config.minimumAge
-```
+---
+## Functional Programming - Pure Functions
+### Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
 const isAllowedToDrink = (age) => age >= config.minimumAge
 ```
 
-----
+```js
+const config = { minimumAge: 18 }
+const isAllowedToDrink = (age) => age >= config.minimumAge
+```
 
-## Pure or in-pure
+---
+## Functional Programming - Pure Functions
+### Pure or in-pure
 
 ```js
 const config = { minimumAge: 18 }
@@ -189,9 +198,9 @@ config.minimumAge = 19
 isAllowedToDrink(18) // false
 ```
 
-----
-
-## Pure or inpure? 2/2
+---
+## Functional Programming - Pure Functions
+### Pure or inpure? 2/2
 
 ```js
 const config = Object.freeze({ minimumAge: 18 })
@@ -206,8 +215,7 @@ isAllowedToDrink(18) // true
 ```
 
 ---
-
-## Summary FP
+## Functional Programming - Summary
 
 - Immutability
   - Object can't be changed after its creation
@@ -219,14 +227,16 @@ isAllowedToDrink(18) // true
 
 ---
 
-### Side Effects with React
+# Side Effects with React
+
+![cover](./assets/background_5.jpg)
 
 ---
 
 # Side Effects with React
 ## Recap useEffect
 
-> The Effect Hook lets you perform side effects in function components:
+> The Effect Hook lets you perform side effects in function components
 
 ---
 # Side Effects with React
@@ -307,34 +317,35 @@ export const MoneyTransactions = () => {
 - `npm i json-server -D`
 - add npm script
   - `"start:server": "json-server --watch db.json --port 3001",`
-- add db.json https://gist.github.com/webpapaya/c419f8d3fa1ba9649c5afdb89e695b76
-- fetch `money-transactions` and `users`
-- display `money-transactions` with users
+- add [db.json](https://gist.github.com/webpapaya/c419f8d3fa1ba9649c5afdb89e695b76)
+- fetch/display `money-transactions` and `users`
 
 ---
 
-### State Management with Redux
+# State Management with Redux
 
-----
+![cover, filtered](./assets/background_9.jpg)
 
+---
+## Redux - State
 ### What is application state
 
 > An application's state is roughly the entire contents of its memory. ([sarnold](https://stackoverflow.com/a/8102731))
 
-----
-
+---
+## Redux - State
 ### State in Redux terms
 
 > Every bit of information the application needs in order to render.
 
-----
-
+---
+## Redux - State
 ### What information do we need to render this page
 
-![app wireframe](assets/app_wireframe.png)
+![inline](assets/app_wireframe.png)
 
-----
-
+---
+## Redux - State
 ### What information do we need to render this page
 
 | Question?                                  | State Name           |
@@ -347,8 +358,8 @@ export const MoneyTransactions = () => {
 | Which users can I owe some money?          | users                |
 | Which components should be rendered?       | url                  |
 
-----
-
+---
+## Redux - State
 ### Categorising different types
 
 - Relevant for other parts of the application?
@@ -357,8 +368,8 @@ export const MoneyTransactions = () => {
   - use component state (useState or setState)
   - also known as UI State
 
-----
-
+---
+## Redux - State
 ### Global/Local/URL
 
 | State Name           | State Type |
@@ -370,8 +381,8 @@ export const MoneyTransactions = () => {
 | inputStatus          |            |
 | url                  |            |
 
-----
-
+---
+## Redux - State
 ### Global/Local/URL
 
 | State Name           | State Type |
@@ -383,8 +394,8 @@ export const MoneyTransactions = () => {
 | inputStatus          | local      |
 | url                  | url        |
 
-----
-
+---
+## Redux - State
 ### Global State
 
 - relevant for other components
@@ -393,8 +404,8 @@ export const MoneyTransactions = () => {
 - domain object should be stored here
   - eg. users, money transactions, authentication token
 
-----
-
+---
+## Redux - State
 ### UI State
 
 - irrelevant for other parts of the application
@@ -403,8 +414,8 @@ export const MoneyTransactions = () => {
   - Form states
   - visual enhancements
 
-----
-
+---
+## Redux - State
 ### URL State
 
 - defines which set of components should be rendered
@@ -414,19 +425,19 @@ export const MoneyTransactions = () => {
   - the current page of a paginated list
 
 ---
-
+## Redux - State
 ### React component tree
 
-![Component Tree](assets/react_component_tree.png)
+![inline](assets/react_component_tree.png)
 
-----
-
+---
+## Redux - State
 ### Storing state in components
 
-![Local state tree](assets/local_state_tree.png)
+![inline](assets/local_state_tree.png)
 
-----
-
+---
+## Redux - State
 ### Storing state in components
 
 - Pros
@@ -437,14 +448,14 @@ export const MoneyTransactions = () => {
   - If UserUpdate component changes name of user
     - Navigation needs to refetch user data
 
-----
-
+---
+## Redux - State
 ### Storing state in the root component
 
-![Global state tree](assets/global_state_tree.png)
+![inline](assets/global_state_tree.png)
 
-----
-
+---
+## Redux - State
 ### Storing state in the root component
 
 - Pros
@@ -455,20 +466,20 @@ export const MoneyTransactions = () => {
   - State needs to be passed down to every component
   - (Root component contains all state logic)
 
-----
-
+---
+## Redux - State
 ### Storing state in the root component
 
-![twitter component tree](assets/twitter_component_tree.gif)
+![inline](assets/twitter_component_tree.gif)
 
-----
-
+---
+## Redux - State
 ### Storing state in redux
 
-![connected tree](assets/connected_tree.png)
+![inline](assets/connected_tree.png)
 
-----
-
+---
+## Redux - State
 ### Storing state in redux
 
 - Global state which acts like local state
@@ -482,13 +493,13 @@ export const MoneyTransactions = () => {
 
 ---
 
-### Redux
+## Redux
 
-![redux overview](assets/redux_overview.png)
+![inline](assets/redux_overview.png)
 
-----
+---
 
-### Why Redux
+## Why Redux
 
 - Managing state in react can be challenging
   - How to synchronize state between distant UI parts
@@ -499,19 +510,19 @@ export const MoneyTransactions = () => {
 
 ---
 
-### Actions
+## Redux - Actions
 
-![Redux Actions](assets/redux_action_highlight.png)
+![inline](assets/redux_action_highlight.png)
 
-----
+---
 
-### Actions
+## Redux - Actions
 
 > Something happened in the app which might be interesting.
 
-----
+---
 
-### Actions
+## Redux - Actions
 
 - An action is data from the application which might be relevant for the store
 - Information is sent to the store via store.dispatch
@@ -528,9 +539,9 @@ const signInAction = {
 store.dispatch(signInAction)
 ```
 
-----
+---
 
-### Action Creators
+## Redux - Action Creators
 
 - A functions which creates actions
 - With redux-thunk action creators can dispatch itself
@@ -547,10 +558,10 @@ const actionCreator = () => (dispatch) => {
 store.dispatch(actionCreator())
 ```
 
-----
+---
 
-#### Action creator with params
-
+## Redux - Action Creators
+### Async action creators
 ```js
 const actionCreatorWithData = ({ username, password }) => (dispatch) => {
   dispatch({ type: 'action1', payload: { username, password } })
@@ -560,8 +571,8 @@ const actionCreatorWithData = ({ username, password }) => (dispatch) => {
 store.dispatch(signInAction({ username: 'Mike', password: '1234' }))
 ```
 
-----
-
+---
+## Redux - Action Creators
 ### Async action creators
 
 ```js
@@ -586,38 +597,41 @@ const createMoneyTransaction = ({ creditorId, debitorId, amount }) =>
 store.dispatch(createMoneyTransaction({ creditorId: 1, debitorId: 2, amount: 10.3 }))
 ```
 
-
 ---
-## Task 1 (Actions)
+## Task 1 - Redux Setup
 
 - Download
   - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de)
   - [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=de)
 - in src/store.js
   - add `window.store = store`;
+
+---
+## Task 2 - Actions
+
 - `npm run start:app`
 - go to localhost:3000
 - open dev tools/redux tab
 - `store.dispatch({ type: 'signIn', payload: { name: 'name', password: 'password' } })`
 
 ---
-## Task 2 (Action creator)
+## Task 3 - Async Action creator
 
-- Create an action creator which calls `/users` and money transactions
-- eg: const user = await fetch({ id: 1, name: 'sepp' })
+- Create an action creator which calls `/user` and `/money-transaction`
+  - dispatch result of http call
 
 ---
 ### Reducers
 
-![redux overview](assets/redux_reducer_highlight.png)
+![inline](assets/redux_reducer_highlight.png)
 
-----
+---
 
 ### Reducers
 
 > Reducers specify how the application's state changes in response to actions sent to the store. ([Source](https://redux.js.org/basics/reducers))
 
-----
+---
 
 ### Reducers
 
@@ -634,7 +648,7 @@ const reducer = (previousState = initialState, action) => {
 }
 ```
 
-----
+---
 
 ### Reducers
 
@@ -652,7 +666,7 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 }
 ```
 
-----
+---
 
 ## Task 1 (Reducer)
 
@@ -665,9 +679,9 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 
 ### Container components
 
-![redux overview](assets/redux_container_highlight.png)
+![inline](assets/redux_container_highlight.png)
 
-----
+---
 
 ### Container components
 
@@ -675,7 +689,7 @@ const moneyTransactionReducer = (previousState = initialState, action) => {
 - Provides data from the global store to the components
 - Provides "callbacks" to trigger actions
 
-----
+---
 
 ### Container Components
 
@@ -700,7 +714,7 @@ export default connect(
 )(MoneyTransactionList)
 ```
 
-----
+---
 
 ### mapStateToProps
 
@@ -711,7 +725,7 @@ export default connect(
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapstate)
 
-----
+---
 
 ### mapDispatchToProps
 
@@ -721,13 +735,13 @@ export default connect(
   - ownProps -> properties which are passed from other components
 - [Docs](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
 
-----
+---
 
 ## Task 1 (Container)
 
 - Try to connect your moneyTransactionCreate dropdown with users from the store
 
-----
+---
 
 ## Task 2 (connect to backend)
 
