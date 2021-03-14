@@ -17,11 +17,11 @@ slidenumbers: true
 # Roadmap
 
 - 1.3.-2.3: 8EH React
-- 15.3. 4EH React Side Effects, Firebase Data crash course
-- 16.3. 4EH 4EH Testing and Testing with React
-- 8.4. 4EH Redux Intro
-- 9.4  4EH Redux Recap
-- 23.4. 4EH Authentication
+- 15.3. 4EH React Side Effects/Redux Intro
+- 16.3. 4EH Testing introduction
+- 8.4. 4EH
+- 9.4 4EH Testing/Testing React
+- 23.4. 4EH Firebase Data crash course, Authentication
 
 ---
 
