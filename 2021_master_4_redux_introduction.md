@@ -15,6 +15,32 @@ slidenumbers: true
 - State Management with Redux
 
 ---
+
+# Testing forms [^1]
+
+```js
+import React from 'react'
+import { render, cleanup, queryByText, fireEvent } from '@testing-library/react'
+import Form from './Form'
+
+afterEach(cleanup)
+it('submits username as form value', () => {
+  const username = 'a value'
+  const onSubmit = jest.fn()
+
+  const { container } = render(<Form onSubmit={onSubmit} />)
+
+  fireEvent.change(
+    container.querySelector('[name="username"]'),
+    { target: { value: username } }
+  )
+  fireEvent.submit(container.querySelector('form'))
+
+  expect(onSubmit).toHaveBeenLastCalledWith({ username })
+})
+```
+
+---
 # Functional Programming 101
 
 ![cover, filtered](./assets/background_11.jpg)
@@ -744,3 +770,6 @@ export default connect(
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
+
+
+[^1]: I have forgotten to add this slide in the last lecture. This slide might be required for your homework
