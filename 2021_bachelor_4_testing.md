@@ -5,6 +5,11 @@ slidenumbers: true
 
 ---
 
+## Open Redux questions
+
+---
+
+
 # Why automated testing
 
 - manual testing is expensive
