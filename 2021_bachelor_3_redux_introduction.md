@@ -748,6 +748,38 @@ export default connect(
 - Try to connect fetchUsers action creator
 
 ---
+## Homework
+
+- Use fake http server from Page 28
+- write the following action creators and reducers
+  - fetchMoneyTransactionsActionCreator
+    - GET http://localhost:3001/money-transaction
+  - createMoneyTransactionsActionCreator
+    - POST http://localhost:3001/money-transaction
+  - fetchUsersActionCreator
+    - GET http://localhost:3001/user
+- connect the <CreateMoneyTransaction />
+- connect the <MoneyTransactionList />
+- whenever a money transaction is created the <MoneyTransactionList /> should update
+
+
+** Use fake http server from Page 28
+** write the following action creators and reducers
+*** fetchMoneyTransactionsActionCreator
+**** GET http://localhost:3001/money-transaction
+*** createMoneyTransactionsActionCreator
+**** POST http://localhost:3001/money-transaction
+*** fetchUsersActionCreator
+**** GET http://localhost:3001/user
+** connect the <CreateMoneyTransaction />
+** connect the <MoneyTransactionList />
+** whenever a money transaction is created the <MoneyTransactionList /> should update
+
+
+
+
+
+---
 
 # Further Links
 
