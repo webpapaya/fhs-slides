@@ -1,5 +1,7 @@
 # Authentication in React/Redux
 
+![cover, filtered](assets/background_10.jpg)
+
 ---
 
 ### Roadmap
@@ -7,8 +9,9 @@
 - Authentication
 - (Debugging)
 
----
+![right, filtered](assets/background_11.jpg)
 
+---
 ### Authentication
 
 - Verify identity of something
@@ -19,6 +22,8 @@
   - Pets
   - ...
 - Sometimes refered to as Authn
+
+![right, filtered](assets/background_8.jpg)
 
 ----
 
@@ -38,27 +43,21 @@
 - what resources should somebody have access to
   - What am I allowed to do
     - eg. A person can only change its own password
-    - eg. A person can only see his own depts/credits
 - usually happens after authentication
-  - Anonymous resources might be accessible without authz
-  - eg.: reading news articles
-- more to this topic from Brigitte
+  - Anonymous resources might be accessible without authz (eg. reading news articles)
+
+![right, filtered](assets/background_7.jpg)
 
 ---
 
 ### Stateful Authentication
 
-- Session data is stored in the backend
+- Session data is stored in the backend [^1] [^2] [^3] [^4]
 
-![JWT Traditional](assets/jwt_traditional.png)
 
-1. /money_transactions/ is called
-2. the session for the user is fetched from a db
-3. the session information is returned and verified
-4. result of /money_transactions/ is returned to client
+![inline](assets/jwt_traditional.png)
 
 ----
-
 ### Stateful Authentication
 
 - Pros:
@@ -79,6 +78,8 @@
   - server only needs to verify validity
   - does not need to refetch data
 
+![right, filtered](assets/background_7.jpg)
+
 ----
 
 ### Stateless Authentication
@@ -92,11 +93,12 @@
   - More complex to implement
   - Session data can't be changed until it expires
 
+
 ----
 
 ### Stateless Authentication
 
-![JWT Flow](assets/jwt_timeline.png)
+![inline](assets/jwt_timeline.png)
 
 ---
 
@@ -114,9 +116,8 @@
 - Payload (purple)
   - whatever data needed for identification
 - signature (blue)
-  - used
 
-![JWT](assets/jwt.png)
+![inline](assets/jwt.png)
 
 ----
 
@@ -132,6 +133,8 @@
   "typ": "JWT"
 }
 ```
+
+![right, filtered](assets/background_9.jpg)
 
 ----
 
@@ -150,6 +153,8 @@
 }
 ```
 
+![right, filtered](assets/background_6.jpg)
+
 ----
 
 ### Signature
@@ -160,32 +165,16 @@
   - secret
 - required for data verification
 
-```json
-{
-  "id": "1234567890",
-  "name": "John Doe",
-  "roles": ["Admin"]
-}
-```
 
 ----
 
 ### Anatomy of JWT
 
-```json
-// Header
-{ "alg": "HS256", "typ": "JWT" }
-
-// Payload (any valid JSON can be added)
-{ "id": "1234567890", "name": "John Doe" }
-
-// verify signature
-// ...
-```
+![inline](assets/jwt_parts.png)
 
 gets converted to:
 
-![JWT](assets/jwt.png)
+![inline](assets/jwt.png)
 
 ----
 
@@ -216,7 +205,7 @@ gets converted to:
 
 ### JWT in React/Redux
 
-![Redux Action Creators](assets/redux_action_highlight.png)
+![inline](assets/redux_action_highlight.png)
 
 ----
 
@@ -290,11 +279,12 @@ const userReducer = (previousState = initialState, action) => {
 }
 ```
 
+
 ---
 
-### Authentication with firebase
+# Authentication with Firebase
 
-https://console.firebase.google.com/
+![cover, filtered](assets/background_1.jpg)
 
 ---
 # Firebase
@@ -302,6 +292,8 @@ https://console.firebase.google.com/
 
 - `npm install -g firebase-tools`
 - `firebase login`
+
+![right, filtered](assets/background_6.jpg)
 
 ---
 # Firebase
@@ -314,6 +306,8 @@ https://console.firebase.google.com/
   - Emulators
 - Create new project
   - select name + 5 random characters at the end
+
+![right, filtered](assets/background_8.jpg)
 
 ---
 # Firebase
@@ -336,16 +330,21 @@ https://console.firebase.google.com/
   - Authentication Emulator
   - Database Emulator
 
+![right, filtered](assets/background_9.jpg)
+
 ---
 # Firebase
 ## Emulator setup
 
 ```
-Which Firebase emulators do you want to set up? Press Space to select emulators, then Enter to confirm your choices. Authentication Emulator, Database Emulator?
+Which Firebase emulators do you want to set up? Press Space to select
+emulators, then Enter to confirm your choices. Authentication
+Emulator, Database Emulator?
 - Which port do you want to use for the auth emulator? 9099
 - Which port do you want to use for the database emulator? 9000
 - Would you like to enable the Emulator UI? Yes
-- Which port do you want to use for the Emulator UI (leave empty to use any available port)?
+- Which port do you want to use for the Emulator UI (leave empty to use any
+  available port)?
 - Would you like to download the emulators now? (y/N) y
 ```
 
@@ -362,21 +361,35 @@ Which Firebase emulators do you want to set up? Press Space to select emulators,
 
 ---
 # Firebase
-## Get firebase config
+## Get firebase config 1/3
 
 ![inline](assets/firebase_select_project.png)
 
 ---
 # Firebase
-## Get firebase config
+## Get firebase config 2/3
 
 ![inline](assets/firebase_get_config.png)
 
 ---
 # Firebase
-## Get firebase config
+## Get firebase config 3/3
 
-- paste config in src/firebase.json
+- paste config in src/firebase.json [^6]
+
+```js
+// src/firebase.js
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBaUKK6ikaiYN98xIiQiCV-wPIaPCNS26Y",
+  authDomain: "full-stack-development-a2479.firebaseapp.com",
+  projectId: "full-stack-development-a2479",
+  storageBucket: "full-stack-development-a2479.appspot.com",
+  messagingSenderId: "338202513827",
+  appId: "1:338202513827:web:7ecd7edebc5641f9deca16",
+  measurementId: "G-QZ6VWV6785"
+};
+```
 
 ---
 
@@ -406,7 +419,7 @@ firebase.initializeApp(firebaseConfig)
 ---
 
 # Firebase
-# Install Firebase SDK
+## Install Firebase SDK
 
 - `npm i firebase firebase-tools`
 
@@ -431,7 +444,7 @@ firebase.initializeApp(firebaseConfig)
 ---
 
 # Firebase
-# Initialize firebase auth
+## Initialize firebase auth [^7]
 
 ```js
 // src/firebase.js
@@ -448,28 +461,32 @@ if (process.env.NODE_ENV === 'development') {
   auth.useEmulator('http://localhost:9099')
 }
 ```
-
 
 ---
 
 # Firebase
-# build an action creator for sign up
+## Initialize firebase auth
 
 ```js
-// src/firebase.js
-// ...
+import { auth } from '../../firebase.js'
 
-firebase.initializeApp(firebaseConfig)
+// with our auth instance we can
+// signIn
+auth.signInWithEmailAndPassword('email@mail.com', 'superSecret')
 
-export const auth = firebase.auth()
+// signUp
+auth.createUserWithEmailAndPassword('email@mail.com', 'superSecret')
 
-if (process.env.NODE_ENV === 'development') {
-//  ^^^^^^^^^^^^^^^^^^^^
-// when app is started in development mode
-// use the local emulator
-  auth.useEmulator('http://localhost:9099')
-}
+// signOut
+auth.signOut()
 ```
+
+---
+
+# Firebase and Redux
+
+
+![inline](assets/redux_action_highlight.png)
 
 ---
 
@@ -490,18 +507,10 @@ const signUp = ({ email, password }) => async (dispatch) => {
 ```
 
 ---
-### Homework
 
-- connect sign-in/sign-out screens to backend
-  - you need to create 3 action creators
-    - `signIn` use `auth.createUserWithEmailAndPassword`
-    - `signUp` use `auth.signInWithEmailAndPassword`
-    - `signOut` use `auth.signOut`
-  - you need to add a new `authenticationReducer`
-    - store flag about auth status in there
-- redirect to money-transactions after sign-in/sign-up
-- redirect to sign-up when user is not signed in
-  - you could use `<Redirect to="/sign-in">` from [react-router](https://reactrouter.com/web/api/Redirect)
+# Homework
+
+- see [wiki](https://wiki.mediacube.at/wiki/index.php?title=Fullstack_Development_-_SS_2021#Friday_April_09.2C_2021_-_Thomas_Mayrhofer)
 
 ---
 
@@ -509,3 +518,17 @@ const signUp = ({ email, password }) => async (dispatch) => {
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://de.surveymonkey.com/r/8TW92LL>
+
+
+
+[^1]: /money_transactions/ is called
+
+[^2]: the session for the user is fetched from a db
+
+[^3]: the session information is returned and verified
+
+[^4]: result of /money_transactions/ is returned to client
+
+[^6]: different for each user
+
+[^7]: complete firebase.js https://gist.github.com/webpapaya/d317f23e993a29055766b00074a5a5eb
