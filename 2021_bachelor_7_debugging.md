@@ -1,5 +1,7 @@
 # Debugging JS
 
+![cover filtered](assets/background_3.jpg)
+
 ----
 
 # console.log debugging
@@ -10,14 +12,7 @@
   - easy to get started
   - some problems might be tough to track down
 
-----
-
-# Using Breakpoints
-
-- Chrome/Firefox devtools allow breakpoints
-- Breakpoints are a way to pause a programm
-  - variables can be inspected
-  - custom code can be executed
+![right, filtered](assets/background_1.jpg)
 
 ----
 
@@ -27,6 +22,19 @@
 - Breakpoints are a way to pause a programm
   - variables can be inspected
   - custom code can be executed
+
+![right, filtered](assets/background_2.jpg)
+
+----
+
+# Using Breakpoints
+
+- Chrome/Firefox devtools allow breakpoints
+- Breakpoints are a way to pause a programm
+  - variables can be inspected
+  - custom code can be executed
+
+![right, filtered](assets/background_3.jpg)
 
 ----
 
@@ -38,8 +46,7 @@
   - eg. element is removed/added to dom
 - In DevTools
   - Sources > find line of code > click on line number
-- Via Code
-  - add debugger statement
+- Via Code -> add debugger statement
 
 ----
 
@@ -47,17 +54,17 @@
 
 - <https://dev.to/john_papa/debug-your-nodejs-app-in-60-seconds-5cni>
 
-----
-
-# Task
-
-- Try to setup debugger for backend
-- Start the backend and set breakpoint
-- Maybe you have a bug which you want to investigate
-
 ---
 
 # Debugging performance issues
+
+![cover filtered](assets/background_4.jpg)
+
+----
+
+# Chrome performance tab
+
+![inline](assets/flamegraph.png)
 
 ----
 
@@ -68,15 +75,13 @@
   - call stack
   - duration of fn call
 
-![Flamegraph](assets/flamegraph.png)
-
 ----
 
 # Bottom up
 
-- Which functions had the most impact on performance
+- Which functions had took the longest to run
 
-![Flamegraph](assets/bottom_up.png)
+![inline](assets/bottom_up.png)
 
 ----
 
@@ -94,14 +99,6 @@
 - npm i && npm run start:development
 - Users complain that some button clicks take very long
   - Don't look on commit history =)
-
-----
-
-# Task 2
-
-- Go to your master project
-- Open profiler
-  - find the slowest function
 
 ---
 # Feedback
