@@ -4,6 +4,14 @@
 
 ----
 
+# Roadmap for today
+
+- Debugging JS
+- Firebase Database
+- MMP Setup
+
+----
+
 # console.log debugging
 
 - Add console.log statements
