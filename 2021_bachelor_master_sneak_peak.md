@@ -14,7 +14,7 @@ slidenumbers: true
 
 # Survey Results
 
-![inline](./assets/survey_results.png)
+![inline](./assets/2021_survey_results.png)
 
 ---
 
@@ -26,6 +26,13 @@ slidenumbers: true
 - Code Splitting
 - ~~Client Side Debugging~~
 - ~~Testing Redux~~
+
+---
+
+# React Portals[^1]
+
+![cover](./assets/background_4.jpg)
+
 
 ---
 
@@ -80,6 +87,8 @@ const MyComponent = ({ children }) => {
 
 > Refs provide a way to access DOM nodes or React elements created in the render method.
 
+![right, filtered](./assets/background_4.jpg)
+
 ---
 
 # Refs
@@ -129,9 +138,13 @@ const MyInputComponent = ({ autofocus }) => {
 - Don’t Overuse Refs
   - prefer using props and lift up state
 
+![right, filtered](./assets/background_5.jpg)
+
 ---
 
 # Error Boundaries [^3]
+
+![cover](./assets/background_6.jpg)
 
 ---
 
@@ -197,6 +210,8 @@ class ErrorBoundary extends React.Component {
 
 # Code Splitting
 
+![cover](./assets/background_7.jpg)
+
 ---
 
 # Code Splitting
@@ -213,6 +228,8 @@ class ErrorBoundary extends React.Component {
 # Code Splitting [^5]
 
 > split bundle into multiple bundles which can be loaded lazily during runtime
+
+![left, filtered](./assets/background_7.jpg)
 
 ---
 
@@ -256,6 +273,7 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 > `React.Suspense` lets components “wait” for something before rendering.
 
+![left, filtered](./assets/background_7.jpg)
 
 ---
 
@@ -280,7 +298,7 @@ function MyComponent() {
 
 # Other Master Topics
 
-- Deep Dive in Testing Client Side Apps
+- Testing Client Side Apps Deep Dive
 - Performance Tuning in React/Redux
 - Functional Programming in JS
 - Scaling React/Redux
@@ -288,9 +306,21 @@ function MyComponent() {
 - Localization
 - ...
 
+---
+
+# Lets keep in touch
+
+- thomas@mayrhofer.at
+- [Twitter @webpapaya](https://twitter.com/webpapaya)
+- [LinkedIn](https://www.linkedin.com/in/thomas-mayrhofer-935b041a9/)
+
 
 [^1]: source <https://reactjs.org/docs/portals.html>
+
 [^2]: source <https://reactjs.org/docs/refs-and-the-dom.html>
+
 [^3]: source https://reactjs.org/docs/error-boundaries.html
+
 [^4]: personal opinion
+
 [^5]: source https://reactjs.org/docs/code-splitting.html
