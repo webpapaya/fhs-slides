@@ -9,7 +9,7 @@ slidenumbers: true
 
 ## [fit] ES Next II
 
-![cover](./assets/background_11.jpg)
+![cover](./assets/background_1.jpg)
 
 ---
 
