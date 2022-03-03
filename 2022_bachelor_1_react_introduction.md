@@ -33,7 +33,8 @@ slidenumbers: true
 
 ---
 
-## React Components
+## Components
+### Functional Components
 
 ```js
 const Button = () => {
@@ -50,7 +51,8 @@ React.renderComponent(<Button />, document.body)
 
 ---
 
-## React Class Components
+## Components
+### Class Components
 
 - Alternative syntax for components
 
@@ -71,7 +73,8 @@ React.renderComponent(<Button />, document.body)
 
 ----
 
-## JSX
+## Components
+### JSX
 
 - JavaScript XML
   - extension to write XML in JS
@@ -89,7 +92,8 @@ const Button = () => {
 
 ----
 
-## React without JSX
+## Components
+### React without JSX
 
 - React can be used without JSX
 
@@ -105,13 +109,15 @@ const Button = () => {
 
 ---
 
-## Which components do you see
+## Components
+### Which components do you see
 
 ![app, inline](assets/sign_in_wireframe.png)
 
 ----
 
-## Which components do you see
+## Components
+### Which components do you see
 
 ![app, inline](assets/app_wireframe.png)
 
@@ -119,8 +125,11 @@ const Button = () => {
 
 # Building the first react component
 
+![filtered](./assets/background_8.jpg)
+
 ---
 
+## JSX
 ### Embedding expressions
 
 ```js
@@ -135,6 +144,7 @@ const CurrentTime = () => {
 
 ----
 
+## JSX
 ### Embedding expressions
 
 ```js
@@ -149,7 +159,8 @@ const FagoMenu = () => {
 
 ----
 
-## Conditional rendering
+## JSX
+### Conditional rendering
 
 ```js
 const CurrentTime = () => {
@@ -166,7 +177,8 @@ const CurrentTime = () => {
 
 ----
 
-## Conditional rendering
+## JSX
+### Conditional rendering
 
 ```js
 const CurrentTime = () => {
@@ -182,6 +194,7 @@ const CurrentTime = () => {
 
 ----
 
+## JSX
 ### Loop over arrays
 
 ```js
@@ -198,6 +211,7 @@ const UserList = ({ users }) => {
 
 ---
 
+## JSX
 ### Fragments
 
 - Groups a list of children without adding a dom element
@@ -215,7 +229,8 @@ const AComponent = () => {
 
 ----
 
-## Keyed Fragments
+## JSX
+### Keyed Fragments
 
 - Same as fragment but a key can be provided (eg.: definition list)
 
@@ -237,6 +252,7 @@ const AComponent = ({ items }) => {
 
 ----
 
+## JSX
 ### key property in loops
 
 - Is required when iterating over lists
@@ -398,6 +414,7 @@ const ToggleButton = () => {
 
 ----
 
+## React Hooks
 ### useState
 
 ```js
@@ -416,6 +433,7 @@ const App = () => {
 
 ----
 
+## React Hooks
 ### Extract into custom hook
 
 ```js
@@ -439,7 +457,8 @@ const App = () => {
 
 ----
 
-## State vs. Props
+## React State
+### State vs. Props
 
 | _props_ | _state_ |
 --- | --- | ---
@@ -454,7 +473,8 @@ Can change in child Components? | Yes | No
 
 ---
 
-# Unidirectional Dataflow
+## React State
+### Unidirectional Dataflow
 
 - Props only flow from parent to children
 - Parent is responsible to update data
@@ -463,7 +483,8 @@ Can change in child Components? | Yes | No
 
 ----
 
-# Unidirectional Dataflow
+## React State
+### Unidirectional Dataflow
 
 ![inline](https://miro.medium.com/max/1100/1*PBgAz9U9SrkINPo-n5glgw.gif)
 > [Source](https://medium.com/@alialhaddad/https-medium-com-alialhaddad-redux-vs-parent-to-child-2583c8e29509)
@@ -498,9 +519,10 @@ const App = () => {
 }
 ```
 
+---
+
 # Exercise: 30min
 
-- I'll create breakout rooms
 - Fork/clone the following <https://github.com/webpapaya/fhs-react-redux-starter-kit>
 - execute `npm run start:storybook`
 

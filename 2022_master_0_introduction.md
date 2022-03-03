@@ -14,26 +14,20 @@ slidenumbers: true
 
 ---
 
-# Roadmap
+### Roadmap 1/2
 
-- 4.3.2022
-	- react intro
-- 14.3.2022
-	- react state management
-- 28.3.2022
-	- typescript introduction
-- 4.4.2022
-	- typescript and react
-  - typescript advanced (generics, type inference)
-- 19.4.2022
-	- testing introduction
-- 28.4.2022
-	- testing browser APIs
-  - offline persistence
-- 2.5.2022
-  - Wunschkonzert
-	  - i18n, better test assertions, debugging/logging
+- 04.03.2022: react intro
+- 14.03.2022: react state management [^1]
+- 28.03.2022: typescript introduction
+- 04.04.2022: TS advanced and react with TS [^2]
 
+---
+
+### Roadmap 2/2
+
+- 19.04.2022: testing introduction
+- 28.04.2022: testing react / browser APIs
+- 02.05.2022: Wunschkonzert [^3]
 
 ---
 
@@ -73,3 +67,11 @@ slidenumbers: true
 
 - Questions: tmayrhofer.lba@fh-salzburg.ac.at
 - <https://s.surveyplanet.com/x1ibwm85>
+
+
+
+[^1]: with or without redux?
+
+[^2]: generics, type inference, build own runtime type system
+
+[^3]: i18n, better test assertions, debugging/logging

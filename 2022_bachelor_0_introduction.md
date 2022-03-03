@@ -16,18 +16,12 @@ slidenumbers: true
 
 # Roadmap
 
-- 4.2.2022: 3EH
-	- React introduction
-- 14.2.2022: 3EH
-	- React Forms/Routing
-- 28.2.2022: 3EH
-	- Side Effects/State Management
-- 4.4.2022: 3EH
-	- Testing introduction
-- 19.4.2022: 3EH
-	- Firebase/Authentication Crash Course
-- 28.4.2022: 3EH
-	- Wunschkonzert/Work on Project
+- 04.02.2022: React introduction
+- 14.02.2022: React Forms/Routing
+- 28.02.2022: Side Effects/State Management
+- 04.04.2022: Testing introduction
+- 19.04.2022: Firebase/Authentication Crash Course
+- 28.04.2022: Wunschkonzert/Work on Project
 
 ---
 
@@ -63,7 +57,6 @@ slidenumbers: true
 
 [^3]: linting errors will result in -2 points of 5
 
-
 ----
 
 # What we'll do
@@ -72,15 +65,21 @@ slidenumbers: true
 
 ----
 
-![sign_in](assets/sign_in_wireframe.png)
+# Sign in
+
+![inline](assets/sign_in_wireframe.png)
 
 ----
 
-![sign_up](assets/sign_up_wireframe.png)
+# Sign up
+
+![inline](assets/sign_up_wireframe.png)
 
 ----
 
-![app](assets/app_wireframe.png)
+# Applikation
+
+![inline](assets/app_wireframe.png)
 
 ---
 

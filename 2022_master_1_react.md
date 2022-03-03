@@ -705,7 +705,7 @@ const ANestedComponent = () => {
 
 - fine granular context
 
-![global state tree](assets/context_hell.png)
+![inline](assets/context_hell.png)
 
 ----
 
