@@ -481,7 +481,21 @@ const App = () => {
 
 ---
 
-### Exercise 2/2 (20 minutes)
+### Exercise 1/2 (30 minutes)
+
+- Build a sign in form
+  - with username
+  - with password
+  - with a submit button
+- extract an input component
+- connect these components with hooks
+- on submit the form values should be logged to the console
+
+![right, filtered](./assets/background_7.jpg)
+
+---
+
+### Exercise 2/2 (30 minutes)
 
 - Bonus: extract a `useForm` hook
 
