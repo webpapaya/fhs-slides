@@ -14,6 +14,48 @@ slidenumbers: true
 
 ---
 
+## Survey
+
+![filtered](./assets/background_9.jpg)
+
+---
+
+## Survey
+
+![inline](./assets/2022_master_survey_1.png)
+
+---
+
+## Survey
+
+![inline](./assets/2022_master_survey_2.png)
+
+---
+
+## Survey [^4]
+
+![inline](./assets/2022_master_survey_3.png)
+
+---
+
+## Survey
+
+![inline](./assets/2022_master_survey_4.png)
+
+---
+
+## Survey
+
+![inline](./assets/2022_master_survey_5.png)
+
+---
+
+## Survey [^1]
+
+![inline](./assets/2022_master_survey_6.png) 
+
+---
+
 ### Roadmap 1/2
 
 - 04.03.2022: react intro
@@ -75,3 +117,5 @@ slidenumbers: true
 [^2]: generics, type inference, build own runtime type system
 
 [^3]: i18n, better test assertions, debugging/logging
+
+[^4]: quick introduction, testing external apis. Mocking, stubing, ...

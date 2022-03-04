@@ -11,7 +11,7 @@
     "build:pdf": "npm run start -- --print build/slides.pdf",
     "deploy": "npm run build:html && gh-pages --dotfiles -d _static && rm -rf _static",
     "lint": "markdownlint . -i node_modules --fix && standard --plugin markdown '**/*.md' ",
-    "reduce:pdf": "for d in $( git ls-files -o --exclude-standard |  grep .pdf) ; do (gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=\"$d.reduced\" $d && mv \"$d.reduced\" $d && echo \"compressed $d\"); done"
+    "reduce:pdf": "for d in $( git diff --name-only `git merge-base origin/master HEAD` |  grep .pdf) ; do (gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=\"$d.reduced\" $d && mv \"$d.reduced\" $d && echo \"compressed $d\"); done"
   },
   "author": "Thomas Mayrhofer",
   "license": "ISC",
