@@ -3,7 +3,7 @@ slidenumbers: true
 
 # Fullstack Development
 
-## (MMT-B2018)
+## (MMT-B2020)
 
 ---
 
@@ -375,67 +375,72 @@ npm install react-router-dom --save
 ### Usage
 
  ```js
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter , Routes, Route, Link } from 'react-router-dom'
 import Homepage from './components/homepage'
 import SignIn from './components/sign-in'
 
 const App = () => {
   return (
-    <Router> { /* creates a new routing context */ }
-      <Switch> { /* render only one route */ }
-        { /* define routes and pass component as prop to the route */ }
-        <Route path="/sign-in" component={SignIn}>
-        <Route path="/" component={Homepage}>
+    <BrowserRouter> { /* creates a new routing context */ }
+      <Routes> { /* render only one route */ }
+        { /* define routes and pass component as element prop to the route */ }
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/' element={<Homepage />} />
         { /* if no route matches redirect to 'Homepage' */ }
-        <Redirect to='/'>
-      </Switch>
-    </Router>
-  );
+        <Route path="*" element={<Navigate to='/' />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 ```
 
+
 ----
 
-### Route priority (without exact)
+### Define nested routes
 
  ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes Homepage
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+
+const UserProfile = () => {
+  const params = useParams();
+//               ^^^^^^^^^^
+// access to dynamic params from URL
+  return <h1>User {params.userId}</h1>;
+}
+
 const Routes = () => (
-   <Switch>
-     <Route path='/' component={Homepage} />
-     <Route path='/sign-in' component={SignIn} />
-   </Switch>
+  <BrowserRouter>
+    <Routes>
+      <Route path='user/:userId' element={<UserProfile />}/>
+      {/*                ^^^^^^ */}
+      {/* define dynamic URL segment */}
+      {/* .... */}
+    </Routes>
+  </BrowserRouter>
 )
 ```
 
 ----
 
-### Route priority (without exact)
+### Define nested routes
 
  ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes SignIn
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+// ... other imports
+
 const Routes = () => (
-   <Switch>
-     <Route path='/sign-in' component={SignIn} />
-     <Route path='/' component={Homepage} />
-   </Switch>
-)
-```
-
-----
-
-### Route priority (with exact)
-
- ```js
-// path === "/" => renderes Homepage
-// path === "/sign-in" => renderes sign-in
-const Routes = () => (
-   <Switch>
-     <Route exact path='/' component={Homepage} />
-     <Route exact path='/sign-in' component={SignIn} />
-   </Switch>
+  <BrowserRouter>
+    <Routes>
+      { /* define nested routes */ }
+      <Route path='user'>
+        <Route path='profile' element={<Profile />} />
+        <Route path="*" element={<Navigate to='profile' />} />
+        { /* redirects to user/profile */ }
+      </Route>
+      {/* .... */}
+    </Routes>
+  </BrowserRouter>
 )
 ```
 
@@ -459,20 +464,16 @@ const Routes = () => (
 ### Add redirects from JS
 
  ```js
- import { withRouter } from 'react-router-dom'
+ import {useNavigate} from 'react-router-dom'
 
- const SignIn = withRouter(({ history }) => {
-   const onSubmit = (evt) => {
-     evt.preventDefault()
-     history.push('/')
-   }
+const Profile = () => {
+  const navigate = useNavigate()
+//                 ^^^^^^^^^^^
+// get access to navigate function
 
-   return (
-     <form onSubmit={onSubmit}>
-       {/* ... */}
-     </form>
-   )
-})
+  return <button onClick={() => navigate('/') }>Logout</button>
+}
+
 ```
 
 ---
