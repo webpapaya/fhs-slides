@@ -38,6 +38,3 @@ https://wiki.mediacube.at/wiki/index.php?title=Studiowoche#3._Semester_Bachelor
   - Endabgabe am Sonntag den 30.Mai
 
 [^1]: infos from wiki overrule presentation
-
-
-schmidhuber_schwarzenbacher
