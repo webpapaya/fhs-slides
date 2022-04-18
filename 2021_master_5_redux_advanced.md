@@ -6,14 +6,6 @@ slidenumbers: true
 
 ![cover, filtered](./assets/background_8.jpg)
 
----
-
-### Exam 17.5.
-
-- Open Book Exam
-- Most questions will require some coding
-- eg. implement a reducer and write a test for this reducer
-- exam will either be in moodle or MS Teams
 
 ---
 

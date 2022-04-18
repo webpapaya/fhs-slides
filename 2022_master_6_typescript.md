@@ -1,4 +1,27 @@
-# TypeScript
+footer: FHS (tmayrhofer.lba@fh-salzburg.ac.at)
+slidenumbers: true
+
+# Typescript
+
+![cover, filtered](./assets/background_8.jpg)
+
+---
+
+# Roadmap next lectures
+
+- 28.4. Exam & Project Coaching
+- 2.5. Testing Side Effects
+
+---
+
+# Exam 
+## Possible Questions 
+
+- Write a component which displays the name of the following users?
+- What is an action creator in redux?
+- Given is the following redux state, write a mapStateToProps function for the following component
+- Which of the following functions is pure? (explain why)
+- ...
 
 ---
 
@@ -108,6 +131,9 @@ color = 10;
 - used to gradually adapt TypeScript
   - is sometimes misused
   - might be valuable for generics
+
+---
+# any
 
 ```ts
 let notSure: any = 4;
@@ -234,6 +260,10 @@ type User = AnonymousUser | RegisteredUser
 - can be used to express constants
   - makes readability of code more expressive
 
+---
+
+# literals
+
 ```ts
 type Lecture =
   | 'Fullstack Development'
@@ -252,7 +282,7 @@ assignToLecture('sepp@fh-salzburg.ac.at', 'HCI')
 
 # Generics
 
-- Task in the office build an identity function
+- Task build an identity function
   - identity function returns the same value that it was given as argument
 
 ```js
@@ -340,11 +370,7 @@ type UserResponse = ServerResponse<{ name: string }>
 
 ---
 
-# Generics for records
-
----
-
-# Built in generics
+# Utility Types
 
 - `Pick<T>`
 - `Omit<T>`
@@ -455,6 +481,94 @@ type AddReturnType = ReturnType<typeof add> // number
 ```
 
 ---
+# Access a subtype in object
+
+```ts
+type User = {
+  firstName: string,
+  lastName: string,
+  age: number
+}
+
+type Age = User['age'] // => type: number
+```
+
+---
+# Unwrap array
+
+```ts
+type MyArray = number[]
+
+type ArrayItem = MyArray[number] // => type: number
+```
+
+
+---
+
+# Type inference
+
+- automatic deduction of a type from an expression
+
+```ts
+let mutableValue = 10 // => type number
+const constantValue = 10 // => type 10
+```
+
+---
+
+# Type inference
+## Generics
+
+- Some generics can be inferred automatically
+
+```ts
+const numberArray = [0,1,2,3] // => Array<number>
+const stringArray = ['A','B','C','D'] // => Array<string>
+const booleanArray = [true,false] // => Array<boolean>
+const mixedArray = [1, 'A', true] // Array<number | string | boolean>
+```
+
+---
+
+# Type inference
+## const assertions
+
+- JS values are mutable
+- JS value can be altered despite being defined as const
+
+```ts
+const numberArray = [0,1,2,3] // => type Array<number>
+numberArray[0] = 10;
+```
+
+---
+
+# Type inference
+## const assertions
+
+- `const assertion` mark a value as immutable
+- type is narrowed
+
+```ts
+const numberArray = [0,1,2,3] as const // => type readonly [0, 1, 2, 3]
+numberArray[1] // => type 1
+```
+
+---
+
+# Type inference
+## const assertions objects
+
+- `const assertion` works on objects as well
+
+```ts
+const myObject = { a: 1, b: 'one' } as const 
+// => type readonly { readonly a: 1; readonly b: "one" }
+
+numberArray[b] // => type 'one'
+```
+
+---
 
 # React and TypeScript
 
@@ -469,7 +583,7 @@ type AvatarsProps = {
 const Avatars = (props: AvatarsProps) => (
     <div className={css(styles.wrapper)}>
       { props.images.map((imageUrl) => (
-        <img src={imageUrl} className={css(styles.image)} />
+        <img key={imageUrl} src={imageUrl} className={css(styles.image)} />
       ))}
     </div>
 )
@@ -479,11 +593,13 @@ const Avatars = (props: AvatarsProps) => (
 // Error: number is not assignable to string
 ```
 
+---
+
 ## Exercise create a user type:
 
 - Requirements:
-  - A user needs to have a first and last name
-  - A user needs to have exactly one contact
+  - a user needs to have a first and last name
+  - a user needs to have exactly one contact
     - a contact is either:
       - address (contains street/zip code/country)
       - phone (contains phone)
@@ -492,7 +608,8 @@ const Avatars = (props: AvatarsProps) => (
 
 ---
 
-## Resulting Type
+## Exercise create a user type
+### Possible Solution
 
 ```ts
 type User = {
@@ -511,9 +628,8 @@ type User = {
 
 ---
 
-> Can you spot issues with this model?
-
----
+## Exercise create a user type
+### Can you spot issues with this model?
 
 ```ts
 type User = {
@@ -522,12 +638,19 @@ type User = {
   street?: string,
   zipCode?: string,
   country?: string,
+  isAddressVerified?: bool,
   email?: string,
   isEmailVerified?: bool,
   phone?: string,
   isPhoneVerified?: bool,
 }
 ```
+
+---
+
+## Exercise create a user type
+### Can you spot issues with this model?
+
 
 ```ts
 const user = {
@@ -538,10 +661,10 @@ const user = {
 ```
 
 ---
+## Exercise create a user type
+### Issues
 
-## Issues
-
-- 1 correct state and 7 falsy states
+- 1 correct state and 8 falsy states
 
 ```ts
 type User = {
@@ -554,8 +677,8 @@ type User = {
 ```
 
 ---
-
-## Requirements
+## Exercise create a user type
+### Requirements
 
 - A user needs to have a first and last name
 - A user needs to have exactly one contact
@@ -567,7 +690,8 @@ type User = {
 
 ---
 
-## Classify the type
+## Exercise create a user type
+### Classify the type
 
 ```ts
 type User = {
@@ -592,7 +716,8 @@ type User = {
 
 ---
 
-## Extract smaller bits
+## Exercise create a user type
+### Extract smaller bits
 
 ```ts
 type PostContact = { street: string, zipCode: string, country: string, isVerified: bool }
@@ -608,8 +733,8 @@ type User = {
 ```
 
 ---
-
-## Extract common properties
+## Exercise create a user type
+### Extract common properties
 
 ```ts
 type Verifiable<T> = T & { isVerified: boolean }
@@ -675,7 +800,6 @@ const validateEmail = (maybeEmail: unknown): Maybe<Email> => {
     return null;
 }
 ```
-
 
 ---
 
