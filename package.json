@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "markdownlint-cli": "^0.22.0",
-    "reveal-md": "^3.0.0-1"
+    "reveal-md": "^5.4.0"
   }
 }
