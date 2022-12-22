@@ -221,6 +221,7 @@ window.localStorage.getItem('someKey1') // => '{ "test": 1 }'
 - non-relational database
   - does not use SQL
 - supported in many browsers
+
 ---
 
 # What is IndexedDB
