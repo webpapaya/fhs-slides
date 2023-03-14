@@ -286,7 +286,7 @@ const SignUpForm = ({ onSubmit }) => {
 ### Example
 
 ```js
-import { useFormik } from "react-hook-form";
+import { useFormik } from "formik";
 
 const SignInForm = () => {
   const formik = useFormik({
@@ -314,7 +314,7 @@ const SignInForm = () => {
 ### With errors
 
 ```js
-import { useFormik } from "react-hook-form";
+import { useFormik } from "formik";
 import {object, string} from 'yup'
 
 const validationSchema = object({
@@ -375,76 +375,75 @@ npm install react-router-dom --save
 ### Usage
 
  ```js
-import { BrowserRouter , Routes, Route, Link } from 'react-router-dom'
-import Homepage from './components/homepage'
-import SignIn from './components/sign-in'
+ import { createBrowserRouter RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+]);
 
 const App = () => {
   return (
-    <BrowserRouter> { /* creates a new routing context */ }
-      <Routes> { /* render only one route */ }
-        { /* define routes and pass component as element prop to the route */ }
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/' element={<Homepage />} />
-        { /* if no route matches redirect to 'Homepage' */ }
-        <Route path="*" element={<Navigate to='/' />} />
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
+  )
+}
+```
+
+---
+
+### Define nested routes
+
+ ```js
+import { createBrowserRouter RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  { 
+    path: '/nested-route', 
+    children: [
+      {
+        path: "/child-route",
+        element: <Page />,
+      }
+    ]
+  }
+])
+
+const App = () => {
+  return (
+    <RouterProvider router={router} />
   )
 }
 ```
 
 
-----
+---
 
-### Define nested routes
+### Define/Access parameters
 
  ```js
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { createBrowserRouter RouterProvider } from 'react-router-dom';
 
-const UserProfile = () => {
-  const params = useParams();
-//               ^^^^^^^^^^
-// access to dynamic params from URL
-  return <h1>User {params.userId}</h1>;
+const router = createBrowserRouter([
+  { 
+    path: '/nested-route', 
+    children: [
+      {
+        path: "/child-route/:id",
+        element: <Page />,
+      }
+    ]
+  }
+])
+
+const Page = () => {
+  const {id} = useParams();
+  // ...
 }
-
-const Routes = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path='user/:userId' element={<UserProfile />}/>
-      {/*                ^^^^^^ */}
-      {/* define dynamic URL segment */}
-      {/* .... */}
-    </Routes>
-  </BrowserRouter>
-)
 ```
 
-----
-
-### Define nested routes
-
- ```js
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-// ... other imports
-
-const Routes = () => (
-  <BrowserRouter>
-    <Routes>
-      { /* define nested routes */ }
-      <Route path='user'>
-        <Route path='profile' element={<Profile />} />
-        <Route path="*" element={<Navigate to='profile' />} />
-        { /* redirects to user/profile */ }
-      </Route>
-      {/* .... */}
-    </Routes>
-  </BrowserRouter>
-)
-```
-
-----
+---
 
 ### Add Links from html
 
@@ -459,7 +458,7 @@ const Routes = () => (
 )
 ```
 
-----
+---
 
 ### Add redirects from JS
 
