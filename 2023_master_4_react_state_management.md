@@ -272,11 +272,11 @@ type CreateStore = <T>(stateFactory: () => T) => {
 
 
 ```ts
-const store = createStore(() => { someValue: 1 })
+const store = createStore(() => ({ someValue: 1 }))
 
-store.get() // 1
+store.get() // { someValue: 1 }
 store.set((current) => ({ someValue: current.someValue + 1}))
-store.get() // 2
+store.get() // { someValue: 2 }
 ```
 
 
