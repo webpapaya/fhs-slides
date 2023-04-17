@@ -102,7 +102,9 @@
 # Setup/Deploye Application
 
 ```bash
-npm install -g firebase-tools
+npm install -g firebase-tools 
+npx firebase-tools login # alternative without global install
+
 firebase login
 firebase init # watch https://asciinema.org/a/ZTa9tGUWAmQDnlWeKnT2n3lXd
 ```
@@ -296,7 +298,7 @@ const SignOutButton = () => {
 
 ```js
 import { auth } from './firebase'
-import { useSignOut } from 'react-firebase-hooks/auth'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const SignOutButton = () => {
     const [user, loading] = useAuthState(auth)
